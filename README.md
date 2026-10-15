@@ -42,7 +42,7 @@ git clone https://github.com/Anandb71/kanth && cd kanth && npm install && SARVAM
 
 On Windows PowerShell, put the key in a file instead: copy `.env.example` to `.env`, add the key, then run `npm install` and `npm start`.
 
-Open http://localhost:5173 and press **Hear a conversation**. No microphone or login is needed. On our machine a fresh clone, install, build and start took 11 seconds with a warm npm cache ([bench/results/setup-time.md](bench/results/setup-time.md)); a cold cache downloads about 70 packages.
+Open http://localhost:5173 and press **Hear a conversation**. No microphone or login is needed. On our machine a fresh clone, install, build and start took 34 seconds with a warm npm cache ([bench/results/setup-time.md](bench/results/setup-time.md)); a cold cache downloads about 70 packages.
 
 The key is read only by the server. It never reaches the browser or the repository.
 
