@@ -88,7 +88,7 @@ export function buildMessages(o: SuggestOptions): { role: "system" | "user"; con
     `4. Every reply is in ${replyLangName}${replyLangName === "English" ? "" : `, with English words mixed in the way ${p.name} does`}. Use no other Indian language in this turn.`,
     `5. Script matters because a speech engine reads your text: ${replyLangName === "English" ? "plain English in Latin script." : `${replyLangName} words in ${replyLangName} script and English words in Latin script. Never romanize ${replyLangName}.`}`,
     `6. Tone for this turn: ${tone.wording}.`,
-    `7. Do not invent facts about ${p.name}'s health or plans beyond what a natural reply needs.`,
+    `7. Never invent facts: no appointments, plans, symptoms or events that were not mentioned. When ${p.name} might need to give a detail you do not know, write a reply that asks or defers instead.`,
     `8. Use the notes about ${p.name} only when they bear on what was just said. Never bring up a topic from the notes that nobody mentioned.`,
     ``,
     `Output exactly ${n} lines and nothing else: no numbering, no tags, no quotes. Each line is the reply, then ${SEP}, then a short English meaning. Example of the line format:`,

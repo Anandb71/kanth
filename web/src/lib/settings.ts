@@ -42,7 +42,7 @@ export const DEMO_PROFILE: Profile = {
     { name: "Dr. Mehra", relation: "neurologist", addressAs: "Doctor" },
     { name: "Rohit", relation: "college friend", addressAs: "Rohit" },
   ],
-  notes: "34, software engineer in Chennai. Has ALS and can no longer speak. Loves cricket and his mother's rasam.",
+  notes: "34, software engineer in Chennai. Has ALS and can no longer speak. Follows cricket.",
 };
 
 const KEY = "kanth.settings.v1";
