@@ -116,7 +116,7 @@ export class Session {
         t: "error",
         id: req.id,
         scope: "tts",
-        message: (err as Error).message,
+        message: friendly((err as Error).message),
         fallback: req.purpose === "prespeak" ? "Will synthesize when you choose it." : "Using the device voice so you are not left silent.",
       });
       return null;
@@ -147,7 +147,7 @@ export class Session {
       await Promise.allSettled(synths);
     } catch (err) {
       if (ac.signal.aborted) return;
-      this.send({ t: "error", id: req.turnId, scope: "llm", message: (err as Error).message, fallback: "Showing your saved phrases. You can also type." });
+      this.send({ t: "error", id: req.turnId, scope: "llm", message: friendly((err as Error).message), fallback: "Showing your saved phrases. You can also type." });
     } finally {
       this.aborts.delete(req.turnId);
     }
@@ -158,4 +158,13 @@ export class Session {
     for (const ac of this.aborts.values()) ac.abort();
     for (const s of this.stt.values()) s.close();
   }
+}
+
+/** Turns raw API failures into something a user (or a judge with a new key) can act on. */
+function friendly(message: string): string {
+  // Matched on the status codes Sarvam returns in its error text.
+  if (/\b(401|403)\b|invalid api key|unauthor/i.test(message)) return "Sarvam rejected the API key. Check SARVAM_API_KEY on the server.";
+  if (/\b429\b|rate limit/i.test(message)) return "Sarvam is rate limiting this key. Retrying shortly.";
+  if (/ENOTFOUND|ECONNREFUSED|ETIMEDOUT|fetch failed/i.test(message)) return "The server cannot reach Sarvam. Check the internet connection.";
+  return message;
 }

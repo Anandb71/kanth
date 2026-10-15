@@ -6,7 +6,7 @@
   "type": "module",
   "license": "MIT",
   "engines": {
-    "node": ">=20.10"
+    "node": "^20.19.0 || >=22.12.0"
   },
   "scripts": {
     "start": "vite build --logLevel warn && tsx server/index.ts",
@@ -14,8 +14,11 @@
     "build": "vite build",
     "typecheck": "tsc --noEmit -p .",
     "test": "vitest run",
-    "bench": "tsx bench/run-all.ts",
-    "serve": "tsx server/index.ts"
+    "serve": "tsx server/index.ts",
+    "bench:ttfa": "tsx bench/ttfa.ts",
+    "bench:tone": "tsx bench/tone.ts",
+    "bench:conversations": "tsx bench/conversations.ts",
+    "bench:analyze": "tsx bench/conversations_analyze.ts && tsx bench/cost.ts"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.3.0",
