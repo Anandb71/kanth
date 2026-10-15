@@ -299,10 +299,18 @@ export class Kanth {
   }
 
   /** The partner finished. Kicks off drafting with whatever was heard. */
-  async partnerFinished(text: string, opts: { who: string; lang?: LangCode; gloss?: string; endedAt: number; transcriptAt?: number }): Promise<string> {
+  async partnerFinished(
+    text: string,
+    opts: { who: string; lang?: LangCode; gloss?: string; endedAt: number; transcriptAt?: number; continues?: boolean },
+  ): Promise<string> {
+    // A continuation (more speech after a short pause, before the user replied) joins the same turn.
+    const prev = this.state.history[this.state.history.length - 1];
+    const merge = !!opts.continues && prev?.who === "partner" && prev.speaker === opts.who;
+    if (merge) text = `${prev!.text} ${text}`;
     const lang = opts.lang ?? detectScriptLanguage(text);
     const partner: PartnerState = { who: opts.who, text, final: true, lang, gloss: opts.gloss, speaking: false };
-    const history: HistoryItem[] = [...this.state.history, { who: "partner", speaker: opts.who, text, lang, at: Date.now(), gloss: opts.gloss }];
+    const item: HistoryItem = { who: "partner", speaker: opts.who, text, lang, at: Date.now(), gloss: opts.gloss };
+    const history: HistoryItem[] = merge ? [...this.state.history.slice(0, -1), item] : [...this.state.history, item];
     this.set({ partner, history });
     const spec = this.spec;
     this.spec = null;

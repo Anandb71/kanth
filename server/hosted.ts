@@ -68,6 +68,17 @@ async function readJson<T>(req: Req, limit: number): Promise<T> {
   return JSON.parse(Buffer.concat(chunks).toString("utf8")) as T;
 }
 
+async function readRaw(req: Req, limit: number): Promise<Buffer> {
+  const chunks: Buffer[] = [];
+  let size = 0;
+  for await (const c of req) {
+    size += (c as Buffer).length;
+    if (size > limit) throw new Error("request too large");
+    chunks.push(c as Buffer);
+  }
+  return Buffer.concat(chunks);
+}
+
 /** Shared checks. Returns false (after answering) when the request must not proceed. */
 async function guard(req: Req, res: Res, kind: keyof typeof LIMITS): Promise<boolean> {
   if (req.method !== "POST") return json(res, 405, { error: "POST only" }), false;
@@ -169,17 +180,24 @@ export async function handleSuggest(req: Req, res: Res): Promise<void> {
 /** Batch speech recognition for the hosted demo: the partner's whole line, once it has ended. */
 export async function handleStt(req: Req, res: Res): Promise<void> {
   if (!(await guard(req, res, "stt"))) return;
+  // Raw 16 kHz PCM16 as the body (smaller to upload), language in the query. JSON with base64 also accepted.
   let body: { pcm?: string; lang?: string };
+  let pcm: Buffer;
   try {
-    body = await readJson(req, 1_500_000);
+    if (String(req.headers["content-type"] ?? "").startsWith("application/octet-stream")) {
+      pcm = await readRaw(req, 1_000_000);
+      body = { lang: new URL(req.url ?? "/", "http://x").searchParams.get("lang") ?? "unknown" };
+    } else {
+      body = await readJson(req, 1_500_000);
+      pcm = Buffer.from(String(body.pcm ?? ""), "base64");
+    }
   } catch (e) {
     return json(res, 400, { error: (e as Error).message });
   }
-  const pcm = Buffer.from(String(body.pcm ?? ""), "base64");
   if (pcm.length < 3200 || pcm.length > STT_SAMPLE_RATE * 2 * 30) return json(res, 400, { error: "Audio must be 0.1 to 30 seconds." });
   const form = new FormData();
   form.set("file", new Blob([new Uint8Array(wavFromPcm(pcm, STT_SAMPLE_RATE))], { type: "audio/wav" }), "partner.wav");
-  form.set("model", "saaras:v3");
+  form.set("model", "saaras:v4");
   form.set("mode", "codemix");
   form.set("language_code", isLang(body.lang) ? body.lang : "unknown");
   const t0 = performance.now();

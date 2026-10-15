@@ -28,6 +28,10 @@ flowchart LR
   POOL <--> BULBUL[(Bulbul V4 Flash)]
 ```
 
+## Hosted mode (Vercel)
+
+The same client also runs against short HTTP functions ([server/hosted.ts](../server/hosted.ts)) through [web/src/lib/http-transport.ts](../web/src/lib/http-transport.ts), because serverless functions cannot hold a WebSocket. Synthesis and drafting stream over HTTP, prespeak is driven from the browser, and speech recognition is batch: the demo sends each scripted line when it ends, and the live microphone uses turn detection in the browser ([web/src/lib/vad.ts](../web/src/lib/vad.ts)) and sends each finished turn. Every function checks the request comes from Kanth's own page, rate limits each visitor and caps sizes. Build and deploy with `node scripts/build-vercel.mjs && vercel deploy --prebuilt --prod`.
+
 ## One turn, step by step
 
 1. **Listen.** Partner audio streams to the server in 100 ms frames of 16 kHz PCM16, and on to Saaras realtime (`mode=codemix`). Partial transcripts appear live in the display.

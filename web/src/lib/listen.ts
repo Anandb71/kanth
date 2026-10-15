@@ -71,6 +71,7 @@ export function useMic(): { listening: boolean; start: () => Promise<void>; stop
     session.current = sessionId;
     kanth.socket.send({ t: "stt_start", sessionId, lang: "unknown" });
     let open = false;
+    let lastFinalAt = -Infinity;
     off.current = kanth.socket.on((m) => {
       if (m.t !== "transcript" || m.sessionId !== sessionId || !m.text.trim()) return;
       if (!open) {
@@ -79,11 +80,21 @@ export function useMic(): { listening: boolean; start: () => Promise<void>; stop
       }
       if (m.final) {
         open = false;
-        void kanth.partnerFinished(m.text, { who: "Them", endedAt: performance.now() - (m.afterEndMs ?? 0), transcriptAt: performance.now() });
+        // Speech that resumes within 4 s, before the user has replied, continues the same turn.
+        const last = kanth.state.history[kanth.state.history.length - 1];
+        const continues = last?.who === "partner" && performance.now() - lastFinalAt < 4000;
+        lastFinalAt = performance.now();
+        void kanth.partnerFinished(m.text, { who: "Them", endedAt: performance.now() - (m.afterEndMs ?? 0), transcriptAt: performance.now(), continues });
       }
     });
     try {
-      cap.current = await capture((pcm) => kanth.socket.send({ t: "stt_audio", sessionId, pcm: b64(pcm) }));
+      // Never listen to ourselves: drop microphone audio while Kanth is speaking, and briefly after.
+      let busyUntil = 0;
+      cap.current = await capture((pcm) => {
+        if (kanth.state.speakingText) busyUntil = performance.now() + 400;
+        if (performance.now() < busyUntil) return;
+        kanth.socket.send({ t: "stt_audio", sessionId, pcm: b64(pcm) });
+      });
       setListening(true);
     } catch {
       kanth.notify("stt", "The microphone is not available.", "Try the demo, or type what was said.");

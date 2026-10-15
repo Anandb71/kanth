@@ -1,9 +1,11 @@
 // Hosted mode transport: the same messages as the /ws socket, carried over short streaming HTTP requests,
 // for serverless hosting that cannot keep a WebSocket open. Prespeak runs here: as each draft arrives,
 // the browser asks for its audio in parallel. Speech recognition is batch: the partner's whole line is
-// sent once it ends, so there are no partial transcripts and no drafting while they talk.
+// sent once it ends, so there are no partial transcripts and no drafting while they talk. For the live
+// microphone, the browser detects where each turn ends (vad.ts) and sends each finished turn.
 import type { ClientMessage, ServerMessage, SuggestRequest, SynthRequest } from "../../../shared/protocol.ts";
 import type { LinkState } from "./socket.ts";
+import { TurnDetector } from "./vad.ts";
 
 type Listener = (msg: ServerMessage) => void;
 
@@ -17,7 +19,7 @@ export class HttpTransport {
   private listeners = new Set<Listener>();
   private stateListeners = new Set<(s: LinkState) => void>();
   private aborts = new Map<string, AbortController>();
-  private stt = new Map<string, { lang: string; chunks: string[] }>();
+  private stt = new Map<string, { lang: string; chunks: string[]; vad?: TurnDetector }>();
   state: LinkState = "connecting";
   rttMs = 0;
   readonly hosted = true;
@@ -66,10 +68,16 @@ export class HttpTransport {
       this.emit({ t: "hello", keyPresent: j.keyPresent, roster: j.roster, version: j.version });
       this.emit({ t: "status", service: "tts", state: j.keyPresent ? "ready" : "no-key", detail: "hosted, HTTP streaming" });
       this.emit({ t: "status", service: "stt", state: "ready", detail: "hosted, batch" });
+      this.warm();
     } catch {
       this.setState("closed");
       if (navigator.onLine) window.setTimeout(() => void this.connect(attempt + 1), Math.min(8000, 400 * 2 ** attempt));
     }
+  }
+
+  /** Wakes the serverless functions so their cold start overlaps the person speaking, not the wait after. */
+  private warm(): void {
+    for (const f of ["stt", "suggest", "synth"]) void fetch(`/api/${f}`, { method: "GET", cache: "no-store" }).catch(() => {});
   }
 
   send(msg: ClientMessage): void {
@@ -89,15 +97,38 @@ export class HttpTransport {
           .then((j: { text?: string }) => this.emit({ t: "translit", id: msg.id, text: j.text ?? msg.text }))
           .catch(() => this.emit({ t: "translit", id: msg.id, text: msg.text }));
         return;
-      case "stt_start":
-        this.stt.set(msg.sessionId, { lang: msg.lang ?? "unknown", chunks: [] });
+      case "stt_start": {
+        const lang = msg.lang ?? "unknown";
+        const sessionId = msg.sessionId;
+        // A live microphone session (no known language) gets turn detection in the browser.
+        const vad =
+          lang === "unknown"
+            ? new TurnDetector(
+                () => this.emit({ t: "transcript", sessionId, text: "…", final: false }),
+                (turn) => void this.transcribePcm(sessionId, new Uint8Array(turn.pcm.buffer, turn.pcm.byteOffset, turn.pcm.byteLength), lang, turn.endedAgoMs),
+              )
+            : undefined;
+        this.stt.set(sessionId, { lang, chunks: [], vad });
+        if (vad) this.warm();
         return;
-      case "stt_audio":
-        this.stt.get(msg.sessionId)?.chunks.push(msg.pcm);
+      }
+      case "stt_audio": {
+        const s = this.stt.get(msg.sessionId);
+        if (!s) return;
+        if (s.vad) {
+          const bytes = Uint8Array.from(atob(msg.pcm), (c) => c.charCodeAt(0));
+          s.vad.push(new Int16Array(bytes.buffer, 0, bytes.byteLength >> 1));
+        } else s.chunks.push(msg.pcm);
         return;
-      case "stt_stop":
-        void this.transcribe(msg.sessionId);
+      }
+      case "stt_stop": {
+        const s = this.stt.get(msg.sessionId);
+        if (s?.vad) {
+          s.vad.flush();
+          this.stt.delete(msg.sessionId);
+        } else void this.transcribe(msg.sessionId);
         return;
+      }
       default:
         return;
     }
@@ -214,7 +245,6 @@ export class HttpTransport {
     const s = this.stt.get(sessionId);
     this.stt.delete(sessionId);
     if (!s || !s.chunks.length) return;
-    const stopAt = performance.now();
     const parts = s.chunks.map((c) => Uint8Array.from(atob(c), (ch) => ch.charCodeAt(0)));
     const total = parts.reduce((n, p) => n + p.length, 0);
     const all = new Uint8Array(total);
@@ -223,13 +253,24 @@ export class HttpTransport {
       all.set(p, off);
       off += p.length;
     }
+    await this.transcribePcm(sessionId, all, s.lang, 0);
+  }
+
+  /** Sends one finished turn to batch speech recognition. endedAgoMs: how long ago the speech itself ended. */
+  private async transcribePcm(sessionId: string, pcm: Uint8Array, lang: string, endedAgoMs: number): Promise<void> {
+    const stopAt = performance.now() - endedAgoMs;
     try {
-      const r = await fetch("/api/stt", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ pcm: b64(all), lang: s.lang }) });
+      const r = await fetch(`/api/stt?lang=${encodeURIComponent(lang)}`, {
+        method: "POST",
+        headers: { "content-type": "application/octet-stream" },
+        body: pcm as Uint8Array<ArrayBuffer>,
+      });
       const j = (await r.json()) as { text?: string; language?: string; error?: string };
       if (!r.ok) throw new Error(j.error ?? `HTTP ${r.status}`);
-      this.emit({ t: "transcript", sessionId, text: j.text ?? "", final: true, lang: j.language, afterEndMs: performance.now() - stopAt });
+      if (!j.text?.trim()) return; // nothing intelligible: not a turn
+      this.emit({ t: "transcript", sessionId, text: j.text, final: true, lang: j.language, afterEndMs: performance.now() - stopAt });
     } catch (e) {
-      this.emit({ t: "error", id: sessionId, scope: "stt", message: (e as Error).message, fallback: "The demo continues with the scripted line." });
+      this.emit({ t: "error", id: sessionId, scope: "stt", message: (e as Error).message, fallback: "Try again, or type what was said." });
     }
   }
 }

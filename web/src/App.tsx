@@ -120,7 +120,7 @@ export function App() {
           <span className="brand-native" lang="hi">कंठ</span>
         </a>
         {sim ? <span className="chip sim">Simulated conversation · every voice is Bulbul</span> : null}
-        {HOSTED ? <span className="chip" title="Live microphone listening and voice banking run in the local version. See the README.">Hosted demo</span> : null}
+        {HOSTED ? <span className="chip" title="The hosted demo detects turns in the browser and transcribes each finished line. Voice banking runs in the local version. See the README.">Hosted demo</span> : null}
         <div className="topbar-spacer" />
         <div className="pills" aria-label="Service status">
           <StatusChip label="Bulbul V4 Flash" state={ttsState} detail={s.services.tts?.detail} />
@@ -169,7 +169,7 @@ export function App() {
                 )}
               </div>
             ) : null}
-            <PartnerDisplay s={s} onListen={HOSTED ? undefined : () => (mic.listening ? mic.stop() : void mic.start())} listening={mic.listening} />
+            <PartnerDisplay s={s} onListen={() => (mic.listening ? mic.stop() : void mic.start())} listening={mic.listening} />
             <Replies s={s} />
             <SteerRow s={s} />
             <ToneDial s={s} />
