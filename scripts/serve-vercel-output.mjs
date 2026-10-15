@@ -15,10 +15,13 @@ http
     const path = (req.url ?? "/").split("?")[0];
     const m = path.match(/^\/api\/([a-z]+)$/);
     if (m) {
-      const file = join(root, "functions", "api", `${m[1]}.func`, "index.mjs");
+      // Mirrors the deployed rewrite: every endpoint goes to the one combined function.
+      const file = join(root, "functions", "api", "kanth.func", "index.mjs");
       if (!existsSync(file)) return void res.writeHead(404).end();
-      fns[m[1]] ??= (await import(pathToFileURL(file).href)).default;
-      return void fns[m[1]](req, res);
+      fns.kanth ??= (await import(pathToFileURL(file).href)).default;
+      const q = (req.url ?? "").split("?")[1];
+      req.url = `/api/kanth?fn=${m[1]}${q ? `&${q}` : ""}`;
+      return void fns.kanth(req, res);
     }
     let file = normalize(join(root, "static", path === "/" ? "index.html" : path));
     if (!existsSync(file) || !statSync(file).isFile()) file = join(root, "static", "index.html");

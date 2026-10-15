@@ -17,7 +17,9 @@ import { STT_SAMPLE_RATE, PCM_SAMPLE_RATE, type Profile, type Turn } from "../sh
 type Req = IncomingMessage & { body?: unknown };
 type Res = ServerResponse;
 
-const LIMITS = { synth: 90, suggest: 20, stt: 20, translit: 30 } as const; // requests per visitor per minute
+// Requests per visitor per minute, sized for real use: drafting while the partner talks can make up to four
+// draft sets per line, each prespoken four times, and speech recognition sends rolling partials.
+const LIMITS = { synth: 300, suggest: 120, stt: 120, translit: 60 } as const;
 const buckets = new Map<string, { count: number; resetAt: number }>();
 
 function visitor(req: Req): string {
@@ -90,6 +92,29 @@ async function guard(req: Req, res: Res, kind: keyof typeof LIMITS): Promise<boo
 
 const isLang = (l: unknown): l is LangCode => typeof l === "string" && !!languageByCode(l);
 const isTone = (t: unknown): t is ToneId => typeof t === "string" && ["warm", "firm", "urgent", "joking", "whisper"].includes(t);
+
+/**
+ * One entry point for every hosted endpoint, so a single warm function instance serves them all
+ * (fewer cold starts) and the per-visitor limits are shared. The route arrives as ?fn= or the last path part.
+ */
+export async function handleApi(req: Req, res: Res): Promise<void> {
+  const u = new URL(req.url ?? "/", "http://kanth");
+  const fn = u.searchParams.get("fn") ?? u.pathname.split("/").filter(Boolean).pop() ?? "";
+  switch (fn) {
+    case "status":
+      return handleStatus(req, res);
+    case "synth":
+      return handleSynth(req, res);
+    case "suggest":
+      return handleSuggest(req, res);
+    case "stt":
+      return handleStt(req, res);
+    case "translit":
+      return handleTranslit(req, res);
+    default:
+      return json(res, 404, { error: "unknown endpoint" });
+  }
+}
 
 export async function handleStatus(_req: Req, res: Res): Promise<void> {
   json(res, 200, { hosted: true, keyPresent: keyPresent(), roster: currentRoster().speakers, version: "hosted" });
@@ -186,7 +211,7 @@ export async function handleStt(req: Req, res: Res): Promise<void> {
   try {
     if (String(req.headers["content-type"] ?? "").startsWith("application/octet-stream")) {
       pcm = await readRaw(req, 1_000_000);
-      body = { lang: new URL(req.url ?? "/", "http://x").searchParams.get("lang") ?? "unknown" };
+      body = { lang: String(req.headers["x-kanth-lang"] ?? new URL(req.url ?? "/", "http://x").searchParams.get("lang") ?? "unknown") };
     } else {
       body = await readJson(req, 1_500_000);
       pcm = Buffer.from(String(body.pcm ?? ""), "base64");

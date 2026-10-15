@@ -75,6 +75,19 @@ export class TurnDetector {
     if (this.quietMs >= this.o.endMs || this.speechMs >= this.o.maxMs) this.finish();
   }
 
+  /** The turn so far while someone is speaking, for rolling partial transcripts; null when silent. */
+  current(): Int16Array | null {
+    if (!this.speaking) return null;
+    const total = this.seg.reduce((n, f) => n + f.length, 0);
+    const pcm = new Int16Array(total);
+    let off = 0;
+    for (const f of this.seg) {
+      pcm.set(f, off);
+      off += f.length;
+    }
+    return pcm;
+  }
+
   /** Ends the current turn now, if one is in progress (for example when listening stops). */
   flush(): void {
     if (this.speaking) this.finish();

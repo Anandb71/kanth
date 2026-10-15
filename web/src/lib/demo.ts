@@ -5,49 +5,11 @@
 // and the film says so on screen.
 import type { LangCode } from "../../../shared/voices.ts";
 import { STT_SAMPLE_RATE, PCM_SAMPLE_RATE } from "../../../shared/protocol.ts";
-import { kanth } from "./kanth.ts";
+import { HOSTED, kanth } from "./kanth.ts";
 import { audio } from "./audio.ts";
 
-export interface Scene {
-  who: string;
-  speaker: string;
-  lang: LangCode;
-  text: string;
-  gloss: string;
-  setting: string;
-  /** Film mode only: words that suggest which reply a simulated user would pick. */
-  pickHint?: string[];
-}
-
-export const SCENES: Scene[] = [
-  {
-    who: "Amma",
-    speaker: "kavitha_te_conversation",
-    lang: "ta-IN",
-    text: "கண்ணா, சாப்பிட்டியா? ரசம் சூடா இருக்கு.",
-    gloss: "Have you eaten, dear? The rasam is hot.",
-    setting: "Home, Chennai. His mother, in Tamil.",
-    pickHint: ["minute", "later", "wait", "not yet"],
-  },
-  {
-    who: "Dr. Mehra",
-    speaker: "ritu_hi_medical",
-    lang: "hi-IN",
-    text: "अर्जुन, आज pain कैसा है? One to ten में बताओ।",
-    gloss: "Arjun, how is the pain today? Tell me on a scale of one to ten.",
-    setting: "Clinic visit. His neurologist, in Hinglish.",
-    pickHint: ["four", "4", "three", "3", "better", "little"],
-  },
-  {
-    who: "Rohit",
-    speaker: "rehan_hi_social",
-    lang: "hi-IN",
-    text: "भाई, Sunday को India का match है। मैं van book कर दूँ?",
-    gloss: "Brother, India is playing on Sunday. Should I book the van?",
-    setting: "A friend calls by. In Hindi.",
-    pickHint: ["yes", "book", "definitely", "sure", "come"],
-  },
-];
+import { SCENES, type Scene } from "../../../shared/scenes.ts";
+export { SCENES, type Scene };
 
 export type DemoPhase = "idle" | "preparing" | "partner" | "waiting" | "speaking" | "done";
 
@@ -57,6 +19,8 @@ export interface DemoState {
   caption?: { line: string; sub?: string };
   film: boolean;
   error?: string;
+  /** The live service did not answer, so the demo is replaying a recorded real run. */
+  replay?: boolean;
 }
 
 type Listener = (s: DemoState) => void;
@@ -92,7 +56,12 @@ export class DemoDirector {
     const film = !!opts.film;
     audio.unlock();
     kanth.resetConversation();
-    this.set({ phase: "preparing", scene: 0, film, error: undefined });
+    this.set({ phase: "preparing", scene: 0, film, error: undefined, replay: kanth.replaying });
+    // No matter what: if Sarvam is not answering, replay a recorded real run rather than fail.
+    if (!kanth.replaying && !(await kanth.liveCheck()) && (await kanth.canReplay())) {
+      kanth.useReplay();
+      this.set({ replay: true });
+    }
 
     // Partner lines are synthesized up front. They are the other person's voice, not the user's.
     const ids = this.scenes.map((sc, i) => `demo-partner-${i}`);
@@ -108,15 +77,22 @@ export class DemoDirector {
       const sc = this.scenes[i]!;
       this.set({ scene: i, phase: "partner", caption: film ? { line: sc.setting } : undefined });
       kanth.partnerStarted(sc.who, sc.lang, sc.gloss);
+      // Replies can be ready, and chosen, while the partner is still talking: count from here.
+      const repliedBefore = kanth.state.history.filter((h) => h.who === "me").length;
       const heard = await speakPartner(ids[i]!, sc);
       if (this.stopped) return;
       this.set({ phase: "waiting" });
       await kanth.partnerFinished(heard.text, { who: sc.who, lang: sc.lang, gloss: sc.gloss, endedAt: heard.endedAt, transcriptAt: heard.transcriptAt });
       if (this.stopped) return;
+      if (!kanth.state.cards.length && !kanth.replaying && (await kanth.canReplay())) {
+        // Drafting failed mid-demo (outage, spent credits): start again from the recording.
+        kanth.useReplay();
+        this.set({ replay: true });
+        return this.run(opts);
+      }
 
-      const before = kanth.state.history.length;
-      if (film) await this.simulatedChoice(sc);
-      await this.waitForReply(before);
+      if (film && kanth.state.history.filter((h) => h.who === "me").length === repliedBefore) await this.simulatedChoice(sc);
+      await this.waitForReply(repliedBefore);
       if (this.stopped) return;
       this.set({ phase: "speaking" });
       await this.waitUntilQuiet();
@@ -143,10 +119,10 @@ export class DemoDirector {
     await kanth.choose(pick.idx);
   }
 
-  private waitForReply(historyLen: number): Promise<void> {
+  private waitForReply(repliedBefore: number): Promise<void> {
     return new Promise((resolve) => {
       const check = () => {
-        if (this.stopped || kanth.state.history.length > historyLen) {
+        if (this.stopped || kanth.state.history.filter((h) => h.who === "me").length > repliedBefore) {
           off();
           resolve();
         }
@@ -211,7 +187,8 @@ export async function speakPartner(id: string, sc: Scene): Promise<{ text: strin
     sent = end;
   }
   kanth.socket.send({ t: "stt_stop", sessionId });
-  await Promise.race([finalPromise, sleep(3000)]);
+  // Hosted transcription uploads the whole line after it ends, so it gets longer before the scripted fallback.
+  await Promise.race([finalPromise, sleep(HOSTED ? 6000 : 3000)]);
   off();
   if (!finalText) {
     kanth.notify("stt", "Saaras did not return a transcript in time.", "Using the scripted line so the demo can continue.");

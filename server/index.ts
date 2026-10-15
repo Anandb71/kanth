@@ -31,6 +31,8 @@ const MIME: Record<string, string> = {
   ".wav": "audio/wav",
   ".mp3": "audio/mpeg",
   ".txt": "text/plain; charset=utf-8",
+  ".mp4": "video/mp4",
+  ".pcm": "application/octet-stream",
 };
 
 const tts = new TtsEngine();
@@ -137,6 +139,15 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse, pa
 
 function serveStatic(res: http.ServerResponse, urlPath: string): void {
   let rel = decodeURIComponent(urlPath.split("?")[0] ?? "/");
+  // The demo film and its poster live in docs/media in the repository.
+  if (rel.startsWith("/media/")) {
+    const media = normalize(join(resolve("docs", "media"), rel.slice("/media/".length)));
+    if (media.startsWith(resolve("docs", "media")) && existsSync(media) && statSync(media).isFile()) {
+      res.writeHead(200, { "content-type": MIME[extname(media)] ?? "application/octet-stream", "cache-control": "public, max-age=3600" });
+      res.end(readFileSync(media));
+      return;
+    }
+  }
   if (rel === "/" || !extname(rel)) rel = "/index.html";
   const file = normalize(join(DIST, rel));
   if (!file.startsWith(DIST) || !existsSync(file) || !statSync(file).isFile()) {

@@ -463,3 +463,36 @@ input[type="range"] { width: 100%; accent-color: var(--accent); height: 28px; }
   .chip.sim { display: none; }
   .scan-paused { top: auto; bottom: 20px; width: calc(100% - 32px); text-align: center; border-radius: 18px; }
 }
+
+/* ---------- Links, credit, film, neutral loading state ---------- */
+.led.checking { background: var(--muted); opacity: 0.6; box-shadow: none; animation: pulse 1.6s ease-in-out infinite; }
+.chip .lbl-short { display: none; }
+.btn-primary:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.site-footer {
+  margin: 8px 24px 24px; padding: 18px 22px; border-radius: var(--r-lg); background: var(--base); box-shadow: var(--inset);
+  display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; font-size: 14.5px; color: var(--ink-2);
+}
+.site-footer b { color: var(--ink); }
+.footer-links { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+.footer-links a, .link-btn { color: var(--accent); font-weight: 700; text-decoration: none; background: none; border: none; padding: 6px 0; font-size: 14.5px; }
+.footer-links a:hover, .link-btn:hover { text-decoration: underline; }
+.btn.gh { text-decoration: none; }
+.film-modal { position: fixed; inset: 0; z-index: 90; background: rgba(15, 10, 6, 0.7); display: grid; place-items: center; padding: 16px; }
+.film-modal-inner { width: min(1100px, 100%); background: var(--base); border-radius: var(--r-xl); padding: 16px; box-shadow: var(--raise-lg); display: grid; gap: 12px; }
+.film-modal video { width: 100%; border-radius: var(--r-md); background: #000; aspect-ratio: 16 / 9; }
+@media (max-width: 900px) {
+  .hero-art { order: 0; }
+  .hero-art .orb { --size: 150px; }
+}
+@media (max-width: 640px) {
+  .chip .lbl { display: none; }
+  .chip .lbl-short { display: inline; font-size: 12.5px; }
+  .pills { gap: 6px; }
+  .btn.gh { display: none; }
+  .hero { padding-top: 20px; gap: 22px; }
+  .hero h1 { font-size: 38px; }
+  .hero-actions .btn { width: 100%; }
+  .site-footer { margin: 8px 12px 16px; }
+}
+
+.replay-note { flex-basis: 100%; padding: 10px 14px; border-radius: var(--r-sm); box-shadow: var(--inset-sm); color: var(--ink); font-weight: 600; }

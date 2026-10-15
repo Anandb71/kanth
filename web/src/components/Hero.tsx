@@ -1,6 +1,6 @@
 import { Orb } from "./Orb.tsx";
 
-export function Hero({ onDemo, onTalk }: { onDemo: () => void; onTalk: () => void }) {
+export function Hero({ onDemo, onTalk, onFilm }: { onDemo: () => void; onTalk: () => void; onFilm: () => void }) {
   return (
     <main className="hero">
       <div className="hero-copy">
@@ -9,19 +9,24 @@ export function Hero({ onDemo, onTalk }: { onDemo: () => void; onTalk: () => voi
         </h1>
         <p className="lede">
           Kanth listens to the person in front of you, drafts four replies in your language, and has every one of them
-          already spoken by Bulbul V4 Flash before you choose. You pick. It speaks, instantly. Tamil, Hindi, English, and
-          the way you mix them.
+          already voiced by Bulbul V4 Flash before you choose. You pick one, and you are heard about 50 ms later. Tamil,
+          Hindi, English, and the way you mix them.
         </p>
         <div className="hero-actions">
-          <button className="btn btn-primary" onClick={onDemo} autoFocus>
+          <button className="btn btn-primary" onClick={onDemo}>
             Hear a conversation
           </button>
           <button className="btn btn-soft" onClick={onTalk}>
-            Start talking
+            Talk with your microphone
+          </button>
+          <button className="btn btn-soft" onClick={onFilm}>
+            Watch the 70 s film
           </button>
         </div>
         <p className="hint" style={{ margin: 0 }}>
-          No microphone needed. In the demo, a mother, a doctor and a friend talk to Arjun, a fictional man with ALS, and you choose what he says.
+          The demo needs no microphone: a mother, a doctor and a friend talk to Arjun, a fictional man with ALS, and you choose what he says.
+          Their lines are scripted and voiced by Bulbul; Saaras transcribes them live, and every reply is drafted and voiced live.
+          The microphone works on this site too.
         </p>
       </div>
       <div className="hero-art">

@@ -105,7 +105,7 @@ export interface AudioEnd {
   samples: number;
 }
 
-export type Transport = "ws" | "http-stream" | "rest" | "clone-ws" | "clone-stream" | "clone-rest";
+export type Transport = "ws" | "http-stream" | "rest" | "clone-ws" | "clone-stream" | "clone-rest" | "replay";
 
 export interface Suggestion {
   t: "suggestion";

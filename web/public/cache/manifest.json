@@ -1,0 +1,176 @@
+{
+ "generated": "2026-10-15T08:07:29.345Z",
+ "model": "bulbul:v4-flash",
+ "sampleRate": 24000,
+ "format": "pcm_s16le_mono",
+ "entries": {
+  "demo-partner-0": {
+   "file": "172a385ee98c8a0c.pcm",
+   "samples": 84556,
+   "speaker": "kavitha_te_conversation",
+   "text": "கண்ணா, சாப்பிட்டியா? ரசம் சூடா இருக்கு."
+  },
+  "film-partner-0": {
+   "file": "172a385ee98c8a0c.pcm",
+   "samples": 84556,
+   "speaker": "kavitha_te_conversation",
+   "text": "கண்ணா, சாப்பிட்டியா? ரசம் சூடா இருக்கு."
+  },
+  "demo-partner-1": {
+   "file": "6b3a8c4b620b8ca9.pcm",
+   "samples": 90514,
+   "speaker": "ritu_hi_medical",
+   "text": "अर्जुन, आज pain कैसा है? One to ten में बताओ।"
+  },
+  "film-partner-1": {
+   "file": "6b3a8c4b620b8ca9.pcm",
+   "samples": 90514,
+   "speaker": "ritu_hi_medical",
+   "text": "अर्जुन, आज pain कैसा है? One to ten में बताओ।"
+  },
+  "demo-partner-2": {
+   "file": "2dff0e8780260d81.pcm",
+   "samples": 94663,
+   "speaker": "rehan_hi_social",
+   "text": "भाई, Sunday को India का match है। मैं van book कर दूँ?"
+  },
+  "film-partner-2": {
+   "file": "2dff0e8780260d81.pcm",
+   "samples": 94663,
+   "speaker": "rehan_hi_social",
+   "text": "भाई, Sunday को India का match है। मैं van book कर दूँ?"
+  },
+  "phrase:persona:shubh:ta-IN:வலிக்குது": {
+   "file": "e6ef3fb11b6f32f8.pcm",
+   "samples": 15759,
+   "speaker": "vijay_ta_narration",
+   "text": "வலிக்குது"
+  },
+  "phrase:persona:shubh:ta-IN:Suction வேணும்": {
+   "file": "d6f3d3b8abb2c65a.pcm",
+   "samples": 22069,
+   "speaker": "vijay_ta_narration",
+   "text": "Suction வேணும்"
+  },
+  "phrase:persona:shubh:ta-IN:Nurse-ஐ கூப்பிடுங்க": {
+   "file": "d765cdb1f7457f37.pcm",
+   "samples": 18908,
+   "speaker": "vijay_ta_narration",
+   "text": "Nurse-ஐ கூப்பிடுங்க"
+  },
+  "phrase:persona:shubh:ta-IN:ஆமா": {
+   "file": "14439ff07d3b2851.pcm",
+   "samples": 11905,
+   "speaker": "vijay_ta_narration",
+   "text": "ஆமா"
+  },
+  "phrase:persona:shubh:ta-IN:இல்ல": {
+   "file": "2a3af7af90048950.pcm",
+   "samples": 11597,
+   "speaker": "vijay_ta_narration",
+   "text": "இல்ல"
+  },
+  "phrase:persona:shubh:ta-IN:ஒரு நிமிஷம்": {
+   "file": "0ad41a4db41ce6ca.pcm",
+   "samples": 19661,
+   "speaker": "vijay_ta_narration",
+   "text": "ஒரு நிமிஷம்"
+  },
+  "phrase:persona:shubh:ta-IN:மறுபடியும் சொல்லுங்க": {
+   "file": "40658c482afe0a28.pcm",
+   "samples": 28063,
+   "speaker": "vijay_ta_narration",
+   "text": "மறுபடியும் சொல்லுங்க"
+  },
+  "phrase:persona:shubh:en-IN:Thank you": {
+   "file": "c5e4cffb589501f8.pcm",
+   "samples": 15826,
+   "speaker": "shubh_en_narration",
+   "text": "Thank you"
+  },
+  "phrase:persona:shubh:hi-IN:दर्द हो रहा है": {
+   "file": "dceb90debe245c05.pcm",
+   "samples": 15843,
+   "speaker": "shubh_hi_ads",
+   "text": "दर्द हो रहा है"
+  },
+  "phrase:persona:shubh:hi-IN:Suction चाहिए": {
+   "file": "edd1fdf347199354.pcm",
+   "samples": 14336,
+   "speaker": "shubh_enhi_ads",
+   "text": "Suction चाहिए"
+  },
+  "phrase:persona:shubh:hi-IN:Nurse को बुलाइए": {
+   "file": "3c1bd5398636e17e.pcm",
+   "samples": 14099,
+   "speaker": "shubh_enhi_ads",
+   "text": "Nurse को बुलाइए"
+  },
+  "phrase:persona:shubh:hi-IN:हाँ": {
+   "file": "ac056b2ca33c4724.pcm",
+   "samples": 7681,
+   "speaker": "shubh_hi_customer",
+   "text": "हाँ"
+  },
+  "phrase:persona:shubh:hi-IN:नहीं": {
+   "file": "8cb97e4f6f043541.pcm",
+   "samples": 7777,
+   "speaker": "shubh_hi_customer",
+   "text": "नहीं"
+  },
+  "phrase:persona:shubh:hi-IN:एक मिनट": {
+   "file": "9f8dafef35f48330.pcm",
+   "samples": 13619,
+   "speaker": "shubh_hi_customer",
+   "text": "एक मिनट"
+  },
+  "phrase:persona:shubh:hi-IN:फिर से बोलिए": {
+   "file": "fbb68d54d264340d.pcm",
+   "samples": 11929,
+   "speaker": "shubh_hi_customer",
+   "text": "फिर से बोलिए"
+  },
+  "phrase:persona:shubh:en-IN:It hurts": {
+   "file": "63913cb588843d18.pcm",
+   "samples": 19207,
+   "speaker": "shubh_en_ads",
+   "text": "It hurts"
+  },
+  "phrase:persona:shubh:en-IN:I need suction": {
+   "file": "643e58959b743f5a.pcm",
+   "samples": 37473,
+   "speaker": "shubh_en_ads",
+   "text": "I need suction"
+  },
+  "phrase:persona:shubh:en-IN:Please call the nurse": {
+   "file": "e09872f70bca9e1f.pcm",
+   "samples": 37889,
+   "speaker": "shubh_en_ads",
+   "text": "Please call the nurse"
+  },
+  "phrase:persona:shubh:en-IN:Yes": {
+   "file": "e7bf9e8a938eb123.pcm",
+   "samples": 17765,
+   "speaker": "shubh_en_narration",
+   "text": "Yes"
+  },
+  "phrase:persona:shubh:en-IN:No": {
+   "file": "0d894b0163332441.pcm",
+   "samples": 11762,
+   "speaker": "shubh_en_narration",
+   "text": "No"
+  },
+  "phrase:persona:shubh:en-IN:One minute": {
+   "file": "caac599760745e22.pcm",
+   "samples": 19926,
+   "speaker": "shubh_en_narration",
+   "text": "One minute"
+  },
+  "phrase:persona:shubh:en-IN:Please say that again": {
+   "file": "a600421709ad53b9.pcm",
+   "samples": 26017,
+   "speaker": "shubh_en_narration",
+   "text": "Please say that again"
+  }
+ }
+}

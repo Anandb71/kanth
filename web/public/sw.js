@@ -1,6 +1,6 @@
 // Kanth service worker: keeps the app shell and fonts available offline.
 // Spoken phrases are cached separately in IndexedDB by the app.
-const CACHE = "kanth-shell-v1";
+const CACHE = "kanth-shell-v2";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((c) => c.addAll(["/", "/icon.svg", "/manifest.webmanifest"])).then(() => self.skipWaiting()));
@@ -15,8 +15,8 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (event.request.method !== "GET" || url.origin !== location.origin || url.pathname.startsWith("/api/") || url.pathname.startsWith("/ws")) return;
-  if (url.pathname.startsWith("/assets/")) {
-    // Hashed build assets never change: cache first.
+  if (url.pathname.startsWith("/assets/") || url.pathname.startsWith("/cache/")) {
+    // Hashed build assets and pre-generated audio never change: cache first.
     event.respondWith(
       caches.match(event.request).then(
         (hit) => hit || fetch(event.request).then((res) => {

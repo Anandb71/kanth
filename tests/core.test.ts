@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { detectScriptLanguage, hasLatinWords, resolveSpeaker } from "../shared/voices.ts";
 import { clampProsody, TONES, toneById } from "../shared/tones.ts";
-import { buildMessages, hasForeignScript, parseDraftLine, replyLanguage } from "../server/suggest.ts";
+import { buildMessages, hasForeignScript, hasRomanizedIndic, isNearDuplicate, parseDraftLine, replyLanguage } from "../server/suggest.ts";
 import { WavStripper, parseWav, wavFromPcm, resamplePcm16 } from "../server/pcm.ts";
 import snapshot from "../shared/roster.json" with { type: "json" };
 import type { Profile } from "../shared/protocol.ts";
@@ -109,6 +109,22 @@ describe("draft parsing", () => {
   it("steers every draft with the user's keywords", () => {
     const msgs = buildMessages({ profile, history: [], partner: { text: "What time?", who: "Nurse" }, tone: "warm", keywords: "4 pm" });
     expect(msgs[1]!.content).toContain('"4 pm"');
+  });
+});
+
+describe("draft filters", () => {
+  it("drops Indian words written in Roman letters, but keeps English words", () => {
+    expect(hasRomanizedIndic("haan, book कर दे", "hi-IN")).toBe(true);
+    expect(hasRomanizedIndic("हाँ, book कर दे", "hi-IN")).toBe(false);
+    expect(hasRomanizedIndic("haan sure", "en-IN")).toBe(false);
+  });
+  it("spots near-duplicate replies", () => {
+    expect(isNearDuplicate("हाँ Rohit, book कर दे", "हाँ Rohit, book कर दे ना")).toBe(true);
+    expect(isNearDuplicate("हाँ Rohit, book कर दे", "अभी थोड़ा rest कर रहा हूँ")).toBe(false);
+  });
+  it("asks the model for one spare draft", () => {
+    const msgs = buildMessages({ profile, history: [], partner: { text: "Hi", who: "Nurse" }, tone: "warm" });
+    expect(msgs[0]!.content).toContain("Write exactly 5 different replies");
   });
 });
 

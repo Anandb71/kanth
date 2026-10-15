@@ -11,7 +11,7 @@ import { Orb } from "./Orb.tsx";
 const POINTER_WPM = 4.2;
 const SCAN_WPM = 1.7;
 
-export function PartnerDisplay({ s, onListen, listening }: { s: KanthState; onListen?: () => void; listening?: boolean }) {
+export function PartnerDisplay({ s, onListen, listening, scripted }: { s: KanthState; onListen?: () => void; listening?: boolean; scripted?: boolean }) {
   const p = s.partner;
   const lang = p?.lang ? languageByCode(p.lang) : undefined;
   return (
@@ -27,10 +27,10 @@ export function PartnerDisplay({ s, onListen, listening }: { s: KanthState; onLi
             </div>
             {p.speaking ? (
               <span className="speaking">
-                <span className="bars" aria-hidden="true"><i /><i /><i /><i /></span> Speaking · Saaras is transcribing
+                <span className="bars" aria-hidden="true"><i /><i /><i /><i /></span> {scripted ? "Scripted line, voiced by Bulbul · Saaras transcribing live" : "Speaking · Saaras is transcribing"}
               </span>
             ) : (
-              <span className="speaking"><span className="led ready" aria-hidden="true" /> Heard by Saaras</span>
+              <span className="speaking"><span className="led ready" aria-hidden="true" /> {scripted ? "Scripted line · transcribed live by Saaras" : "Heard live by Saaras"}</span>
             )}
           </div>
           <div className={`heard ${p.final ? "" : "partial"}`} lang={p.lang?.slice(0, 2)} aria-live="polite">
@@ -43,10 +43,13 @@ export function PartnerDisplay({ s, onListen, listening }: { s: KanthState; onLi
         <div className="row" style={{ justifyContent: "space-between", gap: 20 }}>
           <div className="empty">When someone talks to you, their words appear here and Kanth drafts your replies while they speak.</div>
           {onListen ? (
-            <button className="btn btn-soft" onClick={onListen} data-scan-top data-scan-order="6" aria-pressed={listening}>
-              <span className={`led ${listening ? "busy" : ""}`} aria-hidden="true" />
-              {listening ? "Stop listening" : "Listen with microphone"}
-            </button>
+            <div style={{ display: "grid", gap: 8, justifyItems: "start" }}>
+              <button className="btn btn-soft" onClick={onListen} data-scan-top data-scan-order="6" aria-pressed={listening}>
+                <span className={`led ${listening ? "busy" : ""}`} aria-hidden="true" />
+                {listening ? "Stop listening" : "Listen with microphone"}
+              </button>
+              <span className="hint">{listening ? "Listening. Speak to Arjun; Kanth drafts replies when each sentence ends." : "Works right here in your browser, in Tamil, Hindi, English or a mix."}</span>
+            </div>
           ) : null}
         </div>
       )}
@@ -317,7 +320,7 @@ export function VoicePanel({ s }: { s: KanthState }) {
         <div className="voice-name">{s.profile.name}{speaking ? " is speaking" : ""}</div>
         <div className="voice-sub">
           {v.kind === "clone" ? `${v.label} · Sarvam voice cloning (beta)` : `Bulbul V4 Flash · ${v.name} persona`}
-          {" · "}prespeak {s.settings.prespeak ? "on" : "off"}
+          {" · "}{s.settings.prespeak ? "replies voiced before you choose" : "replies voiced after you choose"}
         </div>
       </div>
       {speaking ? (
@@ -357,15 +360,15 @@ function Gauge({ value, target, label, sub }: { value: number | undefined; targe
 }
 
 export function Meter({ s }: { s: KanthState }) {
-  const done = [...s.metrics].reverse().find((m) => m.audibleAt && m.partnerEndAt);
   // "They stop" figures come from the first draft of the latest turn; redrafts include the user's own press.
   const live = [...s.metrics].reverse().find((m) => !m.redraft) ?? s.metrics[s.metrics.length - 1];
+  // Only this turn's choice counts, so the meter resets with every new line from the other person.
+  const done = [...s.metrics].reverse().find((m) => m.audibleAt && m.partnerEndAt && m.partnerEndAt === live?.partnerEndAt);
   const since = (t?: number) => (live?.partnerEndAt && t ? t - live.partnerEndAt : undefined);
   const heard = since(live?.transcriptAt);
   const first = since(live?.firstCardAt);
   const all = since(live?.allCardsAt);
   const voiced = since(live?.allReadyAt);
-  const turnGap = done ? done.audibleAt! - done.partnerEndAt! : undefined;
   const lastMe = [...s.history].reverse().find((h) => h.who === "me");
   const words = lastMe ? lastMe.text.trim().split(/\s+/).length : 0;
   const cls = (v: number | undefined, target: number) => (v === undefined ? "" : v <= target ? "good" : "slow");
@@ -375,20 +378,20 @@ export function Meter({ s }: { s: KanthState }) {
   return (
     <section className="meter" aria-labelledby="meter-h">
       <div className="eyebrow" id="meter-h">Measured live, this conversation</div>
-      <Gauge value={done?.toAudibleMs} target={150} label="You choose → you are heard" sub={done ? (done.prespoken ? "Played from prespoken audio." : "Synthesized after the choice.") : "Choose a reply to measure."} />
+      <Gauge value={done?.toAudibleMs} target={150} label="You choose → you are heard" sub={done ? (done.prespoken ? "It was already voiced when you chose." : "Voiced after you chose.") : "Choose a reply to measure."} />
       <div className="stats">
         <div className="stat"><b className={cls(heard, 400)}>{fmtMs(heard)}</b><span>They stop → Saaras transcript</span></div>
         <div className="stat"><b className={cls(first, 1500)}>{rel(first)}</b><span>They stop → first reply</span></div>
         <div className="stat"><b className={cls(all, 1500)}>{rel(all)}</b><span>They stop → all 4 replies</span></div>
         <div className="stat"><b className={cls(voiced, 1500)}>{rel(voiced)}</b><span>They stop → all 4 voiced</span></div>
       </div>
-      {turnGap !== undefined ? (
+      {done ? (
         <div className="compare">
-          <div className="compare-row"><span>Turn gap, including the time spent choosing</span><b>{fmtMs(turnGap)}</b></div>
+          <div className="compare-row"><span>With Kanth: from your choice to your voice</span><b>{fmtMs(done.toAudibleMs)}</b></div>
           {words ? (
             <>
-              <div className="compare-row"><span>Typing those {words} words by eye gaze, at {POINTER_WPM} wpm</span><b>≈ {fmtMs((words / POINTER_WPM) * 60000)}</b></div>
-              <div className="compare-row"><span>Typing them with one switch, at {SCAN_WPM} wpm</span><b>≈ {fmtMs((words / SCAN_WPM) * 60000)}</b></div>
+              <div className="compare-row"><span>Typing those {words} words by eye gaze instead, at {POINTER_WPM} wpm</span><b>≈ {fmtMs((words / POINTER_WPM) * 60000)}</b></div>
+              <div className="compare-row"><span>Or with one switch, at {SCAN_WPM} wpm</span><b>≈ {fmtMs((words / SCAN_WPM) * 60000)}</b></div>
             </>
           ) : null}
         </div>

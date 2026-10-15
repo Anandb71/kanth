@@ -12,13 +12,19 @@ import { build } from "esbuild";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const out = join(root, ".vercel", "output");
 const REGION = process.env.KANTH_VERCEL_REGION ?? "bom1"; // Mumbai, close to Sarvam
-const FUNCTIONS = { status: "handleStatus", synth: "handleSynth", suggest: "handleSuggest", stt: "handleStt", translit: "handleTranslit" };
+// One function serves every endpoint, so one warm instance answers them all (see handleApi).
+const FUNCTIONS = { kanth: "handleApi" };
 
+// esbuild does not type-check, so a type error must stop the build here instead of shipping.
+execSync("npx tsc --noEmit -p .", { cwd: root, stdio: "inherit" });
 execSync("npx vite build --logLevel warn", { cwd: root, stdio: "inherit", env: { ...process.env, VITE_TRANSPORT: "http" } });
 
 rmSync(out, { recursive: true, force: true });
 mkdirSync(join(out, "static"), { recursive: true });
 cpSync(join(root, "dist"), join(out, "static"), { recursive: true });
+// The demo film and poster, linked from the site.
+mkdirSync(join(out, "static", "media"), { recursive: true });
+for (const f of ["kanth-demo.mp4", "poster.png"]) cpSync(join(root, "docs", "media", f), join(out, "static", "media", f));
 
 for (const [name, handler] of Object.entries(FUNCTIONS)) {
   const dir = join(out, "functions", "api", `${name}.func`);
@@ -48,6 +54,7 @@ writeFileSync(
       version: 3,
       routes: [
         { src: "/assets/(.*)", headers: { "cache-control": "public, max-age=31536000, immutable" }, continue: true },
+        { src: "^/api/(status|synth|suggest|stt|translit)$", dest: "/api/kanth?fn=$1" },
         { handle: "filesystem" },
         { src: "/api/(.*)", status: 404, dest: "/404" },
         { src: "/(.*)", dest: "/index.html" },

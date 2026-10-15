@@ -38,7 +38,7 @@ export const TONES: readonly Tone[] = [
   {
     id: "urgent",
     label: "Urgent",
-    wording: "urgent and short; ask for help or attention immediately",
+    wording: "urgent, short and direct, still answering exactly what was asked; ask for help only if the conversation calls for it",
     prosody: { pace: 1.22, pitch: 0.14, loudness: 2.1 },
     preferStyles: ["news", "ads", "sports"],
   },

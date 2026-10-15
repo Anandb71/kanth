@@ -10,6 +10,7 @@ import { Composer, History, Meter, Notices, PartnerDisplay, Phrases, Replies, St
 import { SettingsDrawer } from "./components/Settings.tsx";
 import { Hero } from "./components/Hero.tsx";
 import { FilmLayer } from "./components/FilmLayer.tsx";
+import { FilmModal, REPO_URL, SiteFooter } from "./components/Footer.tsx";
 import { useMic } from "./lib/listen.ts";
 
 const params = new URLSearchParams(location.search);
@@ -19,6 +20,7 @@ export function App() {
   const s = useKanth();
   const [view, setView] = useState<"home" | "talk">(params.has("demo") || FILM || location.hash === "#talk" ? "talk" : "home");
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [filmOpen, setFilmOpen] = useState(false);
   const settingsBtn = useRef<HTMLButtonElement>(null);
   const [d, setD] = useState<DemoState>(demo.state);
   const [cached, setCached] = useState<Set<string>>(new Set());
@@ -35,7 +37,9 @@ export function App() {
   const phrases = useMemo(() => phrasesFor(s.profile.languages[0] ?? "en-IN", s.settings.voice), [s.profile.languages, s.settings.voice]);
   useEffect(() => {
     if (s.link !== "open" || s.keyPresent === false) return;
-    void preparePhrases(phrases, s.settings.voice, (id) => setCached((prev) => new Set(prev).add(id)));
+    // After first paint, so the board never slows the first screen.
+    const t = window.setTimeout(() => void preparePhrases(phrases, s.settings.voice, (id) => setCached((prev) => new Set(prev).add(id))), 1500);
+    return () => window.clearTimeout(t);
   }, [phrases, s.link, s.keyPresent, s.settings.voice]);
 
   // Switch scanning (one switch, two switches, or blink as the switch).
@@ -108,7 +112,13 @@ export function App() {
     void demo.run();
   };
 
-  const ttsState = s.keyPresent === false ? "no-key" : s.services.tts?.state ?? (s.link === "open" ? "connecting" : "down");
+  // Until the first answer from the server, everything shows a neutral "checking", never a red alarm.
+  const checking = s.keyPresent === null;
+  const ttsRaw = s.keyPresent === false ? "no-key" : s.services.tts?.state ?? "checking";
+  const ttsState = checking || ttsRaw === "connecting" ? "checking" : ttsRaw;
+  const sttState = checking ? "checking" : s.services.stt?.state ?? (s.link === "open" ? "ready" : "checking");
+  const linkState = s.link === "open" ? "ready" : checking ? "checking" : s.link === "connecting" ? "checking" : "down";
+  const linkLabel = s.link === "open" ? "Online" : linkState === "checking" ? "Checking…" : "Offline";
   const sim = view === "talk" && (d.phase !== "idle" || FILM);
 
   return (
@@ -123,10 +133,11 @@ export function App() {
         {HOSTED ? <span className="chip" title="The hosted demo detects turns in the browser and transcribes each finished line. Voice banking runs in the local version. See the README.">Hosted demo</span> : null}
         <div className="topbar-spacer" />
         <div className="pills" aria-label="Service status">
-          <StatusChip label="Bulbul V4 Flash" state={ttsState} detail={s.services.tts?.detail} />
-          <StatusChip label="Saaras" state={s.services.stt?.state ?? (s.link === "open" ? "ready" : "down")} detail={s.services.stt?.detail} />
-          <StatusChip label={s.link === "open" ? "Online" : s.link === "connecting" ? "Connecting" : "Offline"} state={s.link === "open" ? "ready" : s.link === "connecting" ? "connecting" : "down"} />
+          <StatusChip label="Bulbul V4 Flash" short="Bulbul" state={ttsState} detail={s.services.tts?.detail} />
+          <StatusChip label="Saaras" short="Saaras" state={sttState} detail={s.services.stt?.detail} />
+          <StatusChip label={linkLabel} short={linkLabel} state={linkState} />
         </div>
+        <a className="btn btn-soft btn-small gh" href={REPO_URL} target="_blank" rel="noreferrer">GitHub</a>
         <button ref={settingsBtn} className="btn btn-soft btn-small" onClick={() => setSettingsOpen(true)} aria-haspopup="dialog">Settings</button>
       </header>
 
@@ -142,7 +153,7 @@ export function App() {
       ) : null}
 
       {view === "home" ? (
-        <Hero onDemo={startDemo} onTalk={() => { audio.unlock(); setView("talk"); }} />
+        <Hero onDemo={startDemo} onTalk={() => { audio.unlock(); setView("talk"); }} onFilm={() => setFilmOpen(true)} />
       ) : (
         <main className="main">
           <div className="col">
@@ -158,6 +169,11 @@ export function App() {
                   </>
                 ) : (
                   <>
+                    {d.replay ? (
+                      <span className="replay-note">
+                        Sarvam is not answering right now, so this is a recorded run of the same conversation. Every transcript, reply and voice in it came from Sarvam.
+                      </span>
+                    ) : null}
                     <span className="scene">Scene {Math.max(1, d.scene + 1)} of {SCENES.length}</span>
                     <span>{SCENES[Math.max(0, d.scene)]?.setting}</span>
                     <span className="status">
@@ -169,7 +185,7 @@ export function App() {
                 )}
               </div>
             ) : null}
-            <PartnerDisplay s={s} onListen={() => (mic.listening ? mic.stop() : void mic.start())} listening={mic.listening} />
+            <PartnerDisplay s={s} onListen={() => (mic.listening ? mic.stop() : void mic.start())} listening={mic.listening} scripted={sim} />
             <Replies s={s} />
             <SteerRow s={s} />
             <ToneDial s={s} />
@@ -197,6 +213,8 @@ export function App() {
           </div>
         </div>
       ) : null}
+      {FILM ? null : <SiteFooter onFilm={() => setFilmOpen(true)} />}
+      {filmOpen ? <FilmModal onClose={() => setFilmOpen(false)} /> : null}
       {FILM ? <FilmLayer /> : null}
       <Notices s={s} />
       {settingsOpen ? (
@@ -212,12 +230,13 @@ export function App() {
   );
 }
 
-function StatusChip({ label, state, detail }: { label: string; state: string; detail?: string }) {
-  const word = ({ ready: "ready", connecting: "connecting", degraded: "degraded", down: "unavailable", "no-key": "no key" } as Record<string, string>)[state] ?? state;
+function StatusChip({ label, short, state, detail }: { label: string; short: string; state: string; detail?: string }) {
+  const word = ({ ready: "ready", checking: "checking", connecting: "connecting", degraded: "degraded", down: "unavailable", "no-key": "no key" } as Record<string, string>)[state] ?? state;
   return (
     <span className="chip" title={detail}>
       <span className={`led ${state}`} aria-hidden="true" />
       <span className="lbl">{label}</span>
+      <span className="lbl-short" aria-hidden="true">{short}</span>
       <span className="sr-only">: {word}</span>
     </span>
   );

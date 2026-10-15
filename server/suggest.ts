@@ -54,6 +54,29 @@ export function replyLanguage(o: Pick<SuggestOptions, "partner" | "profile">): L
   return o.partner.lang ?? detectScriptLanguage(o.partner.text) ?? o.profile.languages[0] ?? "en-IN";
 }
 
+const ROMANIZED_INDIC = new Set([
+  "haan", "han", "nahi", "nahin", "nahi.", "bhai", "kya", "hai", "hain", "accha", "achha", "acha", "theek", "thik", "chalo", "abhi",
+  "mujhe", "mera", "meri", "tum", "tumhe", "aap", "aapka", "kal", "aaj", "raha", "rahi", "karo", "karna", "dena", "batao", "bilkul",
+  "illa", "illai", "aama", "aamaa", "seri", "sari", "enna", "romba", "konjam", "vaa", "venum", "vendam", "saapten", "nalla",
+]);
+
+/** True if an Indian-language reply contains an Indian word written in Roman letters, which Bulbul reads badly. */
+export function hasRomanizedIndic(text: string, lang: LangCode): boolean {
+  if (lang === "en-IN") return false;
+  return (text.toLowerCase().match(/[a-z]+/g) ?? []).some((w) => ROMANIZED_INDIC.has(w));
+}
+
+/** True when two replies say nearly the same thing (most of their words are shared). */
+export function isNearDuplicate(a: string, b: string): boolean {
+  const words = (t: string) => new Set(t.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").split(/\s+/).filter(Boolean));
+  const A = words(a);
+  const B = words(b);
+  if (A.size < 3 || B.size < 3) return a.trim().toLowerCase() === b.trim().toLowerCase();
+  let shared = 0;
+  for (const w of A) if (B.has(w)) shared++;
+  return shared / Math.min(A.size, B.size) >= 0.85;
+}
+
 /** True if text uses an Indic script other than the reply language's (Latin is always allowed). */
 export function hasForeignScript(text: string, lang: LangCode): boolean {
   for (const ch of text) {
@@ -65,7 +88,9 @@ export function hasForeignScript(text: string, lang: LangCode): boolean {
 
 export function buildMessages(o: SuggestOptions): { role: "system" | "user"; content: string }[] {
   const p = o.profile;
-  const n = o.count ?? 4;
+  // Spare drafts, so a near-duplicate or a romanized reply can be dropped and four still remain.
+  // Steering words make drafts converge, so steering asks for one more.
+  const n = (o.count ?? 4) + (o.keywords?.trim() ? 2 : 1);
   const tone = toneById(o.tone);
   const langs = p.languages.map((c) => languageByCode(c)?.name ?? c).join(", ");
   const people = p.people.length
@@ -82,7 +107,7 @@ export function buildMessages(o: SuggestOptions): { role: "system" | "user"; con
     `About ${p.name}: speaks ${langs}. Mixing style: ${p.mixStyle}. People: ${people}. Notes: ${p.notes || "none"}.`,
     ``,
     `Rules:`,
-    `1. Write exactly ${n} different replies. Make them genuinely different choices, for example one agreeing, one declining or delaying, one asking something back, one sharing a need or feeling. Never four versions of the same answer.`,
+    `1. Write exactly ${n} different replies. Make them genuinely different choices, for example one agreeing, one declining or delaying, one asking something back, one sharing a feeling about it. Every reply must respond to what was just said. Never several versions of the same answer.`,
     `2. Keep each reply short and spoken: 2 to 12 words, the way people actually talk at home, not written prose.`,
     `3. You are answering ${who} only. Names and terms of address such as Amma, Appa or Doctor belong to the specific people listed above: use one only when talking to that person, and never call anyone else by it.`,
     `4. Every reply is in ${replyLangName}${replyLangName === "English" ? "" : `, with English words mixed in the way ${p.name} does`}. Use no other Indian language in this turn.`,
@@ -175,14 +200,13 @@ export async function streamSuggestions(o: SuggestOptions, onDraft: (d: Draft) =
   let sse = "";
   let line = "";
   let emitted = 0;
-  const seen = new Set<string>();
+  const kept: string[] = [];
   const flushLine = (raw: string) => {
     if (emitted >= want) return;
     const d = parseDraftLine(raw, emitted, fallbackLang);
-    if (!d || hasForeignScript(d.text, fallbackLang)) return;
-    const key = d.text.replace(/\s+/g, " ").toLowerCase();
-    if (seen.has(key)) return;
-    seen.add(key);
+    if (!d || hasForeignScript(d.text, fallbackLang) || hasRomanizedIndic(d.text, fallbackLang)) return;
+    if (kept.some((k) => isNearDuplicate(k, d.text))) return;
+    kept.push(d.text);
     emitted++;
     onDraft(d);
   };

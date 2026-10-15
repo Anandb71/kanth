@@ -9,10 +9,12 @@ import type { LangCode, VoiceRef } from "../../../shared/voices.ts";
 import { detectScriptLanguage } from "../../../shared/voices.ts";
 import { KanthSocket, type LinkState } from "./socket.ts";
 import { HttpTransport } from "./http-transport.ts";
+import { ReplayTransport } from "./replay-transport.ts";
 
 /** Hosted builds (Vercel) talk to short HTTP functions instead of the local WebSocket server. */
 export const HOSTED = import.meta.env.VITE_TRANSPORT === "http";
 import { audio } from "./audio.ts";
+import { loadStaticAudio } from "./static-audio.ts";
 import { loadProfile, loadSettings, saveProfile, saveSettings, type Settings } from "./settings.ts";
 
 export interface Card {
@@ -101,7 +103,7 @@ const wordCount = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
 const uid = (p: string) => `${p}${Date.now().toString(36)}${(seq++).toString(36)}`;
 
 export class Kanth {
-  readonly socket: KanthSocket | HttpTransport;
+  socket: KanthSocket | HttpTransport | ReplayTransport;
   private listeners = new Set<Listener>();
   private suggestionWaiters = new Map<string, () => void>();
   private translitWaiters = new Map<string, (t: string) => void>();
@@ -134,8 +136,46 @@ export class Kanth {
       unspoken: null,
     };
     this.socket = HOSTED ? new HttpTransport() : new KanthSocket();
-    this.socket.onState((link) => this.set({ link }));
-    this.socket.on((m) => this.onMessage(m));
+    this.attach();
+  }
+
+  private detach: (() => void)[] = [];
+
+  private attach(): void {
+    for (const off of this.detach) off();
+    this.detach = [this.socket.onState((link) => this.set({ link })), this.socket.on((m) => this.onMessage(m))];
+  }
+
+  get replaying(): boolean {
+    return this.socket instanceof ReplayTransport;
+  }
+
+  /** Is the live Sarvam pipeline answering? Used by the demo to decide whether to fall back to the recording. */
+  async liveCheck(): Promise<boolean> {
+    if (this.replaying || this.state.keyPresent === false) return false;
+    if (!HOSTED) return this.state.link === "open";
+    try {
+      const r = await fetch("/api/status", { cache: "no-store", signal: AbortSignal.timeout(9000) });
+      return r.ok && ((await r.json()) as { keyPresent?: boolean }).keyPresent === true;
+    } catch {
+      return false;
+    }
+  }
+
+  async canReplay(): Promise<boolean> {
+    try {
+      return (await fetch("/replay/replay.json", { method: "HEAD" })).ok;
+    } catch {
+      return false;
+    }
+  }
+
+  /** Switches to the recorded run. Only the demo does this, and it says so on screen. */
+  useReplay(): void {
+    if (this.replaying) return;
+    this.socket.close();
+    this.socket = new ReplayTransport();
+    this.attach();
   }
 
   subscribe = (fn: Listener): (() => void) => {
@@ -279,7 +319,7 @@ export class Kanth {
    */
   private maybeSpeculate(text: string): void {
     const words = wordCount(text);
-    if (words < 4) return;
+    if (words < 3) return;
     const spec = this.spec;
     if (spec) {
       const inFlight = this.state.drafting && this.state.turnId === spec.turnId;
@@ -496,9 +536,20 @@ export class Kanth {
 
   /** Synthesize something into the cache without playing it (cached phrases, partner lines). */
   presynth(id: string, text: string, lang: LangCode, voice: VoiceRef, purpose: "prespeak" | "partner", tone: ToneId = "warm"): Promise<boolean> {
-    if (!audio.has(id)) this.socket.send({ t: "synth", id, text, lang, voice, tone, purpose });
-    return audio.whenDone(id);
+    if (audio.has(id)) return audio.whenDone(id);
+    const pending = this.presynthing.get(id);
+    if (pending) return pending;
+    // Pre-generated audio ships with the site for the partner's lines and the default phrases.
+    const p = (async () => {
+      if (await loadStaticAudio(id)) return true;
+      if (!audio.has(id)) this.socket.send({ t: "synth", id, text, lang, voice, tone, purpose });
+      return audio.whenDone(id);
+    })().finally(() => this.presynthing.delete(id));
+    this.presynthing.set(id, p);
+    return p;
   }
+
+  private presynthing = new Map<string, Promise<boolean>>();
 
   transliterate(text: string, lang: LangCode): Promise<string> {
     const id = uid("x");

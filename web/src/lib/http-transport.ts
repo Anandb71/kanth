@@ -6,8 +6,22 @@
 import type { ClientMessage, ServerMessage, SuggestRequest, SynthRequest } from "../../../shared/protocol.ts";
 import type { LinkState } from "./socket.ts";
 import { TurnDetector } from "./vad.ts";
+import snapshot from "../../../shared/roster.json";
+
+const BUNDLED_ROSTER = (snapshot as Record<string, unknown>)["bulbul:v4-flash"] as string[];
 
 type Listener = (msg: ServerMessage) => void;
+
+function joinB64(chunks: string[]): Uint8Array {
+  const parts = chunks.map((c) => Uint8Array.from(atob(c), (ch) => ch.charCodeAt(0)));
+  const all = new Uint8Array(parts.reduce((n, p) => n + p.length, 0));
+  let off = 0;
+  for (const p of parts) {
+    all.set(p, off);
+    off += p.length;
+  }
+  return all;
+}
 
 function b64(bytes: Uint8Array): string {
   let s = "";
@@ -15,11 +29,27 @@ function b64(bytes: Uint8Array): string {
   return btoa(s);
 }
 
+interface SttSession {
+  lang: string;
+  chunks: string[];
+  bytes: number;
+  vad?: TurnDetector;
+  /** Rolling partials: one request in flight at a time, newest result wins, none after the final. */
+  partialInFlight: boolean;
+  lastPartialAt: number;
+  partialSeq: number;
+  shownSeq: number;
+  finalized: boolean;
+}
+
+const PARTIAL_EVERY_MS = 700;
+const PARTIAL_MIN_BYTES = Math.round(16000 * 2 * 0.8); // at least 0.8 s of speech before the first partial
+
 export class HttpTransport {
   private listeners = new Set<Listener>();
   private stateListeners = new Set<(s: LinkState) => void>();
   private aborts = new Map<string, AbortController>();
-  private stt = new Map<string, { lang: string; chunks: string[]; vad?: TurnDetector }>();
+  private stt = new Map<string, SttSession>();
   state: LinkState = "connecting";
   rttMs = 0;
   readonly hosted = true;
@@ -57,8 +87,17 @@ export class HttpTransport {
     for (const fn of this.stateListeners) fn(s);
   }
 
+  private greeted = false;
+
   private async connect(attempt = 0): Promise<void> {
-    this.setState("connecting");
+    // Usable at once: the speaker list ships with the page, so nothing waits for the server to wake.
+    if (!this.greeted) {
+      this.greeted = true;
+      this.setState("open");
+      this.emit({ t: "hello", keyPresent: true, roster: BUNDLED_ROSTER, version: "hosted" });
+      this.emit({ t: "status", service: "tts", state: "connecting", detail: "waking the hosted service" });
+      this.emit({ t: "status", service: "stt", state: "ready", detail: "hosted, batch" });
+    } else this.setState("connecting");
     try {
       const t0 = performance.now();
       const r = await fetch("/api/status", { cache: "no-store" });
@@ -68,16 +107,15 @@ export class HttpTransport {
       this.emit({ t: "hello", keyPresent: j.keyPresent, roster: j.roster, version: j.version });
       this.emit({ t: "status", service: "tts", state: j.keyPresent ? "ready" : "no-key", detail: "hosted, HTTP streaming" });
       this.emit({ t: "status", service: "stt", state: "ready", detail: "hosted, batch" });
-      this.warm();
     } catch {
       this.setState("closed");
       if (navigator.onLine) window.setTimeout(() => void this.connect(attempt + 1), Math.min(8000, 400 * 2 ** attempt));
     }
   }
 
-  /** Wakes the serverless functions so their cold start overlaps the person speaking, not the wait after. */
+  /** Wakes the hosted function so a cold start overlaps the person speaking, not the wait after. */
   private warm(): void {
-    for (const f of ["stt", "suggest", "synth"]) void fetch(`/api/${f}`, { method: "GET", cache: "no-store" }).catch(() => {});
+    void fetch("/api/status", { cache: "no-store" }).catch(() => {});
   }
 
   send(msg: ClientMessage): void {
@@ -104,11 +142,19 @@ export class HttpTransport {
         const vad =
           lang === "unknown"
             ? new TurnDetector(
-                () => this.emit({ t: "transcript", sessionId, text: "…", final: false }),
-                (turn) => void this.transcribePcm(sessionId, new Uint8Array(turn.pcm.buffer, turn.pcm.byteOffset, turn.pcm.byteLength), lang, turn.endedAgoMs),
+                () => {
+                  const s = this.stt.get(sessionId);
+                  if (s) Object.assign(s, { finalized: false, lastPartialAt: performance.now(), shownSeq: s.partialSeq });
+                  this.emit({ t: "transcript", sessionId, text: "…", final: false });
+                },
+                (turn) => {
+                  const s = this.stt.get(sessionId);
+                  if (s) s.finalized = true;
+                  void this.transcribePcm(sessionId, new Uint8Array(turn.pcm.buffer, turn.pcm.byteOffset, turn.pcm.byteLength), lang, turn.endedAgoMs);
+                },
               )
             : undefined;
-        this.stt.set(sessionId, { lang, chunks: [], vad });
+        this.stt.set(sessionId, { lang, chunks: [], bytes: 0, vad, partialInFlight: false, lastPartialAt: performance.now(), partialSeq: 0, shownSeq: 0, finalized: false });
         if (vad) this.warm();
         return;
       }
@@ -118,11 +164,18 @@ export class HttpTransport {
         if (s.vad) {
           const bytes = Uint8Array.from(atob(msg.pcm), (c) => c.charCodeAt(0));
           s.vad.push(new Int16Array(bytes.buffer, 0, bytes.byteLength >> 1));
-        } else s.chunks.push(msg.pcm);
+          const now = s.vad.current();
+          if (now && now.byteLength >= PARTIAL_MIN_BYTES) this.maybePartial(msg.sessionId, s, () => new Uint8Array(now.buffer, now.byteOffset, now.byteLength));
+        } else {
+          s.chunks.push(msg.pcm);
+          s.bytes += (msg.pcm.length * 3) >> 2;
+          if (s.bytes >= PARTIAL_MIN_BYTES) this.maybePartial(msg.sessionId, s, () => joinB64(s.chunks));
+        }
         return;
       }
       case "stt_stop": {
         const s = this.stt.get(msg.sessionId);
+        if (s) s.finalized = true;
         if (s?.vad) {
           s.vad.flush();
           this.stt.delete(msg.sessionId);
@@ -245,15 +298,26 @@ export class HttpTransport {
     const s = this.stt.get(sessionId);
     this.stt.delete(sessionId);
     if (!s || !s.chunks.length) return;
-    const parts = s.chunks.map((c) => Uint8Array.from(atob(c), (ch) => ch.charCodeAt(0)));
-    const total = parts.reduce((n, p) => n + p.length, 0);
-    const all = new Uint8Array(total);
-    let off = 0;
-    for (const p of parts) {
-      all.set(p, off);
-      off += p.length;
-    }
-    await this.transcribePcm(sessionId, all, s.lang, 0);
+    await this.transcribePcm(sessionId, joinB64(s.chunks), s.lang, 0);
+  }
+
+  /** Rolling partial transcript of the speech so far, so drafting can start before the speaker stops. */
+  private maybePartial(sessionId: string, s: SttSession, audioSoFar: () => Uint8Array): void {
+    const now = performance.now();
+    if (s.finalized || s.partialInFlight || now - s.lastPartialAt < PARTIAL_EVERY_MS) return;
+    s.partialInFlight = true;
+    s.lastPartialAt = now;
+    const seq = ++s.partialSeq;
+    const pcm = audioSoFar();
+    void fetch(`/api/stt?lang=${encodeURIComponent(s.lang)}`, { method: "POST", headers: { "content-type": "application/octet-stream", "x-kanth-lang": s.lang }, body: pcm as Uint8Array<ArrayBuffer> })
+      .then((r) => (r.ok ? (r.json() as Promise<{ text?: string; language?: string }>) : null))
+      .then((j) => {
+        if (!j?.text?.trim() || s.finalized || seq <= s.shownSeq) return;
+        s.shownSeq = seq;
+        this.emit({ t: "transcript", sessionId, text: j.text, final: false, lang: j.language });
+      })
+      .catch(() => {})
+      .finally(() => (s.partialInFlight = false));
   }
 
   /** Sends one finished turn to batch speech recognition. endedAgoMs: how long ago the speech itself ended. */
@@ -262,7 +326,7 @@ export class HttpTransport {
     try {
       const r = await fetch(`/api/stt?lang=${encodeURIComponent(lang)}`, {
         method: "POST",
-        headers: { "content-type": "application/octet-stream" },
+        headers: { "content-type": "application/octet-stream", "x-kanth-lang": lang },
         body: pcm as Uint8Array<ArrayBuffer>,
       });
       const j = (await r.json()) as { text?: string; language?: string; error?: string };

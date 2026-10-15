@@ -120,7 +120,7 @@ export function SettingsDrawer({ s, onClose }: { s: KanthState; onClose: () => v
         </div>
 
         <div className="field">
-          <span className="label">Prespeak</span>
+          <span className="label">Voice replies before I choose</span>
           <div className="seg">
             <button aria-pressed={st.prespeak} onClick={() => set({ prespeak: true })}>On</button>
             <button aria-pressed={!st.prespeak} onClick={() => set({ prespeak: false })}>Off (for comparison)</button>
