@@ -29,7 +29,7 @@ export function Hero({ onDemo, onTalk }: { onDemo: () => void; onTalk: () => voi
       </div>
       <div className="facts">
         <div className="fact">
-          <b>160–200</b>
+          <b>160 to 200</b>
           <span>words per minute in everyday conversation</span>
           <cite>Yuan, Liberman and Cieri, 2006</cite>
         </div>
@@ -39,7 +39,7 @@ export function Hero({ onDemo, onTalk }: { onDemo: () => void; onTalk: () => voi
           <cite>Koester and Arthanat, 2018; Trnka et al., 2007</cite>
         </div>
         <div className="fact">
-          <b>0–200 ms</b>
+          <b>0 to 200 ms</b>
           <span>the usual gap before a reply. Gaps of 700 ms or more sound reluctant</span>
           <cite>Levinson and Torreira, 2015; Stivers et al., 2009</cite>
         </div>
