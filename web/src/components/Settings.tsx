@@ -114,6 +114,15 @@ export function SettingsDrawer({ s, onClose }: { s: KanthState; onClose: () => v
         </div>
 
         <div className="field">
+          <span className="label">Draft while they talk</span>
+          <div className="seg">
+            <button aria-pressed={st.speculate} onClick={() => set({ speculate: true })}>On</button>
+            <button aria-pressed={!st.speculate} onClick={() => set({ speculate: false })}>Off (fewer API calls)</button>
+          </div>
+          <span className="hint">Kanth starts drafting and voicing replies from the words heard so far, so they are often ready the moment the other person stops. If the end of their sentence changes the meaning, Kanth drafts again.</span>
+        </div>
+
+        <div className="field">
           <span className="label">Voice</span>
           <select
             value={st.voice.kind === "persona" ? st.voice.name : "__clone"}

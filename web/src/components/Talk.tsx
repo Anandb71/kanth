@@ -302,6 +302,8 @@ export function Meter({ s }: { s: KanthState }) {
   const lastMe = [...s.history].reverse().find((h) => h.who === "me");
   const words = lastMe ? lastMe.text.trim().split(/\s+/).length : 0;
   const cls = (v: number | undefined, target: number) => (v === undefined ? "" : v <= target ? "good" : "slow");
+  // Negative means the replies were ready before the partner finished speaking.
+  const rel = (v: number | undefined) => (v !== undefined && v < 0 ? `${fmtMs(-v)} early` : fmtMs(v));
 
   return (
     <section className="meter" aria-labelledby="meter-h">
@@ -309,9 +311,9 @@ export function Meter({ s }: { s: KanthState }) {
       <Gauge value={done?.toAudibleMs} target={150} label="You choose → you are heard" sub={done ? (done.prespoken ? "Played from prespoken audio." : "Synthesized after the choice.") : "Choose a reply to measure."} />
       <div className="stats">
         <div className="stat"><b className={cls(heard, 400)}>{fmtMs(heard)}</b><span>They stop → Saaras transcript</span></div>
-        <div className="stat"><b className={cls(first, 1500)}>{fmtMs(first)}</b><span>They stop → first reply</span></div>
-        <div className="stat"><b className={cls(all, 1500)}>{fmtMs(all)}</b><span>They stop → all 4 replies</span></div>
-        <div className="stat"><b>{fmtMs(voiced)}</b><span>They stop → all 4 voiced</span></div>
+        <div className="stat"><b className={cls(first, 1500)}>{rel(first)}</b><span>They stop → first reply</span></div>
+        <div className="stat"><b className={cls(all, 1500)}>{rel(all)}</b><span>They stop → all 4 replies</span></div>
+        <div className="stat"><b className={cls(voiced, 1500)}>{rel(voiced)}</b><span>They stop → all 4 voiced</span></div>
       </div>
       {turnGap !== undefined ? (
         <div className="compare">

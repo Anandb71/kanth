@@ -252,7 +252,7 @@ export class Kanth {
     const spec = this.spec;
     if (spec) {
       const inFlight = this.state.drafting && this.state.turnId === spec.turnId;
-      if (inFlight || spec.count >= 3 || words < spec.words + 3) return;
+      if (inFlight || spec.count >= 3 || words < spec.words + 2) return;
     }
     const p = this.state.partner;
     if (!p) return;
@@ -274,9 +274,11 @@ export class Kanth {
     this.set({ partner, history });
     const spec = this.spec;
     this.spec = null;
-    // Keep the speculative drafts if the final transcript added at most one word (scripts may differ:
-    // partials are plain transcription, the final is code-mixed, so compare word counts, not words).
-    if (spec && this.state.turnId === spec.turnId && wordCount(text) - spec.words <= 1) {
+    // Keep the speculative drafts if the final transcript added little (scripts may differ: partials are
+    // plain transcription and the final is code-mixed, so compare word counts rather than words).
+    const finalWords = wordCount(text);
+    if (spec && this.state.turnId === spec.turnId && finalWords - spec.words <= Math.max(2, Math.round(finalWords * 0.3))) {
+      this.metric(spec.turnId, { speculative: true });
       this.metric(spec.turnId, { partnerEndAt: opts.endedAt, transcriptAt: opts.transcriptAt });
       if (this.state.drafting) await new Promise<void>((resolve) => this.suggestionWaiters.set(`${spec.turnId}#adopt`, resolve));
       return spec.turnId;

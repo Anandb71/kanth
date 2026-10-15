@@ -43,22 +43,40 @@ export class FilmDirector {
     return () => this.listeners.delete(fn);
   }
 
+  /** What was on screen and when (wall-clock ms), for the recorder's subtitle file and trim point. */
+  marks: { epochMs: number; key: string; value: unknown }[] = [];
+  /** PCM of every played utterance, kept here because a new turn forgets the previous turn's audio. */
+  private kept = new Map<string, Float32Array>();
+
   private set(patch: Partial<FilmState>): void {
     this.state = { ...this.state, ...patch };
+    const epochMs = performance.timeOrigin + performance.now();
+    for (const key of ["black", "caption", "story", "end", "offline", "done"] as const) {
+      if (key in patch) this.marks.push({ epochMs, key, value: patch[key] ?? null });
+    }
     for (const fn of this.listeners) fn(this.state);
+  }
+
+  /** Puts back any played audio that a later turn dropped, so audio.exportFilmLog() is complete. */
+  private restoreFilmAudio(): void {
+    for (const [id, f] of this.kept) if (!audio.isReady(id)) audio.loadSamples(id, f);
   }
 
   async run(): Promise<void> {
     if (this.state.running) return;
+    this.marks = [];
+    (window as unknown as { __filmMarks?: unknown }).__filmMarks = this.marks;
     this.set({ running: true, black: true, done: false });
     audio.unlock();
     audio.startFilmLog();
+    audio.onPlay((e) => void audio.whenDone(e.id).then((ok) => ok && this.kept.set(e.id, audio.samplesOf(e.id))));
     kanth.resetConversation();
     kanth.setTone("warm");
 
     const ids = BEATS.map((_, i) => `film-partner-${i}`);
     await Promise.all(BEATS.map((b, i) => kanth.presynth(ids[i]!, b.text, b.lang, { kind: "persona", name: b.speaker }, "partner")));
     await this.waitForPhrase("Suction");
+    (window as unknown as { __filmReadyAt?: number }).__filmReadyAt = performance.timeOrigin + performance.now();
     (window as unknown as { __filmReady?: boolean }).__filmReady = true;
     await sleep(600);
     this.set({ black: false });
@@ -147,6 +165,7 @@ export class FilmDirector {
       },
     });
     await sleep(7000);
+    this.restoreFilmAudio();
     this.set({ done: true, running: false });
     (window as unknown as { __filmDone?: boolean }).__filmDone = true;
   }
