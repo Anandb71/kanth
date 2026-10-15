@@ -1,7 +1,7 @@
 // One browser connection. Routes synthesis, drafting, speech recognition and transliteration,
 // and reports every failure to the browser with what Kanth did about it.
 import type WebSocket from "ws";
-import type { ClientMessage, ServerMessage, SuggestRequest, SynthRequest } from "../shared/protocol.ts";
+import { PCM_SAMPLE_RATE, type ClientMessage, type ServerMessage, type SuggestRequest, type SynthRequest } from "../shared/protocol.ts";
 import { clampProsody, toneById } from "../shared/tones.ts";
 import { hasLatinWords, resolveSpeaker } from "../shared/voices.ts";
 import type { TtsEngine, TtsResult } from "./bulbul.ts";
@@ -80,7 +80,22 @@ export class Session {
     const ac = new AbortController();
     this.aborts.set(req.id, ac);
     let seq = 0;
-    const sink = (pcm: Buffer) => this.send({ t: "audio", id: req.id, seq: seq++, pcm: pcm.toString("base64") });
+    // Guard against runaway audio: we once measured 58 s of speech for a 42 character reply.
+    // Nothing longer than a generous reading time is ever played.
+    const maxSamples = Math.round((3 + req.text.length * 0.3) * PCM_SAMPLE_RATE);
+    let sent = 0;
+    let cut = false;
+    const sink = (pcm: Buffer) => {
+      if (cut) return;
+      let chunk = pcm;
+      if (sent + (chunk.length >> 1) > maxSamples) {
+        chunk = chunk.subarray(0, Math.max(0, maxSamples - sent) * 2);
+        cut = true;
+        this.send({ t: "error", scope: "tts", message: "Bulbul returned far more audio than the text needs.", fallback: "Kanth cut it off so it cannot ramble." });
+      }
+      sent += chunk.length >> 1;
+      if (chunk.length) this.send({ t: "audio", id: req.id, seq: seq++, pcm: chunk.toString("base64") });
+    };
     const reset = () => this.send({ t: "error", id: req.id, scope: "tts", message: "reset", fallback: "Retrying on a backup connection." });
     const tone = toneById(req.tone);
     const prosody = clampProsody(tone.prosody);
@@ -118,7 +133,7 @@ export class Session {
     const synths: Promise<unknown>[] = [];
     try {
       const stats = await streamSuggestions(
-        { profile: req.profile, history: req.history, partner: req.partner, tone: req.tone, signal: ac.signal },
+        { profile: req.profile, history: req.history, partner: req.partner, tone: req.tone, keywords: req.keywords, signal: ac.signal },
         (d) => {
           this.send({ t: "suggestion", turnId: req.turnId, idx: d.idx, text: d.text, lang: d.lang, gloss: d.gloss, atMs: performance.now() - t0 });
           if (req.prespeak) {

@@ -146,7 +146,7 @@ export function App() {
             <PartnerDisplay s={s} onListen={() => (mic.listening ? mic.stop() : void mic.start())} listening={mic.listening} />
             <Replies s={s} />
             <ToneDial s={s} />
-            <Composer />
+            <Composer canSteer={!!s.partner?.final} />
             <Phrases phrases={phrases} cached={cached} s={s} />
           </div>
           <aside className="col" aria-label="Your voice and measurements">

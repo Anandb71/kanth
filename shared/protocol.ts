@@ -48,6 +48,8 @@ export interface SuggestRequest {
   voice: VoiceRef;
   /** When set, also prespeak each suggestion as soon as it is drafted. */
   prespeak: boolean;
+  /** Words the user gave to steer the drafts toward what they mean. */
+  keywords?: string;
 }
 
 export interface SttStart {

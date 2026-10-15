@@ -150,7 +150,7 @@ const TYPE_LANGS: { code: LangCode; label: string; roman: boolean }[] = [
   { code: "hi-IN", label: "हिन्दी (type in Roman)", roman: true },
 ];
 
-export function Composer() {
+export function Composer({ canSteer = false }: { canSteer?: boolean }) {
   const [text, setText] = useState("");
   const [lang, setLang] = useState<LangCode>("en-IN");
   const [busy, setBusy] = useState(false);
@@ -196,10 +196,25 @@ export function Composer() {
             }
           }}
         />
+        {canSteer ? (
+          <button
+            className="btn btn-soft"
+            onClick={() => {
+              void kanth.steer(text);
+              setText("");
+            }}
+            disabled={!text.trim() || busy}
+            data-scan-item="compose"
+            title="Redraft the four replies around these words"
+          >
+            Draft with these words
+          </button>
+        ) : null}
         <button className="btn btn-primary" onClick={() => void speak()} disabled={!text.trim() || busy} data-scan-item="compose">
           {busy ? "Converting…" : "Speak"}
         </button>
       </div>
+      {canSteer && !roman ? <div className="hint">None of the replies right? Type a word or two, like “tablet” or “4 pm”, and Kanth redrafts all four around it.</div> : null}
       {roman ? <div className="hint">Kanth converts this to {languageByCode(lang)?.native} script first, because Bulbul pronounces native script far better than Roman.</div> : null}
     </div>
   );

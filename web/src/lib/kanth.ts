@@ -288,10 +288,10 @@ export class Kanth {
 
   // ---------- Drafting ----------
 
-  requestSuggestions(m: Partial<TurnMetric> = {}): Promise<string> {
+  requestSuggestions(m: Partial<TurnMetric> = {}, keywords?: string): Promise<string> {
     const p = this.state.partner;
     if (!p) return Promise.resolve("");
-    const turnId = this.startDraft(p, p.final, m);
+    const turnId = this.startDraft(p, p.final, m, keywords);
     return new Promise((resolve) => {
       const timer = window.setTimeout(() => {
         this.suggestionWaiters.delete(turnId);
@@ -306,7 +306,7 @@ export class Kanth {
   }
 
   /** Sends a draft request for what the partner said (final, or partial while speculating). */
-  private startDraft(p: PartnerState, partnerInHistory: boolean, m: Partial<TurnMetric>): string {
+  private startDraft(p: PartnerState, partnerInHistory: boolean, m: Partial<TurnMetric>, keywords?: string): string {
     if (this.state.turnId) {
       this.socket.send({ t: "cancel", id: this.state.turnId });
       audio.forget(`${this.state.turnId}:`);
@@ -331,15 +331,28 @@ export class Kanth {
       tone: this.state.tone,
       voice: this.state.settings.voice,
       prespeak: this.state.settings.prespeak,
+      keywords,
     });
+    this.lastKeywords = keywords;
     return turnId;
   }
+
+  private lastKeywords: string | undefined;
 
   /** Changing tone redrafts: urgent words differ from warm words, not just the voice. */
   setTone(tone: ToneId): void {
     if (tone === this.state.tone) return;
     this.set({ tone });
-    if (this.state.partner?.final && this.state.cards.length) void this.requestSuggestions();
+    if (this.state.partner?.final && this.state.cards.length) void this.requestSuggestions({}, this.lastKeywords);
+  }
+
+  /**
+   * Keyword steering: when no draft says what the user means, a word or two is enough
+   * to redraft all four around it. Far fewer actions than typing the whole reply.
+   */
+  steer(keywords: string): Promise<string> {
+    if (!this.state.partner?.final || !keywords.trim()) return Promise.resolve("");
+    return this.requestSuggestions({}, keywords.trim());
   }
 
   // ---------- Speaking (only on the user's choice) ----------

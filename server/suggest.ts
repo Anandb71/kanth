@@ -19,6 +19,8 @@ export interface SuggestOptions {
   history: Turn[];
   partner: { text: string; lang?: LangCode; who?: string };
   tone: ToneId;
+  /** Words the user typed or picked to steer the drafts toward what they mean. */
+  keywords?: string;
   count?: number;
   model?: string;
   signal?: AbortSignal;
@@ -34,17 +36,17 @@ const SEP = "|||";
 
 /** One format example per reply language, so the example never pulls in another language. */
 const FORMAT_EXAMPLES: Partial<Record<LangCode, string>> = {
-  "ta-IN": `இன்னும் இல்லம்மா, பத்து நிமிஷம் ஆகட்டும் ${SEP} Not yet Amma, give it ten minutes`,
-  "hi-IN": `आज थोड़ा better है, Doctor ${SEP} A little better today, Doctor`,
+  "ta-IN": `இன்னும் பத்து நிமிஷம் ஆகட்டும் ${SEP} Give it ten more minutes`,
+  "hi-IN": `आज थोड़ा better लग रहा है ${SEP} Feeling a little better today`,
   "en-IN": `Give me ten minutes, I'll be ready ${SEP} Give me ten minutes, I'll be ready`,
-  "bn-IN": `একটু পরে খাব, Ma ${SEP} I'll eat a little later, Ma`,
-  "te-IN": `ఇంకా పది నిమిషాలు, Amma ${SEP} Ten more minutes, Amma`,
-  "kn-IN": `ಇನ್ನೂ ಹತ್ತು ನಿಮಿಷ, Amma ${SEP} Ten more minutes, Amma`,
-  "mr-IN": `अजून दहा मिनिटं, Aai ${SEP} Ten more minutes, Aai`,
-  "gu-IN": `હજી દસ મિનિટ, Mummy ${SEP} Ten more minutes, Mummy`,
-  "pa-IN": `ਹਾਲੇ ਦਸ ਮਿੰਟ, Mummy ${SEP} Ten more minutes, Mummy`,
-  "ml-IN": `ഇനിയും പത്ത് മിനിറ്റ്, Amma ${SEP} Ten more minutes, Amma`,
-  "od-IN": `ଆଉ ଦଶ ମିନିଟ, Maa ${SEP} Ten more minutes, Maa`,
+  "bn-IN": `একটু পরে খাব ${SEP} I'll eat a little later`,
+  "te-IN": `ఇంకా పది నిమిషాలు ఆగు ${SEP} Wait ten more minutes`,
+  "kn-IN": `ಇನ್ನೂ ಹತ್ತು ನಿಮಿಷ ಬೇಕು ${SEP} I need ten more minutes`,
+  "mr-IN": `अजून दहा मिनिटं थांब ${SEP} Wait ten more minutes`,
+  "gu-IN": `હજી દસ મિનિટ રાહ જુઓ ${SEP} Wait ten more minutes`,
+  "pa-IN": `ਹਾਲੇ ਦਸ ਮਿੰਟ ਰੁਕੋ ${SEP} Wait ten more minutes`,
+  "ml-IN": `ഇനിയും പത്ത് മിനിറ്റ് വേണം ${SEP} I need ten more minutes`,
+  "od-IN": `ଆଉ ଦଶ ମିନିଟ ଅପେକ୍ଷା କର ${SEP} Wait ten more minutes`,
 };
 
 /** The language replies should be in: what the partner spoke, else the user's first language. */
@@ -82,11 +84,12 @@ export function buildMessages(o: SuggestOptions): { role: "system" | "user"; con
     `Rules:`,
     `1. Write exactly ${n} different replies. Make them genuinely different choices, for example one agreeing, one declining or delaying, one asking something back, one sharing a need or feeling. Never four versions of the same answer.`,
     `2. Keep each reply short and spoken: 2 to 12 words, the way people actually talk at home, not written prose.`,
-    `3. You are answering ${who} only. If you address them, use the name ${p.name} uses for ${who}. Never address anyone who is not in this conversation.`,
+    `3. You are answering ${who} only. Names and terms of address such as Amma, Appa or Doctor belong to the specific people listed above: use one only when talking to that person, and never call anyone else by it.`,
     `4. Every reply is in ${replyLangName}${replyLangName === "English" ? "" : `, with English words mixed in the way ${p.name} does`}. Use no other Indian language in this turn.`,
     `5. Script matters because a speech engine reads your text: ${replyLangName === "English" ? "plain English in Latin script." : `${replyLangName} words in ${replyLangName} script and English words in Latin script. Never romanize ${replyLangName}.`}`,
     `6. Tone for this turn: ${tone.wording}.`,
     `7. Do not invent facts about ${p.name}'s health or plans beyond what a natural reply needs.`,
+    `8. Use the notes about ${p.name} only when they bear on what was just said. Never bring up a topic from the notes that nobody mentioned.`,
     ``,
     `Output exactly ${n} lines and nothing else: no numbering, no tags, no quotes. Each line is the reply, then ${SEP}, then a short English meaning. Example of the line format:`,
     FORMAT_EXAMPLES[replyLang] ?? FORMAT_EXAMPLES["en-IN"]!,
@@ -101,6 +104,11 @@ export function buildMessages(o: SuggestOptions): { role: "system" | "user"; con
   }
   lines.push(`${who} just said: ${o.partner.text}`);
   lines.push("");
+  if (o.keywords?.trim()) {
+    lines.push(`${p.name} has pointed to what they want to say with these words: "${o.keywords.trim()}".`);
+    lines.push(`Every reply must say that, built around these words (put them into ${replyLangName} where natural), in ${n} different ways.`);
+    lines.push("");
+  }
   lines.push(`Write ${n} replies for ${p.name}.`);
   return [
     { role: "system", content: system },

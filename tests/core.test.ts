@@ -96,9 +96,19 @@ describe("draft parsing", () => {
   });
   it("only shows a format example in the reply language", () => {
     const msgs = buildMessages({ profile, history: [], partner: { text: "आज कैसा है?", who: "Dr. Mehra" }, tone: "warm" });
-    expect(msgs[0]!.content).toContain("आज थोड़ा better है");
+    expect(msgs[0]!.content).toContain("आज थोड़ा better लग रहा है");
     expect(msgs[0]!.content).not.toContain("இன்னும்");
     expect(msgs[0]!.content).toContain("Dr. Mehra");
+  });
+  it("keeps names to their owners and the examples free of names", () => {
+    const msgs = buildMessages({ profile, history: [], partner: { text: "கண்ணா, சாப்பிட்டியா?", who: "Amma" }, tone: "warm" });
+    const example = msgs[0]!.content.split(String.fromCharCode(10)).pop()!;
+    expect(example).not.toMatch(/Amma|Doctor/);
+    expect(msgs[0]!.content).toContain("never call anyone else by it");
+  });
+  it("steers every draft with the user's keywords", () => {
+    const msgs = buildMessages({ profile, history: [], partner: { text: "What time?", who: "Nurse" }, tone: "warm", keywords: "4 pm" });
+    expect(msgs[1]!.content).toContain('"4 pm"');
   });
 });
 
