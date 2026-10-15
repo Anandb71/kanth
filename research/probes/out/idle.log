@@ -1,0 +1,2 @@
+IDLE msg {'type': 'error', 'data': {'request_id': '20261014_ff8fa7ab-ba60-4cb7-aaa3-81e27d4a16f8', 'message': 'Websocket was left open without any messages for too long.', 'code': 408}}
+IDLE {"closed_after_s": 59.8, "close": {"code": 1000, "reason": ""}}

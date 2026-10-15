@@ -1,0 +1,773 @@
+{
+ "source": "bench/results/ttfa-raw.json",
+ "context": "a home connection in India, 2026-10-15 07:36–07:40 IST",
+ "started": "2026-10-15T02:06:40.862Z",
+ "finished": "2026-10-15T02:10:53.778Z",
+ "percentile_method": "numpy.percentile linear interpolation (type 7)",
+ "measurement_conditions": [
+  "a home connection in India",
+  "Two other agents may have been calling the Sarvam API (same account) at the same time as this run; this bench's own calls were strictly sequential.",
+  "Node v25.2.1 on win32 10.0.26300"
+ ],
+ "texts": [
+  {
+   "id": "ta",
+   "lang": "ta-IN",
+   "text": "அம்மா, எனக்கு கொஞ்சம் தண்ணீர் வேண்டும்.",
+   "chars": 39,
+   "v4Speaker": "vijay_ta_narration",
+   "v3Speaker": "vijay"
+  },
+  {
+   "id": "hi",
+   "lang": "hi-IN",
+   "text": "मुझे थोड़ा rest चाहिए, doctor को बाद में call करो।",
+   "chars": 50,
+   "v4Speaker": "shubh_hi_customer",
+   "v3Speaker": "shubh"
+  },
+  {
+   "id": "en",
+   "lang": "en-IN",
+   "text": "I'm a bit tired. Can we talk after lunch?",
+   "chars": 41,
+   "v4Speaker": "shubh_en_narration",
+   "v3Speaker": "shubh"
+  }
+ ],
+ "prosody": {
+  "tone": "warm",
+  "pace": 0.95,
+  "pitch": 0,
+  "loudness": 1
+ },
+ "warmups": [
+  {
+   "model": "bulbul:v4-flash",
+   "text": "ta",
+   "transport": "ws",
+   "wallMs": 602
+  },
+  {
+   "model": "bulbul:v4-flash",
+   "text": "hi",
+   "transport": "ws",
+   "wallMs": 565
+  },
+  {
+   "model": "bulbul:v3",
+   "text": "ta",
+   "transport": "ws",
+   "wallMs": 694
+  },
+  {
+   "model": "bulbul:v3",
+   "text": "hi",
+   "transport": "ws",
+   "wallMs": 533
+  }
+ ],
+ "clone_preflight": {
+  "voice": "banked",
+  "wallMs": 2051
+ },
+ "outages": [],
+ "total_rows": 228,
+ "total_ok": 228,
+ "conditions": {
+  "v4-flash/rest": {
+   "label": "V4 Flash · REST",
+   "planned": 30,
+   "ok": 30,
+   "failed": 0,
+   "retried_ok": 0,
+   "ttfa_ms": {
+    "n": 30,
+    "p50": 710.5,
+    "p90": 852.0,
+    "mean": 740.8,
+    "min": 616.3,
+    "max": 1023.6
+   },
+   "total_ms": {
+    "n": 30,
+    "p50": 710.5,
+    "p90": 852.0,
+    "mean": 740.8,
+    "min": 616.3,
+    "max": 1023.6
+   },
+   "audio_sec": {
+    "n": 30,
+    "p50": 2.6,
+    "p90": 3.3,
+    "mean": 2.7,
+    "min": 2.0,
+    "max": 4.3
+   },
+   "by_lang": {
+    "ta": {
+     "n": 10,
+     "p50": 710.5,
+     "p90": 745.9,
+     "mean": 716.8,
+     "min": 686.6,
+     "max": 770.1
+    },
+    "hi": {
+     "n": 10,
+     "p50": 641.1,
+     "p90": 683.8,
+     "mean": 650.6,
+     "min": 616.3,
+     "max": 689.8
+    },
+    "en": {
+     "n": 10,
+     "p50": 841.2,
+     "p90": 965.3,
+     "mean": 855.0,
+     "min": 744.3,
+     "max": 1023.6
+    }
+   },
+   "failures": [],
+   "lib_ttfa_ms": {
+    "n": 30,
+    "p50": 710.5,
+    "p90": 851.9,
+    "mean": 740.8,
+    "min": 616.2,
+    "max": 1023.5
+   }
+  },
+  "v4-flash/http-stream": {
+   "label": "V4 Flash · HTTP stream",
+   "planned": 30,
+   "ok": 30,
+   "failed": 0,
+   "retried_ok": 0,
+   "ttfa_ms": {
+    "n": 30,
+    "p50": 321.9,
+    "p90": 355.6,
+    "mean": 328.7,
+    "min": 304.0,
+    "max": 445.5
+   },
+   "total_ms": {
+    "n": 30,
+    "p50": 638.5,
+    "p90": 746.7,
+    "mean": 648.4,
+    "min": 541.8,
+    "max": 802.7
+   },
+   "audio_sec": {
+    "n": 30,
+    "p50": 2.7,
+    "p90": 3.1,
+    "mean": 2.7,
+    "min": 2.1,
+    "max": 3.8
+   },
+   "by_lang": {
+    "ta": {
+     "n": 10,
+     "p50": 321.0,
+     "p90": 334.8,
+     "mean": 321.4,
+     "min": 308.5,
+     "max": 339.0
+    },
+    "hi": {
+     "n": 10,
+     "p50": 315.2,
+     "p90": 362.9,
+     "mean": 331.7,
+     "min": 304.0,
+     "max": 445.5
+    },
+    "en": {
+     "n": 10,
+     "p50": 322.7,
+     "p90": 376.0,
+     "mean": 333.0,
+     "min": 307.6,
+     "max": 401.9
+    }
+   },
+   "failures": [],
+   "lib_ttfa_ms": {
+    "n": 30,
+    "p50": 60.2,
+    "p90": 104.1,
+    "mean": 68.3,
+    "min": 51.5,
+    "max": 155.5
+   }
+  },
+  "v4-flash/ws-warm": {
+   "label": "V4 Flash · WebSocket, warm",
+   "planned": 30,
+   "ok": 30,
+   "failed": 0,
+   "retried_ok": 0,
+   "ttfa_ms": {
+    "n": 30,
+    "p50": 304.4,
+    "p90": 317.3,
+    "mean": 396.8,
+    "min": 292.1,
+    "max": 3001.8
+   },
+   "total_ms": {
+    "n": 30,
+    "p50": 600.5,
+    "p90": 738.4,
+    "mean": 696.8,
+    "min": 521.0,
+    "max": 3024.3
+   },
+   "audio_sec": {
+    "n": 30,
+    "p50": 2.7,
+    "p90": 3.6,
+    "mean": 2.8,
+    "min": 2.1,
+    "max": 4.4
+   },
+   "by_lang": {
+    "ta": {
+     "n": 10,
+     "p50": 298.8,
+     "p90": 307.1,
+     "mean": 300.1,
+     "min": 292.1,
+     "max": 311.2
+    },
+    "hi": {
+     "n": 10,
+     "p50": 306.0,
+     "p90": 588.9,
+     "mean": 576.3,
+     "min": 299.3,
+     "max": 3001.8
+    },
+    "en": {
+     "n": 10,
+     "p50": 305.9,
+     "p90": 323.0,
+     "mean": 314.0,
+     "min": 300.9,
+     "max": 378.3
+    }
+   },
+   "failures": [],
+   "socket_not_open_before_call": 0,
+   "lib_ttfa_ms": {
+    "n": 30,
+    "p50": 304.2,
+    "p90": 317.2,
+    "mean": 396.7,
+    "min": 292.0,
+    "max": 3001.7
+   }
+  },
+  "v3/rest": {
+   "label": "v3 · REST",
+   "planned": 30,
+   "ok": 30,
+   "failed": 0,
+   "retried_ok": 0,
+   "ttfa_ms": {
+    "n": 30,
+    "p50": 661.3,
+    "p90": 776.0,
+    "mean": 674.4,
+    "min": 567.6,
+    "max": 850.3
+   },
+   "total_ms": {
+    "n": 30,
+    "p50": 661.3,
+    "p90": 776.0,
+    "mean": 674.4,
+    "min": 567.6,
+    "max": 850.3
+   },
+   "audio_sec": {
+    "n": 30,
+    "p50": 2.6,
+    "p90": 2.8,
+    "mean": 2.6,
+    "min": 2.2,
+    "max": 3.1
+   },
+   "by_lang": {
+    "ta": {
+     "n": 10,
+     "p50": 659.6,
+     "p90": 775.2,
+     "mean": 684.4,
+     "min": 628.9,
+     "max": 821.0
+    },
+    "hi": {
+     "n": 10,
+     "p50": 664.5,
+     "p90": 782.4,
+     "mean": 682.9,
+     "min": 598.1,
+     "max": 850.3
+    },
+    "en": {
+     "n": 10,
+     "p50": 655.8,
+     "p90": 716.9,
+     "mean": 656.0,
+     "min": 567.6,
+     "max": 785.8
+    }
+   },
+   "failures": [],
+   "lib_ttfa_ms": {
+    "n": 30,
+    "p50": 661.2,
+    "p90": 775.9,
+    "mean": 674.3,
+    "min": 567.5,
+    "max": 850.3
+   }
+  },
+  "v3/http-stream": {
+   "label": "v3 · HTTP stream",
+   "planned": 30,
+   "ok": 30,
+   "failed": 0,
+   "retried_ok": 0,
+   "ttfa_ms": {
+    "n": 30,
+    "p50": 272.6,
+    "p90": 315.7,
+    "mean": 282.7,
+    "min": 260.0,
+    "max": 375.5
+   },
+   "total_ms": {
+    "n": 30,
+    "p50": 565.9,
+    "p90": 607.8,
+    "mean": 575.0,
+    "min": 497.4,
+    "max": 816.0
+   },
+   "audio_sec": {
+    "n": 30,
+    "p50": 2.6,
+    "p90": 2.8,
+    "mean": 2.6,
+    "min": 2.0,
+    "max": 4.0
+   },
+   "by_lang": {
+    "ta": {
+     "n": 10,
+     "p50": 269.2,
+     "p90": 356.1,
+     "mean": 286.4,
+     "min": 260.0,
+     "max": 375.5
+    },
+    "hi": {
+     "n": 10,
+     "p50": 277.7,
+     "p90": 316.2,
+     "mean": 289.1,
+     "min": 266.5,
+     "max": 359.3
+    },
+    "en": {
+     "n": 10,
+     "p50": 271.5,
+     "p90": 282.4,
+     "mean": 272.8,
+     "min": 264.1,
+     "max": 283.1
+    }
+   },
+   "failures": [],
+   "lib_ttfa_ms": {
+    "n": 30,
+    "p50": 60.0,
+    "p90": 107.7,
+    "mean": 68.0,
+    "min": 50.2,
+    "max": 121.5
+   }
+  },
+  "v3/ws-warm": {
+   "label": "v3 · WebSocket, warm",
+   "planned": 30,
+   "ok": 30,
+   "failed": 0,
+   "retried_ok": 0,
+   "ttfa_ms": {
+    "n": 30,
+    "p50": 244.2,
+    "p90": 252.6,
+    "mean": 245.6,
+    "min": 238.7,
+    "max": 260.6
+   },
+   "total_ms": {
+    "n": 30,
+    "p50": 527.0,
+    "p90": 566.5,
+    "mean": 524.6,
+    "min": 457.4,
+    "max": 579.9
+   },
+   "audio_sec": {
+    "n": 30,
+    "p50": 2.7,
+    "p90": 2.9,
+    "mean": 2.7,
+    "min": 2.3,
+    "max": 3.1
+   },
+   "by_lang": {
+    "ta": {
+     "n": 10,
+     "p50": 242.5,
+     "p90": 247.0,
+     "mean": 243.2,
+     "min": 240.0,
+     "max": 248.4
+    },
+    "hi": {
+     "n": 10,
+     "p50": 245.4,
+     "p90": 252.5,
+     "mean": 246.8,
+     "min": 238.7,
+     "max": 260.6
+    },
+    "en": {
+     "n": 10,
+     "p50": 245.3,
+     "p90": 254.5,
+     "mean": 246.8,
+     "min": 240.0,
+     "max": 254.5
+    }
+   },
+   "failures": [],
+   "socket_not_open_before_call": 0,
+   "lib_ttfa_ms": {
+    "n": 30,
+    "p50": 244.2,
+    "p90": 252.5,
+    "mean": 245.5,
+    "min": 238.6,
+    "max": 260.5
+   }
+  },
+  "v4-flash/ws-cold": {
+   "label": "V4 Flash · WebSocket, cold",
+   "planned": 12,
+   "ok": 12,
+   "failed": 0,
+   "retried_ok": 0,
+   "ttfa_ms": {
+    "n": 12,
+    "p50": 457.4,
+    "p90": 556.6,
+    "mean": 489.8,
+    "min": 421.3,
+    "max": 800.6
+   },
+   "total_ms": {
+    "n": 12,
+    "p50": 776.6,
+    "p90": 925.3,
+    "mean": 787.1,
+    "min": 634.4,
+    "max": 1039.9
+   },
+   "audio_sec": {
+    "n": 12,
+    "p50": 2.8,
+    "p90": 3.6,
+    "mean": 2.8,
+    "min": 2.1,
+    "max": 3.9
+   },
+   "by_lang": {
+    "ta": {
+     "n": 4,
+     "p50": 442.4,
+     "p90": 463.8,
+     "mean": 443.0,
+     "min": 421.3,
+     "max": 466.0
+    },
+    "hi": {
+     "n": 4,
+     "p50": 524.0,
+     "p90": 729.9,
+     "mean": 570.0,
+     "min": 431.5,
+     "max": 800.6
+    },
+    "en": {
+     "n": 4,
+     "p50": 455.2,
+     "p90": 473.8,
+     "mean": 456.5,
+     "min": 434.2,
+     "max": 481.4
+    }
+   },
+   "failures": [],
+   "connect_ms": {
+    "n": 12,
+    "p50": 121.0,
+    "p90": 237.0,
+    "mean": 156.0,
+    "min": 103.2,
+    "max": 410.1
+   },
+   "ttfa_after_connect_ms": {
+    "n": 12,
+    "p50": 329.1,
+    "p90": 346.0,
+    "mean": 333.9,
+    "min": 318.1,
+    "max": 390.5
+   },
+   "lib_ttfa_ms": {
+    "n": 12,
+    "p50": 329.3,
+    "p90": 346.0,
+    "mean": 333.9,
+    "min": 318.1,
+    "max": 390.6
+   }
+  },
+  "v3/ws-cold": {
+   "label": "v3 · WebSocket, cold",
+   "planned": 12,
+   "ok": 12,
+   "failed": 0,
+   "retried_ok": 0,
+   "ttfa_ms": {
+    "n": 12,
+    "p50": 392.9,
+    "p90": 432.9,
+    "mean": 408.3,
+    "min": 376.9,
+    "max": 539.8
+   },
+   "total_ms": {
+    "n": 12,
+    "p50": 630.2,
+    "p90": 668.5,
+    "mean": 649.4,
+    "min": 589.1,
+    "max": 838.5
+   },
+   "audio_sec": {
+    "n": 12,
+    "p50": 2.7,
+    "p90": 2.9,
+    "mean": 2.6,
+    "min": 2.2,
+    "max": 2.9
+   },
+   "by_lang": {
+    "ta": {
+     "n": 4,
+     "p50": 381.2,
+     "p90": 383.5,
+     "mean": 380.8,
+     "min": 376.9,
+     "max": 383.9
+    },
+    "hi": {
+     "n": 4,
+     "p50": 406.2,
+     "p90": 503.2,
+     "mean": 434.4,
+     "min": 385.3,
+     "max": 539.8
+    },
+    "en": {
+     "n": 4,
+     "p50": 406.6,
+     "p90": 428.2,
+     "mean": 409.8,
+     "min": 391.2,
+     "max": 434.6
+    }
+   },
+   "failures": [],
+   "connect_ms": {
+    "n": 12,
+    "p50": 111.8,
+    "p90": 141.5,
+    "mean": 128.8,
+    "min": 103.0,
+    "max": 264.4
+   },
+   "ttfa_after_connect_ms": {
+    "n": 12,
+    "p50": 275.8,
+    "p90": 289.0,
+    "mean": 279.5,
+    "min": 270.3,
+    "max": 315.2
+   },
+   "lib_ttfa_ms": {
+    "n": 12,
+    "p50": 275.9,
+    "p90": 289.1,
+    "mean": 279.6,
+    "min": 270.3,
+    "max": 315.3
+   }
+  },
+  "clone/http-stream": {
+   "label": "Clone · HTTP stream",
+   "planned": 12,
+   "ok": 12,
+   "failed": 0,
+   "retried_ok": 0,
+   "ttfa_ms": {
+    "n": 12,
+    "p50": 1643.2,
+    "p90": 1753.3,
+    "mean": 1624.0,
+    "min": 1418.8,
+    "max": 1794.3
+   },
+   "total_ms": {
+    "n": 12,
+    "p50": 1714.7,
+    "p90": 1821.5,
+    "mean": 1694.2,
+    "min": 1480.9,
+    "max": 1863.5
+   },
+   "audio_sec": {
+    "n": 12,
+    "p50": 3.3,
+    "p90": 4.0,
+    "mean": 3.4,
+    "min": 3.0,
+    "max": 4.1
+   },
+   "by_lang": {
+    "ta": {
+     "n": 4,
+     "p50": 1590.6,
+     "p90": 1702.2,
+     "mean": 1611.8,
+     "min": 1532.3,
+     "max": 1733.6
+    },
+    "hi": {
+     "n": 4,
+     "p50": 1661.2,
+     "p90": 1755.5,
+     "mean": 1651.5,
+     "min": 1489.4,
+     "max": 1794.3
+    },
+    "en": {
+     "n": 4,
+     "p50": 1630.5,
+     "p90": 1737.2,
+     "mean": 1608.8,
+     "min": 1418.8,
+     "max": 1755.5
+    }
+   },
+   "failures": [],
+   "lib_ttfa_ms": {
+    "n": 12,
+    "p50": 1643.2,
+    "p90": 1753.3,
+    "mean": 1624.0,
+    "min": 1418.5,
+    "max": 1794.3
+   }
+  },
+  "clone/rest": {
+   "label": "Clone · REST",
+   "planned": 12,
+   "ok": 12,
+   "failed": 0,
+   "retried_ok": 0,
+   "ttfa_ms": {
+    "n": 12,
+    "p50": 1670.1,
+    "p90": 2145.7,
+    "mean": 1757.0,
+    "min": 1331.3,
+    "max": 2218.9
+   },
+   "total_ms": {
+    "n": 12,
+    "p50": 1670.1,
+    "p90": 2145.7,
+    "mean": 1757.0,
+    "min": 1331.3,
+    "max": 2218.9
+   },
+   "audio_sec": {
+    "n": 12,
+    "p50": 3.4,
+    "p90": 4.5,
+    "mean": 3.5,
+    "min": 2.7,
+    "max": 4.6
+   },
+   "by_lang": {
+    "ta": {
+     "n": 4,
+     "p50": 1494.5,
+     "p90": 1664.0,
+     "mean": 1504.9,
+     "min": 1331.3,
+     "max": 1699.1
+    },
+    "hi": {
+     "n": 4,
+     "p50": 2119.2,
+     "p90": 2198.9,
+     "mean": 2024.6,
+     "min": 1641.1,
+     "max": 2218.9
+    },
+    "en": {
+     "n": 4,
+     "p50": 1748.5,
+     "p90": 1923.6,
+     "mean": 1741.6,
+     "min": 1527.1,
+     "max": 1942.2
+    }
+   },
+   "failures": [],
+   "lib_ttfa_ms": {
+    "n": 12,
+    "p50": 1670.0,
+    "p90": 2145.4,
+    "mean": 1756.8,
+    "min": 1331.2,
+    "max": 2218.7
+   }
+  }
+ }
+}

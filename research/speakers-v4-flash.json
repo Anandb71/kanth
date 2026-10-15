@@ -1,0 +1,1802 @@
+{
+  "source": "Live API: POST https://api.sarvam.ai/text-to-speech with an invalid speaker returns HTTP 400 listing every valid speaker for the model.",
+  "fetched_at_ist": "2026-10-15",
+  "request_ids": {
+    "bulbul:v4-flash": "20261014_88223b69-0bf5-4834-b335-86ea5261586f",
+    "bulbul:v3": "20261014_f72a2b87-390c-4008-b5e4-c1a3ab709b40"
+  },
+  "gender_note": "gender_inferred is guessed from the first name only (F/M/?); it is NOT returned by the API and was not verified by listening.",
+  "bulbul:v4-flash": {
+    "total": 224,
+    "unique_voice_names": 83,
+    "count_by_language_tag": {
+      "hi": 116,
+      "as": 2,
+      "bn": 3,
+      "en": 62,
+      "enhi": 13,
+      "gu": 3,
+      "kn": 4,
+      "mr": 9,
+      "pa": 4,
+      "ta": 4,
+      "te": 4
+    },
+    "language_tag_meaning": {
+      "hi": "hi-IN",
+      "en": "en-IN",
+      "enhi": "en-IN+hi-IN (code-mixed)",
+      "mr": "mr-IN",
+      "kn": "kn-IN",
+      "pa": "pa-IN",
+      "ta": "ta-IN",
+      "te": "te-IN",
+      "gu": "gu-IN",
+      "bn": "bn-IN",
+      "as": "as-IN (NOT an accepted TTS language_code)"
+    },
+    "by_language": {
+      "hi": [
+        {
+          "speaker": "aayan_hi_conversational",
+          "name": "aayan",
+          "style": "conversational",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "amit_hi_conversational",
+          "name": "amit",
+          "style": "conversational",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ashutosh_hi_conversational",
+          "name": "ashutosh",
+          "style": "conversational",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "kabir_hi_conversational",
+          "name": "kabir",
+          "style": "conversational",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "kavya_hi_conversational",
+          "name": "kavya",
+          "style": "conversational",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "manan_hi_conversational",
+          "name": "manan",
+          "style": "conversational",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "rahul_hi_conversational",
+          "name": "rahul",
+          "style": "conversational",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "sumit_hi_conversational",
+          "name": "sumit",
+          "style": "conversational",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "aditya_hi_conversational",
+          "name": "aditya",
+          "style": "conversational",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "aditya_hi_sales",
+          "name": "aditya",
+          "style": "sales",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "anand_hi_documentary",
+          "name": "anand",
+          "style": "documentary",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "anand_hi_news",
+          "name": "anand",
+          "style": "news",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "aparna_hi_customer",
+          "name": "aparna",
+          "style": "customer",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "aparna_hi_kyc",
+          "name": "aparna",
+          "style": "kyc",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ashok_hi_character",
+          "name": "ashok",
+          "style": "character",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ashok_hi_news",
+          "name": "ashok",
+          "style": "news",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "chhavi_hi_kids",
+          "name": "chhavi",
+          "style": "kids",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ishita_hi_ads",
+          "name": "ishita",
+          "style": "ads",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ishita_hi_edtech",
+          "name": "ishita",
+          "style": "edtech",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ishita_hi_banking",
+          "name": "ishita",
+          "style": "banking",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ishita_hi_ads_informal",
+          "name": "ishita",
+          "style": "ads_informal",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ishita_hi_devotional",
+          "name": "ishita",
+          "style": "devotional",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ishita_hi_numbers",
+          "name": "ishita",
+          "style": "numbers",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ishita_hi_social",
+          "name": "ishita",
+          "style": "social",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "kunal_hi_kids",
+          "name": "kunal",
+          "style": "kids",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "mahesh_hi_documentary",
+          "name": "mahesh",
+          "style": "documentary",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "mani_hi_devotional",
+          "name": "mani",
+          "style": "devotional",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "mani_hi_conversational",
+          "name": "mani",
+          "style": "conversational",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "mohit_hi_conversational",
+          "name": "mohit",
+          "style": "conversational",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "nachiket_hi_devotional",
+          "name": "nachiket",
+          "style": "devotional",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "priya_hi_recovery",
+          "name": "priya",
+          "style": "recovery",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ratan_hi_latenight",
+          "name": "ratan",
+          "style": "latenight",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ratan_hi_customer_expressive",
+          "name": "ratan",
+          "style": "customer_expressive",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ratan_hi_documentary",
+          "name": "ratan",
+          "style": "documentary",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ratan_hi_devotional",
+          "name": "ratan",
+          "style": "devotional",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ratan_hi_recovery",
+          "name": "ratan",
+          "style": "recovery",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ratan_hi_social",
+          "name": "ratan",
+          "style": "social",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ratan_hi_sports",
+          "name": "ratan",
+          "style": "sports",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ratan_hi_latenight_warm",
+          "name": "ratan",
+          "style": "latenight_warm",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "rehan_hi_social",
+          "name": "rehan",
+          "style": "social",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ritu_hi_customer_utility",
+          "name": "ritu",
+          "style": "customer_utility",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_kids",
+          "name": "ritu",
+          "style": "kids",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_conversation",
+          "name": "ritu",
+          "style": "conversation",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_customer",
+          "name": "ritu",
+          "style": "customer",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_edtech",
+          "name": "ritu",
+          "style": "edtech",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_ads_formal",
+          "name": "ritu",
+          "style": "ads_formal",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_banking",
+          "name": "ritu",
+          "style": "banking",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_ads_informal",
+          "name": "ritu",
+          "style": "ads_informal",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_insurance",
+          "name": "ritu",
+          "style": "insurance",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_edtech_bot",
+          "name": "ritu",
+          "style": "edtech_bot",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_medical",
+          "name": "ritu",
+          "style": "medical",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_sales",
+          "name": "ritu",
+          "style": "sales",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_reels",
+          "name": "ritu",
+          "style": "reels",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_social",
+          "name": "ritu",
+          "style": "social",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_customer_warm",
+          "name": "ritu",
+          "style": "customer_warm",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_hi_social_lively",
+          "name": "ritu",
+          "style": "social_lively",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "roopa_hi_companion",
+          "name": "roopa",
+          "style": "companion",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "roopa_hi_narration",
+          "name": "roopa",
+          "style": "narration",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "roopa_hi_recovery",
+          "name": "roopa",
+          "style": "recovery",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "roopa_hi_market",
+          "name": "roopa",
+          "style": "market",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "roopa_hi_conversational",
+          "name": "roopa",
+          "style": "conversational",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_hi_assistant",
+          "name": "sanchita",
+          "style": "assistant",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_hi_edtech",
+          "name": "sanchita",
+          "style": "edtech",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_hi_banking",
+          "name": "sanchita",
+          "style": "banking",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_hi_feedback",
+          "name": "sanchita",
+          "style": "feedback",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_hi_ads_formal",
+          "name": "sanchita",
+          "style": "ads_formal",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_hi_ads_informal",
+          "name": "sanchita",
+          "style": "ads_informal",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_hi_interview",
+          "name": "sanchita",
+          "style": "interview",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_hi_romantic",
+          "name": "sanchita",
+          "style": "romantic",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_hi_market",
+          "name": "sanchita",
+          "style": "market",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_hi_social",
+          "name": "sanchita",
+          "style": "social",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_hi_kyc",
+          "name": "sanchita",
+          "style": "kyc",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sarika_hi_conversation",
+          "name": "sarika",
+          "style": "conversation",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shalini_hi_companion",
+          "name": "shalini",
+          "style": "companion",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shalini_hi_social",
+          "name": "shalini",
+          "style": "social",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shreya_hi_conversational",
+          "name": "shreya",
+          "style": "conversational",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shreya_hi_news",
+          "name": "shreya",
+          "style": "news",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shruti_hi_edtech",
+          "name": "shruti",
+          "style": "edtech",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shubh_hi_customer",
+          "name": "shubh",
+          "style": "customer",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_hi_ecomm",
+          "name": "shubh",
+          "style": "ecomm",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_hi_stories_mixed",
+          "name": "shubh",
+          "style": "stories_mixed",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_hi_devotional",
+          "name": "shubh",
+          "style": "devotional",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_hi_ads",
+          "name": "shubh",
+          "style": "ads",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_hi_recovery",
+          "name": "shubh",
+          "style": "recovery",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_hi_stories_dramatic",
+          "name": "shubh",
+          "style": "stories_dramatic",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "simran_hi_assistant",
+          "name": "simran",
+          "style": "assistant",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_hi_narration",
+          "name": "simran",
+          "style": "narration",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_hi_automobile",
+          "name": "simran",
+          "style": "automobile",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_hi_conversation",
+          "name": "simran",
+          "style": "conversation",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_hi_news_breaking",
+          "name": "simran",
+          "style": "news_breaking",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_hi_social_energetic",
+          "name": "simran",
+          "style": "social_energetic",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_hi_social_excited",
+          "name": "simran",
+          "style": "social_excited",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_hi_latenight",
+          "name": "simran",
+          "style": "latenight",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_hi_news",
+          "name": "simran",
+          "style": "news",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_hi_recovery",
+          "name": "simran",
+          "style": "recovery",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_hi_sales",
+          "name": "simran",
+          "style": "sales",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "suchitra_hi_ecomm",
+          "name": "suchitra",
+          "style": "ecomm",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "suhani_hi_social",
+          "name": "suhani",
+          "style": "social",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sunny_hi_ads",
+          "name": "sunny",
+          "style": "ads",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "sunny_hi_reels",
+          "name": "sunny",
+          "style": "reels",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "tarun_hi_conversational",
+          "name": "tarun",
+          "style": "conversational",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "tarun_hi_sales",
+          "name": "tarun",
+          "style": "sales",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "chaitra_hi_customer",
+          "name": "chaitra",
+          "style": "customer",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shilpa_hi_narration",
+          "name": "shilpa",
+          "style": "narration",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "tanya_hi_narration",
+          "name": "tanya",
+          "style": "narration",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "aarti_hi_customer",
+          "name": "aarti",
+          "style": "customer",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "advait_hi_character",
+          "name": "advait",
+          "style": "character",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "aryaman_hi_ads",
+          "name": "aryaman",
+          "style": "ads",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "chirag_hi_social",
+          "name": "chirag",
+          "style": "social",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "girish_hi_devotional",
+          "name": "girish",
+          "style": "devotional",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "mukul_hi_ads",
+          "name": "mukul",
+          "style": "ads",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "mukul_hi_suspense",
+          "name": "mukul",
+          "style": "suspense",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "suman_hi_companion",
+          "name": "suman",
+          "style": "companion",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "vaibhav_hi_social",
+          "name": "vaibhav",
+          "style": "social",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "vandana_hi_ecomm",
+          "name": "vandana",
+          "style": "ecomm",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "vipul_hi_social",
+          "name": "vipul",
+          "style": "social",
+          "gender_inferred": "M"
+        }
+      ],
+      "as": [
+        {
+          "speaker": "kangkana_as_conversational",
+          "name": "kangkana",
+          "style": "conversational",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "mouchumi_as_conversational",
+          "name": "mouchumi",
+          "style": "conversational",
+          "gender_inferred": "F"
+        }
+      ],
+      "bn": [
+        {
+          "speaker": "arnab_bn_conversation",
+          "name": "arnab",
+          "style": "conversation",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "roopa_bn_conversational",
+          "name": "roopa",
+          "style": "conversational",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "bimal_bn_suspense",
+          "name": "bimal",
+          "style": "suspense",
+          "gender_inferred": "M"
+        }
+      ],
+      "en": [
+        {
+          "speaker": "aditi_en_stories",
+          "name": "aditi",
+          "style": "stories",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "aparna_en_companion",
+          "name": "aparna",
+          "style": "companion",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "aparna_en_edtech",
+          "name": "aparna",
+          "style": "edtech",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ashwin_en_sports",
+          "name": "ashwin",
+          "style": "sports",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ashwin_en_sports_energetic",
+          "name": "ashwin",
+          "style": "sports_energetic",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "chandrika_en_stories",
+          "name": "chandrika",
+          "style": "stories",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "dev_en_recovery",
+          "name": "dev",
+          "style": "recovery",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "dev_en_conversational",
+          "name": "dev",
+          "style": "conversational",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "deven_en_conversation",
+          "name": "deven",
+          "style": "conversation",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ishita_en_customer",
+          "name": "ishita",
+          "style": "customer",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ishita_en_medical",
+          "name": "ishita",
+          "style": "medical",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ishita_en_numbers",
+          "name": "ishita",
+          "style": "numbers",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ishita_en_social",
+          "name": "ishita",
+          "style": "social",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ishita_en_stories",
+          "name": "ishita",
+          "style": "stories",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "kalpit_en_edtech",
+          "name": "kalpit",
+          "style": "edtech",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "nachiket_en_ads",
+          "name": "nachiket",
+          "style": "ads",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "neha_en_customer",
+          "name": "neha",
+          "style": "customer",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "neha_en_latenight",
+          "name": "neha",
+          "style": "latenight",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "nupur_en_kids",
+          "name": "nupur",
+          "style": "kids",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ojas_en_social",
+          "name": "ojas",
+          "style": "social",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ritu_en_edtech",
+          "name": "ritu",
+          "style": "edtech",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_en_latenight",
+          "name": "ritu",
+          "style": "latenight",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_en_medical",
+          "name": "ritu",
+          "style": "medical",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_en_reels",
+          "name": "ritu",
+          "style": "reels",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "rohan_en_recovery",
+          "name": "rohan",
+          "style": "recovery",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "roopa_en_conversational",
+          "name": "roopa",
+          "style": "conversational",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "rustom_en_suspense",
+          "name": "rustom",
+          "style": "suspense",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "sanchita_en_companion",
+          "name": "sanchita",
+          "style": "companion",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_en_insurance",
+          "name": "sanchita",
+          "style": "insurance",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_en_recovery",
+          "name": "sanchita",
+          "style": "recovery",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_en_market",
+          "name": "sanchita",
+          "style": "market",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_en_social",
+          "name": "sanchita",
+          "style": "social",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shabana_en_edtech",
+          "name": "shabana",
+          "style": "edtech",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shalini_en_companion",
+          "name": "shalini",
+          "style": "companion",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shalini_en_customer",
+          "name": "shalini",
+          "style": "customer",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shubh_en_narration",
+          "name": "shubh",
+          "style": "narration",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_en_numbers",
+          "name": "shubh",
+          "style": "numbers",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_en_ads",
+          "name": "shubh",
+          "style": "ads",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_en_recovery",
+          "name": "shubh",
+          "style": "recovery",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_en_audiobook",
+          "name": "shubh",
+          "style": "audiobook",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_en_narration_gentle",
+          "name": "shubh",
+          "style": "narration_gentle",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_en_sports",
+          "name": "shubh",
+          "style": "sports",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "simran_en_narration",
+          "name": "simran",
+          "style": "narration",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_en_automobile",
+          "name": "simran",
+          "style": "automobile",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_en_conversation",
+          "name": "simran",
+          "style": "conversation",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_en_customer",
+          "name": "simran",
+          "style": "customer",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_en_edtech",
+          "name": "simran",
+          "style": "edtech",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_en_edtech_bot",
+          "name": "simran",
+          "style": "edtech_bot",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_en_sales",
+          "name": "simran",
+          "style": "sales",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_en_recovery",
+          "name": "simran",
+          "style": "recovery",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_en_ads",
+          "name": "simran",
+          "style": "ads",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_en_therapist",
+          "name": "simran",
+          "style": "therapist",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sunny_en_social",
+          "name": "sunny",
+          "style": "social",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "varun_en_ads",
+          "name": "varun",
+          "style": "ads",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "varun_en_suspense",
+          "name": "varun",
+          "style": "suspense",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "zarina_en_conversation",
+          "name": "zarina",
+          "style": "conversation",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "amelia_en_conversational",
+          "name": "amelia",
+          "style": "conversational",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sophia_en_conversational",
+          "name": "sophia",
+          "style": "conversational",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "girish_en_documentary",
+          "name": "girish",
+          "style": "documentary",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "girish_en_devotional",
+          "name": "girish",
+          "style": "devotional",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "payal_en_edtech",
+          "name": "payal",
+          "style": "edtech",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sarang_en_narration",
+          "name": "sarang",
+          "style": "narration",
+          "gender_inferred": "M"
+        }
+      ],
+      "enhi": [
+        {
+          "speaker": "ishita_enhi_companion",
+          "name": "ishita",
+          "style": "companion",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ishita_enhi_customer",
+          "name": "ishita",
+          "style": "customer",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ishita_enhi_customer_expressive",
+          "name": "ishita",
+          "style": "customer_expressive",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sanchita_enhi_companion",
+          "name": "sanchita",
+          "style": "companion",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shalini_enhi_companion",
+          "name": "shalini",
+          "style": "companion",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shalini_enhi_customer",
+          "name": "shalini",
+          "style": "customer",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "shubh_enhi_companion",
+          "name": "shubh",
+          "style": "companion",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_enhi_ads",
+          "name": "shubh",
+          "style": "ads",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "shubh_enhi_banking",
+          "name": "shubh",
+          "style": "banking",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "simran_enhi_companion",
+          "name": "simran",
+          "style": "companion",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_enhi_customer",
+          "name": "simran",
+          "style": "customer",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "simran_enhi_banking_expressive",
+          "name": "simran",
+          "style": "banking_expressive",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "sunny_enhi_customer",
+          "name": "sunny",
+          "style": "customer",
+          "gender_inferred": "M"
+        }
+      ],
+      "gu": [
+        {
+          "speaker": "bhavik_gu_conversation",
+          "name": "bhavik",
+          "style": "conversation",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "pooja_gu_conversational",
+          "name": "pooja",
+          "style": "conversational",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "pooja_gu_customer",
+          "name": "pooja",
+          "style": "customer",
+          "gender_inferred": "F"
+        }
+      ],
+      "kn": [
+        {
+          "speaker": "chaitra_kn_conversation",
+          "name": "chaitra",
+          "style": "conversation",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "chaitra_kn_narration",
+          "name": "chaitra",
+          "style": "narration",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "chetan_kn_conversation",
+          "name": "chetan",
+          "style": "conversation",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "suchitra_kn_narration",
+          "name": "suchitra",
+          "style": "narration",
+          "gender_inferred": "F"
+        }
+      ],
+      "mr": [
+        {
+          "speaker": "ishita_mr_conversational",
+          "name": "ishita",
+          "style": "conversational",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "mrunal_mr_narration",
+          "name": "mrunal",
+          "style": "narration",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "neha_mr_narration",
+          "name": "neha",
+          "style": "narration",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "nilesh_mr_conversation",
+          "name": "nilesh",
+          "style": "conversation",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "ritu_mr_insurance",
+          "name": "ritu",
+          "style": "insurance",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "ritu_mr_narration",
+          "name": "ritu",
+          "style": "narration",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "rupali_mr_stories",
+          "name": "rupali",
+          "style": "stories",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "soham_mr_narration",
+          "name": "soham",
+          "style": "narration",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "mukul_mr_stories",
+          "name": "mukul",
+          "style": "stories",
+          "gender_inferred": "M"
+        }
+      ],
+      "pa": [
+        {
+          "speaker": "anand_pa_conversation",
+          "name": "anand",
+          "style": "conversation",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "anand_pa_customer",
+          "name": "anand",
+          "style": "customer",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "harpreet_pa_narration",
+          "name": "harpreet",
+          "style": "narration",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "jaspal_pa_banking",
+          "name": "jaspal",
+          "style": "banking",
+          "gender_inferred": "M"
+        }
+      ],
+      "ta": [
+        {
+          "speaker": "gokul_ta_narration",
+          "name": "gokul",
+          "style": "narration",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "aravind_ta_ads",
+          "name": "aravind",
+          "style": "ads",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "aravind_ta_suspense",
+          "name": "aravind",
+          "style": "suspense",
+          "gender_inferred": "M"
+        },
+        {
+          "speaker": "vijay_ta_narration",
+          "name": "vijay",
+          "style": "narration",
+          "gender_inferred": "M"
+        }
+      ],
+      "te": [
+        {
+          "speaker": "kavitha_te_conversation",
+          "name": "kavitha",
+          "style": "conversation",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "kavitha_te_narration",
+          "name": "kavitha",
+          "style": "narration",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "pooja_te_conversation",
+          "name": "pooja",
+          "style": "conversation",
+          "gender_inferred": "F"
+        },
+        {
+          "speaker": "tarun_te_narration",
+          "name": "tarun",
+          "style": "narration",
+          "gender_inferred": "M"
+        }
+      ]
+    }
+  },
+  "bulbul:v3": {
+    "total": 37,
+    "speakers": [
+      "aditya",
+      "ritu",
+      "ashutosh",
+      "priya",
+      "neha",
+      "rahul",
+      "pooja",
+      "rohan",
+      "simran",
+      "kavya",
+      "amit",
+      "dev",
+      "ishita",
+      "shreya",
+      "ratan",
+      "varun",
+      "manan",
+      "sumit",
+      "roopa",
+      "kabir",
+      "aayan",
+      "shubh",
+      "advait",
+      "anand",
+      "tanya",
+      "tarun",
+      "sunny",
+      "mani",
+      "gokul",
+      "vijay",
+      "shruti",
+      "suhani",
+      "mohit",
+      "kavitha",
+      "rehan",
+      "soham",
+      "rupali"
+    ],
+    "speakers_with_gender_inferred": {
+      "aditya": "M",
+      "ritu": "F",
+      "ashutosh": "M",
+      "priya": "F",
+      "neha": "F",
+      "rahul": "M",
+      "pooja": "F",
+      "rohan": "M",
+      "simran": "F",
+      "kavya": "F",
+      "amit": "M",
+      "dev": "M",
+      "ishita": "F",
+      "shreya": "F",
+      "ratan": "M",
+      "varun": "M",
+      "manan": "M",
+      "sumit": "M",
+      "roopa": "F",
+      "kabir": "M",
+      "aayan": "M",
+      "shubh": "M",
+      "advait": "M",
+      "anand": "M",
+      "tanya": "F",
+      "tarun": "M",
+      "sunny": "M",
+      "mani": "M",
+      "gokul": "M",
+      "vijay": "M",
+      "shruti": "F",
+      "suhani": "F",
+      "mohit": "M",
+      "kavitha": "F",
+      "rehan": "M",
+      "soham": "M",
+      "rupali": "F"
+    }
+  },
+  "doc_diffs": {
+    "voices_page_count": 222,
+    "live_not_in_voices_page": [
+      "aravind_ta_ads",
+      "aravind_ta_suspense",
+      "arnab_bn_conversation",
+      "kangkana_as_conversational",
+      "mouchumi_as_conversational"
+    ],
+    "voices_page_not_live": [
+      "bappa_bn_conversation",
+      "vetri_ta_ads",
+      "vetri_ta_suspense"
+    ],
+    "ws_asyncapi_enum_count": 222,
+    "live_not_in_ws_enum": [
+      "aravind_ta_ads",
+      "aravind_ta_suspense",
+      "arnab_bn_conversation",
+      "kangkana_as_conversational",
+      "mouchumi_as_conversational"
+    ],
+    "ws_enum_not_live": [
+      "bappa_bn_conversation",
+      "vetri_ta_ads",
+      "vetri_ta_suspense"
+    ]
+  },
+  "gender_summary_inferred": {
+    "ta": {
+      "M": [
+        "gokul_ta_narration",
+        "aravind_ta_ads",
+        "aravind_ta_suspense",
+        "vijay_ta_narration"
+      ]
+    },
+    "hi": {
+      "M": [
+        "aayan_hi_conversational",
+        "amit_hi_conversational",
+        "ashutosh_hi_conversational",
+        "kabir_hi_conversational",
+        "manan_hi_conversational",
+        "rahul_hi_conversational",
+        "sumit_hi_conversational",
+        "aditya_hi_conversational",
+        "aditya_hi_sales",
+        "anand_hi_documentary",
+        "anand_hi_news",
+        "ashok_hi_character",
+        "ashok_hi_news",
+        "kunal_hi_kids",
+        "mahesh_hi_documentary",
+        "mani_hi_devotional",
+        "mani_hi_conversational",
+        "mohit_hi_conversational",
+        "nachiket_hi_devotional",
+        "ratan_hi_latenight",
+        "ratan_hi_customer_expressive",
+        "ratan_hi_documentary",
+        "ratan_hi_devotional",
+        "ratan_hi_recovery",
+        "ratan_hi_social",
+        "ratan_hi_sports",
+        "ratan_hi_latenight_warm",
+        "rehan_hi_social",
+        "shubh_hi_customer",
+        "shubh_hi_ecomm",
+        "shubh_hi_stories_mixed",
+        "shubh_hi_devotional",
+        "shubh_hi_ads",
+        "shubh_hi_recovery",
+        "shubh_hi_stories_dramatic",
+        "sunny_hi_ads",
+        "sunny_hi_reels",
+        "tarun_hi_conversational",
+        "tarun_hi_sales",
+        "advait_hi_character",
+        "aryaman_hi_ads",
+        "chirag_hi_social",
+        "girish_hi_devotional",
+        "mukul_hi_ads",
+        "mukul_hi_suspense",
+        "vaibhav_hi_social",
+        "vipul_hi_social"
+      ],
+      "F": [
+        "kavya_hi_conversational",
+        "aparna_hi_customer",
+        "aparna_hi_kyc",
+        "chhavi_hi_kids",
+        "ishita_hi_ads",
+        "ishita_hi_edtech",
+        "ishita_hi_banking",
+        "ishita_hi_ads_informal",
+        "ishita_hi_devotional",
+        "ishita_hi_numbers",
+        "ishita_hi_social",
+        "priya_hi_recovery",
+        "ritu_hi_customer_utility",
+        "ritu_hi_kids",
+        "ritu_hi_conversation",
+        "ritu_hi_customer",
+        "ritu_hi_edtech",
+        "ritu_hi_ads_formal",
+        "ritu_hi_banking",
+        "ritu_hi_ads_informal",
+        "ritu_hi_insurance",
+        "ritu_hi_edtech_bot",
+        "ritu_hi_medical",
+        "ritu_hi_sales",
+        "ritu_hi_reels",
+        "ritu_hi_social",
+        "ritu_hi_customer_warm",
+        "ritu_hi_social_lively",
+        "roopa_hi_companion",
+        "roopa_hi_narration",
+        "roopa_hi_recovery",
+        "roopa_hi_market",
+        "roopa_hi_conversational",
+        "sanchita_hi_assistant",
+        "sanchita_hi_edtech",
+        "sanchita_hi_banking",
+        "sanchita_hi_feedback",
+        "sanchita_hi_ads_formal",
+        "sanchita_hi_ads_informal",
+        "sanchita_hi_interview",
+        "sanchita_hi_romantic",
+        "sanchita_hi_market",
+        "sanchita_hi_social",
+        "sanchita_hi_kyc",
+        "sarika_hi_conversation",
+        "shalini_hi_companion",
+        "shalini_hi_social",
+        "shreya_hi_conversational",
+        "shreya_hi_news",
+        "shruti_hi_edtech",
+        "simran_hi_assistant",
+        "simran_hi_narration",
+        "simran_hi_automobile",
+        "simran_hi_conversation",
+        "simran_hi_news_breaking",
+        "simran_hi_social_energetic",
+        "simran_hi_social_excited",
+        "simran_hi_latenight",
+        "simran_hi_news",
+        "simran_hi_recovery",
+        "simran_hi_sales",
+        "suchitra_hi_ecomm",
+        "suhani_hi_social",
+        "chaitra_hi_customer",
+        "shilpa_hi_narration",
+        "tanya_hi_narration",
+        "aarti_hi_customer",
+        "suman_hi_companion",
+        "vandana_hi_ecomm"
+      ]
+    },
+    "en": {
+      "F": [
+        "aditi_en_stories",
+        "aparna_en_companion",
+        "aparna_en_edtech",
+        "chandrika_en_stories",
+        "ishita_en_customer",
+        "ishita_en_medical",
+        "ishita_en_numbers",
+        "ishita_en_social",
+        "ishita_en_stories",
+        "neha_en_customer",
+        "neha_en_latenight",
+        "nupur_en_kids",
+        "ritu_en_edtech",
+        "ritu_en_latenight",
+        "ritu_en_medical",
+        "ritu_en_reels",
+        "roopa_en_conversational",
+        "sanchita_en_companion",
+        "sanchita_en_insurance",
+        "sanchita_en_recovery",
+        "sanchita_en_market",
+        "sanchita_en_social",
+        "shabana_en_edtech",
+        "shalini_en_companion",
+        "shalini_en_customer",
+        "simran_en_narration",
+        "simran_en_automobile",
+        "simran_en_conversation",
+        "simran_en_customer",
+        "simran_en_edtech",
+        "simran_en_edtech_bot",
+        "simran_en_sales",
+        "simran_en_recovery",
+        "simran_en_ads",
+        "simran_en_therapist",
+        "zarina_en_conversation",
+        "amelia_en_conversational",
+        "sophia_en_conversational",
+        "payal_en_edtech"
+      ],
+      "M": [
+        "ashwin_en_sports",
+        "ashwin_en_sports_energetic",
+        "dev_en_recovery",
+        "dev_en_conversational",
+        "deven_en_conversation",
+        "kalpit_en_edtech",
+        "nachiket_en_ads",
+        "ojas_en_social",
+        "rohan_en_recovery",
+        "rustom_en_suspense",
+        "shubh_en_narration",
+        "shubh_en_numbers",
+        "shubh_en_ads",
+        "shubh_en_recovery",
+        "shubh_en_audiobook",
+        "shubh_en_narration_gentle",
+        "shubh_en_sports",
+        "sunny_en_social",
+        "varun_en_ads",
+        "varun_en_suspense",
+        "girish_en_documentary",
+        "girish_en_devotional",
+        "sarang_en_narration"
+      ]
+    },
+    "enhi": {
+      "F": [
+        "ishita_enhi_companion",
+        "ishita_enhi_customer",
+        "ishita_enhi_customer_expressive",
+        "sanchita_enhi_companion",
+        "shalini_enhi_companion",
+        "shalini_enhi_customer",
+        "simran_enhi_companion",
+        "simran_enhi_customer",
+        "simran_enhi_banking_expressive"
+      ],
+      "M": [
+        "shubh_enhi_companion",
+        "shubh_enhi_ads",
+        "shubh_enhi_banking",
+        "sunny_enhi_customer"
+      ]
+    }
+  },
+  "acoustic_f0_check": {
+    "method": "p02c_gender_f0.py: one synthesized line per persona, median F0 by autocorrelation; <160 Hz => M hint. Heuristic.",
+    "results": {
+      "gokul_ta_narration": {
+        "language_code_used": "ta-IN",
+        "f0_median_hz": 140.4,
+        "voiced_frames": 197,
+        "acoustic_gender_hint": "M"
+      },
+      "vijay_ta_narration": {
+        "language_code_used": "ta-IN",
+        "f0_median_hz": 130.1,
+        "voiced_frames": 259,
+        "acoustic_gender_hint": "M"
+      },
+      "aravind_ta_ads": {
+        "language_code_used": "ta-IN",
+        "f0_median_hz": 131.7,
+        "voiced_frames": 162,
+        "acoustic_gender_hint": "M"
+      },
+      "aravind_ta_suspense": {
+        "language_code_used": "ta-IN",
+        "f0_median_hz": 126.0,
+        "voiced_frames": 97,
+        "acoustic_gender_hint": "M"
+      },
+      "harpreet_pa_narration": {
+        "language_code_used": "pa-IN",
+        "f0_median_hz": 127.0,
+        "voiced_frames": 191,
+        "acoustic_gender_hint": "M"
+      },
+      "mani_hi_conversational": {
+        "language_code_used": "hi-IN",
+        "f0_median_hz": 96.4,
+        "voiced_frames": 142,
+        "acoustic_gender_hint": "M"
+      },
+      "mrunal_mr_narration": {
+        "language_code_used": "mr-IN",
+        "f0_median_hz": 207.8,
+        "voiced_frames": 188,
+        "acoustic_gender_hint": "F"
+      },
+      "suman_hi_companion": {
+        "language_code_used": "hi-IN",
+        "f0_median_hz": 228.6,
+        "voiced_frames": 144,
+        "acoustic_gender_hint": "F"
+      },
+      "kangkana_as_conversational": {
+        "language_code_used": "bn-IN",
+        "f0_median_hz": 237.1,
+        "voiced_frames": 144,
+        "acoustic_gender_hint": "F"
+      },
+      "mouchumi_as_conversational": {
+        "language_code_used": "bn-IN",
+        "f0_median_hz": 205.1,
+        "voiced_frames": 140,
+        "acoustic_gender_hint": "F"
+      }
+    }
+  },
+  "tamil_female_persona_exists": false,
+  "tamil_note": "All 4 live ta personas (gokul_ta_narration, vijay_ta_narration, aravind_ta_ads, aravind_ta_suspense) are male by name and by measured F0 (126-140 Hz). For a female Tamil voice use a female persona of another language with language_code=ta-IN (verified: aparna_hi_customer and simran_en_customer speak Tamil intelligibly; Saaras transcribed both outputs exactly)."
+}

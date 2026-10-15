@@ -1,0 +1,1333 @@
+{
+ "generated_from": "bench/results/tone/manifest.json",
+ "method": "Tone proof, part 2: measure pitch, loudness, duration and speaking rate of each tone clip.\n\nRun from kanth/ (needs numpy, soundfile, praat-parselmouth):\n  uv run --no-project --python 3.13 --with numpy --with scipy --with matplotlib       --with soundfile --with praat-parselmouth python bench/tone_analyze.py\n\nReads bench/results/tone/manifest.json and the WAVs beside it.\nWrites bench/results/tone.json and bench/results/tone.md.\n\nMetrics per clip\n  f0_median_hz   median F0 over voiced frames (Praat autocorrelation pitch, 10 ms step, 60-500 Hz)\n  rms_dbfs       RMS level in dBFS (full scale = 1.0) over speech frames only. Speech frames are\n                 20 ms frames (10 ms hop) within 35 dB of the clip's loudest frame, inside the\n                 trimmed region.\n  speech_sec     duration after trimming leading/trailing frames quieter than 40 dB below the\n                 loudest frame\n  rate_cps       characters of the text (letters, marks, digits; no spaces or punctuation)\n                 per second of speech_sec\n  peak_dbfs, clipped_frac   sanity checks for the loud presets",
+ "speakers": [
+  "shubh_hi_customer",
+  "vijay_ta_narration"
+ ],
+ "n_clips": 30,
+ "by_tone": {
+  "warm": {
+   "label": "Warm",
+   "prosody": {
+    "pace": 0.95,
+    "pitch": 0,
+    "loudness": 1
+   },
+   "f0_median_hz": {
+    "n": 6,
+    "mean": 117.842,
+    "sd": 16.555,
+    "min": 100.53,
+    "max": 148.72
+   },
+   "rms_dbfs": {
+    "n": 6,
+    "mean": -14.497,
+    "sd": 0.386,
+    "min": -15.19,
+    "max": -14.03
+   },
+   "rate_cps": {
+    "n": 6,
+    "mean": 16.946,
+    "sd": 2.209,
+    "min": 13.289,
+    "max": 19.704
+   },
+   "speech_sec": {
+    "n": 6,
+    "mean": 2.247,
+    "sd": 0.448,
+    "min": 1.78,
+    "max": 3.01
+   }
+  },
+  "firm": {
+   "label": "Firm",
+   "prosody": {
+    "pace": 0.88,
+    "pitch": -0.12,
+    "loudness": 1.45
+   },
+   "f0_median_hz": {
+    "n": 6,
+    "mean": 114.057,
+    "sd": 17.232,
+    "min": 99.55,
+    "max": 146.16
+   },
+   "rms_dbfs": {
+    "n": 6,
+    "mean": -11.868,
+    "sd": 0.457,
+    "min": -12.64,
+    "max": -11.38
+   },
+   "rate_cps": {
+    "n": 6,
+    "mean": 15.106,
+    "sd": 1.371,
+    "min": 13.356,
+    "max": 17.316
+   },
+   "speech_sec": {
+    "n": 6,
+    "mean": 2.492,
+    "sd": 0.351,
+    "min": 2.11,
+    "max": 2.92
+   }
+  },
+  "urgent": {
+   "label": "Urgent",
+   "prosody": {
+    "pace": 1.22,
+    "pitch": 0.14,
+    "loudness": 2.1
+   },
+   "f0_median_hz": {
+    "n": 6,
+    "mean": 125.99,
+    "sd": 7.614,
+    "min": 114.84,
+    "max": 134.99
+   },
+   "rms_dbfs": {
+    "n": 6,
+    "mean": -9.653,
+    "sd": 0.543,
+    "min": -10.35,
+    "max": -8.88
+   },
+   "rate_cps": {
+    "n": 6,
+    "mean": 19.334,
+    "sd": 1.022,
+    "min": 18.265,
+    "max": 21.29
+   },
+   "speech_sec": {
+    "n": 6,
+    "mean": 1.94,
+    "sd": 0.245,
+    "min": 1.55,
+    "max": 2.19
+   }
+  },
+  "joking": {
+   "label": "Joking",
+   "prosody": {
+    "pace": 1.1,
+    "pitch": 0.2,
+    "loudness": 1.15
+   },
+   "f0_median_hz": {
+    "n": 6,
+    "mean": 135.537,
+    "sd": 26.301,
+    "min": 111.77,
+    "max": 179.27
+   },
+   "rms_dbfs": {
+    "n": 6,
+    "mean": -13.887,
+    "sd": 0.789,
+    "min": -14.61,
+    "max": -12.63
+   },
+   "rate_cps": {
+    "n": 6,
+    "mean": 19.156,
+    "sd": 1.943,
+    "min": 17.391,
+    "max": 22.297
+   },
+   "speech_sec": {
+    "n": 6,
+    "mean": 1.978,
+    "sd": 0.353,
+    "min": 1.48,
+    "max": 2.3
+   }
+  },
+  "whisper": {
+   "label": "Quiet",
+   "prosody": {
+    "pace": 0.86,
+    "pitch": -0.05,
+    "loudness": 0.4
+   },
+   "f0_median_hz": {
+    "n": 6,
+    "mean": 107.49,
+    "sd": 11.017,
+    "min": 95.52,
+    "max": 124.82
+   },
+   "rms_dbfs": {
+    "n": 6,
+    "mean": -22.425,
+    "sd": 0.639,
+    "min": -23.12,
+    "max": -21.6
+   },
+   "rate_cps": {
+    "n": 6,
+    "mean": 13.859,
+    "sd": 2.198,
+    "min": 12.088,
+    "max": 17.935
+   },
+   "speech_sec": {
+    "n": 6,
+    "mean": 2.753,
+    "sd": 0.496,
+    "min": 1.84,
+    "max": 3.24
+   }
+  }
+ },
+ "by_tone_sentence": {
+  "warm/hi1": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 124.625,
+    "sd": 34.075,
+    "min": 100.53,
+    "max": 148.72
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -14.745,
+    "sd": 0.629,
+    "min": -15.19,
+    "max": -14.3
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 16.496,
+    "sd": 4.536,
+    "min": 13.289,
+    "max": 19.704
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 2.52,
+    "sd": 0.693,
+    "min": 2.03,
+    "max": 3.01
+   }
+  },
+  "warm/hi2": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 112.215,
+    "sd": 6.894,
+    "min": 107.34,
+    "max": 117.09
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -14.45,
+    "sd": 0.028,
+    "min": -14.47,
+    "max": -14.43
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 17.954,
+    "sd": 0.828,
+    "min": 17.368,
+    "max": 18.539
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 1.84,
+    "sd": 0.085,
+    "min": 1.78,
+    "max": 1.9
+   }
+  },
+  "warm/ta1": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 116.685,
+    "sd": 1.902,
+    "min": 115.34,
+    "max": 118.03
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -14.295,
+    "sd": 0.375,
+    "min": -14.56,
+    "max": -14.03
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 16.39,
+    "sd": 0.292,
+    "min": 16.183,
+    "max": 16.596
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 2.38,
+    "sd": 0.042,
+    "min": 2.35,
+    "max": 2.41
+   }
+  },
+  "firm/hi1": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 122.855,
+    "sd": 32.958,
+    "min": 99.55,
+    "max": 146.16
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -11.64,
+    "sd": 0.113,
+    "min": -11.72,
+    "max": -11.56
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 15.958,
+    "sd": 1.921,
+    "min": 14.599,
+    "max": 17.316
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 2.525,
+    "sd": 0.304,
+    "min": 2.31,
+    "max": 2.74
+   }
+  },
+  "firm/hi2": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 109.935,
+    "sd": 6.626,
+    "min": 105.25,
+    "max": 114.62
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -12.395,
+    "sd": 0.346,
+    "min": -12.64,
+    "max": -12.15
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 15.567,
+    "sd": 0.104,
+    "min": 15.493,
+    "max": 15.64
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 2.12,
+    "sd": 0.014,
+    "min": 2.11,
+    "max": 2.13
+   }
+  },
+  "firm/ta1": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 109.38,
+    "sd": 11.045,
+    "min": 101.57,
+    "max": 117.19
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -11.57,
+    "sd": 0.269,
+    "min": -11.76,
+    "max": -11.38
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 13.795,
+    "sd": 0.621,
+    "min": 13.356,
+    "max": 14.234
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 2.83,
+    "sd": 0.127,
+    "min": 2.74,
+    "max": 2.92
+   }
+  },
+  "urgent/hi1": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 126.85,
+    "sd": 11.512,
+    "min": 118.71,
+    "max": 134.99
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -10.27,
+    "sd": 0.113,
+    "min": -10.35,
+    "max": -10.19
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 18.748,
+    "sd": 0.683,
+    "min": 18.265,
+    "max": 19.231
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 2.135,
+    "sd": 0.078,
+    "min": 2.08,
+    "max": 2.19
+   }
+  },
+  "urgent/hi2": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 121.58,
+    "sd": 9.532,
+    "min": 114.84,
+    "max": 128.32
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -9.475,
+    "sd": 0.177,
+    "min": -9.6,
+    "max": -9.35
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 20.182,
+    "sd": 1.566,
+    "min": 19.075,
+    "max": 21.29
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 1.64,
+    "sd": 0.127,
+    "min": 1.55,
+    "max": 1.73
+   }
+  },
+  "urgent/ta1": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 129.54,
+    "sd": 0.948,
+    "min": 128.87,
+    "max": 130.21
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -9.215,
+    "sd": 0.474,
+    "min": -9.55,
+    "max": -8.88
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 19.072,
+    "sd": 0.198,
+    "min": 18.932,
+    "max": 19.212
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 2.045,
+    "sd": 0.021,
+    "min": 2.03,
+    "max": 2.06
+   }
+  },
+  "joking/hi1": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 120.72,
+    "sd": 12.657,
+    "min": 111.77,
+    "max": 129.67
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -14.555,
+    "sd": 0.078,
+    "min": -14.61,
+    "max": -14.5
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 17.545,
+    "sd": 0.218,
+    "min": 17.391,
+    "max": 17.699
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 2.28,
+    "sd": 0.028,
+    "min": 2.26,
+    "max": 2.3
+   }
+  },
+  "joking/hi2": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 166.81,
+    "sd": 17.621,
+    "min": 154.35,
+    "max": 179.27
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -12.995,
+    "sd": 0.516,
+    "min": -13.36,
+    "max": -12.63
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 21.526,
+    "sd": 1.09,
+    "min": 20.755,
+    "max": 22.297
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 1.535,
+    "sd": 0.078,
+    "min": 1.48,
+    "max": 1.59
+   }
+  },
+  "joking/ta1": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 119.08,
+    "sd": 7.156,
+    "min": 114.02,
+    "max": 124.14
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -14.11,
+    "sd": 0.509,
+    "min": -14.47,
+    "max": -13.75
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 18.398,
+    "sd": 0.245,
+    "min": 18.224,
+    "max": 18.571
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 2.12,
+    "sd": 0.028,
+    "min": 2.1,
+    "max": 2.14
+   }
+  },
+  "whisper/hi1": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 95.545,
+    "sd": 0.035,
+    "min": 95.52,
+    "max": 95.57
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -23.04,
+    "sd": 0.113,
+    "min": -23.12,
+    "max": -22.96
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 12.862,
+    "sd": 0.73,
+    "min": 12.346,
+    "max": 13.378
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 3.115,
+    "sd": 0.177,
+    "min": 2.99,
+    "max": 3.24
+   }
+  },
+  "whisper/hi2": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 117.11,
+    "sd": 10.904,
+    "min": 109.4,
+    "max": 124.82
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -21.99,
+    "sd": 0.0,
+    "min": -21.99,
+    "max": -21.99
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 15.011,
+    "sd": 4.134,
+    "min": 12.088,
+    "max": 17.935
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 2.285,
+    "sd": 0.629,
+    "min": 1.84,
+    "max": 2.73
+   }
+  },
+  "whisper/ta1": {
+   "f0_median_hz": {
+    "n": 2,
+    "mean": 109.815,
+    "sd": 2.595,
+    "min": 107.98,
+    "max": 111.65
+   },
+   "rms_dbfs": {
+    "n": 2,
+    "mean": -22.245,
+    "sd": 0.912,
+    "min": -22.89,
+    "max": -21.6
+   },
+   "rate_cps": {
+    "n": 2,
+    "mean": 13.704,
+    "sd": 1.356,
+    "min": 12.745,
+    "max": 14.662
+   },
+   "speech_sec": {
+    "n": 2,
+    "mean": 2.86,
+    "sd": 0.283,
+    "min": 2.66,
+    "max": 3.06
+   }
+  }
+ },
+ "delta_vs_warm": {
+  "warm": {
+   "pitch_semitones": {
+    "n": 6,
+    "mean": -0.116,
+    "sd": 2.206,
+    "min": -3.72,
+    "max": 3.06
+   },
+   "loudness_db": {
+    "n": 6,
+    "mean": 0.0,
+    "sd": 0.328,
+    "min": -0.445,
+    "max": 0.445
+   },
+   "rate_pct": {
+    "n": 6,
+    "mean": 0.0,
+    "sd": 12.494,
+    "min": -19.444,
+    "max": 19.444
+   }
+  },
+  "firm": {
+   "pitch_semitones": {
+    "n": 6,
+    "mean": -0.7,
+    "sd": 2.321,
+    "min": -3.889,
+    "max": 2.759
+   },
+   "loudness_db": {
+    "n": 6,
+    "mean": 2.628,
+    "sd": 0.517,
+    "min": 1.81,
+    "max": 3.185
+   },
+   "rate_pct": {
+    "n": 6,
+    "mean": -10.798,
+    "sd": 8.085,
+    "min": -18.509,
+    "max": 4.968
+   }
+  },
+  "urgent": {
+   "pitch_semitones": {
+    "n": 6,
+    "mean": 1.147,
+    "sd": 1.17,
+    "min": -0.842,
+    "max": 2.322
+   },
+   "loudness_db": {
+    "n": 6,
+    "mean": 4.843,
+    "sd": 0.371,
+    "min": 4.395,
+    "max": 5.415
+   },
+   "rate_pct": {
+    "n": 6,
+    "mean": 14.144,
+    "sd": 4.713,
+    "min": 6.247,
+    "max": 18.584
+   }
+  },
+  "joking": {
+   "pitch_semitones": {
+    "n": 6,
+    "mean": 2.184,
+    "sd": 3.82,
+    "min": -1.885,
+    "max": 8.11
+   },
+   "loudness_db": {
+    "n": 6,
+    "mean": 0.61,
+    "sd": 0.731,
+    "min": -0.175,
+    "max": 1.82
+   },
+   "rate_pct": {
+    "n": 6,
+    "mean": 12.835,
+    "sd": 6.713,
+    "min": 5.422,
+    "max": 24.193
+   }
+  },
+  "whisper": {
+   "pitch_semitones": {
+    "n": 6,
+    "mean": -1.65,
+    "sd": 2.528,
+    "min": -4.605,
+    "max": 1.843
+   },
+   "loudness_db": {
+    "n": 6,
+    "mean": -7.928,
+    "sd": 0.532,
+    "min": -8.595,
+    "max": -7.305
+   },
+   "rate_pct": {
+    "n": 6,
+    "mean": -18.269,
+    "sd": 11.496,
+    "min": -32.671,
+    "max": -0.103
+   }
+  }
+ },
+ "clips": [
+  {
+   "file": "hi1_warm_r1.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "warm",
+   "label": "Warm",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 2.094,
+   "speech_sec": 2.03,
+   "chars": 40,
+   "rate_cps": 19.704,
+   "f0_median_hz": 148.72,
+   "voiced_frames": 178,
+   "rms_dbfs": -14.3,
+   "peak_dbfs": -0.65,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi1_firm_r1.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "firm",
+   "label": "Firm",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 2.352,
+   "speech_sec": 2.31,
+   "chars": 40,
+   "rate_cps": 17.316,
+   "f0_median_hz": 146.16,
+   "voiced_frames": 205,
+   "rms_dbfs": -11.72,
+   "peak_dbfs": -1.07,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi1_urgent_r1.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "urgent",
+   "label": "Urgent",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 2.228,
+   "speech_sec": 2.19,
+   "chars": 40,
+   "rate_cps": 18.265,
+   "f0_median_hz": 134.99,
+   "voiced_frames": 179,
+   "rms_dbfs": -10.35,
+   "peak_dbfs": -0.31,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi1_joking_r1.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "joking",
+   "label": "Joking",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 2.326,
+   "speech_sec": 2.26,
+   "chars": 40,
+   "rate_cps": 17.699,
+   "f0_median_hz": 129.67,
+   "voiced_frames": 171,
+   "rms_dbfs": -14.61,
+   "peak_dbfs": -1.87,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi1_whisper_r1.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "whisper",
+   "label": "Quiet",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 3.05,
+   "speech_sec": 2.99,
+   "chars": 40,
+   "rate_cps": 13.378,
+   "f0_median_hz": 95.52,
+   "voiced_frames": 215,
+   "rms_dbfs": -23.12,
+   "peak_dbfs": -8.88,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi2_warm_r1.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "warm",
+   "label": "Warm",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 1.843,
+   "speech_sec": 1.78,
+   "chars": 33,
+   "rate_cps": 18.539,
+   "f0_median_hz": 107.34,
+   "voiced_frames": 148,
+   "rms_dbfs": -14.47,
+   "peak_dbfs": -0.71,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi2_firm_r1.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "firm",
+   "label": "Firm",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 2.173,
+   "speech_sec": 2.11,
+   "chars": 33,
+   "rate_cps": 15.64,
+   "f0_median_hz": 114.62,
+   "voiced_frames": 167,
+   "rms_dbfs": -12.15,
+   "peak_dbfs": -1.11,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi2_urgent_r1.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "urgent",
+   "label": "Urgent",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 1.632,
+   "speech_sec": 1.55,
+   "chars": 33,
+   "rate_cps": 21.29,
+   "f0_median_hz": 128.32,
+   "voiced_frames": 102,
+   "rms_dbfs": -9.35,
+   "peak_dbfs": -0.34,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi2_joking_r1.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "joking",
+   "label": "Joking",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 1.606,
+   "speech_sec": 1.59,
+   "chars": 33,
+   "rate_cps": 20.755,
+   "f0_median_hz": 179.27,
+   "voiced_frames": 132,
+   "rms_dbfs": -12.63,
+   "peak_dbfs": -2.0,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi2_whisper_r1.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "whisper",
+   "label": "Quiet",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 1.849,
+   "speech_sec": 1.84,
+   "chars": 33,
+   "rate_cps": 17.935,
+   "f0_median_hz": 109.4,
+   "voiced_frames": 157,
+   "rms_dbfs": -21.99,
+   "peak_dbfs": -9.07,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "ta1_warm_r1.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "warm",
+   "label": "Warm",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 2.425,
+   "speech_sec": 2.35,
+   "chars": 39,
+   "rate_cps": 16.596,
+   "f0_median_hz": 115.34,
+   "voiced_frames": 191,
+   "rms_dbfs": -14.03,
+   "peak_dbfs": -0.68,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "ta1_firm_r1.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "firm",
+   "label": "Firm",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 2.801,
+   "speech_sec": 2.74,
+   "chars": 39,
+   "rate_cps": 14.234,
+   "f0_median_hz": 117.19,
+   "voiced_frames": 200,
+   "rms_dbfs": -11.38,
+   "peak_dbfs": -1.15,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "ta1_urgent_r1.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "urgent",
+   "label": "Urgent",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 2.04,
+   "speech_sec": 2.03,
+   "chars": 39,
+   "rate_cps": 19.212,
+   "f0_median_hz": 130.21,
+   "voiced_frames": 153,
+   "rms_dbfs": -8.88,
+   "peak_dbfs": -0.31,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "ta1_joking_r1.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "joking",
+   "label": "Joking",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 2.108,
+   "speech_sec": 2.1,
+   "chars": 39,
+   "rate_cps": 18.571,
+   "f0_median_hz": 124.14,
+   "voiced_frames": 161,
+   "rms_dbfs": -13.75,
+   "peak_dbfs": -1.91,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "ta1_whisper_r1.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "whisper",
+   "label": "Quiet",
+   "rep": 1,
+   "sr": 24000,
+   "file_sec": 3.151,
+   "speech_sec": 3.06,
+   "chars": 39,
+   "rate_cps": 12.745,
+   "f0_median_hz": 107.98,
+   "voiced_frames": 213,
+   "rms_dbfs": -21.6,
+   "peak_dbfs": -8.91,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi1_warm_r2.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "warm",
+   "label": "Warm",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 3.023,
+   "speech_sec": 3.01,
+   "chars": 40,
+   "rate_cps": 13.289,
+   "f0_median_hz": 100.53,
+   "voiced_frames": 221,
+   "rms_dbfs": -15.19,
+   "peak_dbfs": -0.3,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi1_firm_r2.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "firm",
+   "label": "Firm",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 2.795,
+   "speech_sec": 2.74,
+   "chars": 40,
+   "rate_cps": 14.599,
+   "f0_median_hz": 99.55,
+   "voiced_frames": 211,
+   "rms_dbfs": -11.56,
+   "peak_dbfs": -1.09,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi1_urgent_r2.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "urgent",
+   "label": "Urgent",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 2.104,
+   "speech_sec": 2.08,
+   "chars": 40,
+   "rate_cps": 19.231,
+   "f0_median_hz": 118.71,
+   "voiced_frames": 153,
+   "rms_dbfs": -10.19,
+   "peak_dbfs": -0.33,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi1_joking_r2.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "joking",
+   "label": "Joking",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 2.329,
+   "speech_sec": 2.3,
+   "chars": 40,
+   "rate_cps": 17.391,
+   "f0_median_hz": 111.77,
+   "voiced_frames": 166,
+   "rms_dbfs": -14.5,
+   "peak_dbfs": -1.94,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi1_whisper_r2.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "whisper",
+   "label": "Quiet",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 3.245,
+   "speech_sec": 3.24,
+   "chars": 40,
+   "rate_cps": 12.346,
+   "f0_median_hz": 95.57,
+   "voiced_frames": 234,
+   "rms_dbfs": -22.96,
+   "peak_dbfs": -8.94,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi2_warm_r2.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "warm",
+   "label": "Warm",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 1.929,
+   "speech_sec": 1.9,
+   "chars": 33,
+   "rate_cps": 17.368,
+   "f0_median_hz": 117.09,
+   "voiced_frames": 131,
+   "rms_dbfs": -14.43,
+   "peak_dbfs": -0.64,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi2_firm_r2.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "firm",
+   "label": "Firm",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 2.169,
+   "speech_sec": 2.13,
+   "chars": 33,
+   "rate_cps": 15.493,
+   "f0_median_hz": 105.25,
+   "voiced_frames": 174,
+   "rms_dbfs": -12.64,
+   "peak_dbfs": -1.24,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi2_urgent_r2.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "urgent",
+   "label": "Urgent",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 1.766,
+   "speech_sec": 1.73,
+   "chars": 33,
+   "rate_cps": 19.075,
+   "f0_median_hz": 114.84,
+   "voiced_frames": 125,
+   "rms_dbfs": -9.6,
+   "peak_dbfs": -0.34,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi2_joking_r2.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "joking",
+   "label": "Joking",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 1.525,
+   "speech_sec": 1.48,
+   "chars": 33,
+   "rate_cps": 22.297,
+   "f0_median_hz": 154.35,
+   "voiced_frames": 128,
+   "rms_dbfs": -13.36,
+   "peak_dbfs": -2.03,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "hi2_whisper_r2.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "whisper",
+   "label": "Quiet",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 2.767,
+   "speech_sec": 2.73,
+   "chars": 33,
+   "rate_cps": 12.088,
+   "f0_median_hz": 124.82,
+   "voiced_frames": 185,
+   "rms_dbfs": -21.99,
+   "peak_dbfs": -8.88,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "ta1_warm_r2.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "warm",
+   "label": "Warm",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 2.435,
+   "speech_sec": 2.41,
+   "chars": 39,
+   "rate_cps": 16.183,
+   "f0_median_hz": 118.03,
+   "voiced_frames": 180,
+   "rms_dbfs": -14.56,
+   "peak_dbfs": -0.77,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "ta1_firm_r2.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "firm",
+   "label": "Firm",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 2.984,
+   "speech_sec": 2.92,
+   "chars": 39,
+   "rate_cps": 13.356,
+   "f0_median_hz": 101.57,
+   "voiced_frames": 212,
+   "rms_dbfs": -11.76,
+   "peak_dbfs": -1.17,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "ta1_urgent_r2.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "urgent",
+   "label": "Urgent",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 2.087,
+   "speech_sec": 2.06,
+   "chars": 39,
+   "rate_cps": 18.932,
+   "f0_median_hz": 128.87,
+   "voiced_frames": 160,
+   "rms_dbfs": -9.55,
+   "peak_dbfs": -0.36,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "ta1_joking_r2.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "joking",
+   "label": "Joking",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 2.184,
+   "speech_sec": 2.14,
+   "chars": 39,
+   "rate_cps": 18.224,
+   "f0_median_hz": 114.02,
+   "voiced_frames": 151,
+   "rms_dbfs": -14.47,
+   "peak_dbfs": -2.0,
+   "clipped_frac": 0.0
+  },
+  {
+   "file": "ta1_whisper_r2.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "whisper",
+   "label": "Quiet",
+   "rep": 2,
+   "sr": 24000,
+   "file_sec": 2.688,
+   "speech_sec": 2.66,
+   "chars": 39,
+   "rate_cps": 14.662,
+   "f0_median_hz": 111.65,
+   "voiced_frames": 232,
+   "rms_dbfs": -22.89,
+   "peak_dbfs": -9.02,
+   "clipped_frac": 0.0
+  }
+ ],
+ "failures": []
+}

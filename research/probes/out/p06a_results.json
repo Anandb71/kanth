@@ -1,0 +1,297 @@
+[
+ {
+  "label": "model_saaras:v4",
+  "file": "out/tts/vijay_ta_narration__ta.wav",
+  "fields": {
+   "model": "saaras:v4",
+   "language_code": "ta-IN"
+  },
+  "status": 200,
+  "ms": 318,
+  "response": {
+   "request_id": "20261014_70afb310-4275-4e81-aff8-edc518ea2d29",
+   "transcript": "வணக்கம், இன்று வானிலை மிகவும் நன்றாக இருக்கிறது.",
+   "language_code": "ta-IN"
+  }
+ },
+ {
+  "label": "model_saaras:v3",
+  "file": "out/tts/vijay_ta_narration__ta.wav",
+  "fields": {
+   "model": "saaras:v3",
+   "language_code": "ta-IN"
+  },
+  "status": 200,
+  "ms": 297,
+  "response": {
+   "request_id": "20261014_5613f6e2-37a1-4622-a1a1-90d4bf314a4d",
+   "transcript": "வணக்கம், இன்று வானிலை மிகவும் நன்றாக இருக்கிறது.",
+   "language_code": "ta-IN"
+  }
+ },
+ {
+  "label": "model_saarika:v2.5",
+  "file": "out/tts/vijay_ta_narration__ta.wav",
+  "fields": {
+   "model": "saarika:v2.5",
+   "language_code": "ta-IN"
+  },
+  "status": 200,
+  "ms": 309,
+  "response": {
+   "request_id": "20261014_81df0669-a413-45b2-842d-37a1203e59a1",
+   "transcript": "வணக்கம், இன்று வானிலை மிகவும் நன்றாக இருக்கிறது.",
+   "language_code": "ta-IN"
+  }
+ },
+ {
+  "label": "model_saaras:v3-realtime",
+  "file": "out/tts/vijay_ta_narration__ta.wav",
+  "fields": {
+   "model": "saaras:v3-realtime",
+   "language_code": "ta-IN"
+  },
+  "status": 400,
+  "ms": 207,
+  "error": "{\"detail\":\"Invalid model 'saaras:v3-realtime'. Supported models: 'saarika:v2.5', 'saaras:v3', 'saaras:v4'.\"}"
+ },
+ {
+  "label": "default_model_unknown_lang",
+  "file": "out/tts/vijay_ta_narration__ta.wav",
+  "fields": {
+   "language_code": "unknown"
+  },
+  "status": 200,
+  "ms": 280,
+  "response": {
+   "request_id": "20261014_c32aa622-31df-4253-8479-06044646e22d",
+   "transcript": "வணக்கம், இன்று வானிலை மிகவும் நன்றாக இருக்கிறது.",
+   "language_code": "ta-IN",
+   "language_probability": 1.0
+  }
+ },
+ {
+  "label": "default_model_no_lang",
+  "file": "out/tts/vijay_ta_narration__ta.wav",
+  "fields": {},
+  "status": 200,
+  "ms": 273,
+  "response": {
+   "request_id": "20261014_207c6b41-55b2-4c1d-84c9-000b0c43ee1d",
+   "transcript": "வணக்கம், இன்று வானிலை மிகவும் நன்றாக இருக்கிறது.",
+   "language_code": "ta-IN",
+   "language_probability": 1.0
+  }
+ },
+ {
+  "label": "lang_auto_value",
+  "file": "out/tts/vijay_ta_narration__ta.wav",
+  "fields": {
+   "language_code": "auto"
+  },
+  "status": 400,
+  "ms": 153,
+  "error": "{\"error\":{\"message\":\"body.language_code : Input should be 'unknown', 'hi-IN', 'bn-IN', 'kn-IN', 'ml-IN', 'mr-IN', 'od-IN', 'pa-IN', 'ta-IN', 'te-IN', 'en-IN', 'gu-IN', 'as-IN', 'ur-IN', 'ne-IN', 'kok-IN', 'ks-IN', 'sd-IN', 'sa-IN', 'sat-IN', 'mni-IN', 'brx-IN', 'mai-IN' or 'doi-IN'\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_6c397cc5-2a67-4b1d-87c9-e29294009073\"}}"
+ },
+ {
+  "label": "hi_persona_tamil",
+  "file": "out/tts/aparna_hi_customer__ta.wav",
+  "fields": {
+   "model": "saaras:v4",
+   "language_code": "ta-IN"
+  },
+  "status": 200,
+  "ms": 269,
+  "response": {
+   "request_id": "20261014_2271c3a6-a4e6-4826-8208-aa810364ab8e",
+   "transcript": "வணக்கம், இன்று வானிலை மிகவும் நன்றாக இருக்கிறது.",
+   "language_code": "ta-IN"
+  }
+ },
+ {
+  "label": "en_persona_tamil",
+  "file": "out/tts/simran_en_customer__ta.wav",
+  "fields": {
+   "model": "saaras:v4",
+   "language_code": "ta-IN"
+  },
+  "status": 200,
+  "ms": 266,
+  "response": {
+   "request_id": "20261014_6ec3393f-8192-4a60-803b-ddcfd4d9d4aa",
+   "transcript": "வணக்கம், இன்று வானிலை மிகவும் நன்றாக இருக்கிறது.",
+   "language_code": "ta-IN"
+  }
+ },
+ {
+  "label": "clone_ta",
+  "file": "clone_ta.wav",
+  "fields": {
+   "model": "saaras:v4",
+   "language_code": "unknown"
+  },
+  "status": 200,
+  "ms": 294,
+  "response": {
+   "request_id": "20261014_09ce3ba7-ff8f-4468-9f9d-1dfb44dae3e7",
+   "transcript": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN",
+   "language_probability": 0.998
+  }
+ },
+ {
+  "label": "clone_hi",
+  "file": "clone_hi.wav",
+  "fields": {
+   "model": "saaras:v4",
+   "language_code": "unknown"
+  },
+  "status": 200,
+  "ms": 311,
+  "response": {
+   "request_id": "20261014_67ed5b9f-fe44-4af6-b54d-2b96ba8f99e7",
+   "transcript": "हाँ बेटा, मैंने खाना खा लिया। तुमने खाया?",
+   "language_code": "hi-IN",
+   "language_probability": 0.867
+  }
+ },
+ {
+  "label": "clone_en",
+  "file": "clone_en.wav",
+  "fields": {
+   "model": "saaras:v4",
+   "language_code": "unknown"
+  },
+  "status": 200,
+  "ms": 287,
+  "response": {
+   "request_id": "20261014_f1a22eae-1d3c-4ce6-bee1-b09681c29346",
+   "transcript": "Yes, I have eaten. Did you have your lunch?",
+   "language_code": "en-IN",
+   "language_probability": 1.0
+  }
+ },
+ {
+  "label": "mix_v4_transcribe",
+  "file": "out/tts/hinglish_mix.wav",
+  "fields": {
+   "model": "saaras:v4",
+   "language_code": "hi-IN",
+   "mode": "transcribe"
+  },
+  "status": 200,
+  "ms": 410,
+  "response": {
+   "request_id": "20261014_21a8c1a3-1377-4cbd-acd2-50fdcd45b524",
+   "transcript": "मैं ऑफिस जा रहा हूँ। मीटिंग दस बजे है तो लंच बाद में करेंगे।",
+   "language_code": "hi-IN"
+  }
+ },
+ {
+  "label": "mix_v4_codemix",
+  "file": "out/tts/hinglish_mix.wav",
+  "fields": {
+   "model": "saaras:v4",
+   "language_code": "hi-IN",
+   "mode": "codemix"
+  },
+  "status": 200,
+  "ms": 303,
+  "response": {
+   "request_id": "20261014_2397ca76-172e-400e-83d3-b4e360ea3fb0",
+   "transcript": "मैं office जा रहा हूँ meeting दस बजे है तो lunch बाद में करेंगे।",
+   "language_code": "hi-IN"
+  }
+ },
+ {
+  "label": "mix_v4_translit",
+  "file": "out/tts/hinglish_mix.wav",
+  "fields": {
+   "model": "saaras:v4",
+   "language_code": "hi-IN",
+   "mode": "translit"
+  },
+  "status": 200,
+  "ms": 281,
+  "response": {
+   "request_id": "20261014_9c5da7ee-bafc-4259-abf4-87bc29dc0764",
+   "transcript": "Main office ja raha hoon, meeting das baje hai, toh lunch baad mein karenge.",
+   "language_code": "hi-IN"
+  }
+ },
+ {
+  "label": "mix_v4_translate",
+  "file": "out/tts/hinglish_mix.wav",
+  "fields": {
+   "model": "saaras:v4",
+   "language_code": "hi-IN",
+   "mode": "translate"
+  },
+  "status": 200,
+  "ms": 320,
+  "response": {
+   "request_id": "20261014_d7bdd6bd-d5ac-4b3b-affc-aec952e9bfcb",
+   "transcript": "I am going to the office, the meeting is at 10:00 AM, so we will have lunch later.",
+   "language_code": "hi-IN"
+  }
+ },
+ {
+  "label": "mix_v3_codemix",
+  "file": "out/tts/hinglish_mix.wav",
+  "fields": {
+   "model": "saaras:v3",
+   "language_code": "hi-IN",
+   "mode": "codemix"
+  },
+  "status": 200,
+  "ms": 534,
+  "response": {
+   "request_id": "20261014_776608e1-8d4d-4729-8e4e-390897588cd9",
+   "transcript": "मैं office जा रहा हूँ, meeting 10 बजे है, तो lunch बाद में करेंगे।",
+   "language_code": "hi-IN"
+  }
+ },
+ {
+  "label": "timestamps",
+  "file": "out/tts/hinglish_mix.wav",
+  "fields": {
+   "model": "saaras:v4",
+   "language_code": "hi-IN",
+   "with_timestamps": "true"
+  },
+  "status": 200,
+  "ms": 303,
+  "response": {
+   "request_id": "20261014_4103ccfb-5b75-4963-9fcd-68465a6f159e",
+   "transcript": "मैं ऑफिस जा रहा हूँ। मीटिंग दस बजे है तो लंच बाद में करेंगे।",
+   "timestamps": {
+    "words": [
+     "मैं ऑफिस जा रहा हूँ। मीटिंग दस बजे है तो लंच बाद में करेंगे।"
+    ],
+    "start_time_seconds": [
+     0.0
+    ],
+    "end_time_seconds": [
+     3.84
+    ]
+   },
+   "language_code": "hi-IN"
+  }
+ },
+ {
+  "label": "keyterms_v4",
+  "file": "out/tts/hinglish_mix.wav",
+  "fields": {
+   "model": "saaras:v4",
+   "language_code": "hi-IN",
+   "keyterms": "[\"Kanth\", \"lunch\"]"
+  },
+  "status": 200,
+  "ms": 302,
+  "response": {
+   "request_id": "20261014_caa0c191-e63a-40e4-8e07-63503727ec40",
+   "transcript": "मैं ऑफिस जा रहा हूँ। मीटिंग दस बजे है तो लंच बाद में करेंगे।",
+   "language_code": "hi-IN"
+  }
+ }
+]

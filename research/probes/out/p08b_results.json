@@ -1,0 +1,156 @@
+[
+ {
+  "request": {
+   "input": "amma charger edutthu vaa",
+   "source_language_code": "auto",
+   "target_language_code": "ta-IN"
+  },
+  "status": 200,
+  "ms": 1071,
+  "response": {
+   "transliterated_text": "அம்மா சார்ஜர் எடுத்து வா",
+   "source_language_code": "ml-IN"
+  }
+ },
+ {
+  "request": {
+   "input": "amma charger edutthu vaa",
+   "source_language_code": "en-IN",
+   "target_language_code": "ta-IN"
+  },
+  "status": 200,
+  "ms": 591,
+  "response": {
+   "transliterated_text": "அம்மா சார்ஜர் எடுத்து வா",
+   "source_language_code": "en-IN"
+  }
+ },
+ {
+  "request": {
+   "input": "amma charger edutthu vaa",
+   "source_language_code": "ta-IN",
+   "target_language_code": "ta-IN"
+  },
+  "status": 200,
+  "ms": 584,
+  "response": {
+   "transliterated_text": "அம்மா சார்ஜர் எடுத்து வா",
+   "source_language_code": "ta-IN"
+  }
+ },
+ {
+  "request": {
+   "input": "kanna saapittiya",
+   "source_language_code": "auto",
+   "target_language_code": "ta-IN"
+  },
+  "status": 200,
+  "ms": 1147,
+  "response": {
+   "transliterated_text": "கண்ண சாப்பிட்டிய",
+   "source_language_code": "ta-IN"
+  }
+ },
+ {
+  "request": {
+   "input": "kanna saapittiya",
+   "source_language_code": "ta-IN",
+   "target_language_code": "ta-IN"
+  },
+  "status": 200,
+  "ms": 586,
+  "response": {
+   "transliterated_text": "கண்ண சாப்பிட்டிய",
+   "source_language_code": "ta-IN"
+  }
+ },
+ {
+  "request": {
+   "input": "mujhe phone charger chahiye, 2 baje tak",
+   "source_language_code": "auto",
+   "target_language_code": "hi-IN"
+  },
+  "status": 200,
+  "ms": 1119,
+  "response": {
+   "transliterated_text": "मुझे फ़ोन चार्जर चाहिए, 2 बजे तक",
+   "source_language_code": "hi-IN"
+  }
+ },
+ {
+  "request": {
+   "input": "mujhe phone charger chahiye, 2 baje tak",
+   "source_language_code": "en-IN",
+   "target_language_code": "hi-IN"
+  },
+  "status": 200,
+  "ms": 753,
+  "response": {
+   "transliterated_text": "मुझे फ़ोन चार्जर चाहिए, 2 बजे तक",
+   "source_language_code": "en-IN"
+  }
+ },
+ {
+  "request": {
+   "input": "mujhe phone charger chahiye, 2 baje tak",
+   "source_language_code": "hi-IN",
+   "target_language_code": "hi-IN"
+  },
+  "status": 200,
+  "ms": 638,
+  "response": {
+   "transliterated_text": "मुझे फ़ोन चार्जर चाहिए, 2 बजे तक",
+   "source_language_code": "hi-IN"
+  }
+ },
+ {
+  "request": {
+   "input": "mujhe phone charger chahiye, 2 baje tak",
+   "source_language_code": "auto",
+   "target_language_code": "hi-IN",
+   "numerals_format": "native"
+  },
+  "status": 200,
+  "ms": 1143,
+  "response": {
+   "transliterated_text": "मुझे फ़ोन चार्जर चाहिए, २ बजे तक",
+   "source_language_code": "hi-IN"
+  }
+ },
+ {
+  "request": {
+   "input": "naan office poren, meeting irukku",
+   "source_language_code": "auto",
+   "target_language_code": "ta-IN"
+  },
+  "status": 200,
+  "ms": 1277,
+  "response": {
+   "transliterated_text": "நான் ஆஃபிஸ் போறேன், மீட்டிங் இருக்கு",
+   "source_language_code": "ta-IN"
+  }
+ },
+ {
+  "request": {
+   "input": "",
+   "source_language_code": "auto",
+   "target_language_code": "ta-IN"
+  },
+  "status": 400,
+  "ms": 39,
+  "response": "{\"error\":{\"message\":\"Input text must not be empty.\",\"code\":\"invalid_request_error\",\"request_id\":\"20261015_aaac5b36-62b4-44ef-ae97-6d2dc4d5066c\"}}"
+ },
+ {
+  "request": {
+   "input": "amma vaa",
+   "source_language_code": "auto",
+   "target_language_code": "ml-IN"
+  },
+  "status": 200,
+  "ms": 1173,
+  "response": {
+   "transliterated_text": "അമ്മ വാ",
+   "source_language_code": "ta-IN"
+  }
+ }
+]

@@ -1,0 +1,24 @@
+{
+ "idle_ping": {
+  "alive_after_s": 100.5,
+  "alive": true,
+  "replies": [],
+  "utter_after": {
+   "ttfa_ms": 336,
+   "ttfa_real_audio_ms": 336,
+   "final_ms": 430,
+   "n_audio_msgs": 2,
+   "audio_bytes": 30800,
+   "first_chunk": {
+    "bytes": 22000,
+    "magic": "1f000300",
+    "content_type": "audio/wav"
+   },
+   "msg_types": [
+    "audio",
+    "audio",
+    "event"
+   ]
+  }
+ }
+}

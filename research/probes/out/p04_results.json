@@ -1,0 +1,343 @@
+{
+ "default_codec": {
+  "first_audio_ms": 304,
+  "status": 200,
+  "content_type": "audio/mpeg",
+  "transfer_encoding": "chunked",
+  "content_length": null,
+  "request_id_hdr": {
+   "x-request-id": "20261014_ceb8deb6-fe22-4718-b11d-62e7bf25510f"
+  },
+  "headers_ms": 304,
+  "ttfb_ms": 304,
+  "done_ms": 498,
+  "n_reads": 21,
+  "bytes": 20736,
+  "magic": "fff3c8c4"
+ },
+ "codec_wav": {
+  "first_audio_ms": 280,
+  "status": 200,
+  "content_type": "audio/wav",
+  "transfer_encoding": "chunked",
+  "content_length": null,
+  "request_id_hdr": {
+   "x-request-id": "20261014_c83b8ca7-2406-446e-a694-b31f9a7828f2"
+  },
+  "headers_ms": 135,
+  "ttfb_ms": 135,
+  "done_ms": 554,
+  "n_reads": 55,
+  "bytes": 53804,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 4294967295,
+   "data_offset": 44,
+   "duration_s": 1.68
+  }
+ },
+ "codec_mp3": {
+  "first_audio_ms": 265,
+  "status": 200,
+  "content_type": "audio/mpeg",
+  "transfer_encoding": "chunked",
+  "content_length": null,
+  "request_id_hdr": {
+   "x-request-id": "20261014_d40373c4-79ea-45cd-8a44-eb7ac6040c7d"
+  },
+  "headers_ms": 265,
+  "ttfb_ms": 265,
+  "done_ms": 440,
+  "n_reads": 18,
+  "bytes": 17856,
+  "magic": "fff3c8c4"
+ },
+ "codec_linear16": {
+  "first_audio_ms": 308,
+  "status": 200,
+  "content_type": "audio/pcm",
+  "transfer_encoding": "chunked",
+  "content_length": null,
+  "request_id_hdr": {
+   "x-request-id": "20261014_5ceb263a-2c81-446f-8abd-97a4cde42d79"
+  },
+  "headers_ms": 273,
+  "ttfb_ms": 308,
+  "done_ms": 474,
+  "n_reads": 39,
+  "bytes": 38400,
+  "magic": "00000000"
+ },
+ "codec_opus": {
+  "first_audio_ms": 283,
+  "status": 200,
+  "content_type": "audio/opus",
+  "transfer_encoding": "chunked",
+  "content_length": null,
+  "request_id_hdr": {
+   "x-request-id": "20261014_94f6d552-4564-4ce4-b7ea-60e19c2b8ef8"
+  },
+  "headers_ms": 283,
+  "ttfb_ms": 283,
+  "done_ms": 528,
+  "n_reads": 24,
+  "bytes": 23251,
+  "magic": "4f676753"
+ },
+ "codec_aac": {
+  "first_audio_ms": 291,
+  "status": 200,
+  "content_type": "audio/aac",
+  "transfer_encoding": "chunked",
+  "content_length": null,
+  "request_id_hdr": {
+   "x-request-id": "20261014_6123e535-2a75-44ca-96e7-b68e395f2e04"
+  },
+  "headers_ms": 291,
+  "ttfb_ms": 291,
+  "done_ms": 599,
+  "n_reads": 20,
+  "bytes": 18088,
+  "magic": "fff16040"
+ },
+ "codec_flac": {
+  "first_audio_ms": 310,
+  "status": 200,
+  "content_type": "audio/flac",
+  "transfer_encoding": "chunked",
+  "content_length": null,
+  "request_id_hdr": {
+   "x-request-id": "20261014_5722ec25-956a-4aa8-8a34-6dc06a545d6f"
+  },
+  "headers_ms": 278,
+  "ttfb_ms": 310,
+  "done_ms": 441,
+  "n_reads": 21,
+  "bytes": 19924,
+  "magic": "664c6143"
+ },
+ "codec_mulaw": {
+  "first_audio_ms": 261,
+  "status": 200,
+  "content_type": "audio/mulaw",
+  "transfer_encoding": "chunked",
+  "content_length": null,
+  "request_id_hdr": {
+   "x-request-id": "20261014_6de0a5b3-a6cb-417a-8d9b-b9e3d0144443"
+  },
+  "headers_ms": 261,
+  "ttfb_ms": 261,
+  "done_ms": 470,
+  "n_reads": 21,
+  "bytes": 20480,
+  "magic": "ffffffff"
+ },
+ "warm_wav": {
+  "ttfb_ms": [
+   56,
+   45,
+   51,
+   54,
+   54
+  ],
+  "median_ttfb_ms": 54,
+  "first_audio_ms": [
+   199,
+   190,
+   198,
+   200,
+   202
+  ],
+  "median_first_audio_ms": 199,
+  "done_ms": [
+   449,
+   387,
+   429,
+   404,
+   419
+  ],
+  "median_done_ms": 419,
+  "headers_ms": [
+   56,
+   45,
+   51,
+   53,
+   54
+  ],
+  "n_reads": [
+   51,
+   37,
+   45,
+   40,
+   43
+  ]
+ },
+ "warm_mp3": {
+  "ttfb_ms": [
+   201,
+   205,
+   209,
+   191,
+   194
+  ],
+  "median_ttfb_ms": 201,
+  "first_audio_ms": [
+   201,
+   205,
+   209,
+   191,
+   194
+  ],
+  "median_first_audio_ms": 201,
+  "done_ms": [
+   384,
+   427,
+   398,
+   353,
+   381
+  ],
+  "median_done_ms": 384,
+  "headers_ms": [
+   201,
+   205,
+   209,
+   191,
+   194
+  ],
+  "n_reads": [
+   20,
+   24,
+   20,
+   18,
+   20
+  ]
+ },
+ "cold_wav_ttfb_ms": [
+  {
+   "ttfb_ms": 134,
+   "first_audio_ms": 279
+  },
+  {
+   "ttfb_ms": 101,
+   "first_audio_ms": 275
+  },
+  {
+   "ttfb_ms": 101,
+   "first_audio_ms": 276
+  }
+ ],
+ "rate_24000": {
+  "first_audio_ms": 282,
+  "status": 200,
+  "content_type": "audio/wav",
+  "transfer_encoding": "chunked",
+  "content_length": null,
+  "request_id_hdr": {
+   "x-request-id": "20261014_0254b776-b327-4b3f-9125-7e18483cef80"
+  },
+  "headers_ms": 126,
+  "ttfb_ms": 126,
+  "done_ms": 445,
+  "n_reads": 52,
+  "bytes": 49964,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 4294967295,
+   "data_offset": 44,
+   "duration_s": 1.04
+  }
+ },
+ "rate_48000": {
+  "first_audio_ms": 107,
+  "status": 400,
+  "content_type": "application/json",
+  "transfer_encoding": null,
+  "content_length": "175",
+  "request_id_hdr": {
+   "x-request-id": "20261014_91875f21-ee5d-4b84-8917-47b95bfdccb9"
+  },
+  "headers_ms": 107,
+  "ttfb_ms": 107,
+  "done_ms": 107,
+  "n_reads": 1,
+  "bytes": 175,
+  "magic": "7b226572",
+  "wav": null,
+  "error": "{\"error\":{\"message\":\"Speech sample rate can only be 8000, 16000, 22050, 24000 Hz\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_91875f21-ee5d-4b84-8917-47b95bfdccb9\"}}"
+ },
+ "long_text": {
+  "first_audio_ms": 309,
+  "status": 200,
+  "content_type": "audio/wav",
+  "transfer_encoding": "chunked",
+  "content_length": null,
+  "request_id_hdr": {
+   "x-request-id": "20261014_0b490f75-268d-4703-b947-bb9303ed2017"
+  },
+  "headers_ms": 135,
+  "ttfb_ms": 135,
+  "done_ms": 1393,
+  "n_reads": 237,
+  "bytes": 233004,
+  "magic": "52494646",
+  "chunk_times_ms": [
+   135,
+   309,
+   309,
+   309,
+   309,
+   309,
+   309,
+   309,
+   309,
+   310,
+   310,
+   310,
+   310,
+   310,
+   310,
+   310,
+   310,
+   310,
+   310,
+   310,
+   310,
+   310,
+   310,
+   310,
+   387,
+   387,
+   387,
+   387,
+   387,
+   387,
+   387,
+   387,
+   387,
+   387,
+   387,
+   387,
+   387,
+   387,
+   387,
+   387
+  ],
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 4294967295,
+   "data_offset": 44,
+   "duration_s": 7.28
+  }
+ }
+}

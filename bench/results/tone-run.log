@@ -1,0 +1,32 @@
+hi1_warm_r1.wav 2.09 s
+hi1_firm_r1.wav 2.35 s
+hi1_urgent_r1.wav 2.23 s
+hi1_joking_r1.wav 2.33 s
+hi1_whisper_r1.wav 3.05 s
+hi2_warm_r1.wav 1.84 s
+hi2_firm_r1.wav 2.17 s
+hi2_urgent_r1.wav 1.63 s
+hi2_joking_r1.wav 1.61 s
+hi2_whisper_r1.wav 1.85 s
+ta1_warm_r1.wav 2.43 s
+ta1_firm_r1.wav 2.80 s
+ta1_urgent_r1.wav 2.04 s
+ta1_joking_r1.wav 2.11 s
+ta1_whisper_r1.wav 3.15 s
+hi1_warm_r2.wav 3.02 s
+hi1_firm_r2.wav 2.79 s
+hi1_urgent_r2.wav 2.10 s
+hi1_joking_r2.wav 2.33 s
+hi1_whisper_r2.wav 3.24 s
+hi2_warm_r2.wav 1.93 s
+hi2_firm_r2.wav 2.17 s
+hi2_urgent_r2.wav 1.77 s
+hi2_joking_r2.wav 1.52 s
+hi2_whisper_r2.wav 2.77 s
+ta1_warm_r2.wav 2.43 s
+ta1_firm_r2.wav 2.98 s
+ta1_urgent_r2.wav 2.09 s
+ta1_joking_r2.wav 2.18 s
+ta1_whisper_r2.wav 2.69 s
+done: 30 clips, 0 failed attempts
+exit 0

@@ -1,0 +1,22 @@
+{
+ "warm": {
+  "connect_ms": 346,
+  "warmup_ttfa_ms": 111,
+  "ttfa_ms": [
+   190,
+   182,
+   181,
+   187,
+   191
+  ],
+  "median_ttfa_ms": 187,
+  "final_ms": [
+   408,
+   408,
+   383,
+   412,
+   412
+  ],
+  "median_final_ms": 408
+ }
+}

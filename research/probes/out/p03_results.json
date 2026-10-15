@@ -1,0 +1,644 @@
+[
+ {
+  "label": "hi_persona_speaks_tamil",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "ta-IN",
+   "speaker": "aparna_hi_customer",
+   "speech_sample_rate": 16000
+  },
+  "text_len": 48,
+  "status": 200,
+  "ms": 981,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 107564,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 107520,
+   "data_offset": 44,
+   "duration_s": 3.36
+  },
+  "request_id": "20261014_d4b8c356-a426-4415-99c9-7376504601cf",
+  "saved": "out/tts/aparna_hi_customer__ta.wav"
+ },
+ {
+  "label": "ta_persona_baseline",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "speech_sample_rate": 16000
+  },
+  "text_len": 48,
+  "status": 200,
+  "ms": 1081,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 128044,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 128000,
+   "data_offset": 44,
+   "duration_s": 4.0
+  },
+  "request_id": "20261014_aaabfcfc-6fae-40f5-8fb7-876bd37c206a",
+  "saved": "out/tts/vijay_ta_narration__ta.wav"
+ },
+ {
+  "label": "en_female_speaks_tamil",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "ta-IN",
+   "speaker": "simran_en_customer",
+   "speech_sample_rate": 16000
+  },
+  "text_len": 48,
+  "status": 200,
+  "ms": 975,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 115244,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 115200,
+   "data_offset": 44,
+   "duration_s": 3.6
+  },
+  "request_id": "20261014_6b23c872-85bd-43bb-a668-6c410498bfd3",
+  "saved": "out/tts/simran_en_customer__ta.wav"
+ },
+ {
+  "label": "target_language_code_field",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "target_language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 8713,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 120364,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 120320,
+   "data_offset": 44,
+   "duration_s": 3.76
+  },
+  "request_id": "20261014_e678f156-30ba-4314-9e9d-c780609d060c"
+ },
+ {
+  "label": "v3_short_name_on_v4",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "ishita",
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 400,
+  "ms": 151,
+  "error": "{\"error\":{\"message\":\"Speaker 'ishita' is not compatible with model bulbul:v4-flash. Available speakers for bulbul:v4-flash are: aayan_hi_conversational, amit_hi_conversational, ashutosh_hi_conversational, kabir_hi_conversational, kavya_hi_conversational, manan_hi_conversational, rahul_hi_conversational, sumit_hi_conversational, kangkana_as_conversational, mouchumi_as_conversational, arnab_bn_conversation, roopa_bn_conversational, aditi_en_stories, aparna_en_companion, aparna_en_edtech, ashwin_en_sports, ashwin_en_sports_energetic, chandrika_en_stories, dev_en_recovery, dev_en_conversational, d"
+ },
+ {
+  "label": "no_speaker",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 3577,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 151084,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 151040,
+   "data_offset": 44,
+   "duration_s": 4.72
+  },
+  "request_id": "20261014_2e745d5a-2864-4365-9c8e-8b3d2e2e8423",
+  "saved": "out/tts/default_speaker__hi.wav"
+ },
+ {
+  "label": "pitch_-0.5",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "pitch": -0.5,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 1031,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 107664,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 107620,
+   "data_offset": 44,
+   "duration_s": 3.363
+  },
+  "request_id": "20261014_fe1c71ce-852f-4583-be5a-420a0f3504da",
+  "saved": "out/tts/pitch_-0.5.wav"
+ },
+ {
+  "label": "pitch_0.0",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "pitch": 0.0,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 1091,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 120364,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 120320,
+   "data_offset": 44,
+   "duration_s": 3.76
+  },
+  "request_id": "20261014_bc02ecbe-f423-4a5e-afd6-f5366db91fea",
+  "saved": "out/tts/pitch_0.0.wav"
+ },
+ {
+  "label": "pitch_0.5",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "pitch": 0.5,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 909,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 99570,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 99526,
+   "data_offset": 44,
+   "duration_s": 3.11
+  },
+  "request_id": "20261014_b4c21233-5040-436e-8ffc-d8dd6d240ad4",
+  "saved": "out/tts/pitch_0.5.wav"
+ },
+ {
+  "label": "pitch_range_0.75",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "pitch": 0.75,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 400,
+  "ms": 119,
+  "error": "{\"error\":{\"message\":\"For the Bulbul V3 and V4 models, pitch should be between -0.5 and 0.5\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_156acc8c-c901-4810-9ede-4ca5cf8486b2\"}}"
+ },
+ {
+  "label": "pitch_range_1.0",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "pitch": 1.0,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 400,
+  "ms": 122,
+  "error": "{\"error\":{\"message\":\"For the Bulbul V3 and V4 models, pitch should be between -0.5 and 0.5\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_36b445bd-0a23-44fa-8c0b-e7b7506908d6\"}}"
+ },
+ {
+  "label": "loudness_0.5",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "loudness": 0.5,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 923,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 102444,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 102400,
+   "data_offset": 44,
+   "duration_s": 3.2
+  },
+  "request_id": "20261014_1c0b9293-14f6-408a-a27e-56432a7b32d5",
+  "saved": "out/tts/loudness_0.5.wav"
+ },
+ {
+  "label": "loudness_1.0",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "loudness": 1.0,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 991,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 110124,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 110080,
+   "data_offset": 44,
+   "duration_s": 3.44
+  },
+  "request_id": "20261014_dd000226-dc66-4115-8690-2894bf60c0cf",
+  "saved": "out/tts/loudness_1.0.wav"
+ },
+ {
+  "label": "loudness_2.0",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "loudness": 2.0,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 980,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 105004,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 104960,
+   "data_offset": 44,
+   "duration_s": 3.28
+  },
+  "request_id": "20261014_c7b2b58f-5d3b-441e-b01c-e645e6e5047b",
+  "saved": "out/tts/loudness_2.0.wav"
+ },
+ {
+  "label": "loudness_range_2.5",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "loudness": 2.5,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 950,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 107564,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 107520,
+   "data_offset": 44,
+   "duration_s": 3.36
+  },
+  "request_id": "20261014_df19e964-bc40-4d5f-9491-16a3fbcdcddf"
+ },
+ {
+  "label": "loudness_range_3.0",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "loudness": 3.0,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 400,
+  "ms": 111,
+  "error": "{\"error\":{\"message\":\"For the Bulbul V3 and V4 models, loudness should be between 0.1 and 2.5\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_a8e06744-81e2-4f3a-960c-1fbb11a2d4e7\"}}"
+ },
+ {
+  "label": "loudness_range_0.1",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "loudness": 0.1,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 978,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 89644,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 89600,
+   "data_offset": 44,
+   "duration_s": 2.8
+  },
+  "request_id": "20261014_520c149b-5758-41c6-a139-a69593cb0602"
+ },
+ {
+  "label": "pace_0.5",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "pace": 0.5,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 1011,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 214016,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 213972,
+   "data_offset": 44,
+   "duration_s": 6.687
+  },
+  "request_id": "20261014_df4a674b-0f77-495a-abd4-c70d0c70bb7e",
+  "saved": "out/tts/pace_0.5.wav"
+ },
+ {
+  "label": "pace_2.0",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "pace": 2.0,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 1026,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 60468,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 60424,
+   "data_offset": 44,
+   "duration_s": 1.888
+  },
+  "request_id": "20261014_89af2d72-d69a-499c-9e66-95e8beff4c84",
+  "saved": "out/tts/pace_2.0.wav"
+ },
+ {
+  "label": "pace_range_2.5",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "pace": 2.5,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 400,
+  "ms": 142,
+  "error": "{\"error\":{\"message\":\"For the Bulbul V3 and V4 models, pace should be between 0.5 and 2.0\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_8aa0808a-4afe-4512-b772-73d13596256b\"}}"
+ },
+ {
+  "label": "temperature_0.1",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "temperature": 0.1,
+   "speech_sample_rate": 16000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 944,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 105004,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 16000,
+   "bits": 16,
+   "data_size_header": 104960,
+   "data_offset": 44,
+   "duration_s": 3.28
+  },
+  "request_id": "20261014_6b50b592-5424-4ce2-88bf-22db1cac0191"
+ },
+ {
+  "label": "mp3_24k",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "output_audio_codec": "mp3",
+   "speech_sample_rate": 24000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 964,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 54528,
+  "magic": "fff3c4c4",
+  "wav": null,
+  "request_id": "20261014_4d3fc711-5491-4f49-961c-7e156d261737"
+ },
+ {
+  "label": "linear16_8k",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "output_audio_codec": "linear16",
+   "speech_sample_rate": 8000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 946,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 52480,
+  "magic": "fdfff7ff",
+  "wav": null,
+  "request_id": "20261014_bec4dbf4-4fce-426c-b1c8-7df351c79200"
+ },
+ {
+  "label": "wav_48k",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "output_audio_codec": "wav",
+   "speech_sample_rate": 48000
+  },
+  "text_len": 49,
+  "status": 200,
+  "ms": 1244,
+  "response_keys": [
+   "audios",
+   "request_id"
+  ],
+  "n_audios": 1,
+  "bytes": 330284,
+  "magic": "52494646",
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 48000,
+   "bits": 16,
+   "data_size_header": 330240,
+   "data_offset": 44,
+   "duration_s": 3.44
+  },
+  "request_id": "20261014_cd88aeb0-95d5-4830-ab81-f831d10af34a"
+ },
+ {
+  "label": "opus",
+  "request": {
+   "model": "bulbul:v4-flash",
+   "language_code": "hi-IN",
+   "speaker": "aparna_hi_customer",
+   "output_audio_codec": "opus"
+  },
+  "text_len": 49,
+  "status": 400,
+  "ms": 96,
+  "error": "{\"error\":{\"message\":\"OPUS codec requires one of these sample rates: 8000, 12000, 16000, 24000, 48000 Hz. Current sample rate: 22050 Hz. Please use a supported sample rate or choose a different codec.\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_12443c2b-e352-47f4-9d3a-32b961ef1e73\"}}"
+ }
+]

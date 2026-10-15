@@ -1,0 +1,208 @@
+{
+ "meta": {
+  "stage": "translit",
+  "started": "2026-10-15T02:09:40.356Z",
+  "startedIST": "15/10/2026, 7:39:40 am",
+  "set": "Scripted (hand-written, not real users); intended replies fixed before any model output",
+  "network": "a home connection in India",
+  "node": "v25.2.1",
+  "os": "win32 10.0.26300",
+  "cpu": "13th Gen Intel(R) Core(TM) i5-13450HX",
+  "condition": "Two other agents may have been calling the same Sarvam account concurrently during this run (shared rate limits and possibly shared backend load).",
+  "endpoint": "POST /transliterate, source=<lang>, target=en-IN"
+ },
+ "rows": [
+  {
+   "id": "ta01",
+   "lang": "ta-IN",
+   "input": "இட்லி போதும் Amma, ரெண்டு மட்டும்",
+   "status": 200,
+   "ms": 879.4,
+   "roman": "Itli paatrum Amma, rendu matram"
+  },
+  {
+   "id": "ta02",
+   "lang": "ta-IN",
+   "input": "பரவாயில்ல Amma, பக்கத்துல தண்ணி வச்சுடுங்க",
+   "status": 200,
+   "ms": 723.6,
+   "roman": "Paravaayilla Amma, pakkathula thanni vachchidunga"
+  },
+  {
+   "id": "ta03",
+   "lang": "ta-IN",
+   "input": "ஆமா Amma, ரசம் சாதம் வேணும்",
+   "status": 200,
+   "ms": 674.5,
+   "roman": "Aama Amma, rasam saadham venum"
+  },
+  {
+   "id": "ta04",
+   "lang": "ta-IN",
+   "input": "சரி, பண்ணுங்க. தொண்டை அடைக்குது",
+   "status": 200,
+   "ms": 643.5,
+   "roman": "Sari, pannunga. Thondai arukkudhu"
+  },
+  {
+   "id": "ta05",
+   "lang": "ta-IN",
+   "input": "ஆமா, இடது பக்கம் திருப்புங்க",
+   "status": 200,
+   "ms": 689,
+   "roman": "Aamaa, edam paksha thirupunga"
+  },
+  {
+   "id": "ta06",
+   "lang": "ta-IN",
+   "input": "இல்ல, ஆனா கொஞ்சம் tired-ஆ இருக்கு",
+   "status": 200,
+   "ms": 672.1,
+   "roman": "Illa, aanaa thoda tired-aa iruku"
+  },
+  {
+   "id": "ta07",
+   "lang": "ta-IN",
+   "input": "வா டா, ஏழு மணிக்கு வா",
+   "status": 200,
+   "ms": 746.4,
+   "roman": "Va da, satta gantalaku va"
+  },
+  {
+   "id": "ta08",
+   "lang": "ta-IN",
+   "input": "நீ வாங்கிக்கோ, நான் Amma ரசம் சாப்பிடறேன்",
+   "status": 200,
+   "ms": 793.4,
+   "roman": "Nee vaangikko, naan Amma rasam sutten"
+  },
+  {
+   "id": "ta09",
+   "lang": "ta-IN",
+   "input": "நான் நல்லா இருக்கேன்னு சொல்லு, எல்லாரையும் miss பண்றேன்",
+   "status": 200,
+   "ms": 870,
+   "roman": "Nanu nalla irkennu kaattu, ellaaraiyum miss panren"
+  },
+  {
+   "id": "ta10",
+   "lang": "ta-IN",
+   "input": "Same salt-ஆ இருந்தா குடுங்க",
+   "status": 200,
+   "ms": 682.7,
+   "roman": "Same salt-aaa idda thaan kudunga"
+  },
+  {
+   "id": "ta11",
+   "lang": "ta-IN",
+   "input": "GPay பண்றேன், QR காட்டுங்க",
+   "status": 200,
+   "ms": 652.9,
+   "roman": "GPay panchhen, QR kaatuunga"
+  },
+  {
+   "id": "ta12",
+   "lang": "ta-IN",
+   "input": "ஆமா, delivery பண்ணுங்க, அதே address தான்",
+   "status": 200,
+   "ms": 675.8,
+   "roman": "Aamaa, delivery pannunga, athe address thaan"
+  },
+  {
+   "id": "hi01",
+   "lang": "hi-IN",
+   "input": "निगलने में थोड़ी दिक्कत बढ़ गई है",
+   "status": 200,
+   "ms": 692.8,
+   "roman": "Nigalne men thodi dikkat badh gayi hai"
+  },
+  {
+   "id": "hi02",
+   "lang": "hi-IN",
+   "input": "हाँ, लेटने पर साँस फूलती है",
+   "status": 200,
+   "ms": 739.9,
+   "roman": "Haan, lette par saans phoolati hai"
+  },
+  {
+   "id": "hi03",
+   "lang": "hi-IN",
+   "input": "क्या mask पूरी रात पहनना पड़ेगा?",
+   "status": 200,
+   "ms": 642.6,
+   "roman": "Kya mask puri raat pehenna padega?"
+  },
+  {
+   "id": "hi04",
+   "lang": "hi-IN",
+   "input": "अरे Rohit! तुझे देखकर बहुत अच्छा लगा",
+   "status": 200,
+   "ms": 697,
+   "roman": "Are Rohit! Tuze dekhkar bahut achha laga"
+  },
+  {
+   "id": "hi05",
+   "lang": "hi-IN",
+   "input": "हाँ देखा, last over में मज़ा आ गया",
+   "status": 200,
+   "ms": 774,
+   "roman": "Haan dekha, last over mein maza aa gaya"
+  },
+  {
+   "id": "hi06",
+   "lang": "hi-IN",
+   "input": "शाम को चलेंगे, धूप में नहीं",
+   "status": 200,
+   "ms": 682.8,
+   "roman": "Shaam ko chalenge, dhoop mein nahi"
+  },
+  {
+   "id": "hi07",
+   "lang": "hi-IN",
+   "input": "दस मिनट रुको, पहले चाय पीनी है",
+   "status": 200,
+   "ms": 652.8,
+   "roman": "Das minute ruko, pehle cha pini hai"
+  },
+  {
+   "id": "hi08",
+   "lang": "hi-IN",
+   "input": "हाँ, बस आधा चम्मच",
+   "status": 200,
+   "ms": 707.9,
+   "roman": "Haan, bas aadha chamcha"
+  },
+  {
+   "id": "hi09",
+   "lang": "hi-IN",
+   "input": "हाँ याद है, उससे पहले मुझे बैठा देना",
+   "status": 200,
+   "ms": 820.5,
+   "roman": "Haan yaad hai, usse pehla mujhe baitha dena"
+  },
+  {
+   "id": "hi10",
+   "lang": "hi-IN",
+   "input": "बाएँ हाथ से लीजिए, वहाँ vein अच्छी है",
+   "status": 200,
+   "ms": 694.7,
+   "roman": "Baain haath se lijiye, vahan vein achhi hai"
+  },
+  {
+   "id": "hi11",
+   "lang": "hi-IN",
+   "input": "नहीं, रात दस बजे के बाद कुछ नहीं खाया",
+   "status": 200,
+   "ms": 746.3,
+   "roman": "Nahi, raat das baje ke baad kuchh nahi khaya"
+  },
+  {
+   "id": "hi12",
+   "lang": "hi-IN",
+   "input": "Doctor को भी copy भेज दीजिए please",
+   "status": 200,
+   "ms": 745.9,
+   "roman": "Doctor ko bhi copy bhej dijiye please"
+  }
+ ]
+}

@@ -1,0 +1,372 @@
+{
+ "config_swap_hi": {
+  "ttfa_ms": 3056,
+  "ttfa_real_ms": 3056,
+  "final_ms": 8206,
+  "types": [
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio"
+  ],
+  "n_types": 75,
+  "msgs": [
+   {
+    "first_audio_keys": [
+     "audio",
+     "content_type",
+     "request_id"
+    ],
+    "content_type": "audio/wav",
+    "bytes": 44,
+    "magic": "52494646"
+   },
+   {
+    "type": "event",
+    "data": {
+     "event_type": "final"
+    }
+   }
+  ]
+ },
+ "warm": {
+  "warmup_ttfa_real_ms": 1646,
+  "runs": [
+   {
+    "ttfa_ms": 1549,
+    "ttfa_real_ms": 1549,
+    "final_ms": 4185,
+    "types": [
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio"
+    ],
+    "n_types": 37
+   },
+   {
+    "ttfa_ms": 1404,
+    "ttfa_real_ms": 1404,
+    "final_ms": 3974,
+    "types": [
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio"
+    ],
+    "n_types": 37
+   },
+   {
+    "ttfa_ms": 1379,
+    "ttfa_real_ms": 1379,
+    "final_ms": 3975,
+    "types": [
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio"
+    ],
+    "n_types": 37
+   },
+   {
+    "ttfa_ms": 1097,
+    "ttfa_real_ms": 1097,
+    "final_ms": 3652,
+    "types": [
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio"
+    ],
+    "n_types": 35
+   },
+   {
+    "ttfa_ms": 1452,
+    "ttfa_real_ms": 1452,
+    "final_ms": 3804,
+    "types": [
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio",
+     "audio"
+    ],
+    "n_types": 33
+   }
+  ],
+  "median_ttfa_real_ms": 1404,
+  "median_final_ms": 3974
+ },
+ "language_code_instead_of_target": {
+  "ttfa_ms": null,
+  "ttfa_real_ms": null,
+  "final_ms": null,
+  "types": [
+   "error"
+  ],
+  "n_types": 1,
+  "msgs": [
+   {
+    "type": "error",
+    "data": {
+     "request_id": "20261014_ca6bf81f-db28-4c61-804a-201bd2425d30",
+     "message": "400: config.data.target_language_code: Field required",
+     "code": 422
+    }
+   }
+  ],
+  "audio_bytes": 0
+ },
+ "pitch_in_config": {
+  "ttfa_ms": 1589,
+  "ttfa_real_ms": 1589,
+  "final_ms": 4042,
+  "types": [
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio"
+  ],
+  "n_types": 36,
+  "msgs": [
+   {
+    "first_audio_keys": [
+     "audio",
+     "content_type",
+     "request_id"
+    ],
+    "content_type": "audio/wav",
+    "bytes": 44,
+    "magic": "52494646"
+   },
+   {
+    "type": "event",
+    "data": {
+     "event_type": "final"
+    }
+   }
+  ],
+  "audio_bytes": 136020
+ },
+ "loudness_in_config": {
+  "ttfa_ms": 1349,
+  "ttfa_real_ms": 1349,
+  "final_ms": 2313,
+  "types": [
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio"
+  ],
+  "n_types": 15,
+  "msgs": [
+   {
+    "first_audio_keys": [
+     "audio",
+     "content_type",
+     "request_id"
+    ],
+    "content_type": "audio/wav",
+    "bytes": 44,
+    "magic": "52494646"
+   },
+   {
+    "type": "event",
+    "data": {
+     "event_type": "final"
+    }
+   }
+  ],
+  "audio_bytes": 52428
+ },
+ "pace_1.5": {
+  "ttfa_ms": 1400,
+  "ttfa_real_ms": 1400,
+  "final_ms": 2424,
+  "types": [
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio"
+  ],
+  "n_types": 17,
+  "msgs": [
+   {
+    "first_audio_keys": [
+     "audio",
+     "content_type",
+     "request_id"
+    ],
+    "content_type": "audio/wav",
+    "bytes": 44,
+    "magic": "52494646"
+   },
+   {
+    "type": "event",
+    "data": {
+     "event_type": "final"
+    }
+   }
+  ],
+  "audio_bytes": 57628
+ },
+ "codec_flac": {
+  "ttfa_ms": null,
+  "ttfa_real_ms": null,
+  "final_ms": null,
+  "types": [
+   "error"
+  ],
+  "n_types": 1,
+  "msgs": [
+   {
+    "type": "error",
+    "data": {
+     "request_id": "20261014_6f4e5d83-4b34-4e67-98be-b6c1fd097d75",
+     "message": "400: output_audio_codec='flac' is not supported on the WebSocket streaming endpoint. Use mp3, wav, linear16, mulaw, or alaw.",
+     "code": 422
+    }
+   }
+  ],
+  "audio_bytes": 0
+ },
+ "codec_mp3": {
+  "ttfa_ms": 1574,
+  "ttfa_real_ms": 1574,
+  "final_ms": 3124,
+  "types": [
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio"
+  ],
+  "n_types": 9,
+  "msgs": [
+   {
+    "first_audio_keys": [
+     "audio",
+     "content_type",
+     "request_id"
+    ],
+    "content_type": "audio/mpeg",
+    "bytes": 4096,
+    "magic": "fff3c4c4"
+   },
+   {
+    "type": "event",
+    "data": {
+     "event_type": "final"
+    }
+   }
+  ],
+  "audio_bytes": 28416
+ },
+ "no_voice": {
+  "ttfa_ms": null,
+  "ttfa_real_ms": null,
+  "final_ms": null,
+  "types": [
+   "error"
+  ],
+  "n_types": 1,
+  "msgs": [
+   {
+    "type": "error",
+    "data": {
+     "request_id": "20261014_1883233e-28ae-4b29-b05a-e38611ffcec8",
+     "message": "400: Either ref_audio or voice_id is required.",
+     "code": 422
+    }
+   }
+  ],
+  "audio_bytes": 0
+ },
+ "model_param": {
+  "ttfa_ms": 1393,
+  "ttfa_real_ms": 1393,
+  "final_ms": 2237,
+  "types": [
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio"
+  ],
+  "n_types": 14,
+  "msgs": [
+   {
+    "first_audio_keys": [
+     "audio",
+     "content_type",
+     "request_id"
+    ],
+    "content_type": "audio/wav",
+    "bytes": 44,
+    "magic": "52494646"
+   },
+   {
+    "type": "event",
+    "data": {
+     "event_type": "final"
+    }
+   }
+  ],
+  "audio_bytes": 46856
+ },
+ "subprotocol": {
+  "ok": true,
+  "ttfa_real_ms": 2208,
+  "types": [
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio",
+   "audio"
+  ]
+ }
+}

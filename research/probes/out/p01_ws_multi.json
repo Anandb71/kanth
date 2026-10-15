@@ -1,0 +1,139 @@
+{
+ "cold": [
+  {
+   "connect_ms": 261,
+   "ttfa_after_text_ms": 106,
+   "total_from_connect_ms": 367
+  },
+  {
+   "connect_ms": 203,
+   "ttfa_after_text_ms": 104,
+   "total_from_connect_ms": 307
+  },
+  {
+   "connect_ms": 170,
+   "ttfa_after_text_ms": 104,
+   "total_from_connect_ms": 274
+  }
+ ],
+ "interleave": [
+  [
+   "audio",
+   104,
+   "20261014_cacc84e6-f14e-435d-8ba1-da631aaa6b9b",
+   null,
+   44
+  ],
+  [
+   "audio",
+   288,
+   "20261014_cacc84e6-f14e-435d-8ba1-da631aaa6b9b",
+   null,
+   22000
+  ],
+  [
+   "audio",
+   434,
+   "20261014_cacc84e6-f14e-435d-8ba1-da631aaa6b9b",
+   null,
+   11000
+  ],
+  [
+   "event",
+   435,
+   null,
+   "final",
+   null
+  ],
+  [
+   "audio",
+   588,
+   "20261014_cacc84e6-f14e-435d-8ba1-da631aaa6b9b",
+   null,
+   24200
+  ],
+  [
+   "audio",
+   694,
+   "20261014_cacc84e6-f14e-435d-8ba1-da631aaa6b9b",
+   null,
+   24200
+  ],
+  [
+   "audio",
+   800,
+   "20261014_cacc84e6-f14e-435d-8ba1-da631aaa6b9b",
+   null,
+   22000
+  ],
+  [
+   "audio",
+   915,
+   "20261014_cacc84e6-f14e-435d-8ba1-da631aaa6b9b",
+   null,
+   24200
+  ],
+  [
+   "audio",
+   1043,
+   "20261014_cacc84e6-f14e-435d-8ba1-da631aaa6b9b",
+   null,
+   2200
+  ],
+  [
+   "event",
+   1044,
+   null,
+   "final",
+   null
+  ]
+ ],
+ "ping": "no reply within 5s",
+ "configswap": {
+  "a": {
+   "ttfa_ms": 196,
+   "ttfa_real_audio_ms": 310,
+   "final_ms": 532,
+   "n_audio_msgs": 3,
+   "audio_bytes": 46244,
+   "first_chunk": {
+    "bytes": 44,
+    "magic": "52494646",
+    "content_type": "audio/wav"
+   },
+   "msg_types": [
+    "audio",
+    "audio",
+    "audio",
+    "event"
+   ]
+  },
+  "b": {
+   "ttfa_ms": 484,
+   "ttfa_real_audio_ms": 484,
+   "final_ms": 484,
+   "n_audio_msgs": 2,
+   "audio_bytes": 31562,
+   "first_chunk": {
+    "bytes": 19800,
+    "magic": "0e000f00",
+    "content_type": "audio/wav"
+   },
+   "msg_types": [
+    "audio",
+    "audio",
+    "event"
+   ]
+  }
+ },
+ "subprotocol": {
+  "accepted": true,
+  "echoed_subprotocol_is_key_form": true,
+  "ttfa_ms": 183,
+  "types": [
+   "audio",
+   "audio",
+   "event"
+  ]
+ }
+}

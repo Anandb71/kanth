@@ -1,0 +1,62 @@
+{
+ "gokul_ta_narration": {
+  "language_code_used": "ta-IN",
+  "f0_median_hz": 140.4,
+  "voiced_frames": 197,
+  "acoustic_gender_hint": "M"
+ },
+ "vijay_ta_narration": {
+  "language_code_used": "ta-IN",
+  "f0_median_hz": 130.1,
+  "voiced_frames": 259,
+  "acoustic_gender_hint": "M"
+ },
+ "aravind_ta_ads": {
+  "language_code_used": "ta-IN",
+  "f0_median_hz": 131.7,
+  "voiced_frames": 162,
+  "acoustic_gender_hint": "M"
+ },
+ "aravind_ta_suspense": {
+  "language_code_used": "ta-IN",
+  "f0_median_hz": 126.0,
+  "voiced_frames": 97,
+  "acoustic_gender_hint": "M"
+ },
+ "harpreet_pa_narration": {
+  "language_code_used": "pa-IN",
+  "f0_median_hz": 127.0,
+  "voiced_frames": 191,
+  "acoustic_gender_hint": "M"
+ },
+ "mani_hi_conversational": {
+  "language_code_used": "hi-IN",
+  "f0_median_hz": 96.4,
+  "voiced_frames": 142,
+  "acoustic_gender_hint": "M"
+ },
+ "mrunal_mr_narration": {
+  "language_code_used": "mr-IN",
+  "f0_median_hz": 207.8,
+  "voiced_frames": 188,
+  "acoustic_gender_hint": "F"
+ },
+ "suman_hi_companion": {
+  "language_code_used": "hi-IN",
+  "f0_median_hz": 228.6,
+  "voiced_frames": 144,
+  "acoustic_gender_hint": "F"
+ },
+ "kangkana_as_conversational": {
+  "language_code_used": "bn-IN",
+  "f0_median_hz": 237.1,
+  "voiced_frames": 144,
+  "acoustic_gender_hint": "F"
+ },
+ "mouchumi_as_conversational": {
+  "language_code_used": "bn-IN",
+  "f0_median_hz": 205.1,
+  "voiced_frames": 140,
+  "acoustic_gender_hint": "F"
+ }
+}

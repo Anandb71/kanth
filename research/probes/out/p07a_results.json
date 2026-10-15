@@ -1,0 +1,264 @@
+{
+ "GET /v2/models": {
+  "status": 200,
+  "body": "{\"object\":\"list\",\"data\":[{\"id\":\"glm5.3\",\"object\":\"model\",\"created\":0,\"owned_by\":\"open-source\"},{\"id\":\"gemma4\",\"object\":\"model\",\"created\":0,\"owned_by\":\"open-source\"},{\"id\":\"sarvam-105b\",\"object\":\"model\",\"created\":0,\"owned_by\":\"sarvam\"}]}"
+ },
+ "GET /v1/models": {
+  "status": 200,
+  "body": "{\"object\":\"list\",\"data\":[{\"id\":\"sarvam-105b\",\"object\":\"model\",\"created\":0,\"owned_by\":\"sarvam\"},{\"id\":\"sarvam-105b-conversations\",\"object\":\"model\",\"created\":0,\"owned_by\":\"sarvam\"}]}"
+ },
+ "v1 sarvam-105b {}": {
+  "status": 200,
+  "ms": 2524,
+  "model_echo": "sarvam-105b",
+  "content": "",
+  "has_reasoning": false,
+  "reasoning_len": 0,
+  "finish": "length",
+  "usage": {
+   "completion_tokens": 400,
+   "prompt_tokens": 18,
+   "total_tokens": 418,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": null,
+    "audio_tokens": null,
+    "reasoning_tokens": 399,
+    "rejected_prediction_tokens": null
+   },
+   "prompt_tokens_details": null
+  },
+  "message_keys": [
+   "content",
+   "reasoning_content",
+   "refusal",
+   "role",
+   "tool_calls"
+  ]
+ },
+ "v1 sarvam-105b-conversations {}": {
+  "status": 200,
+  "ms": 142,
+  "model_echo": "sarvam-105b-conversations",
+  "content": "வணக்கம்",
+  "has_reasoning": false,
+  "reasoning_len": 0,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 3,
+   "prompt_tokens": 22,
+   "total_tokens": 25,
+   "completion_tokens_details": null,
+   "prompt_tokens_details": null
+  },
+  "message_keys": [
+   "content",
+   "reasoning_content",
+   "refusal",
+   "role",
+   "tool_calls"
+  ]
+ },
+ "v1 sarvam-m {}": {
+  "status": 400,
+  "ms": 101,
+  "error": "{\"error\":{\"message\":\"Model 'sarvam-m' has been deprecated. Please use one of the available models instead: sarvam-105b, sarvam-105b-conversations.\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_4e5cad43-4ccc-44bb-8c30-b6fb751e7a08\"}}"
+ },
+ "v1 sarvam-30b {}": {
+  "status": 400,
+  "ms": 102,
+  "error": "{\"error\":{\"message\":\"Model 'sarvam-30b' has been deprecated. Please use one of the available models instead: sarvam-105b, sarvam-105b-conversations.\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_c4128584-f060-4431-9767-03ed9611e6f7\"}}"
+ },
+ "v1 sarvam-105b-chat {}": {
+  "status": 400,
+  "ms": 144,
+  "error": "{\"error\":{\"message\":\"body.model : Value error, Input 'sarvam-105b-chat' should be one of sarvam-105b, sarvam-105b-conversations\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_d1149b4e-fabd-4dba-af13-5fd69f8bd430\"}}"
+ },
+ "v2 sarvam-105b {}": {
+  "status": 400,
+  "ms": 49,
+  "error": "{\"error\":{\"message\":\"This endpoint is currently in beta and not available. To request beta access, please contact our support team\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_de5a04cf-756d-4e5c-b385-d63a030f535c\"}}"
+ },
+ "v2 gemma4 {}": {
+  "status": 400,
+  "ms": 89,
+  "error": "{\"error\":{\"message\":\"This endpoint is currently in beta and not available. To request beta access, please contact our support team\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_cbea2891-e15e-4e3a-8008-0fa1302c00ae\"}}"
+ },
+ "v2 glm5.3 {}": {
+  "status": 400,
+  "ms": 56,
+  "error": "{\"error\":{\"message\":\"This endpoint is currently in beta and not available. To request beta access, please contact our support team\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_4bead66c-f47b-44e9-a694-9306941008ba\"}}"
+ },
+ "v2 deepseekv4.1-flash {}": {
+  "status": 400,
+  "ms": 44,
+  "error": "{\"error\":{\"message\":\"This endpoint is currently in beta and not available. To request beta access, please contact our support team\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_abb053e6-104f-4e24-8a86-90174d08f53e\"}}"
+ },
+ "v2 sarvam-105b-conversations {}": {
+  "status": 400,
+  "ms": 46,
+  "error": "{\"error\":{\"message\":\"This endpoint is currently in beta and not available. To request beta access, please contact our support team\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_bfe9a442-ab4b-434f-990c-600ac5684a31\"}}"
+ },
+ "v1 sarvam-105b {\"reasoning_effort\": null}": {
+  "status": 200,
+  "ms": 152,
+  "model_echo": "sarvam-105b",
+  "content": "வணக்கம்",
+  "has_reasoning": false,
+  "reasoning_len": 0,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 3,
+   "prompt_tokens": 22,
+   "total_tokens": 25,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": null,
+    "audio_tokens": null,
+    "reasoning_tokens": 0,
+    "rejected_prediction_tokens": null
+   },
+   "prompt_tokens_details": null
+  },
+  "message_keys": [
+   "content",
+   "reasoning_content",
+   "refusal",
+   "role",
+   "tool_calls"
+  ]
+ },
+ "v1 sarvam-105b-conversations {\"reasoning_effort\": null}": {
+  "status": 200,
+  "ms": 181,
+  "model_echo": "sarvam-105b-conversations",
+  "content": "வணக்கம்",
+  "has_reasoning": false,
+  "reasoning_len": 0,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 3,
+   "prompt_tokens": 22,
+   "total_tokens": 25,
+   "completion_tokens_details": null,
+   "prompt_tokens_details": null
+  },
+  "message_keys": [
+   "content",
+   "reasoning_content",
+   "refusal",
+   "role",
+   "tool_calls"
+  ]
+ },
+ "v1 sarvam-105b {\"reasoning_effort\": \"low\"}": {
+  "status": 200,
+  "ms": 2171,
+  "model_echo": "sarvam-105b",
+  "content": "",
+  "has_reasoning": false,
+  "reasoning_len": 0,
+  "finish": "length",
+  "usage": {
+   "completion_tokens": 400,
+   "prompt_tokens": 18,
+   "total_tokens": 418,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": null,
+    "audio_tokens": null,
+    "reasoning_tokens": 399,
+    "rejected_prediction_tokens": null
+   },
+   "prompt_tokens_details": null
+  },
+  "message_keys": [
+   "content",
+   "reasoning_content",
+   "refusal",
+   "role",
+   "tool_calls"
+  ]
+ },
+ "v1 sarvam-105b-conversations {\"reasoning_effort\": \"low\"}": {
+  "status": 200,
+  "ms": 113,
+  "model_echo": "sarvam-105b-conversations",
+  "content": "வணக்கம்",
+  "has_reasoning": false,
+  "reasoning_len": 0,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 3,
+   "prompt_tokens": 22,
+   "total_tokens": 25,
+   "completion_tokens_details": null,
+   "prompt_tokens_details": null
+  },
+  "message_keys": [
+   "content",
+   "reasoning_content",
+   "refusal",
+   "role",
+   "tool_calls"
+  ]
+ },
+ "v1 sarvam-105b {\"reasoning_effort\": \"medium\"}": {
+  "status": 200,
+  "ms": 1709,
+  "model_echo": "sarvam-105b",
+  "content": "",
+  "has_reasoning": false,
+  "reasoning_len": 0,
+  "finish": "length",
+  "usage": {
+   "completion_tokens": 400,
+   "prompt_tokens": 18,
+   "total_tokens": 418,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": null,
+    "audio_tokens": null,
+    "reasoning_tokens": 399,
+    "rejected_prediction_tokens": null
+   },
+   "prompt_tokens_details": null
+  },
+  "message_keys": [
+   "content",
+   "reasoning_content",
+   "refusal",
+   "role",
+   "tool_calls"
+  ]
+ },
+ "v1 sarvam-105b-conversations {\"reasoning_effort\": \"medium\"}": {
+  "status": 200,
+  "ms": 137,
+  "model_echo": "sarvam-105b-conversations",
+  "content": "வணக்கம்",
+  "has_reasoning": false,
+  "reasoning_len": 0,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 3,
+   "prompt_tokens": 22,
+   "total_tokens": 25,
+   "completion_tokens_details": null,
+   "prompt_tokens_details": null
+  },
+  "message_keys": [
+   "content",
+   "reasoning_content",
+   "refusal",
+   "role",
+   "tool_calls"
+  ]
+ },
+ "v1 sarvam-105b {\"reasoning_effort\": \"max\"}": {
+  "status": 400,
+  "ms": 92,
+  "error": "{\"error\":{\"message\":\"body.reasoning_effort : Input should be 'low', 'medium' or 'high'\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_46551c96-be73-46ab-a4b6-b606648a7375\"}}"
+ },
+ "v1 sarvam-105b-conversations {\"reasoning_effort\": \"max\"}": {
+  "status": 400,
+  "ms": 92,
+  "error": "{\"error\":{\"message\":\"body.reasoning_effort : Input should be 'low', 'medium' or 'high'\",\"code\":\"invalid_request_error\",\"request_id\":\"20261014_b46ac6da-d8b9-4406-968b-28d7b2296f66\"}}"
+ }
+}

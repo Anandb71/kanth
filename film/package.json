@@ -1,0 +1,15 @@
+{
+  "name": "kanth-film",
+  "private": true,
+  "type": "module",
+  "description": "Records the Kanth demo film and README media. Not needed to run Kanth.",
+  "scripts": {
+    "shots": "tsx shots.ts",
+    "record": "tsx record.ts"
+  },
+  "devDependencies": {
+    "ffmpeg-static": "^5.3.0",
+    "playwright": "^1.64.1",
+    "tsx": "^4.23.15"
+  }
+}

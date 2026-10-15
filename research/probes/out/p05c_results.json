@@ -1,0 +1,599 @@
+{
+ "lang_ta": {
+  "label": "lang_ta",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN"
+  },
+  "status": 200,
+  "ms": 2219,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 2.865,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 137520,
+   "data_offset": 44,
+   "duration_s": 2.865
+  },
+  "magic": "52494646",
+  "request_id": "20261014_562bfb06-6f75-45fe-8abc-3ee31bc041f4",
+  "saved": "clone_ta.wav"
+ },
+ "lang_hi": {
+  "label": "lang_hi",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "हाँ बेटा, मैंने खाना खा लिया। तुमने खाया?",
+   "language_code": "hi-IN"
+  },
+  "status": 200,
+  "ms": 2221,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 3.7035833333333334,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 177772,
+   "data_offset": 44,
+   "duration_s": 3.704
+  },
+  "magic": "52494646",
+  "request_id": "20261014_719a1097-8500-4dbb-8782-7710758740c5",
+  "saved": "clone_hi.wav"
+ },
+ "lang_en": {
+  "label": "lang_en",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "Yes, I have eaten. Did you have your lunch?",
+   "language_code": "en-IN"
+  },
+  "status": 200,
+  "ms": 1855,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 2.7515833333333335,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 132076,
+   "data_offset": 44,
+   "duration_s": 2.752
+  },
+  "magic": "52494646",
+  "request_id": "20261014_6eb00423-f0c2-4ec4-adb3-908ecd677811",
+  "saved": "clone_en.wav"
+ },
+ "model_bulbul:v4-flash": {
+  "label": "model_bulbul:v4-flash",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN",
+   "model": "bulbul:v4-flash"
+  },
+  "status": 200,
+  "ms": 1601,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 3.285625,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 157710,
+   "data_offset": 44,
+   "duration_s": 3.286
+  },
+  "magic": "52494646",
+  "request_id": "20261014_6a7154ad-ade9-4705-9347-fcba36baef39"
+ },
+ "model_bulbul:v3": {
+  "label": "model_bulbul:v3",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN",
+   "model": "bulbul:v3"
+  },
+  "status": 200,
+  "ms": 1578,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 3.390125,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 162726,
+   "data_offset": 44,
+   "duration_s": 3.39
+  },
+  "magic": "52494646",
+  "request_id": "20261014_01967b2a-edaf-4881-b150-69e36c7290eb"
+ },
+ "model_not-a-model": {
+  "label": "model_not-a-model",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN",
+   "model": "not-a-model"
+  },
+  "status": 200,
+  "ms": 2225,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 3.254958333333333,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 156238,
+   "data_offset": 44,
+   "duration_s": 3.255
+  },
+  "magic": "52494646",
+  "request_id": "20261014_802348c9-da7e-490a-ba70-c5064372ba4c"
+ },
+ "baseline": {
+  "label": "baseline",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN"
+  },
+  "status": 200,
+  "ms": 1721,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 3.5062083333333334,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 168298,
+   "data_offset": 44,
+   "duration_s": 3.506
+  },
+  "magic": "52494646",
+  "request_id": "20261014_ef573714-f27e-40c4-9382-98c5f5f6a039",
+  "saved": "baseline.wav"
+ },
+ "pitch_0.4": {
+  "label": "pitch_0.4",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN",
+   "pitch": "0.4"
+  },
+  "status": 200,
+  "ms": 1629,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 3.4031666666666665,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 163352,
+   "data_offset": 44,
+   "duration_s": 3.403
+  },
+  "magic": "52494646",
+  "request_id": "20261014_d01a3dd1-a8c0-4fa2-ab68-97e1bc0c9371",
+  "saved": "pitch_0.4.wav"
+ },
+ "pitch_-0.4": {
+  "label": "pitch_-0.4",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN",
+   "pitch": "-0.4"
+  },
+  "status": 200,
+  "ms": 1564,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 3.134708333333333,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 150466,
+   "data_offset": 44,
+   "duration_s": 3.135
+  },
+  "magic": "52494646",
+  "request_id": "20261014_a3a32b4e-0113-4434-aaf5-1bd97e310edd",
+  "saved": "pitch_-0.4.wav"
+ },
+ "loudness_2.0": {
+  "label": "loudness_2.0",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN",
+   "loudness": "2.0"
+  },
+  "status": 200,
+  "ms": 1850,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 3.9938333333333333,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 191704,
+   "data_offset": 44,
+   "duration_s": 3.994
+  },
+  "magic": "52494646",
+  "request_id": "20261014_bf3b3c0c-2df2-4df7-a3a4-f3ff83b71a3a",
+  "saved": "loudness_2.0.wav"
+ },
+ "loudness_0.4": {
+  "label": "loudness_0.4",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN",
+   "loudness": "0.4"
+  },
+  "status": 200,
+  "ms": 1632,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 3.0302083333333334,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 145450,
+   "data_offset": 44,
+   "duration_s": 3.03
+  },
+  "magic": "52494646",
+  "request_id": "20261014_3bea1f94-2eb1-4edb-bb03-8fa9d98bc4a9",
+  "saved": "loudness_0.4.wav"
+ },
+ "pace_1.5": {
+  "label": "pace_1.5",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN",
+   "pace": "1.5"
+  },
+  "status": 200,
+  "ms": 1571,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 2.2663333333333333,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 108784,
+   "data_offset": 44,
+   "duration_s": 2.266
+  },
+  "magic": "52494646",
+  "request_id": "20261014_b4fc2dcb-c964-4df0-a83e-bd5befeb674d",
+  "saved": "pace_1.5.wav"
+ },
+ "pace_0.7": {
+  "label": "pace_0.7",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN",
+   "pace": "0.7"
+  },
+  "status": 200,
+  "ms": 2143,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 5.313666666666666,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 255056,
+   "data_offset": 44,
+   "duration_s": 5.314
+  },
+  "magic": "52494646",
+  "request_id": "20261014_6332ed53-a35b-47ef-acf2-c5997052b04e",
+  "saved": "pace_0.7.wav"
+ },
+ "pace_2.5": {
+  "label": "pace_2.5",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN",
+   "pace": "2.5"
+  },
+  "status": 400,
+  "ms": 135,
+  "error": "{\"error\":{\"message\":\"Validation Error(s):\\n- pace: Input should be less than or equal to 2\",\"code\":\"invalid_request_error\",\"request_id\":\"\"}}"
+ },
+ "enable_qc": {
+  "label": "enable_qc",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "ta-IN",
+   "enable_qc": "true"
+  },
+  "status": 200,
+  "ms": 2161,
+  "response_keys": [
+   "audio",
+   "audio_b64",
+   "audio_duration",
+   "request_id"
+  ],
+  "audio_duration": 2.890875,
+  "audio_equals_audio_b64": true,
+  "wav": {
+   "format": 1,
+   "channels": 1,
+   "sample_rate": 24000,
+   "bits": 16,
+   "data_size_header": 138762,
+   "data_offset": 44,
+   "duration_s": 2.891
+  },
+  "magic": "52494646",
+  "request_id": "20261014_fc8154a7-a383-4268-96d8-1924e0777d15"
+ },
+ "bad_lang": {
+  "label": "bad_lang",
+  "fields": {
+   "output_audio_codec": "wav",
+   "speech_sample_rate": "24000",
+   "text": "கண்ணா, நான் சாப்பிட்டேன். நீ சாப்பிட்டியா?",
+   "language_code": "xx-IN"
+  },
+  "status": 400,
+  "ms": 101,
+  "error": "{\"error\":{\"message\":\"Validation Error(s):\\n- language_code: Input should be 'as-IN', 'bn-IN', 'en-IN', 'gu-IN', 'hi-IN', 'kn-IN', 'ml-IN', 'mr-IN', 'od-IN', 'pa-IN', 'ta-IN', 'te-IN' or 'ur-IN'\",\"code\":\"invalid_request_error\",\"request_id\":\"\"}}"
+ },
+ "oneshot_ms": {
+  "runs": [
+   2080,
+   1515,
+   1491
+  ],
+  "median": 1515,
+  "first": 1685
+ },
+ "stream_wav": {
+  "warmup": {
+   "status": 200,
+   "content_type": "audio/wav",
+   "transfer_encoding": "chunked",
+   "magic": "52494646",
+   "wav": {
+    "format": 1,
+    "channels": 1,
+    "sample_rate": 24000,
+    "bits": 16,
+    "data_size_header": 4294967295,
+    "data_offset": 44,
+    "duration_s": 2.995
+   },
+   "first_audio_ms": 2108,
+   "error": null
+  },
+  "runs": [
+   {
+    "status": 200,
+    "ttfb_ms": 1632,
+    "first_audio_ms": 1663,
+    "done_ms": 2237,
+    "bytes": 143822
+   },
+   {
+    "status": 200,
+    "ttfb_ms": 1639,
+    "first_audio_ms": 1639,
+    "done_ms": 1843,
+    "bytes": 134906
+   },
+   {
+    "status": 200,
+    "ttfb_ms": 1537,
+    "first_audio_ms": 1537,
+    "done_ms": 1596,
+    "bytes": 146608
+   },
+   {
+    "status": 200,
+    "ttfb_ms": 1397,
+    "first_audio_ms": 1427,
+    "done_ms": 1497,
+    "bytes": 154968
+   },
+   {
+    "status": 200,
+    "ttfb_ms": 1623,
+    "first_audio_ms": 1651,
+    "done_ms": 1712,
+    "bytes": 153852
+   }
+  ],
+  "median_first_audio_ms": 1639,
+  "median_done_ms": 1712
+ },
+ "stream_mp3": {
+  "warmup": {
+   "status": 200,
+   "content_type": "audio/mpeg",
+   "transfer_encoding": "chunked",
+   "magic": "fff3c4c4",
+   "wav": null,
+   "first_audio_ms": 1468,
+   "error": null
+  },
+  "runs": [
+   {
+    "status": 200,
+    "ttfb_ms": 1566,
+    "first_audio_ms": 1566,
+    "done_ms": 1594,
+    "bytes": 44544
+   },
+   {
+    "status": 200,
+    "ttfb_ms": 1522,
+    "first_audio_ms": 1522,
+    "done_ms": 1544,
+    "bytes": 52608
+   },
+   {
+    "status": 200,
+    "ttfb_ms": 1510,
+    "first_audio_ms": 1510,
+    "done_ms": 1533,
+    "bytes": 54144
+   },
+   {
+    "status": 200,
+    "ttfb_ms": 1542,
+    "first_audio_ms": 1542,
+    "done_ms": 1565,
+    "bytes": 39936
+   },
+   {
+    "status": 200,
+    "ttfb_ms": 1524,
+    "first_audio_ms": 1524,
+    "done_ms": 1547,
+    "bytes": 46080
+   }
+  ],
+  "median_first_audio_ms": 1524,
+  "median_done_ms": 1547
+ },
+ "stream_pitch": {
+  "status": 200,
+  "bytes": 139922,
+  "error": null
+ },
+ "stream_enable_qc": {
+  "status": 200,
+  "bytes": 150510,
+  "error": null
+ },
+ "stream_flac": {
+  "status": 400,
+  "bytes": 174,
+  "error": "{\"error\":{\"message\":\"Validation Error(s):\\n- output_audio_codec: Input should be 'mp3', 'linear16', 'mulaw', 'alaw' or 'wav'\",\"code\":\"invalid_request_error\",\"request_id\":\"\"}}"
+ }
+}

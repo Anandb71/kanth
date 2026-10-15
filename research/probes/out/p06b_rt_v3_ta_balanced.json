@@ -1,0 +1,118 @@
+{
+ "rt_v3_ta_balanced": {
+  "url_params": {
+   "language_code": "ta-IN"
+  },
+  "manual": false,
+  "subprotocol": false,
+  "connect_ms": 374,
+  "audio_s": 4.0,
+  "event_sequence": [
+   "session.begin",
+   "vad.speech_start",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "vad.speech_end",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.partial",
+   "transcript.final",
+   "session.end"
+  ],
+  "session_begin": {
+   "event": "session.begin",
+   "request_id": "20261014_ab756b52-1f6c-4c1f-bfe8-ae3d50088918",
+   "config": {
+    "model": "saaras:v4",
+    "language_code": "ta-IN",
+    "encoding": "linear16",
+    "sample_rate": 16000,
+    "stream_type": "balanced",
+    "mode": "transcribe",
+    "prompt": null,
+    "keyterms": null,
+    "turn_detection": "vad",
+    "threshold": 0.3,
+    "prefix_padding_ms": 300,
+    "silence_duration_ms": 1000,
+    "min_speech_duration_ms": 250,
+    "return_timestamps": false
+   },
+   "_t_since_audio_end_ms": null,
+   "_t_since_start_ms": 378
+  },
+  "first_partial": {
+   "event": "transcript.partial",
+   "utterance_idx": 0,
+   "text": "வணக்கம்",
+   "_t_since_audio_end_ms": null,
+   "_t_since_start_ms": 1296
+  },
+  "n_partials": 43,
+  "vad_speech_end": {
+   "event": "vad.speech_end",
+   "utterance_idx": 0,
+   "confidence": 0.02,
+   "_t_since_audio_end_ms": 1029,
+   "_t_since_start_ms": 5409
+  },
+  "finals": [
+   {
+    "event": "transcript.final",
+    "utterance_idx": 0,
+    "text": "வணக்கம், இன்று வானிலை மிகவும் நன்றாக இருக்கிறது.",
+    "_t_since_audio_end_ms": 1110,
+    "_t_since_start_ms": 5489
+   }
+  ],
+  "session_end": {
+   "event": "session.end",
+   "request_id": "20261014_ab756b52-1f6c-4c1f-bfe8-ae3d50088918",
+   "total_duration_s": 6.59,
+   "total_utterances": 1,
+   "audio_duration_s": 6.5,
+   "_t_since_audio_end_ms": 2537,
+   "_t_since_start_ms": 6917
+  },
+  "errors": [],
+  "final_latency_after_audio_end_ms": 1110
+ }
+}

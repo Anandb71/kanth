@@ -1,0 +1,557 @@
+{
+ "generated": "2026-10-15T02:11:59.600Z",
+ "model": "bulbul:v4-flash",
+ "transport": "rest (synthRest)",
+ "sampleRate": 24000,
+ "note": "Speaker fixed per sentence; only the preset pace/pitch/loudness vary.",
+ "tones": [
+  {
+   "id": "warm",
+   "label": "Warm",
+   "prosody": {
+    "pace": 0.95,
+    "pitch": 0,
+    "loudness": 1
+   }
+  },
+  {
+   "id": "firm",
+   "label": "Firm",
+   "prosody": {
+    "pace": 0.88,
+    "pitch": -0.12,
+    "loudness": 1.45
+   }
+  },
+  {
+   "id": "urgent",
+   "label": "Urgent",
+   "prosody": {
+    "pace": 1.22,
+    "pitch": 0.14,
+    "loudness": 2.1
+   }
+  },
+  {
+   "id": "joking",
+   "label": "Joking",
+   "prosody": {
+    "pace": 1.1,
+    "pitch": 0.2,
+    "loudness": 1.15
+   }
+  },
+  {
+   "id": "whisper",
+   "label": "Quiet",
+   "prosody": {
+    "pace": 0.86,
+    "pitch": -0.05,
+    "loudness": 0.4
+   }
+  }
+ ],
+ "sentences": [
+  {
+   "id": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "text": "आज मेरा appointment है, please मुझे time पर ले चलो।"
+  },
+  {
+   "id": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "text": "मुझे थोड़ा pain हो रहा है, nurse को बुला दो।"
+  },
+  {
+   "id": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "text": "நான் நல்லா இருக்கேன், நீங்க கவலைப்பட வேண்டாம்."
+  }
+ ],
+ "clips": [
+  {
+   "file": "hi1_warm_r1.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "warm",
+   "label": "Warm",
+   "rep": 1,
+   "prosody": {
+    "pace": 0.95,
+    "pitch": 0,
+    "loudness": 1
+   },
+   "audioSec": 2.094,
+   "ts": "2026-10-15T02:11:09.732Z"
+  },
+  {
+   "file": "hi1_firm_r1.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "firm",
+   "label": "Firm",
+   "rep": 1,
+   "prosody": {
+    "pace": 0.88,
+    "pitch": -0.12,
+    "loudness": 1.45
+   },
+   "audioSec": 2.352,
+   "ts": "2026-10-15T02:11:11.372Z"
+  },
+  {
+   "file": "hi1_urgent_r1.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "urgent",
+   "label": "Urgent",
+   "rep": 1,
+   "prosody": {
+    "pace": 1.22,
+    "pitch": 0.14,
+    "loudness": 2.1
+   },
+   "audioSec": 2.228,
+   "ts": "2026-10-15T02:11:13.136Z"
+  },
+  {
+   "file": "hi1_joking_r1.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "joking",
+   "label": "Joking",
+   "rep": 1,
+   "prosody": {
+    "pace": 1.1,
+    "pitch": 0.2,
+    "loudness": 1.15
+   },
+   "audioSec": 2.326,
+   "ts": "2026-10-15T02:11:14.869Z"
+  },
+  {
+   "file": "hi1_whisper_r1.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "whisper",
+   "label": "Quiet",
+   "rep": 1,
+   "prosody": {
+    "pace": 0.86,
+    "pitch": -0.05,
+    "loudness": 0.4
+   },
+   "audioSec": 3.05,
+   "ts": "2026-10-15T02:11:16.630Z"
+  },
+  {
+   "file": "hi2_warm_r1.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "warm",
+   "label": "Warm",
+   "rep": 1,
+   "prosody": {
+    "pace": 0.95,
+    "pitch": 0,
+    "loudness": 1
+   },
+   "audioSec": 1.843,
+   "ts": "2026-10-15T02:11:18.209Z"
+  },
+  {
+   "file": "hi2_firm_r1.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "firm",
+   "label": "Firm",
+   "rep": 1,
+   "prosody": {
+    "pace": 0.88,
+    "pitch": -0.12,
+    "loudness": 1.45
+   },
+   "audioSec": 2.173,
+   "ts": "2026-10-15T02:11:19.831Z"
+  },
+  {
+   "file": "hi2_urgent_r1.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "urgent",
+   "label": "Urgent",
+   "rep": 1,
+   "prosody": {
+    "pace": 1.22,
+    "pitch": 0.14,
+    "loudness": 2.1
+   },
+   "audioSec": 1.632,
+   "ts": "2026-10-15T02:11:21.450Z"
+  },
+  {
+   "file": "hi2_joking_r1.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "joking",
+   "label": "Joking",
+   "rep": 1,
+   "prosody": {
+    "pace": 1.1,
+    "pitch": 0.2,
+    "loudness": 1.15
+   },
+   "audioSec": 1.606,
+   "ts": "2026-10-15T02:11:23.037Z"
+  },
+  {
+   "file": "hi2_whisper_r1.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "whisper",
+   "label": "Quiet",
+   "rep": 1,
+   "prosody": {
+    "pace": 0.86,
+    "pitch": -0.05,
+    "loudness": 0.4
+   },
+   "audioSec": 1.849,
+   "ts": "2026-10-15T02:11:24.603Z"
+  },
+  {
+   "file": "ta1_warm_r1.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "warm",
+   "label": "Warm",
+   "rep": 1,
+   "prosody": {
+    "pace": 0.95,
+    "pitch": 0,
+    "loudness": 1
+   },
+   "audioSec": 2.425,
+   "ts": "2026-10-15T02:11:26.297Z"
+  },
+  {
+   "file": "ta1_firm_r1.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "firm",
+   "label": "Firm",
+   "rep": 1,
+   "prosody": {
+    "pace": 0.88,
+    "pitch": -0.12,
+    "loudness": 1.45
+   },
+   "audioSec": 2.801,
+   "ts": "2026-10-15T02:11:28.010Z"
+  },
+  {
+   "file": "ta1_urgent_r1.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "urgent",
+   "label": "Urgent",
+   "rep": 1,
+   "prosody": {
+    "pace": 1.22,
+    "pitch": 0.14,
+    "loudness": 2.1
+   },
+   "audioSec": 2.04,
+   "ts": "2026-10-15T02:11:29.703Z"
+  },
+  {
+   "file": "ta1_joking_r1.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "joking",
+   "label": "Joking",
+   "rep": 1,
+   "prosody": {
+    "pace": 1.1,
+    "pitch": 0.2,
+    "loudness": 1.15
+   },
+   "audioSec": 2.108,
+   "ts": "2026-10-15T02:11:31.392Z"
+  },
+  {
+   "file": "ta1_whisper_r1.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "whisper",
+   "label": "Quiet",
+   "rep": 1,
+   "prosody": {
+    "pace": 0.86,
+    "pitch": -0.05,
+    "loudness": 0.4
+   },
+   "audioSec": 3.151,
+   "ts": "2026-10-15T02:11:33.164Z"
+  },
+  {
+   "file": "hi1_warm_r2.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "warm",
+   "label": "Warm",
+   "rep": 2,
+   "prosody": {
+    "pace": 0.95,
+    "pitch": 0,
+    "loudness": 1
+   },
+   "audioSec": 3.023,
+   "ts": "2026-10-15T02:11:34.924Z"
+  },
+  {
+   "file": "hi1_firm_r2.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "firm",
+   "label": "Firm",
+   "rep": 2,
+   "prosody": {
+    "pace": 0.88,
+    "pitch": -0.12,
+    "loudness": 1.45
+   },
+   "audioSec": 2.795,
+   "ts": "2026-10-15T02:11:36.667Z"
+  },
+  {
+   "file": "hi1_urgent_r2.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "urgent",
+   "label": "Urgent",
+   "rep": 2,
+   "prosody": {
+    "pace": 1.22,
+    "pitch": 0.14,
+    "loudness": 2.1
+   },
+   "audioSec": 2.104,
+   "ts": "2026-10-15T02:11:38.376Z"
+  },
+  {
+   "file": "hi1_joking_r2.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "joking",
+   "label": "Joking",
+   "rep": 2,
+   "prosody": {
+    "pace": 1.1,
+    "pitch": 0.2,
+    "loudness": 1.15
+   },
+   "audioSec": 2.329,
+   "ts": "2026-10-15T02:11:40.106Z"
+  },
+  {
+   "file": "hi1_whisper_r2.wav",
+   "sentence": "hi1",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "whisper",
+   "label": "Quiet",
+   "rep": 2,
+   "prosody": {
+    "pace": 0.86,
+    "pitch": -0.05,
+    "loudness": 0.4
+   },
+   "audioSec": 3.245,
+   "ts": "2026-10-15T02:11:41.902Z"
+  },
+  {
+   "file": "hi2_warm_r2.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "warm",
+   "label": "Warm",
+   "rep": 2,
+   "prosody": {
+    "pace": 0.95,
+    "pitch": 0,
+    "loudness": 1
+   },
+   "audioSec": 1.929,
+   "ts": "2026-10-15T02:11:43.510Z"
+  },
+  {
+   "file": "hi2_firm_r2.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "firm",
+   "label": "Firm",
+   "rep": 2,
+   "prosody": {
+    "pace": 0.88,
+    "pitch": -0.12,
+    "loudness": 1.45
+   },
+   "audioSec": 2.169,
+   "ts": "2026-10-15T02:11:45.121Z"
+  },
+  {
+   "file": "hi2_urgent_r2.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "urgent",
+   "label": "Urgent",
+   "rep": 2,
+   "prosody": {
+    "pace": 1.22,
+    "pitch": 0.14,
+    "loudness": 2.1
+   },
+   "audioSec": 1.766,
+   "ts": "2026-10-15T02:11:46.753Z"
+  },
+  {
+   "file": "hi2_joking_r2.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "joking",
+   "label": "Joking",
+   "rep": 2,
+   "prosody": {
+    "pace": 1.1,
+    "pitch": 0.2,
+    "loudness": 1.15
+   },
+   "audioSec": 1.525,
+   "ts": "2026-10-15T02:11:48.320Z"
+  },
+  {
+   "file": "hi2_whisper_r2.wav",
+   "sentence": "hi2",
+   "lang": "hi-IN",
+   "speaker": "shubh_hi_customer",
+   "tone": "whisper",
+   "label": "Quiet",
+   "rep": 2,
+   "prosody": {
+    "pace": 0.86,
+    "pitch": -0.05,
+    "loudness": 0.4
+   },
+   "audioSec": 2.767,
+   "ts": "2026-10-15T02:11:50.037Z"
+  },
+  {
+   "file": "ta1_warm_r2.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "warm",
+   "label": "Warm",
+   "rep": 2,
+   "prosody": {
+    "pace": 0.95,
+    "pitch": 0,
+    "loudness": 1
+   },
+   "audioSec": 2.435,
+   "ts": "2026-10-15T02:11:51.723Z"
+  },
+  {
+   "file": "ta1_firm_r2.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "firm",
+   "label": "Firm",
+   "rep": 2,
+   "prosody": {
+    "pace": 0.88,
+    "pitch": -0.12,
+    "loudness": 1.45
+   },
+   "audioSec": 2.984,
+   "ts": "2026-10-15T02:11:53.478Z"
+  },
+  {
+   "file": "ta1_urgent_r2.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "urgent",
+   "label": "Urgent",
+   "rep": 2,
+   "prosody": {
+    "pace": 1.22,
+    "pitch": 0.14,
+    "loudness": 2.1
+   },
+   "audioSec": 2.087,
+   "ts": "2026-10-15T02:11:55.211Z"
+  },
+  {
+   "file": "ta1_joking_r2.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "joking",
+   "label": "Joking",
+   "rep": 2,
+   "prosody": {
+    "pace": 1.1,
+    "pitch": 0.2,
+    "loudness": 1.15
+   },
+   "audioSec": 2.184,
+   "ts": "2026-10-15T02:11:56.901Z"
+  },
+  {
+   "file": "ta1_whisper_r2.wav",
+   "sentence": "ta1",
+   "lang": "ta-IN",
+   "speaker": "vijay_ta_narration",
+   "tone": "whisper",
+   "label": "Quiet",
+   "rep": 2,
+   "prosody": {
+    "pace": 0.86,
+    "pitch": -0.05,
+    "loudness": 0.4
+   },
+   "audioSec": 2.688,
+   "ts": "2026-10-15T02:11:58.591Z"
+  }
+ ],
+ "failures": []
+}

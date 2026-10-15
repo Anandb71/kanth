@@ -1,0 +1,232 @@
+warm-ups done: [{"model":"bulbul:v4-flash","text":"ta","transport":"ws","wallMs":602},{"model":"bulbul:v4-flash","text":"hi","transport":"ws","wallMs":565},{"model":"bulbul:v3","text":"ta","transport":"ws","wallMs":694},{"model":"bulbul:v3","text":"hi","transport":"ws","wallMs":533}]
+clone pre-flight: {"voice":"banked","wallMs":2051}
+  1/228 v3/rest                ta #9 ttfa 821 total 821 audio 2.762s
+  2/228 v3/ws-warm             hi #1 ttfa 251.6 total 511 audio 2.501s
+  3/228 v3/http-stream         en #10 ttfa 270.9 total 497.4 audio 2.213s
+  4/228 clone/http-stream      en #4 ttfa 1418.8 total 1480.9 audio 3.18s
+  5/228 v3/http-stream         ta #3 ttfa 274.7 total 816 audio 4.01s
+  6/228 v4-flash/rest          hi #3 ttfa 633.9 total 633.9 audio 2.097s
+  7/228 v3/rest                ta #8 ttfa 660.3 total 660.3 audio 2.582s
+  8/228 v3/ws-warm             en #4 ttfa 252.4 total 457.4 audio 2.319s
+  9/228 clone/rest             hi #1 ttfa 2086 total 2086 audio 4.631s
+ 10/228 v4-flash/ws-cold       hi #1 ttfa 483.1 total 784.9 audio 2.978s
+ 11/228 v3/rest                en #5 ttfa 709.2 total 709.2 audio 2.402s
+ 12/228 v4-flash/http-stream   ta #6 ttfa 308.9 total 588.3 audio 2.437s
+ 13/228 v3/rest                ta #7 ttfa 658.9 total 658.9 audio 2.582s
+ 14/228 v4-flash/http-stream   en #3 ttfa 311.5 total 661.2 audio 3.048s
+ 15/228 v3/ws-warm             ta #10 ttfa 248.4 total 536.7 audio 2.789s
+ 16/228 v4-flash/ws-warm       ta #8 ttfa 292.1 total 579.7 audio 2.622s
+ 17/228 v3/ws-warm             ta #8 ttfa 240.4 total 536.1 audio 2.772s
+ 18/228 clone/rest             en #4 ttfa 1880.1 total 1880.1 audio 3.275s
+ 19/228 v3/ws-warm             en #6 ttfa 241.8 total 539.5 audio 2.772s
+ 20/228 v4-flash/ws-cold       hi #4 ttfa 800.6 total 1039.9 audio 2.303s
+ 21/228 v4-flash/rest          hi #8 ttfa 689.8 total 689.8 audio 2.434s
+ 22/228 clone/http-stream      ta #1 ttfa 1552.2 total 1603.4 audio 3.146s
+ 23/228 v4-flash/http-stream   en #7 ttfa 373.1 total 740.1 audio 2.95s
+ 24/228 v4-flash/rest          ta #1 ttfa 770.1 total 770.2 audio 2.936s
+ 25/228 clone/http-stream      ta #3 ttfa 1532.3 total 1591.1 audio 3.056s
+ 26/228 v4-flash/ws-warm       en #4 ttfa 378.3 total 670.3 audio 2.974s
+ 27/228 v3/ws-warm             hi #8 ttfa 260.6 total 540.7 audio 2.772s
+ 28/228 v4-flash/rest          hi #7 ttfa 641.3 total 641.3 audio 2.18s
+ 29/228 v4-flash/ws-warm       en #3 ttfa 303.1 total 635.6 audio 2.976s
+ 30/228 v4-flash/ws-cold       hi #3 ttfa 431.5 total 634.4 audio 2.219s
+ 31/228 v3/http-stream         en #3 ttfa 264.9 total 604.7 audio 2.836s
+ 32/228 v3/rest                ta #4 ttfa 770.1 total 770.1 audio 3.121s
+ 33/228 clone/http-stream      ta #2 ttfa 1733.6 total 1794.1 audio 2.969s
+ 34/228 v3/http-stream         ta #6 ttfa 354 total 586.3 audio 2.419s
+ 35/228 v3/http-stream         ta #7 ttfa 270.9 total 542.3 audio 2.477s
+ 36/228 v4-flash/ws-warm       hi #2 ttfa 304.2 total 613 audio 2.71s
+ 37/228 v3/ws-warm             hi #2 ttfa 246.2 total 509.8 audio 2.582s
+ 38/228 v4-flash/ws-warm       en #6 ttfa 304.5 total 833.1 audio 4.404s
+ 39/228 v4-flash/ws-warm       ta #2 ttfa 304 total 581.5 audio 2.621s
+ 40/228 v4-flash/http-stream   hi #6 ttfa 445.5 total 745 audio 2.78s
+ 41/228 v4-flash/http-stream   en #5 ttfa 322.8 total 775.4 audio 3.541s
+ 42/228 v4-flash/http-stream   ta #2 ttfa 319.8 total 677.6 audio 2.958s
+ 43/228 v4-flash/rest          en #1 ttfa 847.9 total 847.9 audio 3.262s
+ 44/228 v4-flash/ws-cold       en #3 ttfa 481.4 total 931.5 audio 3.562s
+ 45/228 v4-flash/rest          en #3 ttfa 787 total 787 audio 2.766s
+ 46/228 clone/rest             hi #3 ttfa 2218.9 total 2218.9 audio 3.801s
+ 47/228 v3/rest                hi #5 ttfa 774.9 total 774.9 audio 2.672s
+ 48/228 v4-flash/http-stream   en #8 ttfa 322.6 total 681.6 audio 2.962s
+ 49/228 v3/ws-warm             ta #3 ttfa 242.6 total 579.9 audio 3.053s
+ 50/228 clone/http-stream      ta #4 ttfa 1629 total 1692 audio 3.242s
+ 51/228 v3/http-stream         hi #8 ttfa 266.5 total 570 audio 2.667s
+ 52/228 v4-flash/rest          hi #9 ttfa 683.1 total 683.1 audio 2.347s
+ 53/228 v4-flash/http-stream   en #10 ttfa 307.6 total 761.7 audio 3.64s
+ 54/228 v4-flash/ws-cold       hi #2 ttfa 564.8 total 768.3 audio 2.128s
+ 55/228 v3/rest                hi #2 ttfa 662.3 total 662.3 audio 2.672s
+ 56/228 v3/ws-warm             ta #2 ttfa 244.6 total 573 audio 2.942s
+ 57/228 v3/http-stream         en #9 ttfa 282.3 total 550 audio 2.477s
+ 58/228 v4-flash/ws-warm       hi #7 ttfa 311.6 total 531.5 audio 2.223s
+ 59/228 v4-flash/rest          ta #8 ttfa 686.6 total 686.6 audio 2.35s
+ 60/228 v4-flash/rest          en #8 ttfa 1023.6 total 1023.6 audio 4.283s
+ 61/228 v3/ws-cold             ta #1 ttfa 382.5 total 664.8 audio 2.866s
+ 62/228 v4-flash/rest          en #9 ttfa 801.7 total 801.7 audio 3.009s
+ 63/228 v4-flash/ws-warm       en #2 ttfa 300.9 total 639.5 audio 3.059s
+ 64/228 v4-flash/rest          ta #6 ttfa 725.2 total 725.2 audio 2.596s
+ 65/228 v4-flash/ws-warm       en #10 ttfa 304.8 total 673.4 audio 3.297s
+ 66/228 v3/rest                en #2 ttfa 640.7 total 640.7 audio 2.423s
+ 67/228 v3/http-stream         hi #1 ttfa 294.4 total 576 audio 2.394s
+ 68/228 clone/http-stream      hi #4 ttfa 1657.4 total 1737.3 audio 4.13s
+ 69/228 clone/http-stream      hi #3 ttfa 1665 total 1792.5 audio 3.885s
+ 70/228 clone/http-stream      hi #2 ttfa 1794.3 total 1863.5 audio 3.669s
+ 71/228 v4-flash/rest          ta #3 ttfa 689.2 total 689.2 audio 2.514s
+ 72/228 v4-flash/http-stream   ta #3 ttfa 316 total 605 audio 2.52s
+ 73/228 v4-flash/ws-warm       ta #3 ttfa 293.3 total 552.1 audio 2.456s
+ 74/228 v3/ws-warm             ta #7 ttfa 241.2 total 557.2 audio 2.866s
+ 75/228 v3/rest                hi #6 ttfa 659.5 total 659.5 audio 2.582s
+ 76/228 v4-flash/rest          ta #10 ttfa 743.2 total 743.2 audio 2.598s
+ 77/228 v4-flash/http-stream   hi #2 ttfa 306.6 total 541.8 audio 2.091s
+ 78/228 v3/ws-cold             en #2 ttfa 391.2 total 619.3 audio 2.568s
+ 79/228 v3/http-stream         en #7 ttfa 283.1 total 680.7 audio 3.112s
+ 80/228 clone/http-stream      en #2 ttfa 1694.5 total 1754.5 audio 3.183s
+ 81/228 v4-flash/http-stream   hi #3 ttfa 353.7 total 614 audio 2.12s
+ 82/228 clone/rest             en #3 ttfa 1942.2 total 1942.2 audio 3.295s
+ 83/228 v4-flash/ws-cold       ta #3 ttfa 421.3 total 710 audio 2.796s
+ 84/228 clone/rest             ta #1 ttfa 1407 total 1407 audio 2.702s
+ 85/228 v3/http-stream         hi #9 ttfa 359.3 total 515.5 audio 2.042s
+ 86/228 v3/ws-warm             hi #7 ttfa 243.9 total 539.7 audio 2.772s
+ 87/228 clone/rest             ta #3 ttfa 1331.3 total 1331.3 audio 3.056s
+ 88/228 v4-flash/ws-cold       ta #4 ttfa 458.5 total 680.8 audio 2.444s
+ 89/228 v4-flash/ws-cold       ta #1 ttfa 426.4 total 667.2 audio 2.539s
+ 90/228 v3/http-stream         en #4 ttfa 274.6 total 566.4 audio 2.573s
+ 91/228 v3/rest                en #10 ttfa 670.9 total 670.9 audio 2.6s
+ 92/228 v3/ws-warm             ta #5 ttfa 240 total 536.3 audio 2.772s
+ 93/228 v3/ws-cold             ta #3 ttfa 383.9 total 628.9 audio 2.677s
+ 94/228 v4-flash/http-stream   hi #4 ttfa 321.7 total 576.8 audio 2.214s
+ 95/228 v4-flash/ws-cold       en #2 ttfa 454.2 total 828.2 audio 3.469s
+ 96/228 v4-flash/http-stream   en #1 ttfa 326 total 674.1 audio 3.034s
+ 97/228 v4-flash/http-stream   ta #7 ttfa 312.4 total 611.6 audio 2.615s
+ 98/228 v4-flash/ws-warm       hi #9 ttfa 303.9 total 536.1 audio 2.308s
+ 99/228 v3/rest                ta #6 ttfa 686.9 total 686.9 audio 2.493s
+100/228 v4-flash/rest          hi #6 ttfa 634.6 total 634.6 audio 2.093s
+101/228 v3/ws-warm             hi #6 ttfa 250 total 507.5 audio 2.566s
+102/228 v3/ws-cold             ta #4 ttfa 379.9 total 644.6 audio 2.787s
+103/228 v4-flash/rest          en #5 ttfa 889.3 total 889.3 audio 3.605s
+104/228 v4-flash/http-stream   hi #10 ttfa 314.4 total 569 audio 2.2s
+105/228 v3/http-stream         hi #2 ttfa 278.3 total 562.2 audio 2.48s
+106/228 v3/rest                en #7 ttfa 677.9 total 677.9 audio 2.511s
+107/228 clone/rest             ta #2 ttfa 1582.1 total 1582.1 audio 3.043s
+108/228 v4-flash/ws-warm       hi #5 ttfa 302.4 total 568.5 audio 2.305s
+109/228 v3/http-stream         en #1 ttfa 264.1 total 547.7 audio 2.401s
+110/228 v4-flash/ws-warm       en #1 ttfa 306.9 total 733.7 audio 3.623s
+111/228 v3/ws-cold             hi #3 ttfa 417.9 total 594.7 audio 2.223s
+112/228 v3/ws-warm             en #3 ttfa 254.5 total 544.4 audio 2.677s
+113/228 v3/rest                ta #10 ttfa 646.2 total 646.2 audio 2.582s
+114/228 v4-flash/ws-warm       hi #8 ttfa 3001.8 total 3024.3 audio 2.209s
+115/228 clone/rest             en #2 ttfa 1617 total 1617 audio 3.496s
+116/228 v3/rest                hi #10 ttfa 850.3 total 850.3 audio 2.582s
+117/228 v3/ws-cold             en #3 ttfa 413.2 total 658.2 audio 2.678s
+118/228 v3/ws-warm             ta #9 ttfa 244.5 total 519.6 audio 2.677s
+119/228 v3/http-stream         en #8 ttfa 269.6 total 549.1 audio 2.479s
+120/228 v3/http-stream         hi #4 ttfa 311.4 total 597 audio 2.573s
+121/228 v4-flash/rest          en #6 ttfa 841.3 total 841.3 audio 3.185s
+122/228 v4-flash/http-stream   ta #1 ttfa 308.5 total 623 audio 2.693s
+123/228 v3/rest                ta #1 ttfa 685.2 total 685.2 audio 2.762s
+124/228 v3/http-stream         ta #10 ttfa 260.2 total 582.2 audio 2.76s
+125/228 v4-flash/ws-warm       ta #1 ttfa 306.3 total 612.3 audio 2.785s
+126/228 v4-flash/rest          en #10 ttfa 815.1 total 815.1 audio 3.093s
+127/228 v4-flash/ws-warm       hi #1 ttfa 308.9 total 521 audio 2.13s
+128/228 v3/ws-warm             hi #10 ttfa 250.8 total 543.3 audio 2.772s
+129/228 v3/ws-warm             en #8 ttfa 246.6 total 500.1 audio 2.499s
+130/228 v3/http-stream         ta #2 ttfa 267.2 total 603.6 audio 2.82s
+131/228 v3/http-stream         hi #5 ttfa 288.9 total 561.2 audio 2.463s
+132/228 v4-flash/rest          en #2 ttfa 744.3 total 744.3 audio 2.764s
+133/228 v4-flash/rest          hi #5 ttfa 667.3 total 667.3 audio 2.344s
+134/228 v3/http-stream         ta #9 ttfa 269.6 total 542.1 audio 2.477s
+135/228 v3/ws-warm             hi #4 ttfa 238.7 total 505 audio 2.582s
+136/228 v4-flash/http-stream   ta #8 ttfa 322.2 total 609.5 audio 2.512s
+137/228 v3/rest                ta #5 ttfa 628.9 total 628.9 audio 2.493s
+138/228 v3/rest                hi #1 ttfa 679.9 total 679.9 audio 2.672s
+139/228 v4-flash/ws-cold       en #1 ttfa 456.2 total 791.9 audio 3.058s
+140/228 v4-flash/rest          en #7 ttfa 841.2 total 841.2 audio 3.178s
+141/228 v3/rest                ta #3 ttfa 645.8 total 645.8 audio 2.582s
+142/228 v3/ws-cold             en #4 ttfa 400.1 total 589.1 audio 2.319s
+143/228 v4-flash/http-stream   ta #10 ttfa 339 total 697.4 audio 2.976s
+144/228 v4-flash/ws-warm       en #7 ttfa 307.1 total 717.9 audio 3.561s
+145/228 clone/rest             ta #4 ttfa 1699.1 total 1699.1 audio 2.873s
+146/228 v3/ws-cold             ta #2 ttfa 376.9 total 628.3 audio 2.677s
+147/228 v4-flash/http-stream   hi #8 ttfa 334 total 685.3 audio 2.875s
+148/228 v3/ws-warm             en #7 ttfa 243.8 total 496.3 audio 2.498s
+149/228 v3/ws-warm             hi #9 ttfa 238.7 total 489.1 audio 2.497s
+150/228 v4-flash/ws-warm       ta #6 ttfa 293.4 total 576.8 audio 2.62s
+151/228 v4-flash/http-stream   hi #1 ttfa 304 total 578.5 audio 2.432s
+152/228 v4-flash/ws-warm       en #9 ttfa 303.2 total 780.8 audio 4.05s
+153/228 v4-flash/rest          ta #2 ttfa 721.2 total 721.2 audio 2.601s
+154/228 v3/rest                en #8 ttfa 785.8 total 785.8 audio 3.14s
+155/228 v3/http-stream         en #2 ttfa 280 total 601.3 audio 2.76s
+156/228 v4-flash/rest          en #4 ttfa 958.8 total 958.8 audio 3.948s
+157/228 v4-flash/ws-warm       hi #3 ttfa 302.6 total 578.7 audio 2.623s
+158/228 v4-flash/rest          hi #2 ttfa 616.3 total 616.3 audio 2.008s
+159/228 v3/http-stream         hi #3 ttfa 274.2 total 508.6 audio 2.307s
+160/228 v4-flash/http-stream   en #2 ttfa 322.5 total 675.2 audio 2.859s
+161/228 v3/ws-warm             en #10 ttfa 240 total 565.8 audio 2.932s
+162/228 v3/rest                hi #3 ttfa 654.6 total 654.6 audio 2.582s
+163/228 v3/ws-warm             hi #3 ttfa 244.6 total 517.8 audio 2.572s
+164/228 v3/http-stream         ta #5 ttfa 268.9 total 591.6 audio 2.76s
+165/228 v4-flash/ws-warm       en #8 ttfa 313.9 total 639.5 audio 2.98s
+166/228 v3/http-stream         hi #10 ttfa 277.1 total 567.7 audio 2.573s
+167/228 v4-flash/http-stream   hi #9 ttfa 314 total 550 audio 2.098s
+168/228 v3/http-stream         ta #1 ttfa 263.2 total 550.3 audio 2.573s
+169/228 v3/ws-warm             ta #4 ttfa 242.4 total 536.9 audio 2.772s
+170/228 v4-flash/http-stream   en #6 ttfa 316.3 total 672.7 audio 3.037s
+171/228 v4-flash/ws-warm       ta #5 ttfa 306.7 total 614.8 audio 2.801s
+172/228 v4-flash/ws-cold       en #4 ttfa 434.2 total 869.6 audio 3.919s
+173/228 v3/http-stream         en #6 ttfa 266 total 536.3 audio 2.454s
+174/228 v4-flash/http-stream   en #4 ttfa 326.1 total 802.7 audio 3.831s
+175/228 v4-flash/rest          hi #4 ttfa 637.4 total 637.4 audio 2.167s
+176/228 v4-flash/ws-warm       hi #6 ttfa 299.3 total 522.2 audio 2.225s
+177/228 clone/http-stream      en #1 ttfa 1755.5 total 1824.6 audio 3.496s
+178/228 v3/ws-warm             en #2 ttfa 254.5 total 513 audio 2.506s
+179/228 v4-flash/rest          ta #9 ttfa 699.8 total 699.9 audio 2.522s
+180/228 v4-flash/http-stream   hi #7 ttfa 306.9 total 586.5 audio 2.433s
+181/228 v4-flash/ws-warm       ta #9 ttfa 311.2 total 566.3 audio 2.536s
+182/228 v3/rest                hi #9 ttfa 601.6 total 601.6 audio 2.223s
+183/228 v3/ws-warm             hi #5 ttfa 243.1 total 509 audio 2.587s
+184/228 clone/rest             en #1 ttfa 1527.1 total 1527.1 audio 3.475s
+185/228 v3/http-stream         ta #8 ttfa 375.5 total 636.1 audio 2.667s
+186/228 clone/rest             hi #4 ttfa 1641.1 total 1641.1 audio 4.554s
+187/228 v3/rest                en #9 ttfa 626.1 total 626.1 audio 2.314s
+188/228 v4-flash/ws-warm       hi #4 ttfa 320.8 total 610.5 audio 2.803s
+189/228 v4-flash/rest          ta #4 ttfa 735.8 total 735.8 audio 2.767s
+190/228 v4-flash/ws-warm       en #5 ttfa 316.9 total 701.7 audio 3.469s
+191/228 v4-flash/rest          hi #10 ttfa 661.9 total 661.9 audio 2.177s
+192/228 v3/http-stream         en #5 ttfa 272.1 total 556.4 audio 2.573s
+193/228 v3/ws-cold             hi #4 ttfa 394.5 total 625.7 audio 2.506s
+194/228 v3/ws-warm             en #1 ttfa 246.7 total 573.1 audio 2.942s
+195/228 v3/ws-cold             en #1 ttfa 434.6 total 631.5 audio 2.506s
+196/228 v3/rest                en #1 ttfa 698.9 total 698.9 audio 2.843s
+197/228 v3/ws-warm             en #5 ttfa 243.6 total 488.5 audio 2.506s
+198/228 v4-flash/http-stream   ta #5 ttfa 322.3 total 613.3 audio 2.513s
+199/228 v4-flash/rest          hi #1 ttfa 640.9 total 640.9 audio 2.183s
+200/228 v3/http-stream         hi #6 ttfa 267.3 total 584.4 audio 2.667s
+201/228 v3/rest                en #3 ttfa 573.5 total 573.5 audio 2.241s
+202/228 v3/ws-warm             en #9 ttfa 244 total 473.6 audio 2.413s
+203/228 v4-flash/http-stream   ta #9 ttfa 334.3 total 654 audio 2.69s
+204/228 v4-flash/http-stream   hi #5 ttfa 316 total 561.1 audio 2.201s
+205/228 v4-flash/http-stream   ta #4 ttfa 330.7 total 600.6 audio 2.429s
+206/228 v3/rest                hi #8 ttfa 598.1 total 598.1 audio 2.223s
+207/228 v3/ws-warm             ta #6 ttfa 241.6 total 534.4 audio 2.772s
+208/228 v3/rest                hi #4 ttfa 680.7 total 680.7 audio 2.672s
+209/228 v4-flash/rest          ta #7 ttfa 699 total 699 audio 2.519s
+210/228 v3/rest                hi #7 ttfa 666.8 total 666.8 audio 2.582s
+211/228 v4-flash/ws-warm       ta #4 ttfa 298.4 total 583.3 audio 2.618s
+212/228 v4-flash/ws-warm       hi #10 ttfa 307.9 total 556.7 audio 2.441s
+213/228 clone/rest             hi #2 ttfa 2152.3 total 2152.3 audio 3.969s
+214/228 v4-flash/ws-cold       ta #2 ttfa 466 total 738.1 audio 2.716s
+215/228 v3/http-stream         hi #7 ttfa 273.2 total 500.2 audio 2.213s
+216/228 clone/http-stream      en #3 ttfa 1566.5 total 1629.4 audio 3.275s
+217/228 v4-flash/ws-warm       ta #7 ttfa 296.6 total 590.5 audio 2.718s
+218/228 v3/ws-warm             ta #1 ttfa 246.8 total 504.8 audio 2.587s
+219/228 v3/ws-cold             hi #1 ttfa 385.3 total 668.9 audio 2.655s
+220/228 clone/http-stream      hi #1 ttfa 1489.4 total 1567.4 audio 4.062s
+221/228 v4-flash/http-stream   en #9 ttfa 401.9 total 720.5 audio 2.863s
+222/228 v4-flash/rest          ta #5 ttfa 698.2 total 698.2 audio 2.346s
+223/228 v4-flash/ws-warm       ta #10 ttfa 299.2 total 560 audio 2.534s
+224/228 v3/ws-cold             hi #2 ttfa 539.8 total 838.5 audio 2.942s
+225/228 v3/rest                en #4 ttfa 567.6 total 567.6 audio 2.151s
+226/228 v3/http-stream         ta #4 ttfa 260 total 565.4 audio 2.667s
+227/228 v3/rest                en #6 ttfa 609.1 total 609.1 audio 2.313s
+228/228 v3/rest                ta #2 ttfa 641 total 641 audio 2.493s
+done
+exit 0

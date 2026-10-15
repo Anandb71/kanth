@@ -1,0 +1,18 @@
+# Secrets: the Sarvam key lives only in .env on the machine running the server.
+.env
+.env.*
+!.env.example
+
+# Dependencies and builds
+node_modules/
+dist/
+.venv/
+.venv-*/
+__pycache__/
+*.pyc
+
+# Local scratch
+film/.frames/
+film/out/
+.shots/
+research/docs/

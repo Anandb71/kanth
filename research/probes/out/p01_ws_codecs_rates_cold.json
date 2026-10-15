@@ -1,0 +1,238 @@
+{
+ "codecs": {
+  "mp3": {
+   "ttfa_ms": 257,
+   "types": [
+    "audio",
+    "audio",
+    "event"
+   ],
+   "first": {
+    "content_type": "audio/mpeg",
+    "magic": "fff3c8c4"
+   },
+   "audio_bytes": 12672,
+   "n_audio_msgs": 2
+  },
+  "wav": {
+   "ttfa_ms": 104,
+   "types": [
+    "audio",
+    "audio",
+    "event"
+   ],
+   "first": {
+    "content_type": "audio/wav",
+    "magic": "52494646"
+   },
+   "audio_bytes": 22044,
+   "n_audio_msgs": 2,
+   "wav_header": {
+    "format": 1,
+    "channels": 1,
+    "sample_rate": 16000,
+    "bits": 16,
+    "data_size_header": 4294967295,
+    "data_offset": 44,
+    "duration_s": 0.688
+   }
+  },
+  "linear16": {
+   "ttfa_ms": 290,
+   "types": [
+    "audio",
+    "event"
+   ],
+   "first": {
+    "content_type": "audio/pcm",
+    "magic": "00000000"
+   },
+   "audio_bytes": 22000,
+   "n_audio_msgs": 1
+  },
+  "pcm": {
+   "ttfa_ms": null,
+   "types": [
+    "error"
+   ],
+   "first": {
+    "type": "error",
+    "data": {
+     "request_id": "20261014_2ab2f5f8-d7ea-4c8f-8d93-9192465ff505",
+     "message": "Input parameters has to be a valid dictionary",
+     "code": 422
+    },
+    "t_ms": 29
+   },
+   "audio_bytes": 0,
+   "n_audio_msgs": 0
+  },
+  "opus": {
+   "ttfa_ms": 370,
+   "types": [
+    "audio",
+    "audio",
+    "event"
+   ],
+   "first": {
+    "content_type": "audio/opus",
+    "magic": "4f676753"
+   },
+   "audio_bytes": 11850,
+   "n_audio_msgs": 2
+  },
+  "flac": {
+   "ttfa_ms": 288,
+   "types": [
+    "audio",
+    "event"
+   ],
+   "first": {
+    "content_type": "audio/flac",
+    "magic": "664c6143"
+   },
+   "audio_bytes": 14402,
+   "n_audio_msgs": 1
+  },
+  "aac": {
+   "ttfa_ms": 257,
+   "types": [
+    "audio",
+    "audio",
+    "event"
+   ],
+   "first": {
+    "content_type": "audio/aac",
+    "magic": "fff16040"
+   },
+   "audio_bytes": 7093,
+   "n_audio_msgs": 2
+  },
+  "mulaw": {
+   "ttfa_ms": 371,
+   "types": [
+    "audio",
+    "event"
+   ],
+   "first": {
+    "content_type": "audio/mulaw",
+    "magic": "ffffffff"
+   },
+   "audio_bytes": 9900,
+   "n_audio_msgs": 1
+  },
+  "alaw": {
+   "ttfa_ms": 265,
+   "types": [
+    "audio",
+    "event"
+   ],
+   "first": {
+    "content_type": "audio/alaw",
+    "magic": "d5d5d5d5"
+   },
+   "audio_bytes": 11000,
+   "n_audio_msgs": 1
+  }
+ },
+ "rates": {
+  "8000": {
+   "ttfa_ms": 108,
+   "wav": {
+    "format": 1,
+    "channels": 1,
+    "sample_rate": 8000,
+    "bits": 16,
+    "data_size_header": 4294967295,
+    "data_offset": 44,
+    "duration_s": 0.55
+   },
+   "error": null
+  },
+  "16000": {
+   "ttfa_ms": 108,
+   "wav": {
+    "format": 1,
+    "channels": 1,
+    "sample_rate": 16000,
+    "bits": 16,
+    "data_size_header": 4294967295,
+    "data_offset": 44,
+    "duration_s": 0.619
+   },
+   "error": null
+  },
+  "22050": {
+   "ttfa_ms": 111,
+   "wav": {
+    "format": 1,
+    "channels": 1,
+    "sample_rate": 22050,
+    "bits": 16,
+    "data_size_header": 4294967295,
+    "data_offset": 44,
+    "duration_s": 0.582
+   },
+   "error": null
+  },
+  "24000": {
+   "ttfa_ms": 102,
+   "wav": {
+    "format": 1,
+    "channels": 1,
+    "sample_rate": 24000,
+    "bits": 16,
+    "data_size_header": 4294967295,
+    "data_offset": 44,
+    "duration_s": 0.72
+   },
+   "error": null
+  },
+  "44100": {
+   "ttfa_ms": null,
+   "wav": null,
+   "error": {
+    "type": "error",
+    "data": {
+     "request_id": "20261014_516015ae-1e05-49d4-9b17-a6c90318140d",
+     "message": "Speech sample rate can only be 8000, 16000, 22050, 24000 Hz",
+     "code": 400
+    },
+    "t_ms": 95
+   }
+  },
+  "48000": {
+   "ttfa_ms": null,
+   "wav": null,
+   "error": {
+    "type": "error",
+    "data": {
+     "request_id": "20261014_66ad4a22-2332-4797-9712-8ddc69236553",
+     "message": "Speech sample rate can only be 8000, 16000, 22050, 24000 Hz",
+     "code": 400
+    },
+    "t_ms": 110
+   }
+  }
+ },
+ "cold": [
+  {
+   "connect_ms": 182,
+   "first_msg_after_text_ms": 105,
+   "ttfa_real_audio_after_text_ms": 287,
+   "total_from_connect_ms": 469
+  },
+  {
+   "connect_ms": 164,
+   "first_msg_after_text_ms": 97,
+   "ttfa_real_audio_after_text_ms": 282,
+   "total_from_connect_ms": 446
+  },
+  {
+   "connect_ms": 166,
+   "first_msg_after_text_ms": 103,
+   "ttfa_real_audio_after_text_ms": 279,
+   "total_from_connect_ms": 445
+  }
+ ]
+}

@@ -1,0 +1,751 @@
+{
+ "conv_schema": {
+  "config": {
+   "model": "sarvam-105b-conversations",
+   "response_format": "json_schema"
+  },
+  "warmup": {
+   "status": 200,
+   "headers_ms": 173,
+   "first_chunk_ms": 190,
+   "ttft_content_ms": 190,
+   "first_reasoning_ms": null,
+   "total_ms": 303,
+   "n_chunks": 19,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 38,
+    "prompt_tokens": 155,
+    "total_tokens": 193,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "reasoning_chars": 0,
+   "valid_json_4": true,
+   "replies": [
+    "ஆமா, சாப்பிட்டேன்.",
+    "இன்னும் சாப்பிடல.",
+    "உனக்கு என்ன வேணும்?",
+    "பரவால, நீ சாப்பிடு."
+   ]
+  },
+  "runs": [
+   {
+    "status": 200,
+    "headers_ms": 61,
+    "first_chunk_ms": 111,
+    "ttft_content_ms": 111,
+    "first_reasoning_ms": null,
+    "total_ms": 218,
+    "n_chunks": 17,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 38,
+     "prompt_tokens": 155,
+     "total_tokens": 193,
+     "completion_tokens_details": null,
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா, சாப்பிட்டேன்.",
+     "இன்னும் சாப்பிடல.",
+     "நீ சாப்பிட்டியா?",
+     "பசிக்குது, சாப்பிடுறேன்."
+    ]
+   },
+   {
+    "status": 200,
+    "headers_ms": 61,
+    "first_chunk_ms": 115,
+    "ttft_content_ms": 115,
+    "first_reasoning_ms": null,
+    "total_ms": 199,
+    "n_chunks": 18,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 41,
+     "prompt_tokens": 155,
+     "total_tokens": 196,
+     "completion_tokens_details": null,
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா, சாப்பிட்டேன்.",
+     "இன்னும் சாப்பிடல.",
+     "பசிக்குது, சாப்பிடுறேன்.",
+     "நீங்க சாப்பிட்டீங்களா?"
+    ]
+   },
+   {
+    "status": 200,
+    "headers_ms": 60,
+    "first_chunk_ms": 88,
+    "ttft_content_ms": 88,
+    "first_reasoning_ms": null,
+    "total_ms": 211,
+    "n_chunks": 21,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 39,
+     "prompt_tokens": 155,
+     "total_tokens": 194,
+     "completion_tokens_details": null,
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா, சாப்பிட்டேன்.",
+     "இல்ல, இன்னும் இல்ல.",
+     "வேற என்ன சமைச்சிருக்க?",
+     "அப்புறம் சாப்பிடுறேன்."
+    ]
+   }
+  ],
+  "median_ttft_ms": 111,
+  "median_total_ms": 211,
+  "valid_json_4": [
+   true,
+   true,
+   true
+  ]
+ },
+ "conv_jsonobj": {
+  "config": {
+   "model": "sarvam-105b-conversations",
+   "response_format": "json_object"
+  },
+  "warmup": {
+   "status": 200,
+   "headers_ms": 157,
+   "first_chunk_ms": 182,
+   "ttft_content_ms": 182,
+   "first_reasoning_ms": null,
+   "total_ms": 285,
+   "n_chunks": 18,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 40,
+    "prompt_tokens": 155,
+    "total_tokens": 195,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "reasoning_chars": 0,
+   "valid_json_4": true,
+   "replies": [
+    "ஆமா, சாப்பிட்டேன்.",
+    "இன்னும் சாப்பிடல.",
+    "நீங்க சாப்பிட்டீங்களா?",
+    "பசிக்குது, சீக்கிரம்."
+   ]
+  },
+  "runs": [
+   {
+    "status": 200,
+    "headers_ms": 65,
+    "first_chunk_ms": 116,
+    "ttft_content_ms": 116,
+    "first_reasoning_ms": null,
+    "total_ms": 178,
+    "n_chunks": 15,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 35,
+     "prompt_tokens": 155,
+     "total_tokens": 190,
+     "completion_tokens_details": null,
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா, சாப்பிட்டேன்.",
+     "இன்னும் சாப்பிடல.",
+     "நீ சாப்பிட்டியா?",
+     "இப்போ சாப்பிடுறேன்."
+    ]
+   },
+   {
+    "status": 200,
+    "headers_ms": 54,
+    "first_chunk_ms": 88,
+    "ttft_content_ms": 88,
+    "first_reasoning_ms": null,
+    "total_ms": 187,
+    "n_chunks": 17,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 39,
+     "prompt_tokens": 155,
+     "total_tokens": 194,
+     "completion_tokens_details": null,
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா, சாப்பிட்டேன்.",
+     "இன்னும் சாப்பிடல.",
+     "நீங்க சாப்பிட்டீங்களா?",
+     "ரொம்ப பசிக்குது."
+    ]
+   },
+   {
+    "status": 200,
+    "headers_ms": 57,
+    "first_chunk_ms": 103,
+    "ttft_content_ms": 104,
+    "first_reasoning_ms": null,
+    "total_ms": 200,
+    "n_chunks": 18,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 37,
+     "prompt_tokens": 155,
+     "total_tokens": 192,
+     "completion_tokens_details": null,
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா, சாப்பிட்டேன்.",
+     "இன்னும் சாப்பிடல.",
+     "சாப்பிடாம இருக்கேன்.",
+     "இப்போ சாப்பிடப் போறேன்."
+    ]
+   }
+  ],
+  "median_ttft_ms": 104,
+  "median_total_ms": 187,
+  "valid_json_4": [
+   true,
+   true,
+   true
+  ]
+ },
+ "conv_plain": {
+  "config": {
+   "model": "sarvam-105b-conversations",
+   "response_format": null
+  },
+  "warmup": {
+   "status": 200,
+   "headers_ms": 112,
+   "first_chunk_ms": 146,
+   "ttft_content_ms": 146,
+   "first_reasoning_ms": null,
+   "total_ms": 228,
+   "n_chunks": 15,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 35,
+    "prompt_tokens": 155,
+    "total_tokens": 190,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "reasoning_chars": 0,
+   "valid_json_4": true,
+   "replies": [
+    "ஆமா, சாப்பிட்டேன்.",
+    "இன்னும் சாப்பிடல.",
+    "நீ சாப்பிட்டியா?",
+    "இப்போ சாப்பிடுறேன்."
+   ]
+  },
+  "runs": [
+   {
+    "status": 200,
+    "headers_ms": 56,
+    "first_chunk_ms": 90,
+    "ttft_content_ms": 90,
+    "first_reasoning_ms": null,
+    "total_ms": 193,
+    "n_chunks": 18,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 38,
+     "prompt_tokens": 155,
+     "total_tokens": 193,
+     "completion_tokens_details": null,
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா, சாப்பிட்டேன்.",
+     "இன்னும் சாப்பிடல.",
+     "நீ சாப்பிட்டியா?",
+     "பசிக்குது, சாப்பிடுறேன்."
+    ]
+   },
+   {
+    "status": 200,
+    "headers_ms": 52,
+    "first_chunk_ms": 91,
+    "ttft_content_ms": 91,
+    "first_reasoning_ms": null,
+    "total_ms": 194,
+    "n_chunks": 18,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 33,
+     "prompt_tokens": 155,
+     "total_tokens": 188,
+     "completion_tokens_details": null,
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா, சாப்பிட்டேன்.",
+     "இன்னும் இல்லப்பா.",
+     "நீ சாப்பிட்டியா?",
+     "சாப்பிடணும் போல."
+    ]
+   },
+   {
+    "status": 200,
+    "headers_ms": 56,
+    "first_chunk_ms": 87,
+    "ttft_content_ms": 88,
+    "first_reasoning_ms": null,
+    "total_ms": 205,
+    "n_chunks": 20,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 40,
+     "prompt_tokens": 155,
+     "total_tokens": 195,
+     "completion_tokens_details": null,
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா, சாப்பிட்டேன்",
+     "இன்னும் சாப்பிடலப்பா",
+     "வேற என்ன பண்ற?",
+     "சாப்பிட்டது நல்லா இருந்ததா?"
+    ]
+   }
+  ],
+  "median_ttft_ms": 90,
+  "median_total_ms": 194,
+  "valid_json_4": [
+   true,
+   true,
+   true
+  ]
+ },
+ "105b_noreason_schema": {
+  "config": {
+   "model": "sarvam-105b",
+   "reasoning_effort": null,
+   "response_format": "json_schema"
+  },
+  "warmup": {
+   "status": 200,
+   "headers_ms": 128,
+   "first_chunk_ms": 202,
+   "ttft_content_ms": 202,
+   "first_reasoning_ms": null,
+   "total_ms": 435,
+   "n_chunks": 50,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 48,
+    "prompt_tokens": 155,
+    "total_tokens": 203,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 0,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "reasoning_chars": 0,
+   "valid_json_4": true,
+   "replies": [
+    "ஆமா கண்ணா, சாப்பிட்டுட்டேன்.",
+    "இல்ல, இன்னும் பசிக்கல.",
+    "ஆமா, ரொம்ப நல்லா இருந்துச்சு.",
+    "யாராவது எனக்கு சாப்பாடு வாங்கி தருங்களா?"
+   ]
+  },
+  "runs": [
+   {
+    "status": 200,
+    "headers_ms": 50,
+    "first_chunk_ms": 122,
+    "ttft_content_ms": 122,
+    "first_reasoning_ms": null,
+    "total_ms": 302,
+    "n_chunks": 42,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 40,
+     "prompt_tokens": 155,
+     "total_tokens": 195,
+     "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+     },
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா, சாப்பிட்டேன்.",
+     "இல்ல, இன்னும் சாப்பிடல.",
+     "இப்போ சாப்பிடுறேன்.",
+     "பசிக்குது, சீக்கிரம்."
+    ]
+   },
+   {
+    "status": 200,
+    "headers_ms": 55,
+    "first_chunk_ms": 111,
+    "ttft_content_ms": 111,
+    "first_reasoning_ms": null,
+    "total_ms": 254,
+    "n_chunks": 37,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 35,
+     "prompt_tokens": 155,
+     "total_tokens": 190,
+     "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+     },
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "இல்ல, இன்னும் இல்ல",
+     "சாப்பிட்டுட்டேன்",
+     "கடையில வாங்கியாச்சு",
+     "மறந்துட்டேன் பா"
+    ]
+   },
+   {
+    "status": 200,
+    "headers_ms": 61,
+    "first_chunk_ms": 132,
+    "ttft_content_ms": 132,
+    "first_reasoning_ms": null,
+    "total_ms": 316,
+    "n_chunks": 39,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 37,
+     "prompt_tokens": 155,
+     "total_tokens": 192,
+     "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+     },
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமாம், சாப்பிட்டேன்.",
+     "இன்னும் சாப்பிட்டல.",
+     "பசிக்குதா,ம்மா?",
+     "இப்போ வந்தேன்."
+    ]
+   }
+  ],
+  "median_ttft_ms": 122,
+  "median_total_ms": 302,
+  "valid_json_4": [
+   true,
+   true,
+   true
+  ]
+ },
+ "105b_noreason_jsonobj": {
+  "config": {
+   "model": "sarvam-105b",
+   "reasoning_effort": null,
+   "response_format": "json_object"
+  },
+  "warmup": {
+   "status": 200,
+   "headers_ms": 144,
+   "first_chunk_ms": 167,
+   "ttft_content_ms": 167,
+   "first_reasoning_ms": null,
+   "total_ms": 324,
+   "n_chunks": 42,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 40,
+    "prompt_tokens": 155,
+    "total_tokens": 195,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 0,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "reasoning_chars": 0,
+   "valid_json_4": true,
+   "replies": [
+    "ஆமா சாப்பிட்டேன் ஆச்சி",
+    "இல்ல இன்னும் சாப்பிடல",
+    "இப்போ வந்துட்டேன்",
+    "எதுக்கு இப்போ கேக்குறீங்க?"
+   ]
+  },
+  "runs": [
+   {
+    "status": 200,
+    "headers_ms": 52,
+    "first_chunk_ms": 122,
+    "ttft_content_ms": 122,
+    "first_reasoning_ms": null,
+    "total_ms": 401,
+    "n_chunks": 45,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 43,
+     "prompt_tokens": 155,
+     "total_tokens": 198,
+     "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+     },
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா கண்ணா, சாப்பிட்டுட்டேன்.",
+     "இல்லடா, இன்னும் சாப்பிடல.",
+     "சாப்பிட்டுட்டு இருக்கேன்.",
+     "உனக்கு பசிக்கிறதா?"
+    ]
+   },
+   {
+    "status": 200,
+    "headers_ms": 53,
+    "first_chunk_ms": 76,
+    "ttft_content_ms": 76,
+    "first_reasoning_ms": null,
+    "total_ms": 234,
+    "n_chunks": 41,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 39,
+     "prompt_tokens": 155,
+     "total_tokens": 194,
+     "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+     },
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா, சாப்பிட்டேன்",
+     "இன்னும் சாப்பிடல",
+     "நீங்க சாப்பிட்டீங்களா?",
+     "பசிக்குது, சீக்கிரம்"
+    ]
+   },
+   {
+    "status": 200,
+    "headers_ms": 52,
+    "first_chunk_ms": 109,
+    "ttft_content_ms": 110,
+    "first_reasoning_ms": null,
+    "total_ms": 373,
+    "n_chunks": 44,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 42,
+     "prompt_tokens": 155,
+     "total_tokens": 197,
+     "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+     },
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமாம்மா, சாப்பிட்டேன்.",
+     "இல்ல, இன்னும் சாப்பிடல.",
+     "நான் சீக்கிரம் சாப்பிடுறேன்.",
+     "அது என்ன, நீ சாப்பிட்டியா?"
+    ]
+   }
+  ],
+  "median_ttft_ms": 110,
+  "median_total_ms": 373,
+  "valid_json_4": [
+   true,
+   true,
+   true
+  ]
+ },
+ "105b_low_schema": {
+  "config": {
+   "model": "sarvam-105b",
+   "reasoning_effort": "low",
+   "max_tokens": 2048,
+   "response_format": "json_schema"
+  },
+  "warmup": {
+   "status": 200,
+   "headers_ms": 116,
+   "first_chunk_ms": 139,
+   "ttft_content_ms": 6186,
+   "first_reasoning_ms": null,
+   "total_ms": 6338,
+   "n_chunks": 1514,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1596,
+    "prompt_tokens": 151,
+    "total_tokens": 1747,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1555,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "reasoning_chars": 0,
+   "valid_json_4": true,
+   "replies": [
+    "ஆமா, சாப்பிட்டுட்டேன்.",
+    "இல்ல, இன்னும் சாப்பிடல.",
+    "ஆமா, மதியம் சாப்பிட்டேன்.",
+    "நீ சாப்பிட்டியா?"
+   ]
+  },
+  "runs": [
+   {
+    "status": 200,
+    "headers_ms": 57,
+    "first_chunk_ms": 131,
+    "ttft_content_ms": null,
+    "first_reasoning_ms": null,
+    "total_ms": 12148,
+    "n_chunks": 1901,
+    "finish": "length",
+    "usage": {
+     "completion_tokens": 2048,
+     "prompt_tokens": 151,
+     "total_tokens": 2199,
+     "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 2047,
+      "rejected_prediction_tokens": null
+     },
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": false,
+    "replies": ""
+   },
+   {
+    "status": 200,
+    "headers_ms": 59,
+    "first_chunk_ms": 87,
+    "ttft_content_ms": 5731,
+    "first_reasoning_ms": null,
+    "total_ms": 5891,
+    "n_chunks": 1304,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 1402,
+     "prompt_tokens": 151,
+     "total_tokens": 1553,
+     "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 1361,
+      "rejected_prediction_tokens": null
+     },
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா, சாப்பிட்டேன்.",
+     "இல்ல, இன்னும் சாப்பிடல.",
+     "இன்னிக்கு காலைல தான்.",
+     "நீ என்ன சமைச்சிருக்கிய?"
+    ]
+   },
+   {
+    "status": 200,
+    "headers_ms": 63,
+    "first_chunk_ms": 114,
+    "ttft_content_ms": 6652,
+    "first_reasoning_ms": null,
+    "total_ms": 6791,
+    "n_chunks": 1566,
+    "finish": "stop",
+    "usage": {
+     "completion_tokens": 1699,
+     "prompt_tokens": 151,
+     "total_tokens": 1850,
+     "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 1661,
+      "rejected_prediction_tokens": null
+     },
+     "prompt_tokens_details": null
+    },
+    "reasoning_chars": 0,
+    "valid_json_4": true,
+    "replies": [
+     "ஆமா, சாப்பிட்டுட்டேன்.",
+     "இல்லை, பசியா இருக்கு.",
+     "என்ன சாப்பாடு இருக்கு?",
+     "நீங்க சாப்பிடுங்க."
+    ]
+   }
+  ],
+  "median_ttft_ms": 6191.5,
+  "median_total_ms": 6791,
+  "valid_json_4": [
+   false,
+   true,
+   true
+  ]
+ }
+}

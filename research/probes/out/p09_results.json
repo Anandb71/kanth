@@ -1,0 +1,204 @@
+{
+ "tone_dial_ws": {
+  "base": {
+   "ttfa_ms": 313,
+   "total_ms": 854,
+   "dur_s": 3.85
+  },
+  "pitch_-0.5": {
+   "ttfa_ms": 350,
+   "total_ms": 772,
+   "dur_s": 3.25
+  },
+  "pitch_+0.5": {
+   "ttfa_ms": 361,
+   "total_ms": 829,
+   "dur_s": 3.75
+  },
+  "loud_0.5": {
+   "ttfa_ms": 264,
+   "total_ms": 853,
+   "dur_s": 3.71
+  },
+  "loud_2.0": {
+   "ttfa_ms": 271,
+   "total_ms": 798,
+   "dur_s": 3.58
+  },
+  "pace_0.7": {
+   "ttfa_ms": 415,
+   "total_ms": 867,
+   "dur_s": 5.39
+  },
+  "pace_1.5": {
+   "ttfa_ms": 337,
+   "total_ms": 804,
+   "dur_s": 2.51
+  },
+  "base_again": {
+   "ttfa_ms": 276,
+   "total_ms": 836,
+   "dur_s": 3.71
+  }
+ },
+ "prespeak": {
+  "rest_parallel_4": [
+   {
+    "all_done_ms": 809,
+    "each_ms": [
+     639,
+     545,
+     479,
+     626
+    ],
+    "statuses": [
+     200,
+     200,
+     200,
+     200
+    ]
+   },
+   {
+    "all_done_ms": 751,
+    "each_ms": [
+     541,
+     551,
+     514,
+     583
+    ],
+    "statuses": [
+     200,
+     200,
+     200,
+     200
+    ]
+   },
+   {
+    "all_done_ms": 794,
+    "each_ms": [
+     586,
+     581,
+     504,
+     643
+    ],
+    "statuses": [
+     200,
+     200,
+     200,
+     200
+    ]
+   }
+  ],
+  "median_rest_all_done_ms": 794,
+  "ws_one_socket_queue_4": [
+   {
+    "all_done_ms": 1637,
+    "cumulative_done_ms": [
+     413,
+     795,
+     1230,
+     1637
+    ]
+   },
+   {
+    "all_done_ms": 1667,
+    "cumulative_done_ms": [
+     447,
+     863,
+     1270,
+     1667
+    ]
+   },
+   {
+    "all_done_ms": 1972,
+    "cumulative_done_ms": [
+     616,
+     1112,
+     1523,
+     1972
+    ]
+   }
+  ],
+  "median_ws_queue_all_done_ms": 1667,
+  "ws_4_sockets_parallel": [
+   {
+    "all_done_ms": 484,
+    "ttfa_ms": [
+     259,
+     324,
+     269,
+     248
+    ],
+    "each_total_ms": [
+     484,
+     448,
+     400,
+     428
+    ]
+   },
+   {
+    "all_done_ms": 434,
+    "ttfa_ms": [
+     236,
+     289,
+     278,
+     255
+    ],
+    "each_total_ms": [
+     418,
+     391,
+     385,
+     434
+    ]
+   },
+   {
+    "all_done_ms": 504,
+    "ttfa_ms": [
+     266,
+     310,
+     286,
+     249
+    ],
+    "each_total_ms": [
+     504,
+     428,
+     375,
+     398
+    ]
+   }
+  ],
+  "median_ws_parallel_all_done_ms": 484,
+  "clone_rest_parallel_4": [
+   {
+    "all_done_ms": 3134,
+    "each_ms": [
+     1946,
+     3008,
+     2180,
+     1850
+    ],
+    "statuses": [
+     200,
+     200,
+     200,
+     200
+    ]
+   },
+   {
+    "all_done_ms": 2666,
+    "each_ms": [
+     1677,
+     2138,
+     2521,
+     1637
+    ],
+    "statuses": [
+     200,
+     200,
+     200,
+     200
+    ]
+   }
+  ]
+ }
+}

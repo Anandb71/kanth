@@ -1,0 +1,10 @@
+{
+  "name": "Kanth",
+  "short_name": "Kanth",
+  "description": "A voice for people who cannot speak, in the languages they think in.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f1ea",
+  "theme_color": "#b4441e",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

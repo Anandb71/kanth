@@ -1,0 +1,242 @@
+{
+ "transliterate": [
+  {
+   "request": {
+    "input": "kanna saapittiya",
+    "source_language_code": "en-IN",
+    "target_language_code": "ta-IN"
+   },
+   "status": 200,
+   "ms": [
+    577,
+    633,
+    598
+   ],
+   "median_ms": 598,
+   "response": {
+    "request_id": "20261014_efde983c-5d25-4aa9-a4c8-da37703789cd",
+    "transliterated_text": "கண்ண சாப்பிட்டிய",
+    "source_language_code": "en-IN"
+   }
+  },
+  {
+   "request": {
+    "input": "naan saapten, nee saapttiya?",
+    "source_language_code": "auto",
+    "target_language_code": "ta-IN"
+   },
+   "status": 200,
+   "ms": [
+    1126,
+    1161,
+    1126
+   ],
+   "median_ms": 1126,
+   "response": {
+    "request_id": "20261014_9ccc3fb4-6a46-4a26-8dd7-50332c7e5ba3",
+    "transliterated_text": "நான் சாப்டன், நீ சாப்ட்டியா?",
+    "source_language_code": "ta-IN"
+   }
+  },
+  {
+   "request": {
+    "input": "aap kaise ho, khana kha liya?",
+    "source_language_code": "en-IN",
+    "target_language_code": "hi-IN"
+   },
+   "status": 200,
+   "ms": [
+    623,
+    613,
+    611
+   ],
+   "median_ms": 613,
+   "response": {
+    "request_id": "20261014_e9609c17-c37e-4e2e-9afe-d15a6ce83710",
+    "transliterated_text": "आप कैसे हो, खाना खा लिया?",
+    "source_language_code": "en-IN"
+   }
+  },
+  {
+   "request": {
+    "input": "मैं office जा रहा हूँ",
+    "source_language_code": "hi-IN",
+    "target_language_code": "en-IN"
+   },
+   "status": 200,
+   "ms": [
+    611,
+    603,
+    728
+   ],
+   "median_ms": 611,
+   "response": {
+    "request_id": "20261014_60bfac47-8c6a-454a-b6c7-640e8a4bfc54",
+    "transliterated_text": "Main office ja raha hun",
+    "source_language_code": "hi-IN"
+   }
+  },
+  {
+   "request": {
+    "input": "கண்ணா, சாப்பிட்டியா?",
+    "source_language_code": "ta-IN",
+    "target_language_code": "en-IN"
+   },
+   "status": 200,
+   "ms": [
+    609,
+    645,
+    614
+   ],
+   "median_ms": 614,
+   "response": {
+    "request_id": "20261014_ed814a1f-09cf-4726-b0ab-19af7f923890",
+    "transliterated_text": "Kannaa, chavichitaia?",
+    "source_language_code": "ta-IN"
+   }
+  },
+  {
+   "request": {
+    "input": "मुझे कल 9:30am को appointment है",
+    "source_language_code": "hi-IN",
+    "target_language_code": "hi-IN",
+    "spoken_form": true
+   },
+   "status": 200,
+   "ms": [
+    727
+   ],
+   "median_ms": 727,
+   "response": {
+    "request_id": "20261014_03f8c3b2-e065-48d9-8dbe-51b9fa900ba8",
+    "transliterated_text": "मुझे कल सुबह नौ बजे तीन बजे ए, एम को अपॉइंटमेंट है",
+    "source_language_code": "hi-IN"
+   }
+  },
+  {
+   "request": {
+    "input": "kanna saapittiya",
+    "source_language_code": "en-IN",
+    "target_language_code": "ta-IN",
+    "model": "x"
+   },
+   "status": 200,
+   "ms": [
+    577
+   ],
+   "median_ms": 577,
+   "response": {
+    "request_id": "20261014_bf960c70-d4d8-4367-a9ea-47c897f0097f",
+    "transliterated_text": "கண்ண சாப்பிட்டிய",
+    "source_language_code": "en-IN"
+   }
+  }
+ ],
+ "text-lid": [
+  {
+   "input": "கண்ணா, சாப்பிட்டியா?",
+   "status": 200,
+   "ms": [
+    615,
+    615,
+    643
+   ],
+   "median_ms": 615,
+   "response": {
+    "request_id": "20261014_bd2f8644-51dc-4fc7-816c-60482fd6bf93",
+    "language_code": "ta-IN",
+    "script_code": "Taml"
+   }
+  },
+  {
+   "input": "kanna saapittiya",
+   "status": 200,
+   "ms": [
+    592,
+    607,
+    594
+   ],
+   "median_ms": 594,
+   "response": {
+    "request_id": "20261014_505bc24f-b836-4b6e-a862-2cd07a40306a",
+    "language_code": "ta-IN",
+    "script_code": "Latn"
+   }
+  },
+  {
+   "input": "aap kaise ho, khana kha liya?",
+   "status": 200,
+   "ms": [
+    604,
+    551,
+    568
+   ],
+   "median_ms": 568,
+   "response": {
+    "request_id": "20261014_e1aded03-36a2-4c3c-981f-b47063132416",
+    "language_code": "hi-IN",
+    "script_code": "Latn"
+   }
+  },
+  {
+   "input": "मैं office जा रहा हूँ",
+   "status": 200,
+   "ms": [
+    573,
+    545,
+    572
+   ],
+   "median_ms": 572,
+   "response": {
+    "request_id": "20261014_6be15b87-c20d-42bd-8150-c5bab87587c3",
+    "language_code": "hi-IN",
+    "script_code": "Deva"
+   }
+  },
+  {
+   "input": "Did you eat your lunch?",
+   "status": 200,
+   "ms": [
+    570,
+    547,
+    610
+   ],
+   "median_ms": 570,
+   "response": {
+    "request_id": "20261014_3b1f7004-7804-4494-9298-c30fd05dfbda",
+    "language_code": "en-IN",
+    "script_code": "Latn"
+   }
+  },
+  {
+   "input": "ఎలా ఉన్నారు?",
+   "status": 200,
+   "ms": [
+    612,
+    601,
+    630
+   ],
+   "median_ms": 612,
+   "response": {
+    "request_id": "20261014_ce45e9e5-67d2-4f96-bc00-6e99bffd4cc4",
+    "language_code": "te-IN",
+    "script_code": "Telu"
+   }
+  },
+  {
+   "input": "naan office poren, meeting irukku",
+   "status": 200,
+   "ms": [
+    610,
+    619,
+    614
+   ],
+   "median_ms": 614,
+   "response": {
+    "request_id": "20261014_e23d9da7-196a-48e7-ac4f-b30d278e7b36",
+    "language_code": "ta-IN",
+    "script_code": "Latn"
+   }
+  }
+ ]
+}

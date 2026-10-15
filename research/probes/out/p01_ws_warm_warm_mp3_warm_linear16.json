@@ -1,0 +1,170 @@
+{
+ "warm_wav": {
+  "connect_ms": 185,
+  "warmup_ttfa_ms": 101,
+  "warmup_ttfa_real_audio_ms": 291,
+  "ttfa_ms": [
+   199,
+   179,
+   183,
+   186,
+   184
+  ],
+  "median_ttfa_ms": 184,
+  "ttfa_real_audio_ms": [
+   199,
+   179,
+   183,
+   186,
+   184
+  ],
+  "median_ttfa_real_audio_ms": 184,
+  "final_ms": [
+   407,
+   397,
+   414,
+   385,
+   399
+  ],
+  "median_final_ms": 399,
+  "first_chunk_per_run": [
+   {
+    "bytes": 26400,
+    "magic": "1203f202",
+    "content_type": "audio/wav"
+   },
+   {
+    "bytes": 26400,
+    "magic": "16003e00",
+    "content_type": "audio/wav"
+   },
+   {
+    "bytes": 26400,
+    "magic": "bfff97ff",
+    "content_type": "audio/wav"
+   },
+   {
+    "bytes": 24200,
+    "magic": "f6ffd9ff",
+    "content_type": "audio/wav"
+   },
+   {
+    "bytes": 26400,
+    "magic": "f4ffedff",
+    "content_type": "audio/wav"
+   }
+  ]
+ },
+ "warm_mp3": {
+  "connect_ms": 175,
+  "warmup_ttfa_ms": 254,
+  "warmup_ttfa_real_audio_ms": 254,
+  "ttfa_ms": [
+   193,
+   192,
+   181,
+   182,
+   180
+  ],
+  "median_ttfa_ms": 182,
+  "ttfa_real_audio_ms": [
+   193,
+   192,
+   181,
+   182,
+   180
+  ],
+  "median_ttfa_real_audio_ms": 182,
+  "final_ms": [
+   407,
+   393,
+   369,
+   504,
+   385
+  ],
+  "median_final_ms": 393,
+  "first_chunk_per_run": [
+   {
+    "bytes": 12417,
+    "magic": "fff3c8c4",
+    "content_type": "audio/mpeg"
+   },
+   {
+    "bytes": 12417,
+    "magic": "fff3c8c4",
+    "content_type": "audio/mpeg"
+   },
+   {
+    "bytes": 12417,
+    "magic": "fff3c8c4",
+    "content_type": "audio/mpeg"
+   },
+   {
+    "bytes": 12417,
+    "magic": "fff3c8c4",
+    "content_type": "audio/mpeg"
+   },
+   {
+    "bytes": 12417,
+    "magic": "fff3c8c4",
+    "content_type": "audio/mpeg"
+   }
+  ]
+ },
+ "warm_linear16": {
+  "connect_ms": 153,
+  "warmup_ttfa_ms": 280,
+  "warmup_ttfa_real_audio_ms": 280,
+  "ttfa_ms": [
+   188,
+   191,
+   180,
+   182,
+   178
+  ],
+  "median_ttfa_ms": 182,
+  "ttfa_real_audio_ms": [
+   188,
+   191,
+   180,
+   182,
+   178
+  ],
+  "median_ttfa_real_audio_ms": 182,
+  "final_ms": [
+   414,
+   424,
+   395,
+   377,
+   369
+  ],
+  "median_final_ms": 395,
+  "first_chunk_per_run": [
+   {
+    "bytes": 26400,
+    "magic": "acfe14ff",
+    "content_type": "audio/pcm"
+   },
+   {
+    "bytes": 26400,
+    "magic": "030b820b",
+    "content_type": "audio/pcm"
+   },
+   {
+    "bytes": 26400,
+    "magic": "30ff3eff",
+    "content_type": "audio/pcm"
+   },
+   {
+    "bytes": 26400,
+    "magic": "caff5b00",
+    "content_type": "audio/pcm"
+   },
+   {
+    "bytes": 26400,
+    "magic": "00000000",
+    "content_type": "audio/pcm"
+   }
+  ]
+ }
+}
