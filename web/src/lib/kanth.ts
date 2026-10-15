@@ -12,6 +12,9 @@ import { audio } from "./audio.ts";
 import { loadProfile, loadSettings, saveProfile, saveSettings, type Settings } from "./settings.ts";
 
 export interface Card {
+  /** The draft request this reply came from. Its prespoken audio is keyed by it. */
+  turnId: string;
+  tone: ToneId;
   idx: number;
   text: string;
   gloss: string;
@@ -45,6 +48,8 @@ export interface TurnMetric {
   transport?: string;
   /** Drafted from a partial transcript while the partner was still talking, then confirmed. */
   speculative?: boolean;
+  /** A redraft of the same turn (tone change or steering): its timings include the user's own press. */
+  redraft?: boolean;
 }
 
 export interface PartnerState {
@@ -75,11 +80,15 @@ export interface KanthState {
   partner: PartnerState | null;
   turnId: string | null;
   cards: Card[];
+  /** When the visible replies last changed. Choices made right after a change are refused. */
+  cardsChangedAt: number;
   drafting: boolean;
   history: HistoryItem[];
   speakingText: string | null;
   metrics: TurnMetric[];
   notices: Notice[];
+  /** A reply that could not be spoken aloud: shown full screen so the partner can read it. */
+  unspoken: { text: string; lang: LangCode; gloss?: string } | null;
 }
 
 type Listener = () => void;
@@ -95,6 +104,9 @@ export class Kanth {
   private noticeSeq = 0;
   /** Drafting started from a partial transcript while the partner is still speaking. */
   private spec: { turnId: string; words: number; count: number } | null = null;
+  /** Redrafts are collected here and swapped in all at once, so replies never change one by one under a highlight. */
+  private pending: Card[] = [];
+  private draftTone: ToneId = "warm";
   state: KanthState;
 
   constructor() {
@@ -109,11 +121,13 @@ export class Kanth {
       partner: null,
       turnId: null,
       cards: [],
+      cardsChangedAt: 0,
       drafting: false,
       history: [],
       speakingText: null,
       metrics: [],
       notices: [],
+      unspoken: null,
     };
     this.socket = new KanthSocket();
     this.socket.onState((link) => this.set({ link }));
@@ -173,25 +187,36 @@ export class Kanth {
         const [turnId, idxStr] = m.id.split(":");
         if (turnId && turnId === this.state.turnId && idxStr !== undefined) {
           const idx = Number(idxStr);
-          const cards = this.state.cards.map((c) => (c.idx === idx ? { ...c, ready: true } : c));
+          const mark = (c: Card) => (c.turnId === turnId && c.idx === idx ? { ...c, ready: true } : c);
+          this.pending = this.pending.map(mark);
+          const cards = this.state.cards.map(mark);
           this.set({ cards });
           const met = this.state.metrics.find((x) => x.turnId === turnId);
           this.metric(turnId, { ttfaMs: [...(met?.ttfaMs ?? []), m.ttfaMs], transport: m.transport });
-          if (cards.length >= 4 && cards.every((c) => c.ready || c.failed)) this.metric(turnId, { allReadyAt: performance.now() });
+          const mine = cards.filter((c) => c.turnId === turnId);
+          if (mine.length >= 4 && mine.every((c) => c.ready || c.failed)) this.metric(turnId, { allReadyAt: performance.now() });
         }
         return;
       }
       case "suggestion": {
         if (m.turnId !== this.state.turnId) return;
         const now = performance.now();
-        const card: Card = { idx: m.idx, text: m.text, gloss: m.gloss, lang: m.lang, ready: false, failed: false, atMs: m.atMs };
+        const card: Card = { turnId: m.turnId, tone: this.draftTone, idx: m.idx, text: m.text, gloss: m.gloss, lang: m.lang, ready: false, failed: false, atMs: m.atMs };
+        const showingOlder = this.state.cards.some((c) => c.turnId !== m.turnId);
+        if (showingOlder) {
+          // A redraft: keep the old replies on screen until the new set is complete.
+          this.pending = [...this.pending.filter((c) => c.idx !== m.idx), card];
+          if (this.pending.length >= 4) this.swapIn(m.turnId);
+          return;
+        }
         const cards = [...this.state.cards.filter((c) => c.idx !== m.idx), card].sort((a, b) => a.idx - b.idx);
-        this.set({ cards });
+        this.set({ cards, cardsChangedAt: now });
         if (m.idx === 0) this.metric(m.turnId, { firstCardAt: now });
         return;
       }
       case "suggestions_done":
         if (m.turnId !== this.state.turnId) return;
+        if (this.pending.length) this.swapIn(m.turnId);
         this.set({ drafting: false });
         this.metric(m.turnId, { allCardsAt: performance.now(), llmFirstTokenMs: m.firstTokenMs, llmTotalMs: m.totalMs });
         this.suggestionWaiters.get(m.turnId)?.();
@@ -214,7 +239,9 @@ export class Kanth {
           if (audio.has(m.id)) audio.fail(m.id);
           const [turnId, idxStr] = m.id.split(":");
           if (turnId === this.state.turnId && idxStr !== undefined) {
-            this.set({ cards: this.state.cards.map((c) => (c.idx === Number(idxStr) ? { ...c, failed: true } : c)) });
+            const mark = (c: Card) => (c.turnId === turnId && c.idx === Number(idxStr) ? { ...c, failed: true } : c);
+            this.pending = this.pending.map(mark);
+            this.set({ cards: this.state.cards.map(mark) });
           }
           if (m.scope === "llm") {
             this.set({ drafting: false });
@@ -263,7 +290,8 @@ export class Kanth {
   /** The partner started speaking (live mic or demo). */
   partnerStarted(who: string, lang?: LangCode, gloss?: string): void {
     this.spec = null;
-    this.set({ partner: { who, text: "", final: false, lang, gloss, speaking: true }, cards: [], turnId: null });
+    this.pending = [];
+    this.set({ partner: { who, text: "", final: false, lang, gloss, speaking: true }, cards: [], cardsChangedAt: performance.now(), turnId: null });
   }
 
   /** The partner finished. Kicks off drafting with whatever was heard. */
@@ -307,13 +335,23 @@ export class Kanth {
 
   /** Sends a draft request for what the partner said (final, or partial while speculating). */
   private startDraft(p: PartnerState, partnerInHistory: boolean, m: Partial<TurnMetric>, keywords?: string): string {
-    if (this.state.turnId) {
-      this.socket.send({ t: "cancel", id: this.state.turnId });
-      audio.forget(`${this.state.turnId}:`);
+    const prev = this.state.turnId;
+    if (prev) {
+      this.socket.send({ t: "cancel", id: prev });
+      // Keep audio for replies still on screen; drop the rest.
+      if (!this.state.cards.some((c) => c.turnId === prev)) audio.forget(`${prev}:`);
     }
+    for (const c of this.pending) if (c.turnId !== prev) audio.forget(`${c.turnId}:`);
+    this.pending = [];
     const turnId = uid("t");
-    this.set({ turnId, cards: [], drafting: true });
-    this.metric(turnId, { ...m, suggestRequestedAt: performance.now() });
+    this.draftTone = this.state.tone;
+    this.set({ turnId, drafting: true });
+    const carried = prev && !m.partnerEndAt ? this.state.metrics.find((x) => x.turnId === prev) : undefined;
+    this.metric(turnId, {
+      ...(carried?.partnerEndAt && p.final ? { partnerEndAt: carried.partnerEndAt, transcriptAt: carried.transcriptAt, redraft: true } : {}),
+      ...m,
+      suggestRequestedAt: performance.now(),
+    });
     // Only this partner's thread: replies to Amma should not leak into a talk with the doctor.
     const prior = partnerInHistory ? this.state.history.slice(0, -1) : this.state.history;
     const thread: HistoryItem[] = [];
@@ -355,16 +393,33 @@ export class Kanth {
     return this.requestSuggestions({}, keywords.trim());
   }
 
+  /** Replaces the visible replies with a completed redraft in one step. */
+  private swapIn(turnId: string): void {
+    const now = performance.now();
+    const old = new Set(this.state.cards.map((c) => c.turnId));
+    const cards = [...this.pending].sort((a, b) => a.idx - b.idx);
+    this.pending = [];
+    this.set({ cards, cardsChangedAt: now });
+    for (const t of old) if (t !== turnId) audio.forget(`${t}:`);
+    const met = this.state.metrics.find((x) => x.turnId === turnId);
+    this.metric(turnId, { firstCardAt: met?.firstCardAt ?? now, allCardsAt: met?.allCardsAt ?? now });
+    if (cards.length >= 4 && cards.every((c) => c.ready || c.failed)) this.metric(turnId, { allReadyAt: now });
+  }
+
   // ---------- Speaking (only on the user's choice) ----------
 
   /** The user chose a suggestion. Plays it in their voice immediately if it was prespoken. */
   async choose(idx: number, chosenAt = performance.now()): Promise<void> {
-    const turnId = this.state.turnId;
     const card = this.state.cards.find((c) => c.idx === idx);
-    if (!turnId || !card) return;
-    const id = `${turnId}:${idx}:${this.state.tone}`;
-    this.metric(turnId, { chosenAt });
-    await this.say(id, card.text, card.lang, chosenAt, turnId, card.gloss, "suggestion");
+    if (!card) return;
+    // Never speak a reply the user may not have read: the set changed a moment ago.
+    if (chosenAt - this.state.cardsChangedAt < 500) {
+      this.notify("server", "The replies just changed.", "Nothing was said. Look again, then choose.");
+      return;
+    }
+    const id = `${card.turnId}:${idx}:${card.tone}`;
+    this.metric(card.turnId, { chosenAt });
+    await this.say(id, card.text, card.lang, chosenAt, card.turnId, card.gloss, "suggestion");
   }
 
   /** The user typed or picked a phrase. */
@@ -411,8 +466,13 @@ export class Kanth {
         });
       });
       if (audibleMs < 0) {
-        this.notify("tts", "Bulbul could not be reached.", "Spoke with the device voice so you were not left silent.");
-        await audio.speakWithDevice(text, lang);
+        const how = await audio.speakWithDevice(text, lang, gloss);
+        if (how === "native") this.notify("tts", "Bulbul could not be reached.", "Spoke with the device voice instead.");
+        else if (how === "english") this.notify("tts", "Bulbul could not be reached, and this device has no voice for this language.", "Spoke the English meaning with the device voice.");
+        else {
+          this.notify("tts", "Bulbul could not be reached, and this device cannot speak this language.", "Showing the reply full screen so they can read it.");
+          this.set({ unspoken: { text, lang, gloss } });
+        }
         this.set({ speakingText: null });
         return;
       }
@@ -445,13 +505,18 @@ export class Kanth {
     this.socket.dropForOffline();
   }
 
+  dismissUnspoken(): void {
+    this.set({ unspoken: null });
+  }
+
   stopSpeaking(): void {
     audio.stop("me");
     this.set({ speakingText: null });
   }
 
   resetConversation(): void {
-    this.set({ partner: null, turnId: null, cards: [], history: [], drafting: false, metrics: [] });
+    this.pending = [];
+    this.set({ partner: null, turnId: null, cards: [], cardsChangedAt: 0, history: [], drafting: false, metrics: [] });
   }
 }
 

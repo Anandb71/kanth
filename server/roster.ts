@@ -10,8 +10,9 @@ export function currentRoster(): { speakers: string[]; source: "snapshot" | "liv
   return { speakers: roster, source };
 }
 
-export async function refreshRoster(): Promise<void> {
-  if (!config.sarvamKey) return;
+/** Fetches the live roster. Also tells us early whether Sarvam accepts the key. */
+export async function refreshRoster(): Promise<"ok" | "rejected" | "unknown"> {
+  if (!config.sarvamKey) return "unknown";
   try {
     const res = await fetch(`${config.apiBase}/text-to-speech`, {
       method: "POST",
@@ -20,9 +21,10 @@ export async function refreshRoster(): Promise<void> {
       signal: AbortSignal.timeout(8000),
     });
     const body = (await res.json()) as { error?: { message?: string } };
+    if (res.status === 401 || res.status === 403) return "rejected";
     const msg = body.error?.message ?? "";
     const at = msg.indexOf("are:");
-    if (res.status !== 400 || at < 0) return;
+    if (res.status !== 400 || at < 0) return "unknown";
     const list = msg
       .slice(at + 4)
       .split(",")
@@ -32,7 +34,9 @@ export async function refreshRoster(): Promise<void> {
       roster = list;
       source = "live";
     }
+    return "ok";
   } catch {
     // Keep the snapshot. The UI shows which source is in use.
+    return "unknown";
   }
 }

@@ -18,7 +18,10 @@ export function FilmLayer() {
       <div className={`film-black ${f.black ? "" : "off"}`} />
       {f.caption ? (
         <div className="film-caption" key={`${f.caption.who}-${f.caption.line}`}>
-          <span className="who">{f.caption.who}</span>
+          <span className="who">
+            {f.caption.who}
+            {f.caption.where ? <span className="where">{f.caption.where}</span> : null}
+          </span>
           {f.caption.line}
         </div>
       ) : null}
@@ -35,6 +38,7 @@ export function FilmLayer() {
             <h2>
               Bulbul V4 Flash, speaking <em style={{ color: "var(--accent)" }}>as</em> someone.
             </h2>
+            {f.end.note ? <div className="note">{f.end.note}</div> : null}
             <ul>
               {f.end.lines.map((l) => (
                 <li key={l}>{l}</li>

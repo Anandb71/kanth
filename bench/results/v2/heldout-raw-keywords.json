@@ -1,0 +1,514 @@
+{
+ "meta": {
+  "stage": "keywords",
+  "started": "2026-10-15T02:43:22.126Z",
+  "startedIST": "15/10/2026, 8:13:22 am",
+  "setName": "heldout",
+  "set": "Held-out scripted set (hand-written, not real users; written after the prompt fix and before any model output for these turns; intended replies never edited)",
+  "setFileSha256": "fcf8b5c5254ae5945b21b7422716489ca409da7dc68d350e93c4ebdba2e29a29",
+  "suggestTsSha256": "84442ce92b621425a4182f5a8427c6cdf641a917b536e4526774d4294d49314b",
+  "suggestTsGit": {
+   "commit": "ffb1b9c",
+   "dirty": false
+  },
+  "settingsTsGit": {
+   "commit": "ffb1b9c",
+   "dirty": false
+  },
+  "profileNotes": "34, software engineer in Chennai. Has ALS and can no longer speak. Follows cricket.",
+  "network": "a home connection in India",
+  "node": "v25.2.1",
+  "os": "win32 10.0.26300",
+  "cpu": "13th Gen Intel(R) Core(TM) i5-13450HX",
+  "condition": "Two other agents may have been calling the same Sarvam account concurrently during this run (shared rate limits and possibly shared backend load).",
+  "model": "sarvam-105b",
+  "temperature": 0,
+  "instruction": "Give the one or two words this person would type to steer a reply-suggestion tool toward this meaning, as they would type them on a Roman keyboard.",
+  "misses": 21
+ },
+ "rows": [
+  {
+   "id": "enh01",
+   "lang": "en-IN",
+   "intended": "My eyes get dry after twenty minutes.",
+   "attempt": 1,
+   "status": 200,
+   "ms": 9762,
+   "usage": {
+    "completion_tokens": 2040,
+    "prompt_tokens": 57,
+    "total_tokens": 2097,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 2034,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\ndry eye",
+   "keywords": "dry eye"
+  },
+  {
+   "id": "enh02",
+   "lang": "en-IN",
+   "intended": "Yes, bigger font and a darker background.",
+   "attempt": 1,
+   "status": 200,
+   "ms": 12375.9,
+   "usage": {
+    "completion_tokens": 3065,
+    "prompt_tokens": 58,
+    "total_tokens": 3123,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3059,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nlarger darker",
+   "keywords": "larger darker"
+  },
+  {
+   "id": "enh03",
+   "lang": "en-IN",
+   "intended": "Two weeks is fine, mornings are better for me.",
+   "attempt": 1,
+   "status": 200,
+   "ms": 14736.7,
+   "usage": {
+    "completion_tokens": 3626,
+    "prompt_tokens": 60,
+    "total_tokens": 3686,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3620,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\navailability mornings",
+   "keywords": "availability mornings"
+  },
+  {
+   "id": "enh04",
+   "lang": "en-IN",
+   "intended": "Not today, I'd rather just chat with you.",
+   "attempt": 1,
+   "status": 200,
+   "ms": 246.9,
+   "usage": {
+    "completion_tokens": 9,
+    "prompt_tokens": 61,
+    "total_tokens": 70,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 0,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nignore suggestion, chat only",
+   "keywords": "ignore suggestion"
+  },
+  {
+   "id": "enh05",
+   "lang": "en-IN",
+   "intended": "Only two episodes, I keep falling asleep.",
+   "attempt": 3,
+   "status": 200,
+   "ms": 20332.7,
+   "usage": {
+    "completion_tokens": 4000,
+    "prompt_tokens": 58,
+    "total_tokens": 4058,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3999,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "length",
+   "content": "",
+   "keywords": ""
+  },
+  {
+   "id": "enh06",
+   "lang": "en-IN",
+   "intended": "Congratulations! Visit me whenever you're in Chennai.",
+   "attempt": 3,
+   "status": 200,
+   "ms": 20445.4,
+   "usage": {
+    "completion_tokens": 4000,
+    "prompt_tokens": 60,
+    "total_tokens": 4060,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3999,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "length",
+   "content": "",
+   "keywords": ""
+  },
+  {
+   "id": "enh08",
+   "lang": "en-IN",
+   "intended": "Yes, please add my mother as nominee.",
+   "attempt": 3,
+   "status": 200,
+   "ms": 17064.5,
+   "usage": {
+    "completion_tokens": 4000,
+    "prompt_tokens": 58,
+    "total_tokens": 4058,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3999,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "length",
+   "content": "",
+   "keywords": ""
+  },
+  {
+   "id": "hih01",
+   "lang": "hi-IN",
+   "intended": "दे दीजिए, पर धीरे धीरे",
+   "attempt": 2,
+   "status": 200,
+   "ms": 9336.4,
+   "usage": {
+    "completion_tokens": 1590,
+    "prompt_tokens": 55,
+    "total_tokens": 1645,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1581,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\ndheere dheere",
+   "keywords": "dheere dheere"
+  },
+  {
+   "id": "hih02",
+   "lang": "hi-IN",
+   "intended": "थोड़ा भारी लग रहा है, शायद gas है",
+   "attempt": 1,
+   "status": 200,
+   "ms": 12694.2,
+   "usage": {
+    "completion_tokens": 3198,
+    "prompt_tokens": 59,
+    "total_tokens": 3257,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3193,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\ngas",
+   "keywords": "gas"
+  },
+  {
+   "id": "hih03",
+   "lang": "hi-IN",
+   "intended": "हाँ, थोड़ा और ऊपर कर दीजिए",
+   "attempt": 1,
+   "status": 200,
+   "ms": 6909.6,
+   "usage": {
+    "completion_tokens": 1474,
+    "prompt_tokens": 56,
+    "total_tokens": 1530,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1466,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nthoda upar",
+   "keywords": "thoda upar"
+  },
+  {
+   "id": "hih04",
+   "lang": "hi-IN",
+   "intended": "हाँ दिखाइए, पर clamp मज़बूत होना चाहिए",
+   "attempt": 1,
+   "status": 200,
+   "ms": 11636.8,
+   "usage": {
+    "completion_tokens": 2561,
+    "prompt_tokens": 60,
+    "total_tokens": 2621,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 2554,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nclamp mazboot",
+   "keywords": "clamp mazboot"
+  },
+  {
+   "id": "hih06",
+   "lang": "hi-IN",
+   "intended": "मेरे नाम से बनाइए, Arjun",
+   "attempt": 1,
+   "status": 200,
+   "ms": 6422.1,
+   "usage": {
+    "completion_tokens": 1546,
+    "prompt_tokens": 56,
+    "total_tokens": 1602,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1540,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nname Arjun",
+   "keywords": "name Arjun"
+  },
+  {
+   "id": "hih08",
+   "lang": "hi-IN",
+   "intended": "Video पर join करूँगा, link भेज देना",
+   "attempt": 1,
+   "status": 200,
+   "ms": 14058.7,
+   "usage": {
+    "completion_tokens": 3187,
+    "prompt_tokens": 58,
+    "total_tokens": 3245,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3180,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nlink bhejo",
+   "keywords": "link bhejo"
+  },
+  {
+   "id": "tah01",
+   "lang": "ta-IN",
+   "intended": "கூட்டிட்டு வா அக்கா, ரொம்ப நாளாச்சு",
+   "attempt": 1,
+   "status": 200,
+   "ms": 10563.4,
+   "usage": {
+    "completion_tokens": 2103,
+    "prompt_tokens": 60,
+    "total_tokens": 2163,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 2096,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nakka catch up",
+   "keywords": "akka catch"
+  },
+  {
+   "id": "tah02",
+   "lang": "ta-IN",
+   "intended": "காட்டு, அதை சுவர்ல ஒட்டி வை",
+   "attempt": 1,
+   "status": 200,
+   "ms": 340.1,
+   "usage": {
+    "completion_tokens": 15,
+    "prompt_tokens": 58,
+    "total_tokens": 73,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 0,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nstick it on the wall\npaste it on the wall",
+   "keywords": "stick it"
+  },
+  {
+   "id": "tah03",
+   "lang": "ta-IN",
+   "intended": "இப்போ வேண்டாம், ராத்திரிக்கு வச்சுடு",
+   "attempt": 2,
+   "status": 200,
+   "ms": 7114.3,
+   "usage": {
+    "completion_tokens": 1741,
+    "prompt_tokens": 60,
+    "total_tokens": 1801,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1735,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nnot now",
+   "keywords": "not now"
+  },
+  {
+   "id": "tah04",
+   "lang": "ta-IN",
+   "intended": "அஞ்சு நிமிஷம் மட்டும், கால் வலிக்குது",
+   "attempt": 1,
+   "status": 200,
+   "ms": 7367,
+   "usage": {
+    "completion_tokens": 1439,
+    "prompt_tokens": 60,
+    "total_tokens": 1499,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1433,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nleg pain",
+   "keywords": "leg pain"
+  },
+  {
+   "id": "tah05",
+   "lang": "ta-IN",
+   "intended": "கொஞ்சம் loose பண்ணுங்க, மூச்சு முட்டுது",
+   "attempt": 2,
+   "status": 200,
+   "ms": 15689.4,
+   "usage": {
+    "completion_tokens": 3993,
+    "prompt_tokens": 61,
+    "total_tokens": 4054,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3986,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nloose pannunga",
+   "keywords": "loose pannunga"
+  },
+  {
+   "id": "tah06",
+   "lang": "ta-IN",
+   "intended": "வியாழன் முடியாது, வெள்ளிக்கிழமை வாங்க",
+   "attempt": 3,
+   "status": 200,
+   "ms": 18318.1,
+   "usage": {
+    "completion_tokens": 4000,
+    "prompt_tokens": 59,
+    "total_tokens": 4059,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3999,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "length",
+   "content": "",
+   "keywords": ""
+  },
+  {
+   "id": "tah07",
+   "lang": "ta-IN",
+   "intended": "Confluence-ல என் page-ல எல்லாம் இருக்கு",
+   "attempt": 1,
+   "status": 200,
+   "ms": 7084.7,
+   "usage": {
+    "completion_tokens": 1429,
+    "prompt_tokens": 59,
+    "total_tokens": 1488,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1422,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nConfluence page",
+   "keywords": "Confluence page"
+  },
+  {
+   "id": "tah08",
+   "lang": "ta-IN",
+   "intended": "என் thanks சொல்லு, ரொம்ப support பண்ணாங்க",
+   "attempt": 1,
+   "status": 200,
+   "ms": 928.4,
+   "usage": {
+    "completion_tokens": 6,
+    "prompt_tokens": 58,
+    "total_tokens": 64,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 0,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nthank you",
+   "keywords": "thank you"
+  }
+ ]
+}

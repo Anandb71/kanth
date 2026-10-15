@@ -53,7 +53,7 @@ const roster = currentRoster().speakers;
 const V4_SPEAKER: Record<string, string> = { ta: "vijay_ta_narration", hi: "shubh_hi_customer", en: "shubh_en_narration" };
 for (const s of Object.values(V4_SPEAKER)) if (!roster.includes(s)) throw new Error(`speaker ${s} not in roster`);
 function v4Speaker(t: (typeof TEXTS)[number]): string {
-  return V4_SPEAKER[t.id];
+  return V4_SPEAKER[t.id]!;
 }
 const V3_SPEAKER: Record<string, string> = { ta: "vijay", hi: "shubh", en: "shubh" };
 
@@ -99,7 +99,7 @@ for (const cond of CONDS) for (const text of TEXTS) for (let run = 1; run <= con
 const rand = mulberry32(SEED);
 for (let i = trials.length - 1; i > 0; i--) {
   const j = Math.floor(rand() * (i + 1));
-  [trials[i], trials[j]] = [trials[j], trials[i]];
+  [trials[i], trials[j]] = [trials[j]!, trials[i]!];
 }
 
 // ---- clone REST (POST /voices/clone, multipart, JSON with base64 WAV); same fields as synthClone ----
@@ -142,7 +142,7 @@ function poolOpen(engine: TtsEngine, model: string): boolean {
 }
 
 function params(model: "bulbul:v4-flash" | "bulbul:v3", t: (typeof TEXTS)[number]): TtsParams {
-  return { text: t.text, lang: t.lang, model, speaker: model === "bulbul:v3" ? V3_SPEAKER[t.id] : v4Speaker(t), prosody };
+  return { text: t.text, lang: t.lang, model, speaker: model === "bulbul:v3" ? V3_SPEAKER[t.id]! : v4Speaker(t), prosody };
 }
 
 interface Measured {
@@ -276,7 +276,7 @@ async function main() {
   await warmEngine.warm();
   for (const model of ["bulbul:v4-flash", "bulbul:v3"] as const) {
     for (let i = 0; i < 2; i++) {
-      const t = TEXTS[i % TEXTS.length];
+      const t = TEXTS[i % TEXTS.length]!;
       const t0 = performance.now();
       try {
         const r = await warmEngine.synth(params(model, t), () => {}, () => {});
@@ -293,7 +293,7 @@ async function main() {
   // reference clip only if the banked voice is rejected.
   const pf = async () => {
     const t0 = performance.now();
-    await synthClone({ voiceId, text: TEXTS[2].text, lang: TEXTS[2].lang, prosody }, () => {});
+    await synthClone({ voiceId, text: TEXTS[2]!.text, lang: TEXTS[2]!.lang, prosody }, () => {});
     return Math.round(performance.now() - t0);
   };
   try {
@@ -318,7 +318,7 @@ async function main() {
 
   let lastStart = 0;
   for (let i = 0; i < trials.length; i++) {
-    const tr = trials[i];
+    const tr = trials[i]!;
     const attemptErrors: string[] = [];
     let m: Measured | null = null;
     let ts = "";

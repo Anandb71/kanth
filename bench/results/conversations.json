@@ -1,0 +1,4961 @@
+{
+ "meta": {
+  "set": "Scripted (hand-written, not real users); intended replies fixed before any model output",
+  "generated": "2026-10-15T02:21:18.412Z",
+  "draftRun": {
+   "stage": "draft",
+   "started": "2026-10-15T02:09:37.824Z",
+   "startedIST": "15/10/2026, 7:39:37 am",
+   "set": "Scripted (hand-written, not real users); intended replies fixed before any model output",
+   "network": "a home connection in India",
+   "node": "v25.2.1",
+   "os": "win32 10.0.26300",
+   "cpu": "13th Gen Intel(R) Core(TM) i5-13450HX",
+   "condition": "Two other agents may have been calling the same Sarvam account concurrently during this run (shared rate limits and possibly shared backend load).",
+   "profile": {
+    "name": "Arjun",
+    "languages": [
+     "ta-IN",
+     "en-IN",
+     "hi-IN"
+    ],
+    "mixStyle": "Tamil at home with English words mixed in; Hindi with his doctor and his Delhi friends",
+    "people": [
+     {
+      "name": "Amma",
+      "relation": "mother",
+      "addressAs": "Amma"
+     },
+     {
+      "name": "Dr. Mehra",
+      "relation": "neurologist",
+      "addressAs": "Doctor"
+     },
+     {
+      "name": "Rohit",
+      "relation": "college friend",
+      "addressAs": "Rohit"
+     }
+    ],
+    "notes": "34, software engineer in Chennai. Has ALS and can no longer speak. Loves cricket and his mother's rasam."
+   },
+   "tone": "warm",
+   "voice": "shubh",
+   "chatModel": "sarvam-105b-conversations",
+   "ttsPoolSize": 4,
+   "ttsStates": [
+    "2026-10-15T02:09:37.316Z connecting ",
+    "2026-10-15T02:09:37.486Z ready 4 warm sockets",
+    "2026-10-15T02:09:57.039Z degraded socket 3: no audio within 5 s on WebSocket; falling back to HTTP streaming",
+    "2026-10-15T02:09:57.172Z ready socket recovered"
+   ]
+  },
+  "judgeRun": {
+   "stage": "judge",
+   "started": "2026-10-15T02:12:21.076Z",
+   "startedIST": "15/10/2026, 7:42:21 am",
+   "set": "Scripted (hand-written, not real users); intended replies fixed before any model output",
+   "network": "a home connection in India",
+   "node": "v25.2.1",
+   "os": "win32 10.0.26300",
+   "cpu": "13th Gen Intel(R) Core(TM) i5-13450HX",
+   "condition": "Two other agents may have been calling the same Sarvam account concurrently during this run (shared rate limits and possibly shared backend load).",
+   "judgeModel": "sarvam-105b",
+   "temperature": 0,
+   "reasoning": "on (model default)",
+   "runs": 2
+  },
+  "judgeSystemPrompt": "You evaluate reply suggestions for an AAC (speech-generating) app used by a person who cannot speak.\nThe person knows exactly what they want to say (the INTENDED reply). The app offered four drafts. If a draft is chosen, the app speaks it aloud as the person's own words.\nAnswer the question: Which draft, if any, conveys the same core meaning and intent as the intended reply, such that the user would accept it as saying what they meant?\nDifferences in wording, word order, politeness words, fillers, or address terms do not matter. A draft that changes or omits a specific fact the intended reply states (yes vs no, a time, a quantity, a side, a person, a request, a reason that carries the point) does not count. A draft that says more than the intended reply counts only if the extra content is harmless and the person would still accept it.\nIf several drafts qualify, pick the best one. If none qualifies, answer null.\nAlso check each draft's language and script against the expected language. wrong_language: drafts mainly in a language other than the expected one. wrong_script: drafts that write a language in the wrong script (for example Tamil or Hindi words in Latin letters, or Hindi in Tamil script).\nReply with JSON only, no other text: {\"match\": 1|2|3|4|null, \"wrong_language\": [draft numbers], \"wrong_script\": [draft numbers], \"reason\": \"one short sentence\"}",
+  "translitRun": {
+   "stage": "translit",
+   "started": "2026-10-15T02:09:40.356Z",
+   "startedIST": "15/10/2026, 7:39:40 am",
+   "set": "Scripted (hand-written, not real users); intended replies fixed before any model output",
+   "network": "a home connection in India",
+   "node": "v25.2.1",
+   "os": "win32 10.0.26300",
+   "cpu": "13th Gen Intel(R) Core(TM) i5-13450HX",
+   "condition": "Two other agents may have been calling the same Sarvam account concurrently during this run (shared rate limits and possibly shared backend load).",
+   "endpoint": "POST /transliterate, source=<lang>, target=en-IN"
+  }
+ },
+ "parameters": {
+  "measuredInApp": {
+   "sttFinalMs": {
+    "min": 102,
+    "max": 123
+   },
+   "sttUsedMs": 123,
+   "playbackStartMs": 59,
+   "typedToAudibleMs": 397
+  },
+  "modeled": {
+   "charsPerWord": 5,
+   "wpmDirect": 4.2,
+   "wpmScan": 1.7,
+   "secPerCharDirect": 2.857142857142857,
+   "secPerCharScan": 7.0588235294117645,
+   "selectDirectS": 2.857142857142857,
+   "scanIntervalS": 1.4,
+   "scanPressesPerChar": 2,
+   "missScanSteps": 5,
+   "missDirectSelections": 1
+  }
+ },
+ "hit": {
+  "all": {
+   "n": 36,
+   "top1": 2,
+   "top4": 5,
+   "top1Pct": 5.6,
+   "top4Pct": 13.9,
+   "judgeAgree": 32,
+   "judgeAgreePct": 88.9,
+   "hitInEitherRun": 9
+  },
+  "ta-IN": {
+   "n": 12,
+   "top1": 1,
+   "top4": 2,
+   "top1Pct": 8.3,
+   "top4Pct": 16.7,
+   "judgeAgree": 10,
+   "judgeAgreePct": 83.3,
+   "hitInEitherRun": 4
+  },
+  "hi-IN": {
+   "n": 12,
+   "top1": 0,
+   "top4": 2,
+   "top1Pct": 0,
+   "top4Pct": 16.7,
+   "judgeAgree": 11,
+   "judgeAgreePct": 91.7,
+   "hitInEitherRun": 3
+  },
+  "en-IN": {
+   "n": 12,
+   "top1": 1,
+   "top4": 1,
+   "top1Pct": 8.3,
+   "top4Pct": 8.3,
+   "judgeAgree": 11,
+   "judgeAgreePct": 91.7,
+   "hitInEitherRun": 2
+  }
+ },
+ "motor": {
+  "all": {
+   "typingKeysMean": 37.361111111111114,
+   "typingKeysNativeCountMean": 35.166666666666664,
+   "kanthTouchMean": 31.86111111111111,
+   "touchReductionPct": 14.721189591078076,
+   "scanTypingPressesMean": 74.72222222222223,
+   "scanKanthPressesMean": 63.583333333333336,
+   "scanReductionPct": 14.907063197026027,
+   "scanWaitStepsOnHitsMean": 2
+  },
+  "ta-IN": {
+   "typingKeysMean": 35.916666666666664,
+   "typingKeysNativeCountMean": 34.666666666666664,
+   "kanthTouchMean": 29.166666666666668,
+   "touchReductionPct": 18.793503480278417,
+   "scanTypingPressesMean": 71.83333333333333,
+   "scanKanthPressesMean": 58.166666666666664,
+   "scanReductionPct": 19.02552204176334,
+   "scanWaitStepsOnHitsMean": 1.5
+  },
+  "hi-IN": {
+   "typingKeysMean": 38,
+   "typingKeysNativeCountMean": 32.666666666666664,
+   "kanthTouchMean": 31.5,
+   "touchReductionPct": 17.105263157894733,
+   "scanTypingPressesMean": 76,
+   "scanKanthPressesMean": 62.833333333333336,
+   "scanReductionPct": 17.324561403508763,
+   "scanWaitStepsOnHitsMean": 3
+  },
+  "en-IN": {
+   "typingKeysMean": 38.166666666666664,
+   "typingKeysNativeCountMean": 38.166666666666664,
+   "kanthTouchMean": 34.916666666666664,
+   "touchReductionPct": 8.515283842794762,
+   "scanTypingPressesMean": 76.33333333333333,
+   "scanKanthPressesMean": 69.75,
+   "scanReductionPct": 8.624454148471605,
+   "scanWaitStepsOnHitsMean": 1
+  }
+ },
+ "latency": {
+  "firstTokenMs": {
+   "n": 36,
+   "median": 100.5,
+   "p25": 95.175,
+   "p75": 106.725,
+   "min": 79.5,
+   "max": 173.8
+  },
+  "firstDraftMs": {
+   "n": 36,
+   "median": 157.35,
+   "p25": 138.6,
+   "p75": 171.975,
+   "min": 124.9,
+   "max": 248.4
+  },
+  "allDraftsMs": {
+   "n": 36,
+   "median": 351.95000000000005,
+   "p25": 306.175,
+   "p75": 376.725,
+   "min": 277.2,
+   "max": 561.6
+  },
+  "allFirstAudioMs": {
+   "n": 36,
+   "median": 676.2,
+   "p25": 621.375,
+   "p75": 708.325,
+   "min": 586.4,
+   "max": 5979.5
+  },
+  "allVoicedMs": {
+   "n": 36,
+   "median": 945.5,
+   "p25": 850.5250000000001,
+   "p75": 1013.1999999999999,
+   "min": 764.9,
+   "max": 8650.3
+  },
+  "ttfaTypedMs": {
+   "n": 36,
+   "median": 300.65,
+   "p25": 299.07500000000005,
+   "p75": 302.77500000000003,
+   "min": 291.1,
+   "max": 403.6
+  },
+  "ttfaChoiceMs": {
+   "n": 36,
+   "median": 300.6,
+   "p25": 298.75,
+   "p75": 303.35,
+   "min": 285.1,
+   "max": 416.1
+  }
+ },
+ "transportCounts": {
+  "ws": 143,
+  "http-stream": 1
+ },
+ "runawayAudio": [
+  {
+   "id": "hi11",
+   "text": "हाँ, सुबह से कुछ नहीं खाया, Lab technician",
+   "chars": 42,
+   "audioSec": 57.845,
+   "secPerChar": 1.3772619047619048
+  }
+ ],
+ "flagCounts": {
+  "judgeWrongLanguageBothRuns": 0,
+  "judgeWrongLanguageEitherRun": 1,
+  "judgeWrongScriptBothRuns": 1,
+  "judgeWrongScriptEitherRun": 15,
+  "deterministicScriptIssues": 0,
+  "totalDrafts": 144
+ },
+ "tokens": {
+  "promptMean": 507.05555555555554,
+  "completionMean": 81.13888888888889,
+  "source": "usage object in the streamed chat response (measured)"
+ },
+ "turnGap": {
+  "all": {
+   "direct": {
+    "a": {
+     "median": 108.93017857142857,
+     "mean": 107.10867619047619,
+     "p25": 94.64598928571428,
+     "p75": 115.35945000000001,
+     "min": 68.93542857142857,
+     "max": 146.0785857142857,
+     "hitsMedian": 114.64401428571429,
+     "hitsN": 5
+    },
+    "b": {
+     "median": 105.14656428571428,
+     "mean": 94.33581626984126,
+     "p25": 88.13413214285714,
+     "p75": 115.85325,
+     "min": 3.6239428571428576,
+     "max": 149.41822857142856,
+     "hitsMedian": 3.698842857142857,
+     "hitsN": 5
+    },
+    "c": {
+     "median": 105.14656428571428,
+     "mean": 94.44552341269839,
+     "p25": 88.13413214285714,
+     "p75": 115.85325,
+     "min": 3.3179428571428575,
+     "max": 149.41822857142856,
+     "hitsMedian": 3.4165428571428573,
+     "hitsN": 5
+    }
+   },
+   "scan": {
+    "a": {
+     "median": 268.5940441176471,
+     "mean": 264.08813464052287,
+     "p25": 233.30145147058823,
+     "p75": 284.4770970588236,
+     "min": 169.77576470588235,
+     "max": 360.3643,
+     "hitsMedian": 282.71124117647065,
+     "hitsN": 5
+    },
+    "b": {
+     "median": 258.44908529411765,
+     "mean": 231.18198807189543,
+     "p25": 216.22656911764705,
+     "p75": 284.9120735294118,
+     "min": 2.1668,
+     "max": 367.84680000000003,
+     "hitsMedian": 3.6586,
+     "hitsN": 5
+    },
+    "c": {
+     "median": 258.44908529411765,
+     "mean": 231.21550473856212,
+     "p25": 216.22656911764705,
+     "p75": 284.9120735294118,
+     "min": 1.8607999999999998,
+     "max": 367.84680000000003,
+     "hitsMedian": 3.3594,
+     "hitsN": 5
+    }
+   }
+  },
+  "ta-IN": {
+   "direct": {
+    "a": {
+     "median": 94.64426428571429,
+     "mean": 102.97904761904765,
+     "p25": 88.21666785714285,
+     "p75": 113.92987857142856,
+     "min": 74.64001428571429,
+     "max": 146.0785857142857,
+     "hitsMedian": 118.93022857142857,
+     "hitsN": 2
+    },
+    "b": {
+     "median": 93.81719285714286,
+     "mean": 86.61197738095238,
+     "p25": 82.29259642857143,
+     "p75": 98.72104285714286,
+     "min": 3.698842857142857,
+     "max": 149.41822857142856,
+     "hitsMedian": 3.7404928571428573,
+     "hitsN": 2
+    },
+    "c": {
+     "median": 93.81719285714286,
+     "mean": 86.56220238095239,
+     "p25": 82.29259642857143,
+     "p75": 98.72104285714286,
+     "min": 3.4007428571428573,
+     "max": 149.41822857142856,
+     "hitsMedian": 3.4418428571428574,
+     "hitsN": 2
+    }
+   },
+   "scan": {
+    "a": {
+     "median": 233.29972647058824,
+     "mean": 253.88941176470587,
+     "p25": 217.41834852941173,
+     "p75": 280.9466852941177,
+     "min": 183.88371176470588,
+     "max": 360.3643,
+     "hitsMedian": 293.29997647058826,
+     "hitsN": 2
+    },
+    "b": {
+     "median": 230.31299117647058,
+     "mean": 211.7869073529412,
+     "p25": 201.9816720588235,
+     "p75": 242.5697823529412,
+     "min": 2.2417,
+     "max": 367.84680000000003,
+     "hitsMedian": 2.9833499999999997,
+     "hitsN": 2
+    },
+    "c": {
+     "median": 230.31299117647058,
+     "mean": 211.7371323529412,
+     "p25": 201.9816720588235,
+     "p75": 242.5697823529412,
+     "min": 1.9435999999999998,
+     "max": 367.84680000000003,
+     "hitsMedian": 2.6847,
+     "hitsN": 2
+    }
+   }
+  },
+  "hi-IN": {
+   "direct": {
+    "a": {
+     "median": 110.36175,
+     "mean": 108.94070357142856,
+     "p25": 100.4384,
+     "p75": 119.64788928571429,
+     "min": 68.93542857142857,
+     "max": 128.92912857142858,
+     "hitsMedian": 114.64621428571428,
+     "hitsN": 2
+    },
+    "b": {
+     "median": 109.39412857142857,
+     "mean": 93.23310238095239,
+     "p25": 95.849525,
+     "p75": 118.70014285714285,
+     "min": 3.6803428571428576,
+     "max": 129.41552857142855,
+     "hitsMedian": 3.698042857142857,
+     "hitsN": 2
+    },
+    "c": {
+     "median": 109.39412857142857,
+     "mean": 93.63749880952382,
+     "p25": 95.849525,
+     "p75": 118.70014285714285,
+     "min": 3.4165428571428573,
+     "max": 129.41552857142855,
+     "hitsMedian": 6.124421428571428,
+     "hitsN": 2
+    }
+   },
+   "scan": {
+    "a": {
+     "median": 272.12645588235296,
+     "mean": 268.6045691176471,
+     "p25": 247.49722352941177,
+     "p75": 295.0680573529412,
+     "min": 169.77576470588235,
+     "max": 318.0047588235294,
+     "hitsMedian": 282.7134411764706,
+     "hitsN": 2
+    },
+    "b": {
+     "median": 268.9991705882353,
+     "mean": 228.56195392156863,
+     "p25": 235.49658382352942,
+     "p75": 291.96064705882355,
+     "min": 3.6586,
+     "max": 318.43233529411765,
+     "hitsMedian": 5.0409,
+     "hitsN": 2
+    },
+    "c": {
+     "median": 268.9991705882353,
+     "mean": 228.73777892156863,
+     "p25": 235.49658382352942,
+     "p75": 291.96064705882355,
+     "min": 3.3594,
+     "max": 318.43233529411765,
+     "hitsMedian": 6.095849999999999,
+     "hitsN": 2
+    }
+   }
+  },
+  "en-IN": {
+   "direct": {
+    "a": {
+     "median": 110.3581,
+     "mean": 109.4062773809524,
+     "p25": 107.50113214285714,
+     "p75": 114.64318928571429,
+     "min": 80.3569,
+     "max": 134.64521428571427,
+     "hitsMedian": 114.64401428571429,
+     "hitsN": 1
+    },
+    "b": {
+     "median": 112.21287142857142,
+     "mean": 103.16236904761907,
+     "p25": 104.35020357142858,
+     "p75": 115.801475,
+     "min": 3.6239428571428576,
+     "max": 137.91485714285713,
+     "hitsMedian": 3.6239428571428576,
+     "hitsN": 1
+    },
+    "c": {
+     "median": 112.21287142857142,
+     "mean": 103.13686904761907,
+     "p25": 104.35020357142858,
+     "p75": 115.801475,
+     "min": 3.3179428571428575,
+     "max": 137.91485714285713,
+     "hitsMedian": 3.3179428571428575,
+     "hitsN": 1
+    }
+   },
+   "scan": {
+    "a": {
+     "median": 272.12280588235296,
+     "mean": 269.7704230392157,
+     "p25": 265.0641573529412,
+     "p75": 282.71041617647063,
+     "min": 198.0039588235294,
+     "max": 332.12420588235295,
+     "hitsMedian": 282.71124117647065,
+     "hitsN": 1
+    },
+    "b": {
+     "median": 276.0195941176471,
+     "mean": 253.1971029411765,
+     "p25": 256.6023044117647,
+     "p75": 284.8602985294118,
+     "min": 2.1668,
+     "max": 339.536705882353,
+     "hitsMedian": 2.1668,
+     "hitsN": 1
+    },
+    "c": {
+     "median": 276.0195941176471,
+     "mean": 253.1716029411765,
+     "p25": 256.6023044117647,
+     "p75": 284.8602985294118,
+     "min": 1.8607999999999998,
+     "max": 339.536705882353,
+     "hitsMedian": 1.8607999999999998,
+     "hitsN": 1
+    }
+   }
+  }
+ },
+ "turns": [
+  {
+   "id": "ta01",
+   "thread": "ta-1",
+   "lang": "ta-IN",
+   "who": "Amma",
+   "relation": "mother",
+   "setting": "home, breakfast",
+   "partner": "கண்ணா, டிபன் ரெடி. இட்லி சாப்பிடறியா இல்ல dosa வேணுமா?",
+   "intended": "இட்லி போதும் Amma, ரெண்டு மட்டும்",
+   "drafts": [
+    {
+     "text": "இட்லி வேணும்ம்மா, ரொம்ப நல்லா இருக்கும்",
+     "gloss": "I want idli Amma, it will be really good",
+     "atMs": 248.4
+    },
+    {
+     "text": "இல்லம்மா, அப்புறம் சாப்பிடுறேன், கொஞ்சம் rest எடுக்கிறேன்",
+     "gloss": "No Amma, I will eat later, taking some rest",
+     "atMs": 333
+    },
+    {
+     "text": "என்னோட favourite rasam ஊத்தி குடுங்கம்மா",
+     "gloss": "Pour my favourite rasam Amma",
+     "atMs": 422.6
+    },
+    {
+     "text": "இன்னைக்கு dosa தான் பண்ணுவியா, எனக்கு பிடிக்கும்",
+     "gloss": "Will you make dosa today, I like it",
+     "atMs": 504
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "None of the drafts selects idli and specifies only two servings like the intended reply.",
+     "None of the drafts specify the requested quantity of two idlis, which is a key fact in the intended reply."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 173.8,
+    "firstDraftMs": 248.4,
+    "allDraftsMs": 504,
+    "allVoicedMs": 1107.5,
+    "allFirstAudioMs": 805.3,
+    "ttfaTypedMs": 301.1,
+    "ttfaChoiceMs": 303.3,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     299.2,
+     299.3,
+     303.8,
+     301.3
+    ],
+    "prespeakAudioSec": [
+     2.117,
+     3.623,
+     2.429,
+     2.699
+    ]
+   },
+   "tokens": {
+    "prompt": 485,
+    "completion": 111
+   },
+   "chars": {
+    "intendedNative": 33,
+    "intendedRoman": 31,
+    "roman": "Itli paatrum Amma, rendu matram",
+    "drafts": [
+     39,
+     57,
+     40,
+     48
+    ],
+    "prespokenTotal": 184,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.43,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 32,
+    "typingKeysNativeCount": 34,
+    "kanthTouch": 32,
+    "scanTypingPresses": 64,
+    "scanKanthPresses": 64,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 91.78867142857143,
+     "b": 95.27281428571429,
+     "c": 95.27281428571429
+    },
+    "scan": {
+     "a": 226.24245294117645,
+     "b": 233.86945294117646,
+     "c": 233.86945294117646
+    }
+   },
+   "wallClock": "2026-10-15T02:09:40.515Z"
+  },
+  {
+   "id": "ta02",
+   "thread": "ta-1",
+   "lang": "ta-IN",
+   "who": "Amma",
+   "relation": "mother",
+   "setting": "home, breakfast",
+   "partner": "சட்னி கொஞ்சம் காரமா இருக்கு, பரவாயில்லையா?",
+   "intended": "பரவாயில்ல Amma, பக்கத்துல தண்ணி வச்சுடுங்க",
+   "drafts": [
+    {
+     "text": "இல்லம்மா, ரொம்ப நல்லா இருக்கு",
+     "gloss": "No Amma, it is really good",
+     "atMs": 141.6
+    },
+    {
+     "text": "இன்னும் ஒரு நிமிஷம் பொறுத்திரு",
+     "gloss": "Wait for just one more minute Amma",
+     "atMs": 224.5
+    },
+    {
+     "text": "நீங்க கொஞ்சம் தண்ணி ஊத்தி விடுங்க",
+     "gloss": "Pour a little water Amma",
+     "atMs": 272.3
+    },
+    {
+     "text": "எனக்கு ரொம்ப பிடிச்சிருக்கு, நன்றி",
+     "gloss": "I really like it, thank you Amma",
+     "atMs": 348
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "No draft includes the request to keep water nearby.",
+     "Every draft either omits the request to keep water nearby, changes the type of request, or denies the intended meaning."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 79.5,
+    "firstDraftMs": 141.6,
+    "allDraftsMs": 348,
+    "allVoicedMs": 987.9,
+    "allFirstAudioMs": 647.6,
+    "ttfaTypedMs": 301.1,
+    "ttfaChoiceMs": 312.6,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     289.5,
+     299.2,
+     303.3,
+     299.6
+    ],
+    "prespeakAudioSec": [
+     2.117,
+     1.673,
+     1.842,
+     2.875
+    ]
+   },
+   "tokens": {
+    "prompt": 522,
+    "completion": 81
+   },
+   "chars": {
+    "intendedNative": 42,
+    "intendedRoman": 49,
+    "roman": "Paravaayilla Amma, pakkathula thanni vachchidunga",
+    "drafts": [
+     29,
+     30,
+     33,
+     34
+    ],
+    "prespokenTotal": 126,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.963,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 50,
+    "typingKeysNativeCount": 43,
+    "kanthTouch": 50,
+    "scanTypingPresses": 100,
+    "scanKanthPresses": 100,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 143.21724285714285,
+     "b": 146.54538571428571,
+     "c": 146.54538571428571
+    },
+    "scan": {
+     "a": 353.3012764705883,
+     "b": 360.7722764705883,
+     "c": 360.7722764705883
+    }
+   },
+   "wallClock": "2026-10-15T02:09:43.902Z"
+  },
+  {
+   "id": "ta03",
+   "thread": "ta-1",
+   "lang": "ta-IN",
+   "who": "Amma",
+   "relation": "mother",
+   "setting": "home, breakfast",
+   "partner": "மதியம் உனக்கு பிடிச்ச ரசம் வைக்கட்டுமா?",
+   "intended": "ஆமா Amma, ரசம் சாதம் வேணும்",
+   "drafts": [
+    {
+     "text": "ரசம் வைங்கம்மா, ரொம்ப நல்லா இருக்கும்",
+     "gloss": "Make rasam Amma, it will be very good",
+     "atMs": 211
+    },
+    {
+     "text": "இப்பவே வேணுமாம்மா? கொஞ்சம் அப்புறம் வைக்கவா?",
+     "gloss": "Do you want it right now Amma? Should I make it a bit later?",
+     "atMs": 312.1
+    },
+    {
+     "text": "ரசம்னா எனக்கு ரொம்ப பிடிக்கும்Amma",
+     "gloss": "I really love rasam Amma",
+     "atMs": 374.5
+    },
+    {
+     "text": "ரசம் சூடா இருந்தா நல்லா இருக்கும்Amma",
+     "gloss": "It will be nice if the rasam is hot Amma",
+     "atMs": 450.8
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": 1,
+    "agree": false,
+    "hitIdx": null,
+    "reasons": [
+     "No draft includes the request for rice or explicitly confirms yes, so none conveys the full intended meaning.",
+     "Draft 1 requests rasam with harmless extra praise."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 111.9,
+    "firstDraftMs": 211,
+    "allDraftsMs": 450.8,
+    "allVoicedMs": 957.3,
+    "allFirstAudioMs": 750.9,
+    "ttfaTypedMs": 300.2,
+    "ttfaChoiceMs": 303,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     300,
+     300,
+     312.1,
+     300.1
+    ],
+    "prespeakAudioSec": [
+     2.35,
+     3.157,
+     1.856,
+     1.851
+    ]
+   },
+   "tokens": {
+    "prompt": 560,
+    "completion": 104
+   },
+   "chars": {
+    "intendedNative": 27,
+    "intendedRoman": 30,
+    "roman": "Aama Amma, rasam saadham venum",
+    "drafts": [
+     37,
+     44,
+     34,
+     37
+    ],
+    "prespokenTotal": 152,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.436,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 31,
+    "typingKeysNativeCount": 28,
+    "kanthTouch": 31,
+    "scanTypingPresses": 62,
+    "scanKanthPresses": 62,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 88.93062857142857,
+     "b": 92.36157142857142,
+     "c": 92.36157142857142
+    },
+    "scan": {
+     "a": 219.18272941176468,
+     "b": 226.7565294117647,
+     "c": 226.7565294117647
+    }
+   },
+   "wallClock": "2026-10-15T02:09:47.223Z"
+  },
+  {
+   "id": "ta04",
+   "thread": "ta-2",
+   "lang": "ta-IN",
+   "who": "Sister Kavitha",
+   "relation": "home nurse",
+   "setting": "home, nursing care",
+   "partner": "Sir, suction பண்ணட்டுமா? சத்தம் கேக்குது.",
+   "intended": "சரி, பண்ணுங்க. தொண்டை அடைக்குது",
+   "drafts": [
+    {
+     "text": "இல்லம்மா, இப்போ வேணாம், அப்படியே விடுங்க",
+     "gloss": "No Amma, not now, leave it",
+     "atMs": 168.7
+    },
+    {
+     "text": "ஒரு நிமிஷம் இருங்கம்மா, நான் சரி பண்ணிக்கிறேன்",
+     "gloss": "Wait one minute Amma, I will fix it",
+     "atMs": 223.3
+    },
+    {
+     "text": "என்னால முடியலம்மா, கொஞ்சம் பசிக்குது",
+     "gloss": "I can't Amma, feeling a bit hungry",
+     "atMs": 299.1
+    },
+    {
+     "text": "சுத்தம் பண்ணிட்டு அப்புறமா பண்ணுங்கம்மா",
+     "gloss": "Clean it and do later Amma",
+     "atMs": 381.5
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "None of the drafts agree to suction and mention the blocked throat",
+     "None of the drafts convey agreement to perform suction or mention a blocked throat as the reason for it."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 96.5,
+    "firstDraftMs": 168.7,
+    "allDraftsMs": 381.5,
+    "allVoicedMs": 933.2,
+    "allFirstAudioMs": 684.8,
+    "ttfaTypedMs": 292.3,
+    "ttfaChoiceMs": 306.4,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     303.4,
+     300,
+     314.5,
+     303.2
+    ],
+    "prespeakAudioSec": [
+     2.949,
+     2.43,
+     2.427,
+     2.346
+    ]
+   },
+   "tokens": {
+    "prompt": 482,
+    "completion": 105
+   },
+   "chars": {
+    "intendedNative": 31,
+    "intendedRoman": 33,
+    "roman": "Sari, pannunga. Thondai arukkudhu",
+    "drafts": [
+     40,
+     46,
+     36,
+     39
+    ],
+    "prespokenTotal": 161,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.517,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 34,
+    "typingKeysNativeCount": 32,
+    "kanthTouch": 34,
+    "scanTypingPresses": 68,
+    "scanKanthPresses": 68,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 97.49415714285713,
+     "b": 100.85579999999999,
+     "c": 100.85579999999999
+    },
+    "scan": {
+     "a": 240.3513,
+     "b": 247.85580000000002,
+     "c": 247.85580000000002
+    }
+   },
+   "wallClock": "2026-10-15T02:09:50.658Z"
+  },
+  {
+   "id": "ta05",
+   "thread": "ta-2",
+   "lang": "ta-IN",
+   "who": "Sister Kavitha",
+   "relation": "home nurse",
+   "setting": "home, nursing care",
+   "partner": "Position மாத்தணுமா? ரொம்ப நேரமா இதே பக்கம் இருக்கீங்க.",
+   "intended": "ஆமா, இடது பக்கம் திருப்புங்க",
+   "drafts": [
+    {
+     "text": "இப்பவே மாத்துங்க சிஸ்டர்",
+     "gloss": "Change it right now Sister",
+     "atMs": 245.5
+    },
+    {
+     "text": "இன்னும் ஒரு நிமிஷம் இருங்க சிஸ்டர்",
+     "gloss": "Wait one more minute Sister",
+     "atMs": 315.9
+    },
+    {
+     "text": "ரசம் குடிச்சிட்டு மாத்துங்க சிஸ்டர்",
+     "gloss": "Change it after I drink rasam Sister",
+     "atMs": 498.4
+    },
+    {
+     "text": "சரி, மாத்திடுங்க சிஸ்டர்",
+     "gloss": "Okay, change it Sister",
+     "atMs": 561.6
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "All drafts omit the specific side (left) required by the intended reply.",
+     "None of the drafts specify the left side."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 126.7,
+    "firstDraftMs": 245.5,
+    "allDraftsMs": 561.6,
+    "allVoicedMs": 6134.1,
+    "allFirstAudioMs": 5979.5,
+    "ttfaTypedMs": 301.5,
+    "ttfaChoiceMs": 416.1,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "http-stream"
+    ],
+    "prespeakTtfaMs": [
+     302.9,
+     303.7,
+     302.9,
+     5417.9
+    ],
+    "prespeakAudioSec": [
+     1.524,
+     1.678,
+     2.512,
+     1.59
+    ]
+   },
+   "tokens": {
+    "prompt": 522,
+    "completion": 76
+   },
+   "chars": {
+    "intendedNative": 28,
+    "intendedRoman": 29,
+    "roman": "Aamaa, edam paksha thirupunga",
+    "drafts": [
+     24,
+     34,
+     35,
+     24
+    ],
+    "prespokenTotal": 117,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.126,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 30,
+    "typingKeysNativeCount": 29,
+    "kanthTouch": 30,
+    "scanTypingPresses": 60,
+    "scanKanthPresses": 60,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 86.07478571428572,
+     "b": 89.61652857142857,
+     "c": 89.61652857142857
+    },
+    "scan": {
+     "a": 212.12520588235293,
+     "b": 219.80980588235292,
+     "c": 219.80980588235292
+    }
+   },
+   "wallClock": "2026-10-15T02:09:59.029Z"
+  },
+  {
+   "id": "ta06",
+   "thread": "ta-2",
+   "lang": "ta-IN",
+   "who": "Sister Kavitha",
+   "relation": "home nurse",
+   "setting": "home, nursing care",
+   "partner": "BP check பண்ணிட்டேன், கொஞ்சம் low-ஆ இருக்கு. தலை சுத்துதா?",
+   "intended": "இல்ல, ஆனா கொஞ்சம் tired-ஆ இருக்கு",
+   "drafts": [
+    {
+     "text": "இல்லம்மா, ஒன்னும் இல்ல, பரவால",
+     "gloss": "No Amma, nothing, it is okay",
+     "atMs": 174.6
+    },
+    {
+     "text": "கொஞ்ச நேரம் wait பண்ணிடலாமா?",
+     "gloss": "Can we wait a little bit?",
+     "atMs": 245.2
+    },
+    {
+     "text": "கண்ணாடி இருக்கா? எனக்கு பாக்கணும்.",
+     "gloss": "Is there a mirror? I need to see.",
+     "atMs": 314
+    },
+    {
+     "text": "ரசம் குடிச்சா நல்லா இருக்குமா?",
+     "gloss": "Will drinking rasam be good?",
+     "atMs": 387.1
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "No draft conveys the speaker being a bit tired.",
+     "Draft 1 omits the specific fact of being tired, and the other drafts change the intent entirely."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 95.1,
+    "firstDraftMs": 174.6,
+    "allDraftsMs": 387.1,
+    "allVoicedMs": 871.5,
+    "allFirstAudioMs": 741.2,
+    "ttfaTypedMs": 297.5,
+    "ttfaChoiceMs": 301.2,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     299.1,
+     295.6,
+     288.4,
+     354.1
+    ],
+    "prespeakAudioSec": [
+     2.212,
+     1.866,
+     2.539,
+     1.633
+    ]
+   },
+   "tokens": {
+    "prompt": 557,
+    "completion": 86
+   },
+   "chars": {
+    "intendedNative": 33,
+    "intendedRoman": 32,
+    "roman": "Illa, aanaa thoda tired-aa iruku",
+    "drafts": [
+     29,
+     28,
+     34,
+     30
+    ],
+    "prespokenTotal": 121,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.02,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 33,
+    "typingKeysNativeCount": 34,
+    "kanthTouch": 33,
+    "scanTypingPresses": 66,
+    "scanKanthPresses": 66,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 94.64221428571429,
+     "b": 98.00945714285714,
+     "c": 98.00945714285714
+    },
+    "scan": {
+     "a": 233.29767647058824,
+     "b": 240.80777647058824,
+     "c": 240.80777647058824
+    }
+   },
+   "wallClock": "2026-10-15T02:10:02.185Z"
+  },
+  {
+   "id": "ta07",
+   "thread": "ta-3",
+   "lang": "ta-IN",
+   "who": "Karthik",
+   "relation": "school friend",
+   "setting": "home visit",
+   "partner": "டேய், இன்னிக்கு India match பாக்கலாமா? நான் வீட்டுக்கு வரேன்.",
+   "intended": "வா டா, ஏழு மணிக்கு வா",
+   "drafts": [
+    {
+     "text": "கண்டிப்பா, match பார்க்க wait பண்றேன்",
+     "gloss": "Definitely, I will wait to watch the match",
+     "atMs": 158.6
+    },
+    {
+     "text": "இன்னும் ரெடி ஆகல, ஒரு அரை மணி நேரம் ஆகுது",
+     "gloss": "Not ready yet, takes half an hour",
+     "atMs": 301.9
+    },
+    {
+     "text": "நீ வரும்போது கொஞ்சம் rasam எடுத்துட்டு வா",
+     "gloss": "Bring some rasam when you come",
+     "atMs": 387.3
+    },
+    {
+     "text": "நீ சீக்கிரம் வீட்டுக்கு வா, match miss ஆக கூடாது",
+     "gloss": "Come home soon, shouldn't miss the match",
+     "atMs": 489.4
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "None of the drafts include the specific 7 o'clock time stated in the intended reply.",
+     "None preserve the agreement to come at seven o'clock."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 100.3,
+    "firstDraftMs": 158.6,
+    "allDraftsMs": 489.4,
+    "allVoicedMs": 1216.9,
+    "allFirstAudioMs": 792.6,
+    "ttfaTypedMs": 295.3,
+    "ttfaChoiceMs": 295.8,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     298.6,
+     299.3,
+     303.3,
+     303.2
+    ],
+    "prespeakAudioSec": [
+     2.286,
+     2.693,
+     2.207,
+     3.452
+    ]
+   },
+   "tokens": {
+    "prompt": 485,
+    "completion": 93
+   },
+   "chars": {
+    "intendedNative": 21,
+    "intendedRoman": 25,
+    "roman": "Va da, satta gantalaku va",
+    "drafts": [
+     37,
+     41,
+     41,
+     48
+    ],
+    "prespokenTotal": 167,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 1.758,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 26,
+    "typingKeysNativeCount": 22,
+    "kanthTouch": 26,
+    "scanTypingPresses": 52,
+    "scanKanthPresses": 52,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 74.64001428571429,
+     "b": 78.10955714285714,
+     "c": 78.10955714285714
+    },
+    "scan": {
+     "a": 183.88371176470588,
+     "b": 191.4961117647059,
+     "c": 191.4961117647059
+    }
+   },
+   "wallClock": "2026-10-15T02:10:05.706Z"
+  },
+  {
+   "id": "ta08",
+   "thread": "ta-3",
+   "lang": "ta-IN",
+   "who": "Karthik",
+   "relation": "school friend",
+   "setting": "home visit",
+   "partner": "என்ன வாங்கிட்டு வரட்டும்? Biryani ஓகேவா?",
+   "intended": "நீ வாங்கிக்கோ, நான் Amma ரசம் சாப்பிடறேன்",
+   "drafts": [
+    {
+     "text": "Biryani super டா, வாங்கிட்டு வா",
+     "gloss": "Biryani is super, bring it",
+     "atMs": 171.1
+    },
+    {
+     "text": "இல்ல டா, எனக்கு rasam தான் வேணும்",
+     "gloss": "No bro, I only want rasam",
+     "atMs": 229
+    },
+    {
+     "text": "நீ எது வாங்கிட்டு வந்தாலும் ஓகே தான்",
+     "gloss": "Whatever you bring is fine",
+     "atMs": 318
+    },
+    {
+     "text": "சீக்கிரம் வாடா, match start ஆகட்டும்",
+     "gloss": "Come fast bro, match is about to start",
+     "atMs": 443.8
+    }
+   ],
+   "judge": {
+    "run1": 2,
+    "run2": 2,
+    "agree": true,
+    "hitIdx": 1,
+    "reasons": [
+     "Draft 2 conveys the speaker wants rasam only, matching the core intent.",
+     "Draft 2 refuses biryani and states that rasam is wanted, matching the core intent."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": [
+      3
+     ]
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 105,
+    "firstDraftMs": 171.1,
+    "allDraftsMs": 443.8,
+    "allVoicedMs": 1037.7,
+    "allFirstAudioMs": 768.3,
+    "ttfaTypedMs": 299.1,
+    "ttfaChoiceMs": 299.2,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     306.9,
+     301.2,
+     311,
+     324.4
+    ],
+    "prespeakAudioSec": [
+     2.52,
+     2.19,
+     2.295,
+     2.616
+    ]
+   },
+   "tokens": {
+    "prompt": 517,
+    "completion": 86
+   },
+   "chars": {
+    "intendedNative": 41,
+    "intendedRoman": 37,
+    "roman": "Nee vaangikko, naan Amma rasam sutten",
+    "drafts": [
+     31,
+     33,
+     36,
+     36
+    ],
+    "prespokenTotal": 136,
+    "hitDraft": 33
+   },
+   "audioSec": {
+    "intended": 3.855,
+    "hitDraft": 2.19
+   },
+   "motor": {
+    "typingKeys": 38,
+    "typingKeysNativeCount": 42,
+    "kanthTouch": 1,
+    "scanTypingPresses": 76,
+    "scanKanthPresses": 1,
+    "scanKanthWaitSteps": 2
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 108.92952857142856,
+     "b": 3.7821428571428575,
+     "c": 3.4829428571428576
+    },
+    "scan": {
+     "a": 268.5933941176471,
+     "b": 3.7249999999999996,
+     "c": 3.4257999999999997
+    }
+   },
+   "wallClock": "2026-10-15T02:10:09.334Z"
+  },
+  {
+   "id": "ta09",
+   "thread": "ta-3",
+   "lang": "ta-IN",
+   "who": "Karthik",
+   "relation": "school friend",
+   "setting": "home visit",
+   "partner": "Office-ல எல்லாரும் உன்ன கேட்டாங்க டா. என்ன சொல்லட்டும்?",
+   "intended": "நான் நல்லா இருக்கேன்னு சொல்லு, எல்லாரையும் miss பண்றேன்",
+   "drafts": [
+    {
+     "text": "சொல்லிடு டா, நான் busy-ஆ இருக்கேன்",
+     "gloss": "Tell them I'm busy",
+     "atMs": 161.1
+    },
+    {
+     "text": "அப்புறம் சொல்றேன், முதல்ல match பாக்கலாம்",
+     "gloss": "I'll tell later, let's watch the match first",
+     "atMs": 243.3
+    },
+    {
+     "text": "எல்லாரும் எப்படி இருக்காங்க?",
+     "gloss": "How is everyone?",
+     "atMs": 292.4
+    },
+    {
+     "text": "அவங்ககிட்ட என் regards சொல்லிடு டா",
+     "gloss": "Tell them my regards",
+     "atMs": 359.5
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "None of the drafts convey that the user is fine and misses everyone.",
+     "None of the drafts convey that the speaker is fine or misses everyone."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 102,
+    "firstDraftMs": 161.1,
+    "allDraftsMs": 359.5,
+    "allVoicedMs": 970,
+    "allFirstAudioMs": 674.3,
+    "ttfaTypedMs": 305.3,
+    "ttfaChoiceMs": 296.6,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     307.3,
+     318.8,
+     310.3,
+     314.8
+    ],
+    "prespeakAudioSec": [
+     2.198,
+     2.291,
+     1.64,
+     2.687
+    ]
+   },
+   "tokens": {
+    "prompt": 555,
+    "completion": 81
+   },
+   "chars": {
+    "intendedNative": 55,
+    "intendedRoman": 50,
+    "roman": "Nanu nalla irkennu kaattu, ellaaraiyum miss panren",
+    "drafts": [
+     34,
+     41,
+     28,
+     34
+    ],
+    "prespokenTotal": 137,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 3.548,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 51,
+    "typingKeysNativeCount": 56,
+    "kanthTouch": 51,
+    "scanTypingPresses": 102,
+    "scanKanthPresses": 102,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 146.0785857142857,
+     "b": 149.41822857142856,
+     "c": 149.41822857142856
+    },
+    "scan": {
+     "a": 360.3643,
+     "b": 367.84680000000003,
+     "c": 367.84680000000003
+    }
+   },
+   "wallClock": "2026-10-15T02:10:12.910Z"
+  },
+  {
+   "id": "ta10",
+   "thread": "ta-4",
+   "lang": "ta-IN",
+   "who": "Pharmacist",
+   "relation": "pharmacist at the medical shop",
+   "setting": "errand, medical shop",
+   "partner": "Sir, இந்த tablet stock இல்ல. வேற brand குடுக்கட்டுமா?",
+   "intended": "Same salt-ஆ இருந்தா குடுங்க",
+   "drafts": [
+    {
+     "text": "சரிங்க, அந்த brand குடுங்க",
+     "gloss": "Alright, give that brand",
+     "atMs": 137.9
+    },
+    {
+     "text": "இப்போ வேண்டாம், அப்புறம் வாங்கிக்கிறேன்",
+     "gloss": "Not now, I will buy later",
+     "atMs": 207.7
+    },
+    {
+     "text": "எந்த brand இது? கொஞ்சம் பாக்கட்டும்",
+     "gloss": "Which brand is this? Let me see",
+     "atMs": 293.9
+    },
+    {
+     "text": "ரொம்ப thanks, வேற ஏதாவது இருக்கா?",
+     "gloss": "Very thanks, is there anything else?",
+     "atMs": 360
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "No draft preserves the same-salt condition, and all others change the intent.",
+     "No draft retains the conditional request to give the tablet only if the salt is the same."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 99.6,
+    "firstDraftMs": 137.9,
+    "allDraftsMs": 360,
+    "allVoicedMs": 1008.9,
+    "allFirstAudioMs": 671.7,
+    "ttfaTypedMs": 301.6,
+    "ttfaChoiceMs": 291.6,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     311.2,
+     298.8,
+     305.4,
+     311.7
+    ],
+    "prespeakAudioSec": [
+     1.936,
+     1.748,
+     2.592,
+     3.165
+    ]
+   },
+   "tokens": {
+    "prompt": 479,
+    "completion": 77
+   },
+   "chars": {
+    "intendedNative": 27,
+    "intendedRoman": 32,
+    "roman": "Same salt-aaa idda thaan kudunga",
+    "drafts": [
+     26,
+     39,
+     35,
+     33
+    ],
+    "prespokenTotal": 133,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 1.592,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 33,
+    "typingKeysNativeCount": 28,
+    "kanthTouch": 33,
+    "scanTypingPresses": 66,
+    "scanKanthPresses": 66,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 94.64631428571428,
+     "b": 97.98645714285713,
+     "c": 97.98645714285713
+    },
+    "scan": {
+     "a": 233.30177647058824,
+     "b": 240.78477647058824,
+     "c": 240.78477647058824
+    }
+   },
+   "wallClock": "2026-10-15T02:10:16.139Z"
+  },
+  {
+   "id": "ta11",
+   "thread": "ta-4",
+   "lang": "ta-IN",
+   "who": "Pharmacist",
+   "relation": "pharmacist at the medical shop",
+   "setting": "errand, medical shop",
+   "partner": "Total ஆயிரத்து இருநூறு ரூபாய். GPay-ஆ cash-ஆ?",
+   "intended": "GPay பண்றேன், QR காட்டுங்க",
+   "drafts": [
+    {
+     "text": "GPay பண்ணிடுங்க",
+     "gloss": "Do it via GPay",
+     "atMs": 138.7
+    },
+    {
+     "text": "Cash குடுக்குறேன், ஒரு நிமிஷம்",
+     "gloss": "I will give cash, one minute",
+     "atMs": 186.9
+    },
+    {
+     "text": "இப்போவே பண்ணிடலாம், நீங்க wait பண்ணுங்க",
+     "gloss": "We can do it right now, you wait",
+     "atMs": 276.3
+    },
+    {
+     "text": "சரி, நான் இப்போவே GPay பண்றேன்",
+     "gloss": "Okay, I am doing GPay now",
+     "atMs": 331.3
+    }
+   ],
+   "judge": {
+    "run1": 4,
+    "run2": "none",
+    "agree": false,
+    "hitIdx": null,
+    "reasons": [
+     "Draft 4 correctly commits to GPay and matches the core intent, omitting only the QR request.",
+     "Draft 1 changes the actor, Draft 4 omits the QR request, and Drafts 2 and 3 are unrelated, so none match."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": [
+      3
+     ]
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 95.2,
+    "firstDraftMs": 138.7,
+    "allDraftsMs": 331.3,
+    "allVoicedMs": 872.1,
+    "allFirstAudioMs": 639.1,
+    "ttfaTypedMs": 316.5,
+    "ttfaChoiceMs": 291.1,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     391.7,
+     310.7,
+     298.5,
+     307.8
+    ],
+    "prespeakAudioSec": [
+     1.264,
+     1.851,
+     2.023,
+     2.288
+    ]
+   },
+   "tokens": {
+    "prompt": 518,
+    "completion": 82
+   },
+   "chars": {
+    "intendedNative": 26,
+    "intendedRoman": 27,
+    "roman": "GPay panchhen, QR kaatuunga",
+    "drafts": [
+     15,
+     30,
+     39,
+     30
+    ],
+    "prespokenTotal": 114,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.342,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 28,
+    "typingKeysNativeCount": 27,
+    "kanthTouch": 28,
+    "scanTypingPresses": 56,
+    "scanKanthPresses": 56,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 80.3755,
+     "b": 83.68694285714285,
+     "c": 83.68694285714285
+    },
+    "scan": {
+     "a": 198.02255882352938,
+     "b": 205.47685882352937,
+     "c": 205.47685882352937
+    }
+   },
+   "wallClock": "2026-10-15T02:10:19.255Z"
+  },
+  {
+   "id": "ta12",
+   "thread": "ta-4",
+   "lang": "ta-IN",
+   "who": "Pharmacist",
+   "relation": "pharmacist at the medical shop",
+   "setting": "errand, medical shop",
+   "partner": "Syrup அடுத்த வாரம் தான் வரும். Home delivery பண்ணட்டுமா?",
+   "intended": "ஆமா, delivery பண்ணுங்க, அதே address தான்",
+   "drafts": [
+    {
+     "text": "சரிங்க, வீட்டுக்கே கொண்டு வந்துடுங்க",
+     "gloss": "Alright, bring it to the house",
+     "atMs": 156.1
+    },
+    {
+     "text": "இன்னும் ஒரு வாரம் wait பண்ண முடியல",
+     "gloss": "Can't wait one more week",
+     "atMs": 225.1
+    },
+    {
+     "text": "எப்ப வரும்னு கொஞ்சம் சொல்லுங்க",
+     "gloss": "Tell me when it will come",
+     "atMs": 273.6
+    },
+    {
+     "text": "இப்பவே வேணும், கொஞ்சம் சீக்கிரம் பாருங்க",
+     "gloss": "I need it right now, please hurry up",
+     "atMs": 361.6
+    }
+   ],
+   "judge": {
+    "run1": 1,
+    "run2": 1,
+    "agree": true,
+    "hitIdx": 0,
+    "reasons": [
+     "It affirms home delivery and implies the same address by specifying to bring it to the house.",
+     "Draft 1 affirmatively agrees to home delivery, matching the intent to confirm yes and use the same address."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 96.2,
+    "firstDraftMs": 156.1,
+    "allDraftsMs": 361.6,
+    "allVoicedMs": 969.2,
+    "allFirstAudioMs": 701.6,
+    "ttfaTypedMs": 300.5,
+    "ttfaChoiceMs": 298.1,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     299.4,
+     306.3,
+     427.9,
+     305.2
+    ],
+    "prespeakAudioSec": [
+     2.297,
+     2.11,
+     1.454,
+     2.696
+    ]
+   },
+   "tokens": {
+    "prompt": 549,
+    "completion": 80
+   },
+   "chars": {
+    "intendedNative": 40,
+    "intendedRoman": 44,
+    "roman": "Aamaa, delivery pannunga, athe address thaan",
+    "drafts": [
+     36,
+     34,
+     30,
+     40
+    ],
+    "prespokenTotal": 140,
+    "hitDraft": 36
+   },
+   "audioSec": {
+    "intended": 2.784,
+    "hitDraft": 2.297
+   },
+   "motor": {
+    "typingKeys": 45,
+    "typingKeysNativeCount": 41,
+    "kanthTouch": 1,
+    "scanTypingPresses": 90,
+    "scanKanthPresses": 1,
+    "scanKanthWaitSteps": 1
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 128.93092857142858,
+     "b": 3.698842857142857,
+     "c": 3.4007428571428573
+    },
+    "scan": {
+     "a": 318.0065588235294,
+     "b": 2.2417,
+     "c": 1.9435999999999998
+    }
+   },
+   "wallClock": "2026-10-15T02:10:22.659Z"
+  },
+  {
+   "id": "hi01",
+   "thread": "hi-1",
+   "lang": "hi-IN",
+   "who": "Dr. Mehra",
+   "relation": "neurologist",
+   "setting": "clinic, follow-up",
+   "partner": "Arjun, पिछले हफ्ते से कैसा feel हो रहा है? कोई नई problem?",
+   "intended": "निगलने में थोड़ी दिक्कत बढ़ गई है",
+   "drafts": [
+    {
+     "text": "थोड़ा tired feel हो रहा है, Doctor",
+     "gloss": "Feeling a little tired, Doctor",
+     "atMs": 158.6
+    },
+    {
+     "text": "अभी सब ठीक है, checkup बाद में करेंगे",
+     "gloss": "Everything is fine right now, we will do the checkup later",
+     "atMs": 236.5
+    },
+    {
+     "text": "Amma का rasam खाया था, काफी अच्छा लगा",
+     "gloss": "Ate Amma's rasam, felt really good",
+     "atMs": 325.6
+    },
+    {
+     "text": "कोई नयी problem नहीं है, बस आराम कर रहा हूँ",
+     "gloss": "No new problems, just resting",
+     "atMs": 376.5
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "none mention the worsening swallowing difficulty",
+     "All drafts use Hindi words in Latin script and none describe the worsening swallowing difficulty."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": [
+      1,
+      2,
+      3,
+      4
+     ]
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 105.7,
+    "firstDraftMs": 158.6,
+    "allDraftsMs": 376.5,
+    "allVoicedMs": 1244.9,
+    "allFirstAudioMs": 684.9,
+    "ttfaTypedMs": 305.1,
+    "ttfaChoiceMs": 301.4,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     301.8,
+     304.8,
+     303.6,
+     308.4
+    ],
+    "prespeakAudioSec": [
+     1.835,
+     2.865,
+     3.188,
+     4.472
+    ]
+   },
+   "tokens": {
+    "prompt": 479,
+    "completion": 90
+   },
+   "chars": {
+    "intendedNative": 33,
+    "intendedRoman": 38,
+    "roman": "Nigalne men thodi dikkat badh gayi hai",
+    "drafts": [
+     34,
+     37,
+     37,
+     43
+    ],
+    "prespokenTotal": 151,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 1.529,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 39,
+    "typingKeysNativeCount": 34,
+    "kanthTouch": 39,
+    "scanTypingPresses": 78,
+    "scanKanthPresses": 78,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 111.79267142857142,
+     "b": 115.14931428571428,
+     "c": 115.14931428571428
+    },
+    "scan": {
+     "a": 275.65821764705885,
+     "b": 283.15771764705886,
+     "c": 283.15771764705886
+    }
+   },
+   "wallClock": "2026-10-15T02:10:26.172Z"
+  },
+  {
+   "id": "hi02",
+   "thread": "hi-1",
+   "lang": "hi-IN",
+   "who": "Dr. Mehra",
+   "relation": "neurologist",
+   "setting": "clinic, follow-up",
+   "partner": "रात को नींद ठीक आती है? लेटने पर साँस लेने में तकलीफ़ होती है?",
+   "intended": "हाँ, लेटने पर साँस फूलती है",
+   "drafts": [
+    {
+     "text": "हाँ Doctor, रात को sleep थोड़ी खराब है",
+     "gloss": "Yes Doctor, sleep is a bit bad at night",
+     "atMs": 180.7
+    },
+    {
+     "text": "लेटने पर साँस लेने में दिक्कत होती है",
+     "gloss": "Breathing is difficult when lying down",
+     "atMs": 230.4
+    },
+    {
+     "text": "Amma ने pillow adjust किया था",
+     "gloss": "Amma adjusted the pillow",
+     "atMs": 287
+    },
+    {
+     "text": "थोड़ा rest करूँ Doctor, ठीक हो जाएगा",
+     "gloss": "I will rest a little Doctor, it will be fine",
+     "atMs": 377.4
+    }
+   ],
+   "judge": {
+    "run1": 2,
+    "run2": 2,
+    "agree": true,
+    "hitIdx": 1,
+    "reasons": [
+     "Draft 2 directly states the breathing difficulty when lying down; the other drafts omit that key symptom or shift the meaning.",
+     "Draft 2 restates the exact same symptom of breathing difficulty when lying down."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [
+      3
+     ],
+     "either": [
+      3
+     ]
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 107.1,
+    "firstDraftMs": 180.7,
+    "allDraftsMs": 377.4,
+    "allVoicedMs": 1026.1,
+    "allFirstAudioMs": 689.1,
+    "ttfaTypedMs": 304.3,
+    "ttfaChoiceMs": 299.2,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     306.3,
+     303.3,
+     305.1,
+     311.6
+    ],
+    "prespeakAudioSec": [
+     3.629,
+     2.11,
+     1.592,
+     2.961
+    ]
+   },
+   "tokens": {
+    "prompt": 523,
+    "completion": 88
+   },
+   "chars": {
+    "intendedNative": 27,
+    "intendedRoman": 34,
+    "roman": "Haan, lette par saans phoolati hai",
+    "drafts": [
+     38,
+     37,
+     29,
+     36
+    ],
+    "prespokenTotal": 140,
+    "hitDraft": 37
+   },
+   "audioSec": {
+    "intended": 1.527,
+    "hitDraft": 2.11
+   },
+   "motor": {
+    "typingKeys": 35,
+    "typingKeysNativeCount": 28,
+    "kanthTouch": 1,
+    "scanTypingPresses": 70,
+    "scanKanthPresses": 1,
+    "scanKanthWaitSteps": 2
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 100.3633,
+     "b": 3.7157428571428572,
+     "c": 3.4165428571428573
+    },
+    "scan": {
+     "a": 247.42212352941178,
+     "b": 3.6586,
+     "c": 3.3594
+    }
+   },
+   "wallClock": "2026-10-15T02:10:29.546Z"
+  },
+  {
+   "id": "hi03",
+   "thread": "hi-1",
+   "lang": "hi-IN",
+   "who": "Dr. Mehra",
+   "relation": "neurologist",
+   "setting": "clinic, follow-up",
+   "partner": "तो हम रात के लिए BiPAP start करते हैं। कोई सवाल?",
+   "intended": "क्या mask पूरी रात पहनना पड़ेगा?",
+   "drafts": [
+    {
+     "text": "ठीक है Doctor, मैं try करूँगा",
+     "gloss": "Okay Doctor, I will try",
+     "atMs": 138.2
+    },
+    {
+     "text": "इससे मुझे थोड़ी राहत मिलेगी, thank you",
+     "gloss": "This will give me some relief, thank you",
+     "atMs": 216.5
+    },
+    {
+     "text": "रात में adjust करने में time लगेगा",
+     "gloss": "It will take time to adjust at night",
+     "atMs": 258.1
+    },
+    {
+     "text": "Amma को भी समझाना पड़ेगा इसे use करने के लिए",
+     "gloss": "I will have to explain to Amma to use this too.",
+     "atMs": 361.9
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "No draft mentions wearing the mask the entire night.",
+     "None asks whether the mask must be worn all night."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": [
+      4
+     ]
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 100.7,
+    "firstDraftMs": 138.2,
+    "allDraftsMs": 361.9,
+    "allVoicedMs": 943.4,
+    "allFirstAudioMs": 680.3,
+    "ttfaTypedMs": 306.8,
+    "ttfaChoiceMs": 298.8,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     309.7,
+     302.6,
+     299.6,
+     318.4
+    ],
+    "prespeakAudioSec": [
+     2.786,
+     2.601,
+     2.279,
+     2.513
+    ]
+   },
+   "tokens": {
+    "prompt": 557,
+    "completion": 85
+   },
+   "chars": {
+    "intendedNative": 32,
+    "intendedRoman": 34,
+    "roman": "Kya mask puri raat pehenna padega?",
+    "drafts": [
+     29,
+     38,
+     34,
+     44
+    ],
+    "prespokenTotal": 145,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.133,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 35,
+    "typingKeysNativeCount": 33,
+    "kanthTouch": 35,
+    "scanTypingPresses": 70,
+    "scanKanthPresses": 70,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 100.3658,
+     "b": 103.70784285714285,
+     "c": 103.70784285714285
+    },
+    "scan": {
+     "a": 247.42462352941178,
+     "b": 254.90952352941179,
+     "c": 254.90952352941179
+    }
+   },
+   "wallClock": "2026-10-15T02:10:32.941Z"
+  },
+  {
+   "id": "hi04",
+   "thread": "hi-2",
+   "lang": "hi-IN",
+   "who": "Rohit",
+   "relation": "college friend",
+   "setting": "home visit",
+   "partner": "भाई, Delhi से सिर्फ तुझसे मिलने आया हूँ! कैसा है तू?",
+   "intended": "अरे Rohit! तुझे देखकर बहुत अच्छा लगा",
+   "drafts": [
+    {
+     "text": "ठीक हूँ, Rohit, तुझे देखकर",
+     "gloss": "I'm fine, Rohit, seeing you",
+     "atMs": 176.8
+    },
+    {
+     "text": "अभी rasam पी लूँ, फिर बात करते हैं",
+     "gloss": "Let me drink rasam first, then we talk",
+     "atMs": 248.8
+    },
+    {
+     "text": "तू आराम कर, मैं भी थोड़ा थक गया हूँ",
+     "gloss": "You rest, I am a bit tired too",
+     "atMs": 325.6
+    },
+    {
+     "text": "Delhi की हवा कैसी है, सब बढ़िया?",
+     "gloss": "How is the Delhi air, all good?",
+     "atMs": 419.5
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "None of the drafts convey the intended happiness at seeing Rohit.",
+     "No draft expresses the intended feeling of being glad to see Rohit."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": [
+      2
+     ]
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 104.2,
+    "firstDraftMs": 176.8,
+    "allDraftsMs": 419.5,
+    "allVoicedMs": 851.7,
+    "allFirstAudioMs": 836.2,
+    "ttfaTypedMs": 303.9,
+    "ttfaChoiceMs": 300.9,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     305.1,
+     305.2,
+     303.3,
+     416.7
+    ],
+    "prespeakAudioSec": [
+     2.412,
+     2.5,
+     1.832,
+     1.467
+    ]
+   },
+   "tokens": {
+    "prompt": 468,
+    "completion": 94
+   },
+   "chars": {
+    "intendedNative": 36,
+    "intendedRoman": 40,
+    "roman": "Are Rohit! Tuze dekhkar bahut achha laga",
+    "drafts": [
+     26,
+     34,
+     35,
+     32
+    ],
+    "prespokenTotal": 127,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.606,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 41,
+    "typingKeysNativeCount": 37,
+    "kanthTouch": 41,
+    "scanTypingPresses": 82,
+    "scanKanthPresses": 82,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 117.50575714285714,
+     "b": 120.90539999999999,
+     "c": 120.90539999999999
+    },
+    "scan": {
+     "a": 289.77466470588234,
+     "b": 297.31716470588236,
+     "c": 297.31716470588236
+    }
+   },
+   "wallClock": "2026-10-15T02:10:36.376Z"
+  },
+  {
+   "id": "hi05",
+   "thread": "hi-2",
+   "lang": "hi-IN",
+   "who": "Rohit",
+   "relation": "college friend",
+   "setting": "home visit",
+   "partner": "कल का match देखा? Kohli ने क्या खेला यार!",
+   "intended": "हाँ देखा, last over में मज़ा आ गया",
+   "drafts": [
+    {
+     "text": "हाँ यार, Kohli का shot बहुत मस्त था",
+     "gloss": "Yes man, Kohli's shot was awesome",
+     "atMs": 178.1
+    },
+    {
+     "text": "कल match देखूंगा, थोड़ा late हो जाएगा",
+     "gloss": "Will watch the match tomorrow, will be a bit late",
+     "atMs": 233.6
+    },
+    {
+     "text": "तू भी खेलता था ना cricket?",
+     "gloss": "You used to play cricket too, right?",
+     "atMs": 303.5
+    },
+    {
+     "text": "आज rasam पीने का मन है",
+     "gloss": "Feeling like having rasam today",
+     "atMs": 349.1
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "None of the drafts convey having watched and enjoyed the last over.",
+     "No draft confirms watching and retains the specific fact of enjoying the last over."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": [
+      1
+     ]
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 107.5,
+    "firstDraftMs": 178.1,
+    "allDraftsMs": 349.1,
+    "allVoicedMs": 847,
+    "allFirstAudioMs": 718.6,
+    "ttfaTypedMs": 291.1,
+    "ttfaChoiceMs": 301,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     320.9,
+     343.6,
+     415,
+     353.4
+    ],
+    "prespeakAudioSec": [
+     2.879,
+     2.613,
+     1.448,
+     1.586
+    ]
+   },
+   "tokens": {
+    "prompt": 500,
+    "completion": 80
+   },
+   "chars": {
+    "intendedNative": 34,
+    "intendedRoman": 39,
+    "roman": "Haan dekha, last over mein maza aa gaya",
+    "drafts": [
+     35,
+     37,
+     26,
+     22
+    ],
+    "prespokenTotal": 120,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 3.366,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 40,
+    "typingKeysNativeCount": 35,
+    "kanthTouch": 40,
+    "scanTypingPresses": 80,
+    "scanKanthPresses": 80,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 114.63581428571429,
+     "b": 117.96505714285715,
+     "c": 117.96505714285715
+    },
+    "scan": {
+     "a": 282.7030411764706,
+     "b": 290.1751411764706,
+     "c": 290.1751411764706
+    }
+   },
+   "wallClock": "2026-10-15T02:10:39.690Z"
+  },
+  {
+   "id": "hi06",
+   "thread": "hi-2",
+   "lang": "hi-IN",
+   "who": "Rohit",
+   "relation": "college friend",
+   "setting": "home visit",
+   "partner": "चल, कल Marina beach चलते हैं। Wheelchair मैं संभाल लूँगा।",
+   "intended": "शाम को चलेंगे, धूप में नहीं",
+   "drafts": [
+    {
+     "text": "चलो, चलूँगा कल Marina",
+     "gloss": "Okay, I'll go tomorrow",
+     "atMs": 166.9
+    },
+    {
+     "text": "अभी थोड़ा rest करूँगा मैं",
+     "gloss": "I'll rest a bit right now",
+     "atMs": 229
+    },
+    {
+     "text": "तू बस ticket book कर दे ना",
+     "gloss": "You just book the tickets, okay",
+     "atMs": 286.4
+    },
+    {
+     "text": "Amma का rasam खा के आऊँगा",
+     "gloss": "I'll come after having Amma's rasam",
+     "atMs": 354.8
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "No draft conveys the evening timing and the sun restriction.",
+     "None of the drafts propose going in the evening or reject going in the sun."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": [
+      4
+     ]
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 106.6,
+    "firstDraftMs": 166.9,
+    "allDraftsMs": 354.8,
+    "allVoicedMs": 787.3,
+    "allFirstAudioMs": 689.1,
+    "ttfaTypedMs": 403.6,
+    "ttfaChoiceMs": 285.1,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     294.7,
+     417.2,
+     402.6,
+     319.4
+    ],
+    "prespeakAudioSec": [
+     2.214,
+     1.438,
+     1.244,
+     1.525
+    ]
+   },
+   "tokens": {
+    "prompt": 533,
+    "completion": 77
+   },
+   "chars": {
+    "intendedNative": 27,
+    "intendedRoman": 34,
+    "roman": "Shaam ko chalenge, dhoop mein nahi",
+    "drafts": [
+     21,
+     25,
+     26,
+     25
+    ],
+    "prespokenTotal": 97,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 1.361,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 35,
+    "typingKeysNativeCount": 28,
+    "kanthTouch": 35,
+    "scanTypingPresses": 70,
+    "scanKanthPresses": 70,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 100.4626,
+     "b": 103.79754285714286,
+     "c": 103.79754285714286
+    },
+    "scan": {
+     "a": 247.52142352941178,
+     "b": 254.99922352941178,
+     "c": 254.99922352941178
+    }
+   },
+   "wallClock": "2026-10-15T02:10:42.661Z"
+  },
+  {
+   "id": "hi07",
+   "thread": "hi-3",
+   "lang": "hi-IN",
+   "who": "Ramesh",
+   "relation": "home attendant",
+   "setting": "home, morning routine",
+   "partner": "भैया, नहाने का पानी गरम कर दिया है। अभी नहाएँगे?",
+   "intended": "दस मिनट रुको, पहले चाय पीनी है",
+   "drafts": [
+    {
+     "text": "हाँ Ramesh, अभी नहाने जाता हूँ",
+     "gloss": "Yes Ramesh, I'm going to bathe now",
+     "atMs": 168.7
+    },
+    {
+     "text": "बस 5 minute रुकना, Amma",
+     "gloss": "Just wait 5 minutes, Amma",
+     "atMs": 230.9
+    },
+    {
+     "text": "थोड़ा थक गया हूँ आज",
+     "gloss": "I'm a bit tired today",
+     "atMs": 278.7
+    },
+    {
+     "text": "चलो, मैं अभी ready हो जाता हूँ",
+     "gloss": "Alright, I'll get ready now",
+     "atMs": 331.8
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "No draft preserves the specific wait duration, the tea reason, or the request to delay bathing.",
+     "No draft asks to wait ten minutes while mentioning drinking tea first."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 95.3,
+    "firstDraftMs": 168.7,
+    "allDraftsMs": 331.8,
+    "allVoicedMs": 842,
+    "allFirstAudioMs": 704.9,
+    "ttfaTypedMs": 300.8,
+    "ttfaChoiceMs": 300.9,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     299.9,
+     305.4,
+     426.2,
+     297.9
+    ],
+    "prespeakAudioSec": [
+     2.114,
+     2.785,
+     1.348,
+     1.825
+    ]
+   },
+   "tokens": {
+    "prompt": 469,
+    "completion": 77
+   },
+   "chars": {
+    "intendedNative": 30,
+    "intendedRoman": 35,
+    "roman": "Das minute ruko, pehle cha pini hai",
+    "drafts": [
+     30,
+     23,
+     19,
+     30
+    ],
+    "prespokenTotal": 102,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.031,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 36,
+    "typingKeysNativeCount": 31,
+    "kanthTouch": 36,
+    "scanTypingPresses": 72,
+    "scanKanthPresses": 72,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 103.21694285714285,
+     "b": 106.5288857142857,
+     "c": 106.5288857142857
+    },
+    "scan": {
+     "a": 254.47744705882354,
+     "b": 261.9322470588235,
+     "c": 261.9322470588235
+    }
+   },
+   "wallClock": "2026-10-15T02:10:45.900Z"
+  },
+  {
+   "id": "hi08",
+   "thread": "hi-3",
+   "lang": "hi-IN",
+   "who": "Ramesh",
+   "relation": "home attendant",
+   "setting": "home, morning routine",
+   "partner": "चाय में चीनी कम डालूँ ना?",
+   "intended": "हाँ, बस आधा चम्मच",
+   "drafts": [
+    {
+     "text": "हाँ, कम ही डालो ना, Ramesh",
+     "gloss": "Yes, put less sugar, Ramesh",
+     "atMs": 164.2
+    },
+    {
+     "text": "बस एक चम्मच डालो, Amma",
+     "gloss": "Just put one spoon, Amma",
+     "atMs": 221.2
+    },
+    {
+     "text": "चाय पीने के बाद नहाता हूँ, wait",
+     "gloss": "I will bathe after tea, wait",
+     "atMs": 269.6
+    },
+    {
+     "text": "अभी दिमाग थोड़ा foggy है, wait ना",
+     "gloss": "My mind is a bit foggy right now, wait na",
+     "atMs": 359
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "No draft includes the specific quantity of half a spoon.",
+     "No draft preserves the specific quantity of half a teaspoon; the closest ones either change the amount or omit that key fact entirely."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 119.8,
+    "firstDraftMs": 164.2,
+    "allDraftsMs": 359,
+    "allVoicedMs": 1112.2,
+    "allFirstAudioMs": 666.7,
+    "ttfaTypedMs": 305,
+    "ttfaChoiceMs": 297.8,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     291.9,
+     300.1,
+     305.2,
+     307.7
+    ],
+    "prespeakAudioSec": [
+     3.103,
+     2.613,
+     2.212,
+     3.454
+    ]
+   },
+   "tokens": {
+    "prompt": 500,
+    "completion": 81
+   },
+   "chars": {
+    "intendedNative": 17,
+    "intendedRoman": 23,
+    "roman": "Haan, bas aadha chamcha",
+    "drafts": [
+     26,
+     22,
+     31,
+     33
+    ],
+    "prespokenTotal": 112,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 1.578,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 24,
+    "typingKeysNativeCount": 18,
+    "kanthTouch": 24,
+    "scanTypingPresses": 48,
+    "scanKanthPresses": 48,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 68.93542857142857,
+     "b": 72.27457142857143,
+     "c": 72.27457142857143
+    },
+    "scan": {
+     "a": 169.77576470588235,
+     "b": 177.25776470588235,
+     "c": 177.25776470588235
+    }
+   },
+   "wallClock": "2026-10-15T02:10:49.398Z"
+  },
+  {
+   "id": "hi09",
+   "thread": "hi-3",
+   "lang": "hi-IN",
+   "who": "Ramesh",
+   "relation": "home attendant",
+   "setting": "home, morning routine",
+   "partner": "आज physiotherapy वाले चार बजे आएँगे, याद है?",
+   "intended": "हाँ याद है, उससे पहले मुझे बैठा देना",
+   "drafts": [
+    {
+     "text": "ठीक है रमेश, मैं याद रखूँगा",
+     "gloss": "Okay Ramesh, I will remember",
+     "atMs": 152.3
+    },
+    {
+     "text": "चार बजे तक आराम करूँगा",
+     "gloss": "I will rest till four",
+     "atMs": 189
+    },
+    {
+     "text": "तुम पानी ready रखना",
+     "gloss": "You keep the water ready",
+     "atMs": 270.3
+    },
+    {
+     "text": "बहुत अच्छा किया याद दिलाया",
+     "gloss": "You did well reminding me",
+     "atMs": 341.6
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "No draft includes the request to seat the user before the physiotherapist arrives",
+     "None of the drafts include the request to make the user sit before the physiotherapist arrives."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 94,
+    "firstDraftMs": 152.3,
+    "allDraftsMs": 341.6,
+    "allVoicedMs": 768.5,
+    "allFirstAudioMs": 757.2,
+    "ttfaTypedMs": 302.6,
+    "ttfaChoiceMs": 300.1,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     298.1,
+     335.4,
+     298.8,
+     415.6
+    ],
+    "prespeakAudioSec": [
+     1.524,
+     1.578,
+     1.591,
+     1.362
+    ]
+   },
+   "tokens": {
+    "prompt": 525,
+    "completion": 56
+   },
+   "chars": {
+    "intendedNative": 36,
+    "intendedRoman": 43,
+    "roman": "Haan yaad hai, usse pehla mujhe baitha dena",
+    "drafts": [
+     27,
+     22,
+     19,
+     26
+    ],
+    "prespokenTotal": 94,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 1.762,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 44,
+    "typingKeysNativeCount": 37,
+    "kanthTouch": 44,
+    "scanTypingPresses": 88,
+    "scanKanthPresses": 88,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 126.07588571428572,
+     "b": 129.39762857142858,
+     "c": 129.39762857142858
+    },
+    "scan": {
+     "a": 310.94983529411763,
+     "b": 318.41443529411765,
+     "c": 318.41443529411765
+    }
+   },
+   "wallClock": "2026-10-15T02:10:52.377Z"
+  },
+  {
+   "id": "hi10",
+   "thread": "hi-4",
+   "lang": "hi-IN",
+   "who": "Lab technician",
+   "relation": "lab technician",
+   "setting": "errand, diagnostic lab",
+   "partner": "Sir, blood sample लेना है। किस हाथ से लूँ?",
+   "intended": "बाएँ हाथ से लीजिए, वहाँ vein अच्छी है",
+   "drafts": [
+    {
+     "text": "left arm से ले लो, Arjun",
+     "gloss": "Take it from the left arm, Arjun",
+     "atMs": 153.7
+    },
+    {
+     "text": "अभी नहीं, थोड़ा wait करो",
+     "gloss": "Not right now, wait a bit",
+     "atMs": 208.7
+    },
+    {
+     "text": "right side में दर्द है, check करो",
+     "gloss": "It hurts on the right side, check",
+     "atMs": 272
+    },
+    {
+     "text": "Amma को बुला लो, मुझे डर लग रहा है",
+     "gloss": "Call Amma, I am feeling scared.",
+     "atMs": 361.1
+    }
+   ],
+   "judge": {
+    "run1": 1,
+    "run2": "none",
+    "agree": false,
+    "hitIdx": null,
+    "reasons": [
+     "It conveys the same left side and is an acceptable substitute",
+     "none match the intended left-hand request with the vein reason"
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": [
+      1,
+      2,
+      3,
+      4
+     ]
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 101,
+    "firstDraftMs": 153.7,
+    "allDraftsMs": 361.1,
+    "allVoicedMs": 930.2,
+    "allFirstAudioMs": 678.1,
+    "ttfaTypedMs": 301,
+    "ttfaChoiceMs": 301.5,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     298.3,
+     295.5,
+     338.6,
+     317
+    ],
+    "prespeakAudioSec": [
+     2.002,
+     1.673,
+     2.3,
+     2.433
+    ]
+   },
+   "tokens": {
+    "prompt": 469,
+    "completion": 76
+   },
+   "chars": {
+    "intendedNative": 37,
+    "intendedRoman": 43,
+    "roman": "Baain haath se lijiye, vahan vein achhi hai",
+    "drafts": [
+     24,
+     24,
+     33,
+     34
+    ],
+    "prespokenTotal": 115,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.863,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 44,
+    "typingKeysNativeCount": 38,
+    "kanthTouch": 44,
+    "scanTypingPresses": 88,
+    "scanKanthPresses": 88,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 126.07428571428572,
+     "b": 129.41552857142855,
+     "c": 129.41552857142855
+    },
+    "scan": {
+     "a": 310.94823529411764,
+     "b": 318.43233529411765,
+     "c": 318.43233529411765
+    }
+   },
+   "wallClock": "2026-10-15T02:10:55.744Z"
+  },
+  {
+   "id": "hi11",
+   "thread": "hi-4",
+   "lang": "hi-IN",
+   "who": "Lab technician",
+   "relation": "lab technician",
+   "setting": "errand, diagnostic lab",
+   "partner": "Fasting में हैं ना? सुबह से कुछ खाया तो नहीं?",
+   "intended": "नहीं, रात दस बजे के बाद कुछ नहीं खाया",
+   "drafts": [
+    {
+     "text": "हाँ, सुबह से कुछ नहीं खाया, Lab technician",
+     "gloss": "Yes, haven't eaten since morning, Lab technician",
+     "atMs": 149
+    },
+    {
+     "text": "अभी खा लिया है क्या, check करोगे?",
+     "gloss": "Did I eat just now, will you check?",
+     "atMs": 224.3
+    },
+    {
+     "text": "एक मिनट रुकिए, मुझे confirm करना है",
+     "gloss": "Wait one minute, I need to confirm",
+     "atMs": 273.3
+    },
+    {
+     "text": "नहीं, मैं बिल्कुल fasting हूँ",
+     "gloss": "No, I am completely fasting",
+     "atMs": 325.3
+    }
+   ],
+   "judge": {
+    "run1": 4,
+    "run2": 4,
+    "agree": true,
+    "hitIdx": 3,
+    "reasons": [
+     "Draft 4 correctly gives the negative response and states a fasting status, which is close enough to the intended core meaning for the user to accept it.",
+     "It states the same negative denial of eating and the intent of being fasting, matching the core meaning."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 94.9,
+    "firstDraftMs": 149,
+    "allDraftsMs": 325.3,
+    "allVoicedMs": 8650.3,
+    "allFirstAudioMs": 622.5,
+    "ttfaTypedMs": 298.7,
+    "ttfaChoiceMs": 315.9,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     289.8,
+     305.1,
+     301.6,
+     297.2
+    ],
+    "prespeakAudioSec": [
+     57.845,
+     2.379,
+     2.346,
+     1.84
+    ]
+   },
+   "tokens": {
+    "prompt": 506,
+    "completion": 82
+   },
+   "chars": {
+    "intendedNative": 37,
+    "intendedRoman": 44,
+    "roman": "Nahi, raat das baje ke baad kuchh nahi khaya",
+    "drafts": [
+     42,
+     33,
+     35,
+     29
+    ],
+    "prespokenTotal": 139,
+    "hitDraft": 29
+   },
+   "audioSec": {
+    "intended": 2.295,
+    "hitDraft": 1.84
+   },
+   "motor": {
+    "typingKeys": 45,
+    "typingKeysNativeCount": 38,
+    "kanthTouch": 1,
+    "scanTypingPresses": 90,
+    "scanKanthPresses": 1,
+    "scanKanthWaitSteps": 4
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 128.92912857142858,
+     "b": 3.6803428571428576,
+     "c": 8.832299999999998
+    },
+    "scan": {
+     "a": 318.0047588235294,
+     "b": 6.4232,
+     "c": 8.832299999999998
+    }
+   },
+   "wallClock": "2026-10-15T02:11:07.232Z"
+  },
+  {
+   "id": "hi12",
+   "thread": "hi-4",
+   "lang": "hi-IN",
+   "who": "Lab technician",
+   "relation": "lab technician",
+   "setting": "errand, diagnostic lab",
+   "partner": "Report कल शाम तक email पर आ जाएगी। और कुछ?",
+   "intended": "Doctor को भी copy भेज दीजिए please",
+   "drafts": [
+    {
+     "text": "ठीक है, धन्यवाद",
+     "gloss": "Alright, thank you",
+     "atMs": 196.3
+    },
+    {
+     "text": "Amma को भी बता दीजिएगा",
+     "gloss": "Please also tell Amma",
+     "atMs": 252.3
+    },
+    {
+     "text": "कोई बात नहीं, आराम से",
+     "gloss": "No problem, take your time",
+     "atMs": 287.2
+    },
+    {
+     "text": "Email आ जाए तो मुझे call कर दीजिएगा",
+     "gloss": "Please call me once the email comes",
+     "atMs": 348.4
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "No draft requests sending a copy to the doctor.",
+     "none of the drafts request copying the doctor, and draft 2 changes the person"
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": [
+      2
+     ]
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 156.8,
+    "firstDraftMs": 196.3,
+    "allDraftsMs": 348.4,
+    "allVoicedMs": 851.9,
+    "allFirstAudioMs": 656.3,
+    "ttfaTypedMs": 300.4,
+    "ttfaChoiceMs": 383.3,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     359.3,
+     296.4,
+     294.8,
+     307.9
+    ],
+    "prespeakAudioSec": [
+     1.082,
+     1.656,
+     1.521,
+     1.914
+    ]
+   },
+   "tokens": {
+    "prompt": 537,
+    "completion": 66
+   },
+   "chars": {
+    "intendedNative": 34,
+    "intendedRoman": 37,
+    "roman": "Doctor ko bhi copy bhej dijiye please",
+    "drafts": [
+     15,
+     22,
+     21,
+     35
+    ],
+    "prespokenTotal": 93,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.004,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 38,
+    "typingKeysNativeCount": 35,
+    "kanthTouch": 38,
+    "scanTypingPresses": 76,
+    "scanKanthPresses": 76,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 108.93082857142856,
+     "b": 112.25937142857143,
+     "c": 112.25937142857143
+    },
+    "scan": {
+     "a": 268.5946941176471,
+     "b": 276.06609411764714,
+     "c": 276.06609411764714
+    }
+   },
+   "wallClock": "2026-10-15T02:11:10.265Z"
+  },
+  {
+   "id": "en01",
+   "thread": "en-1",
+   "lang": "en-IN",
+   "who": "Physiotherapist",
+   "relation": "physiotherapist",
+   "setting": "home, physiotherapy",
+   "partner": "Good morning Arjun! Shall we start with the stretches, or do you want to rest first?",
+   "intended": "Let's start, but go slow on the legs.",
+   "drafts": [
+    {
+     "text": "Let us start the stretches, Doctor",
+     "gloss": "Let us start the stretches, Doctor",
+     "atMs": 138.8
+    },
+    {
+     "text": "I want some time to rest first",
+     "gloss": "I want some time to rest first",
+     "atMs": 188.5
+    },
+    {
+     "text": "Can we do it after my rasam, Doctor",
+     "gloss": "Can we do it after my rasam, Doctor",
+     "atMs": 292.3
+    },
+    {
+     "text": "My shoulders are feeling a bit stiff today",
+     "gloss": "My shoulders are feeling a bit stiff today",
+     "atMs": 320.8
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "Draft 1 omits the request to go slow on the legs, which carries the point of the intended reply.",
+     "No draft includes the request to go slow on the legs."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 102.6,
+    "firstDraftMs": 138.8,
+    "allDraftsMs": 320.8,
+    "allVoicedMs": 947.6,
+    "allFirstAudioMs": 626.8,
+    "ttfaTypedMs": 299,
+    "ttfaChoiceMs": 300.3,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     299.3,
+     300,
+     303.2,
+     305.9
+    ],
+    "prespeakAudioSec": [
+     3.543,
+     2.022,
+     2.51,
+     2.784
+    ]
+   },
+   "tokens": {
+    "prompt": 463,
+    "completion": 78
+   },
+   "chars": {
+    "intendedNative": 37,
+    "intendedRoman": 37,
+    "roman": "Let's start, but go slow on the legs.",
+    "drafts": [
+     34,
+     30,
+     35,
+     42
+    ],
+    "prespokenTotal": 141,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 3.211,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 38,
+    "typingKeysNativeCount": 38,
+    "kanthTouch": 38,
+    "scanTypingPresses": 76,
+    "scanKanthPresses": 76,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 108.92942857142857,
+     "b": 112.23037142857143,
+     "c": 112.23037142857143
+    },
+    "scan": {
+     "a": 268.5932941176471,
+     "b": 276.0370941176471,
+     "c": 276.0370941176471
+    }
+   },
+   "wallClock": "2026-10-15T02:11:15.143Z"
+  },
+  {
+   "id": "en02",
+   "thread": "en-1",
+   "lang": "en-IN",
+   "who": "Physiotherapist",
+   "relation": "physiotherapist",
+   "setting": "home, physiotherapy",
+   "partner": "How is the right hand? Any cramps since last week?",
+   "intended": "Cramps at night, mostly in the fingers.",
+   "drafts": [
+    {
+     "text": "It's a little stiff, Amma",
+     "gloss": "It's a little stiff, Amma",
+     "atMs": 189.9
+    },
+    {
+     "text": "Let's skip that for today, okay?",
+     "gloss": "Let's skip that for today, okay?",
+     "atMs": 256
+    },
+    {
+     "text": "Can you rub some oil on it?",
+     "gloss": "Can you rub some oil on it?",
+     "atMs": 305.9
+    },
+    {
+     "text": "It's fine, nothing to worry about",
+     "gloss": "It's fine, nothing to worry about",
+     "atMs": 359.9
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "No draft mentions cramps at night in the fingers.",
+     "No draft states that cramps occur at night and mostly in the fingers."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 158.3,
+    "firstDraftMs": 189.9,
+    "allDraftsMs": 359.9,
+    "allVoicedMs": 906,
+    "allFirstAudioMs": 697.5,
+    "ttfaTypedMs": 298.2,
+    "ttfaChoiceMs": 314.3,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     304.9,
+     297.3,
+     295.1,
+     337.5
+    ],
+    "prespeakAudioSec": [
+     2.112,
+     1.959,
+     1.954,
+     2.188
+    ]
+   },
+   "tokens": {
+    "prompt": 501,
+    "completion": 84
+   },
+   "chars": {
+    "intendedNative": 39,
+    "intendedRoman": 39,
+    "roman": "Cramps at night, mostly in the fingers.",
+    "drafts": [
+     25,
+     32,
+     27,
+     33
+    ],
+    "prespokenTotal": 117,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 3.731,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 40,
+    "typingKeysNativeCount": 40,
+    "kanthTouch": 40,
+    "scanTypingPresses": 80,
+    "scanKanthPresses": 80,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 114.64291428571428,
+     "b": 117.98295714285715,
+     "c": 117.98295714285715
+    },
+    "scan": {
+     "a": 282.71014117647064,
+     "b": 290.1930411764706,
+     "c": 290.1930411764706
+    }
+   },
+   "wallClock": "2026-10-15T02:11:18.600Z"
+  },
+  {
+   "id": "en03",
+   "thread": "en-1",
+   "lang": "en-IN",
+   "who": "Physiotherapist",
+   "relation": "physiotherapist",
+   "setting": "home, physiotherapy",
+   "partner": "Okay, I'll teach your mother a massage for that. Is evening okay for her?",
+   "intended": "Evening is fine, after six.",
+   "drafts": [
+    {
+     "text": "Evening is perfect, Amma",
+     "gloss": "Evening is perfect, Amma",
+     "atMs": 129
+    },
+    {
+     "text": "Can we do it tomorrow instead?",
+     "gloss": "Can we do it tomorrow instead?",
+     "atMs": 179.6
+    },
+    {
+     "text": "That would be really helpful, thank you",
+     "gloss": "That would be really helpful, thank you",
+     "atMs": 208.2
+    },
+    {
+     "text": "I hope it actually makes my fingers feel better",
+     "gloss": "I hope it actually makes my fingers feel better",
+     "atMs": 285
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "None of the drafts include the specific time 'after six' mentioned in the intended reply.",
+     "No draft confirms evening is okay and specifies the time as after six."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 97.1,
+    "firstDraftMs": 129,
+    "allDraftsMs": 285,
+    "allVoicedMs": 976.5,
+    "allFirstAudioMs": 588.7,
+    "ttfaTypedMs": 297.9,
+    "ttfaChoiceMs": 299.4,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     307.6,
+     301.2,
+     307.1,
+     303.7
+    ],
+    "prespeakAudioSec": [
+     3.089,
+     1.691,
+     2.027,
+     3.262
+    ]
+   },
+   "tokens": {
+    "prompt": 539,
+    "completion": 72
+   },
+   "chars": {
+    "intendedNative": 27,
+    "intendedRoman": 27,
+    "roman": "Evening is fine, after six.",
+    "drafts": [
+     24,
+     30,
+     39,
+     47
+    ],
+    "prespokenTotal": 140,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.517,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 28,
+    "typingKeysNativeCount": 28,
+    "kanthTouch": 28,
+    "scanTypingPresses": 56,
+    "scanKanthPresses": 56,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 80.3569,
+     "b": 83.62204285714286,
+     "c": 83.62204285714286
+    },
+    "scan": {
+     "a": 198.0039588235294,
+     "b": 205.41195882352937,
+     "c": 205.41195882352937
+    }
+   },
+   "wallClock": "2026-10-15T02:11:22.022Z"
+  },
+  {
+   "id": "en04",
+   "thread": "en-2",
+   "lang": "en-IN",
+   "who": "Priya",
+   "relation": "manager at work",
+   "setting": "home visit",
+   "partner": "Arjun, the team really misses you. Would you like to review some code from home?",
+   "intended": "Yes, I'd love that. Send me small PRs.",
+   "drafts": [
+    {
+     "text": "That is really kind of you, Priya",
+     "gloss": "That is really kind of you, Priya",
+     "atMs": 138.3
+    },
+    {
+     "text": "Let us do it tomorrow, I am tired",
+     "gloss": "Let us do it tomorrow, I am tired",
+     "atMs": 200.9
+    },
+    {
+     "text": "Can we video call instead of code?",
+     "gloss": "Can we video call instead of code?",
+     "atMs": 259.3
+    },
+    {
+     "text": "I miss the office too, Amma makes rasam",
+     "gloss": "I miss the office too, Amma makes rasam",
+     "atMs": 306.3
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "no draft explicitly accepts the invitation or requests small PRs",
+     "None accept reviewing code or request small PRs."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 84.6,
+    "firstDraftMs": 138.3,
+    "allDraftsMs": 306.3,
+    "allVoicedMs": 1052.8,
+    "allFirstAudioMs": 629,
+    "ttfaTypedMs": 294.9,
+    "ttfaChoiceMs": 298.6,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     302.3,
+     303.8,
+     307,
+     322.6
+    ],
+    "prespeakAudioSec": [
+     2.204,
+     2.295,
+     2.401,
+     3.629
+    ]
+   },
+   "tokens": {
+    "prompt": 458,
+    "completion": 84
+   },
+   "chars": {
+    "intendedNative": 38,
+    "intendedRoman": 38,
+    "roman": "Yes, I'd love that. Send me small PRs.",
+    "drafts": [
+     33,
+     33,
+     34,
+     39
+    ],
+    "prespokenTotal": 139,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 3.623,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 39,
+    "typingKeysNativeCount": 39,
+    "kanthTouch": 39,
+    "scanTypingPresses": 78,
+    "scanKanthPresses": 78,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 111.78247142857143,
+     "b": 115.06891428571429,
+     "c": 115.06891428571429
+    },
+    "scan": {
+     "a": 275.64801764705885,
+     "b": 283.07731764705886,
+     "c": 283.07731764705886
+    }
+   },
+   "wallClock": "2026-10-15T02:11:25.569Z"
+  },
+  {
+   "id": "en05",
+   "thread": "en-2",
+   "lang": "en-IN",
+   "who": "Priya",
+   "relation": "manager at work",
+   "setting": "home visit",
+   "partner": "Great. Is typing long review comments okay, or should we keep it short?",
+   "intended": "Keep it short, I get tired quickly.",
+   "drafts": [
+    {
+     "text": "Long comments are perfectly fine, Priya",
+     "gloss": "Long comments are perfectly fine, Priya",
+     "atMs": 142.9
+    },
+    {
+     "text": "Short is better for my eyes, though",
+     "gloss": "Short is better for my eyes, though",
+     "atMs": 192.7
+    },
+    {
+     "text": "You choose what feels easiest for you",
+     "gloss": "You choose what feels easiest for you",
+     "atMs": 244.6
+    },
+    {
+     "text": "Just send them whenever you are ready",
+     "gloss": "Just send them whenever you are ready",
+     "atMs": 299.2
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "Draft 2 changes the reason and omits the user's tiredness, while the other drafts contradict or ignore the point.",
+     "No draft requests keeping the review short or mentions getting tired quickly."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 102.1,
+    "firstDraftMs": 142.9,
+    "allDraftsMs": 299.2,
+    "allVoicedMs": 843.6,
+    "allFirstAudioMs": 615,
+    "ttfaTypedMs": 300.1,
+    "ttfaChoiceMs": 299.7,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     308.2,
+     299.9,
+     300.7,
+     315.7
+    ],
+    "prespeakAudioSec": [
+     3.103,
+     2.607,
+     2.514,
+     2.289
+    ]
+   },
+   "tokens": {
+    "prompt": 501,
+    "completion": 70
+   },
+   "chars": {
+    "intendedNative": 35,
+    "intendedRoman": 35,
+    "roman": "Keep it short, I get tired quickly.",
+    "drafts": [
+     39,
+     35,
+     37,
+     37
+    ],
+    "prespokenTotal": 148,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.974,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 36,
+    "typingKeysNativeCount": 36,
+    "kanthTouch": 36,
+    "scanTypingPresses": 72,
+    "scanKanthPresses": 72,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 103.21624285714286,
+     "b": 106.49558571428571,
+     "c": 106.49558571428571
+    },
+    "scan": {
+     "a": 254.47674705882352,
+     "b": 261.8989470588235,
+     "c": 261.8989470588235
+    }
+   },
+   "wallClock": "2026-10-15T02:11:29.013Z"
+  },
+  {
+   "id": "en06",
+   "thread": "en-2",
+   "lang": "en-IN",
+   "who": "Priya",
+   "relation": "manager at work",
+   "setting": "home visit",
+   "partner": "We're also planning a team lunch at your place next Friday. Is that too much?",
+   "intended": "That sounds lovely, but keep it small.",
+   "drafts": [
+    {
+     "text": "That sounds really nice, Priya.",
+     "gloss": "That sounds really nice, Priya.",
+     "atMs": 136.3
+    },
+    {
+     "text": "Let me check with Amma first.",
+     "gloss": "Let me check with Amma first.",
+     "atMs": 181.5
+    },
+    {
+     "text": "My rasam will be ready for everyone.",
+     "gloss": "My rasam will be ready for everyone.",
+     "atMs": 239.1
+    },
+    {
+     "text": "I am a bit nervous about hosting.",
+     "gloss": "I am a bit nervous about hosting.",
+     "atMs": 305.8
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "None of the drafts convey both approval of the idea and the specific request to keep the lunch small.",
+     "None of the drafts includes the request to keep the lunch small, and the others change the core meaning."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 97.9,
+    "firstDraftMs": 136.3,
+    "allDraftsMs": 305.8,
+    "allVoicedMs": 843.7,
+    "allFirstAudioMs": 610.8,
+    "ttfaTypedMs": 300.8,
+    "ttfaChoiceMs": 299.9,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     299.2,
+     300.3,
+     302.5,
+     305
+    ],
+    "prespeakAudioSec": [
+     2.317,
+     1.863,
+     2.455,
+     2.391
+    ]
+   },
+   "tokens": {
+    "prompt": 537,
+    "completion": 76
+   },
+   "chars": {
+    "intendedNative": 38,
+    "intendedRoman": 38,
+    "roman": "That sounds lovely, but keep it small.",
+    "drafts": [
+     31,
+     29,
+     36,
+     33
+    ],
+    "prespokenTotal": 129,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.889,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 39,
+    "typingKeysNativeCount": 39,
+    "kanthTouch": 39,
+    "scanTypingPresses": 78,
+    "scanKanthPresses": 78,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 111.78837142857142,
+     "b": 115.07431428571428,
+     "c": 115.07431428571428
+    },
+    "scan": {
+     "a": 275.65391764705885,
+     "b": 283.08271764705887,
+     "c": 283.08271764705887
+    }
+   },
+   "wallClock": "2026-10-15T02:11:32.191Z"
+  },
+  {
+   "id": "en07",
+   "thread": "en-3",
+   "lang": "en-IN",
+   "who": "Mrs. Iyer",
+   "relation": "neighbour",
+   "setting": "home, at the door",
+   "partner": "Arjun, I'm going to the market. Do you need anything?",
+   "intended": "Yes aunty, some bananas and bread please.",
+   "drafts": [
+    {
+     "text": "Just some rasam ingredients, Amma",
+     "gloss": "Just some rasam ingredients, Amma",
+     "atMs": 159.8
+    },
+    {
+     "text": "I will tell you when I am ready",
+     "gloss": "I will tell you when I am ready",
+     "atMs": 200.2
+    },
+    {
+     "text": "Did you remember to get the medicine?",
+     "gloss": "Did you remember to get the medicine?",
+     "atMs": 250.9
+    },
+    {
+     "text": "No, I am good for now, thanks",
+     "gloss": "No, I am good for now, thanks",
+     "atMs": 297.5
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "None make the same positive shopping request for bananas and bread.",
+     "No draft asks for bananas and bread."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 158.1,
+    "firstDraftMs": 159.8,
+    "allDraftsMs": 297.5,
+    "allVoicedMs": 981,
+    "allFirstAudioMs": 595.8,
+    "ttfaTypedMs": 300.5,
+    "ttfaChoiceMs": 298.5,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     299.4,
+     301.2,
+     304.9,
+     298.2
+    ],
+    "prespeakAudioSec": [
+     3.359,
+     2.433,
+     1.865,
+     3.273
+    ]
+   },
+   "tokens": {
+    "prompt": 462,
+    "completion": 78
+   },
+   "chars": {
+    "intendedNative": 41,
+    "intendedRoman": 41,
+    "roman": "Yes aunty, some bananas and bread please.",
+    "drafts": [
+     33,
+     31,
+     37,
+     29
+    ],
+    "prespokenTotal": 130,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 3.378,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 42,
+    "typingKeysNativeCount": 42,
+    "kanthTouch": 42,
+    "scanTypingPresses": 84,
+    "scanKanthPresses": 84,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 120.3595,
+     "b": 123.63714285714285,
+     "c": 123.63714285714285
+    },
+    "scan": {
+     "a": 296.8300882352941,
+     "b": 304.2505882352941,
+     "c": 304.2505882352941
+    }
+   },
+   "wallClock": "2026-10-15T02:11:35.924Z"
+  },
+  {
+   "id": "en08",
+   "thread": "en-3",
+   "lang": "en-IN",
+   "who": "Mrs. Iyer",
+   "relation": "neighbour",
+   "setting": "home, at the door",
+   "partner": "How is your mother keeping? She looked tired yesterday.",
+   "intended": "She's not sleeping well, she worries about me.",
+   "drafts": [
+    {
+     "text": "She is doing fine, aunty",
+     "gloss": "She is doing fine, aunty",
+     "atMs": 134.1
+    },
+    {
+     "text": "I will check on her later",
+     "gloss": "I will check on her later",
+     "atMs": 169.9
+    },
+    {
+     "text": "You should rest well too, aunty",
+     "gloss": "You should rest well too, aunty",
+     "atMs": 212.1
+    },
+    {
+     "text": "Please bring some rasam for her",
+     "gloss": "Please bring some rasam for her",
+     "atMs": 289.5
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "None of the drafts conveys that the mother is not sleeping well and worries about the speaker.",
+     "None of the drafts mention the mother's poor sleep or her worry about the user."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 95.2,
+    "firstDraftMs": 134.1,
+    "allDraftsMs": 289.5,
+    "allVoicedMs": 764.9,
+    "allFirstAudioMs": 618,
+    "ttfaTypedMs": 300.5,
+    "ttfaChoiceMs": 303.3,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     304.1,
+     422,
+     298.4,
+     328.5
+    ],
+    "prespeakAudioSec": [
+     1.586,
+     1.433,
+     1.662,
+     1.76
+    ]
+   },
+   "tokens": {
+    "prompt": 497,
+    "completion": 70
+   },
+   "chars": {
+    "intendedNative": 46,
+    "intendedRoman": 46,
+    "roman": "She's not sleeping well, she worries about me.",
+    "drafts": [
+     24,
+     25,
+     31,
+     31
+    ],
+    "prespokenTotal": 111,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 3.157,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 47,
+    "typingKeysNativeCount": 47,
+    "kanthTouch": 47,
+    "scanTypingPresses": 94,
+    "scanKanthPresses": 94,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 134.64521428571427,
+     "b": 137.91485714285713,
+     "c": 137.91485714285713
+    },
+    "scan": {
+     "a": 332.12420588235295,
+     "b": 339.536705882353,
+     "c": 339.536705882353
+    }
+   },
+   "wallClock": "2026-10-15T02:11:39.091Z"
+  },
+  {
+   "id": "en09",
+   "thread": "en-3",
+   "lang": "en-IN",
+   "who": "Mrs. Iyer",
+   "relation": "neighbour",
+   "setting": "home, at the door",
+   "partner": "Shall I come and sit with you on Sunday so she can go out?",
+   "intended": "That would be so kind, thank you aunty.",
+   "drafts": [
+    {
+     "text": "That would be really nice, aunty",
+     "gloss": "That would be really nice, aunty",
+     "atMs": 124.9
+    },
+    {
+     "text": "Let me think about it, will do",
+     "gloss": "Let me think about it, will do",
+     "atMs": 197.5
+    },
+    {
+     "text": "I will ask Amma first, okay?",
+     "gloss": "I will ask Amma first, okay?",
+     "atMs": 222.7
+    },
+    {
+     "text": "Thank you for offering, I appreciate that",
+     "gloss": "Thank you for offering, I appreciate that",
+     "atMs": 278.8
+    }
+   ],
+   "judge": {
+    "run1": 1,
+    "run2": 1,
+    "agree": true,
+    "hitIdx": 0,
+    "reasons": [
+     "Draft 1 accepts the offer and reflects the intended gratitude.",
+     "Draft 1 preserves the accepting sentiment, address and core gratitude in natural Indian English."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 91.3,
+    "firstDraftMs": 124.9,
+    "allDraftsMs": 278.8,
+    "allVoicedMs": 1008.5,
+    "allFirstAudioMs": 587.5,
+    "ttfaTypedMs": 299.3,
+    "ttfaChoiceMs": 306,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     299.1,
+     300.6,
+     301.5,
+     308.7
+    ],
+    "prespeakAudioSec": [
+     1.914,
+     2.211,
+     2.209,
+     3.522
+    ]
+   },
+   "tokens": {
+    "prompt": 533,
+    "completion": 78
+   },
+   "chars": {
+    "intendedNative": 39,
+    "intendedRoman": 39,
+    "roman": "That would be so kind, thank you aunty.",
+    "drafts": [
+     32,
+     30,
+     28,
+     41
+    ],
+    "prespokenTotal": 131,
+    "hitDraft": 32
+   },
+   "audioSec": {
+    "intended": 3.548,
+    "hitDraft": 1.914
+   },
+   "motor": {
+    "typingKeys": 40,
+    "typingKeysNativeCount": 40,
+    "kanthTouch": 1,
+    "scanTypingPresses": 80,
+    "scanKanthPresses": 1,
+    "scanKanthWaitSteps": 1
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 114.64401428571429,
+     "b": 3.6239428571428576,
+     "c": 3.3179428571428575
+    },
+    "scan": {
+     "a": 282.71124117647065,
+     "b": 2.1668,
+     "c": 1.8607999999999998
+    }
+   },
+   "wallClock": "2026-10-15T02:11:42.630Z"
+  },
+  {
+   "id": "en10",
+   "thread": "en-4",
+   "lang": "en-IN",
+   "who": "Emergency doctor",
+   "relation": "doctor in the emergency department",
+   "setting": "hospital, emergency",
+   "partner": "Arjun, can you tell me where it hurts? Chest or stomach?",
+   "intended": "Chest feels tight since this morning.",
+   "drafts": [
+    {
+     "text": "Chest is hurting, Doctor",
+     "gloss": "Chest is hurting, Doctor",
+     "atMs": 137.2
+    },
+    {
+     "text": "Let me think for a second, Doctor",
+     "gloss": "Let me think for a second, Doctor",
+     "atMs": 179.8
+    },
+    {
+     "text": "Which one should I pick, Doctor?",
+     "gloss": "Which one should I pick, Doctor?",
+     "atMs": 229.7
+    },
+    {
+     "text": "I am a bit scared right now, Doctor",
+     "gloss": "I am a bit scared right now, Doctor",
+     "atMs": 277.2
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "No draft preserves the time or the specific sensation mentioned in the intended reply.",
+     "No draft preserves both the tight sensation and morning onset, so none convey the core meaning."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 91.4,
+    "firstDraftMs": 137.2,
+    "allDraftsMs": 277.2,
+    "allVoicedMs": 777.8,
+    "allFirstAudioMs": 586.4,
+    "ttfaTypedMs": 301.1,
+    "ttfaChoiceMs": 305.1,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     302.1,
+     305.3,
+     302,
+     309.2
+    ],
+    "prespeakAudioSec": [
+     2.211,
+     2.609,
+     2.135,
+     1.836
+    ]
+   },
+   "tokens": {
+    "prompt": 457,
+    "completion": 72
+   },
+   "chars": {
+    "intendedNative": 37,
+    "intendedRoman": 37,
+    "roman": "Chest feels tight since this morning.",
+    "drafts": [
+     24,
+     33,
+     32,
+     35
+    ],
+    "prespokenTotal": 124,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 3.152,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 38,
+    "typingKeysNativeCount": 38,
+    "kanthTouch": 38,
+    "scanTypingPresses": 76,
+    "scanKanthPresses": 76,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 108.93152857142857,
+     "b": 112.18887142857143,
+     "c": 112.18887142857143
+    },
+    "scan": {
+     "a": 268.5953941176471,
+     "b": 275.9955941176471,
+     "c": 275.9955941176471
+    }
+   },
+   "wallClock": "2026-10-15T02:11:45.852Z"
+  },
+  {
+   "id": "en11",
+   "thread": "en-4",
+   "lang": "en-IN",
+   "who": "Emergency doctor",
+   "relation": "doctor in the emergency department",
+   "setting": "hospital, emergency",
+   "partner": "Are you on any blood thinners or any new medicines?",
+   "intended": "Only riluzole, no new medicines.",
+   "drafts": [
+    {
+     "text": "No Doctor, I am not on any",
+     "gloss": "No, I am not taking any",
+     "atMs": 125.5
+    },
+    {
+     "text": "Maybe I should check my bag later",
+     "gloss": "Maybe I will check my bag later",
+     "atMs": 183.7
+    },
+    {
+     "text": "Do you think it is the gas, Doctor?",
+     "gloss": "Do you think it is just gas?",
+     "atMs": 255.6
+    },
+    {
+     "text": "I feel a bit scared right now",
+     "gloss": "I feel a bit scared right now",
+     "atMs": 288.9
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": "none",
+    "agree": true,
+    "hitIdx": null,
+    "reasons": [
+     "No draft mentions riluzole or states that the user is only on riluzole and not on any new medicines.",
+     "Draft omits riluzole and fails to state current medication."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 92.6,
+    "firstDraftMs": 125.5,
+    "allDraftsMs": 288.9,
+    "allVoicedMs": 894.3,
+    "allFirstAudioMs": 593.9,
+    "ttfaTypedMs": 300.3,
+    "ttfaChoiceMs": 303.5,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     297.2,
+     298,
+     303.1,
+     305
+    ],
+    "prespeakAudioSec": [
+     2.869,
+     3.462,
+     2.796,
+     2.352
+    ]
+   },
+   "tokens": {
+    "prompt": 489,
+    "completion": 73
+   },
+   "chars": {
+    "intendedNative": 32,
+    "intendedRoman": 32,
+    "roman": "Only riluzole, no new medicines.",
+    "drafts": [
+     26,
+     33,
+     35,
+     29
+    ],
+    "prespokenTotal": 123,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 3.213,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 33,
+    "typingKeysNativeCount": 33,
+    "kanthTouch": 33,
+    "scanTypingPresses": 66,
+    "scanKanthPresses": 66,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 94.6450142857143,
+     "b": 97.91405714285716,
+     "c": 97.91405714285716
+    },
+    "scan": {
+     "a": 233.30047647058822,
+     "b": 240.71237647058823,
+     "c": 240.71237647058823
+    }
+   },
+   "wallClock": "2026-10-15T02:11:49.349Z"
+  },
+  {
+   "id": "en12",
+   "thread": "en-4",
+   "lang": "en-IN",
+   "who": "Emergency doctor",
+   "relation": "doctor in the emergency department",
+   "setting": "hospital, emergency",
+   "partner": "We'll keep you overnight for observation. Shall we call anyone?",
+   "intended": "Please call my mother, she's outside.",
+   "drafts": [
+    {
+     "text": "No need Doctor, I am fine",
+     "gloss": "No need Doctor, I am fine",
+     "atMs": 148.4
+    },
+    {
+     "text": "Can you call Amma for me?",
+     "gloss": "Can you call Amma for me?",
+     "atMs": 184.5
+    },
+    {
+     "text": "I will wait here quietly",
+     "gloss": "I will wait here quietly",
+     "atMs": 220.8
+    },
+    {
+     "text": "I want some rasam, is that okay?",
+     "gloss": "I want some rasam, is that okay?",
+     "atMs": 281.5
+    }
+   ],
+   "judge": {
+    "run1": "none",
+    "run2": 2,
+    "agree": false,
+    "hitIdx": null,
+    "reasons": [
+     "Draft 2 omits that the mother is outside, while the other drafts contradict the intended request.",
+     "Draft 2 asks to call Amma, matching the intent to call my mother."
+    ],
+    "wrongLanguage": {
+     "both": [],
+     "either": []
+    },
+    "wrongScript": {
+     "both": [],
+     "either": []
+    }
+   },
+   "scriptCheck": {
+    "draftsWithScriptIssue": []
+   },
+   "measuredMs": {
+    "firstTokenMs": 89.1,
+    "firstDraftMs": 148.4,
+    "allDraftsMs": 281.5,
+    "allVoicedMs": 834.3,
+    "allFirstAudioMs": 590.1,
+    "ttfaTypedMs": 303.3,
+    "ttfaChoiceMs": 299.1,
+    "prespeakTransports": [
+     "ws",
+     "ws",
+     "ws",
+     "ws"
+    ],
+    "prespeakTtfaMs": [
+     320.3,
+     303.9,
+     303.4,
+     308.6
+    ],
+    "prespeakAudioSec": [
+     2.112,
+     1.954,
+     2.599,
+     2.022
+    ]
+   },
+   "tokens": {
+    "prompt": 520,
+    "completion": 72
+   },
+   "chars": {
+    "intendedNative": 37,
+    "intendedRoman": 37,
+    "roman": "Please call my mother, she's outside.",
+    "drafts": [
+     25,
+     25,
+     24,
+     32
+    ],
+    "prespokenTotal": 106,
+    "hitDraft": null
+   },
+   "audioSec": {
+    "intended": 2.625,
+    "hitDraft": null
+   },
+   "motor": {
+    "typingKeys": 38,
+    "typingKeysNativeCount": 38,
+    "kanthTouch": 38,
+    "scanTypingPresses": 76,
+    "scanKanthPresses": 76,
+    "scanKanthWaitSteps": null
+   },
+   "turnGapSec": {
+    "direct": {
+     "a": 108.93372857142856,
+     "b": 112.19537142857142,
+     "c": 112.19537142857142
+    },
+    "scan": {
+     "a": 268.5975941176471,
+     "b": 276.00209411764706,
+     "c": 276.00209411764706
+    }
+   },
+   "wallClock": "2026-10-15T02:11:52.576Z"
+  }
+ ]
+}

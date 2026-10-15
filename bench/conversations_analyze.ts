@@ -1,46 +1,53 @@
-// Analysis for the conversation benchmark. No API calls: reads the raw files written by
-// bench/conversations.ts and writes bench/results/conversations.json and conversations.md.
+// Analysis for the conversation benchmark, v2. No API calls: reads the raw files written by
+// bench/conversations.ts (bench/results/v2/*-raw-*.json) and the preserved v1 summary
+// (bench/results/v1/conversations.json), and writes bench/results/conversations.json,
+// conversations-chart.json and conversations.md.
 //
 // Run from kanth/:  npx tsx bench/conversations_analyze.ts
-import { readFileSync, writeFileSync } from "node:fs";
-import { TURNS, SET_LABEL } from "./conversations.data.ts";
+// The v1 version of this script is kept verbatim in bench/results/v1/conversations_analyze.v1.ts.txt.
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import * as ORIGINAL from "./conversations.data.ts";
+import * as HELDOUT from "./conversations.heldout.ts";
+import type { ScriptedTurn } from "./conversations.data.ts";
 
 const OUT = "bench/results";
-const draft = JSON.parse(readFileSync(`${OUT}/conversations-raw-draft.json`, "utf8"));
-const judge = JSON.parse(readFileSync(`${OUT}/conversations-raw-judge.json`, "utf8"));
-const translit = JSON.parse(readFileSync(`${OUT}/conversations-raw-translit.json`, "utf8"));
+const V2 = `${OUT}/v2`;
+const load = (p: string): any => JSON.parse(readFileSync(p, "utf8"));
+const loadOpt = (p: string): any => (existsSync(p) ? load(p) : null);
 
-// ------------------------------------------------------------------ parameters
+// ------------------------------------------------------------------ parameters (unchanged from v1)
 // MEASURED in the live app (reported by the team from 3 demo turns; not re-measured here)
-const STT_FINAL_MS_INAPP = { min: 102, max: 123 }; // Saaras final transcript after partner stopped (manual endpointing)
-const STT_MS = STT_FINAL_MS_INAPP.max; // conservative: the slower of the in-app measurements
-const PLAYBACK_START_MS = 59; // in-app choice -> audible for audio already buffered (58-59 ms)
-const INAPP_TYPED_TO_AUDIBLE_MS = 397; // in-app, for cross-check only
+const STT_FINAL_MS_INAPP = { min: 102, max: 123 };
+const STT_MS = STT_FINAL_MS_INAPP.max;
+const PLAYBACK_START_MS = 59;
+const INAPP_TYPED_TO_AUDIBLE_MS = 397;
 
-// MODELED human timing, derived from cited rates (research/evidence.md section A2, VERIFIED/corrected):
-// Koester and Arthanat 2018: cursor-based on-screen keyboard 4.2 wpm; scanning on-screen keyboard 1.7 wpm.
-// Text-entry convention: 1 word = 5 characters including the space (assumption, standard in text-entry research).
+// MODELED human timing (research/evidence.md A2): Koester and Arthanat 2018, 4.2 wpm cursor-based
+// on-screen keyboard, 1.7 wpm scanning on-screen keyboard; 5 characters per word.
 const CHARS_PER_WORD = 5;
 const WPM_DIRECT = 4.2;
 const WPM_SCAN = 1.7;
 const SEC_PER_CHAR_DIRECT = 60 / (WPM_DIRECT * CHARS_PER_WORD); // 2.857 s
 const SEC_PER_CHAR_SCAN = 60 / (WPM_SCAN * CHARS_PER_WORD); // 7.059 s
-const SCAN_INTERVAL_S = 1.4; // app default (web/src/lib/settings.ts DEFAULT_SETTINGS.scanIntervalMs)
-const SELECT_DIRECT_S = SEC_PER_CHAR_DIRECT; // one direct selection costs one keystroke-time at the cited rate
-const SCAN_PRESSES_PER_CHAR = 2; // row then column (modeled)
-const MISS_SCAN_STEPS = 5; // scan past 4 drafts to the keyboard button (modeled)
-const MISS_DIRECT_SELECTIONS = 1; // tap the keyboard button (modeled)
+const SCAN_INTERVAL_S = 1.4;
+const SELECT_DIRECT_S = SEC_PER_CHAR_DIRECT;
+const SCAN_PRESSES_PER_CHAR = 2;
+const MISS_SCAN_STEPS = 5;
+const MISS_DIRECT_SELECTIONS = 1;
 
 // ------------------------------------------------------------------ helpers
 const med = (xs: number[]) => {
-  const s = [...xs].sort((a, b) => a - b);
+  const s = xs.filter(Number.isFinite).sort((a, b) => a - b);
   const n = s.length;
   return n ? (n % 2 ? s[(n - 1) / 2]! : (s[n / 2 - 1]! + s[n / 2]!) / 2) : NaN;
 };
-const mean = (xs: number[]) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : NaN);
+const mean = (xs: number[]) => {
+  const s = xs.filter(Number.isFinite);
+  return s.length ? s.reduce((a, b) => a + b, 0) / s.length : NaN;
+};
 const pct = (k: number, n: number) => (n ? Math.round((1000 * k) / n) / 10 : NaN);
 const q = (xs: number[], p: number) => {
-  const s = [...xs].sort((a, b) => a - b);
+  const s = xs.filter(Number.isFinite).sort((a, b) => a - b);
   if (!s.length) return NaN;
   const i = (s.length - 1) * p;
   const lo = Math.floor(i);
@@ -55,15 +62,24 @@ const hasIndic = (s: string) => /[ऀ-෿]/.test(s);
 const hasTamil = (s: string) => /[஀-௿]/.test(s);
 const hasDeva = (s: string) => /[ऀ-ॿ]/.test(s);
 
-// ------------------------------------------------------------------ per-turn join
 const LANGS = ["ta-IN", "hi-IN", "en-IN"] as const;
 const LNAME: Record<string, string> = { "ta-IN": "Tamil", "hi-IN": "Hindi", "en-IN": "English" };
+const SETS = { original: ORIGINAL, heldout: HELDOUT } as const;
+type SetName = keyof typeof SETS;
+const SET_NAMES: SetName[] = ["heldout", "original"];
+const SET_TITLE: Record<SetName, string> = {
+  heldout: "Held-out (24 new turns, unbiased)",
+  original: "Original 36 (motivated the fix, biased)",
+};
 
-const rows = TURNS.map((t) => {
-  const d = draft.turns.find((x: any) => x.id === t.id && !x.error);
-  const j = judge.turns.find((x: any) => x.id === t.id);
-  const tr = translit.rows.find((x: any) => x.id === t.id);
-  const runs = (j?.runs ?? []) as any[];
+// Deterministic draft-problem detectors (same regexes as v1).
+const rasamRe = /rasam|ரசம்|रसम/i;
+const cricketRe = /cricket|கிரிக்கெட்|क्रिकेट/i; // the v2 profile note ("Follows cricket")
+const cricketTopicRe = /cricket|match|kohli|கிரிக்கெட்|மேட்ச்|क्रिकेट|मैच/i; // the topic counts as raised if any of these was said
+const ammaRe = /(^|[,\s])(Amma|அம்மா|अम्मा)[\s.!?]*$|^(Amma|அம்மா|अम्मा)\s*,/;
+const deflectRe = /\brest\b|tired|sleep|ஓய்வு|சோர்வ|தூங்க|आराम कर|थक|सो जा|नींद/i; // "I need rest / I am tired" style deflections
+
+function judgeSummary(runs: any[]) {
   const m1 = runs[0]?.parsed ? runs[0].parsed.match : undefined;
   const m2 = runs[1]?.parsed ? runs[1].parsed.match : undefined;
   const bothParsed = m1 !== undefined && m2 !== undefined;
@@ -74,207 +90,383 @@ const rows = TURNS.map((t) => {
     const b = new Set<number>(runs[1]?.parsed?.[key] ?? []);
     return { both: [...a].filter((x) => b.has(x)), either: [...new Set([...a, ...b])] };
   };
-  // deterministic script check on the drafts
-  const scriptIssues = (d?.drafts ?? []).map((x: any, i: number) => {
-    const s = x.text as string;
-    if (t.lang === "en-IN") return hasIndic(s) ? i + 1 : null;
-    if (t.lang === "ta-IN") return !hasTamil(s) || hasDeva(s) ? i + 1 : null;
-    return !hasDeva(s) || hasTamil(s) ? i + 1 : null;
-  }).filter((x: number | null) => x != null);
-
-  const roman: string = t.lang === "en-IN" ? t.intended : tr?.roman ?? t.intended;
-  const romanChars = cp(roman);
-  const nativeChars = cp(t.intended);
-  const keysTyping = romanChars + 1; // +1 to speak
-  const keysTypingNative = nativeChars + 1;
-
-  // motor actions
-  const touchKanth = hitIdx != null ? 1 : keysTyping;
-  const scanTypingPresses = (romanChars + 1) * SCAN_PRESSES_PER_CHAR;
-  const scanKanthPresses = hitIdx != null ? 1 : scanTypingPresses;
-  const scanKanthWaitSteps = hitIdx != null ? hitIdx + 1 : null;
-
-  // timings (seconds) ---------------------------------------------------------
-  const allDrafts = d.allDraftsMs / 1000;
-  const allVoiced = d.allVoicedMs / 1000;
-  const allFirstAudio = d.allFirstAudioMs / 1000;
-  const ttfaTyped = d.singleIntended.ttfaMs / 1000; // synth of the typed text, idle warm pool
-  const ttfaChoice = (d.singleDraft0?.ttfaMs ?? d.singleIntended.ttfaMs) / 1000; // synth of a draft on choice
-  const stt = STT_MS / 1000;
-  const play = PLAYBACK_START_MS / 1000;
-
-  const typingTime = (access: "direct" | "scan") => (romanChars + 1) * (access === "direct" ? SEC_PER_CHAR_DIRECT : SEC_PER_CHAR_SCAN);
-  const selectTime = (access: "direct" | "scan", idx: number) => (access === "direct" ? SELECT_DIRECT_S : (idx + 1) * SCAN_INTERVAL_S);
-  const missOverhead = (access: "direct" | "scan") => (access === "direct" ? MISS_DIRECT_SELECTIONS * SELECT_DIRECT_S : MISS_SCAN_STEPS * SCAN_INTERVAL_S);
-
-  const gaps: Record<string, Record<string, number>> = {};
-  for (const access of ["direct", "scan"] as const) {
-    const a = typingTime(access) + ttfaTyped + play;
-    let b: number;
-    let c: number;
-    if (hitIdx != null) {
-      const choiceAt = stt + allDrafts + selectTime(access, hitIdx);
-      b = choiceAt + ttfaChoice + play;
-      const readyAt = stt + allVoiced;
-      c = Math.max(choiceAt, readyAt) + play;
-    } else {
-      const fallback = stt + allDrafts + missOverhead(access) + typingTime(access) + ttfaTyped + play;
-      b = fallback;
-      c = fallback; // typed text is not prespoken
-    }
-    gaps[access] = { a, b, c };
-  }
-
   return {
-    id: t.id,
-    thread: t.thread,
-    lang: t.lang,
-    who: t.who,
-    relation: t.relation,
-    setting: t.setting,
-    partner: t.partner,
-    intended: t.intended,
-    drafts: d.drafts.map((x: any) => ({ text: x.text, gloss: x.gloss, atMs: x.atMs })),
-    judge: {
-      run1: m1 ?? "parse-fail",
-      run2: m2 ?? "parse-fail",
-      agree,
-      hitIdx,
-      reasons: runs.map((r) => r?.parsed?.reason ?? r?.error ?? null),
-      wrongLanguage: flags("wrong_language"),
-      wrongScript: flags("wrong_script"),
-    },
-    scriptCheck: { draftsWithScriptIssue: scriptIssues },
-    measuredMs: {
-      firstTokenMs: d.firstTokenMs,
-      firstDraftMs: d.firstDraftMs,
-      allDraftsMs: d.allDraftsMs,
-      allVoicedMs: d.allVoicedMs,
-      allFirstAudioMs: d.allFirstAudioMs,
-      ttfaTypedMs: d.singleIntended.ttfaMs,
-      ttfaChoiceMs: d.singleDraft0?.ttfaMs ?? null,
-      prespeakTransports: d.prespeak.map((p: any) => p.transport),
-      prespeakTtfaMs: d.prespeak.map((p: any) => p.ttfaMs),
-      prespeakAudioSec: d.prespeak.map((p: any) => p.audioSec),
-    },
-    tokens: { prompt: d.usageStream?.prompt_tokens ?? null, completion: d.usageStream?.completion_tokens ?? null },
-    chars: {
-      intendedNative: nativeChars,
-      intendedRoman: romanChars,
-      roman,
-      drafts: d.drafts.map((x: any) => cp(x.text)),
-      prespokenTotal: d.prespeak.reduce((a: number, p: any) => a + p.chars, 0),
-      hitDraft: hitIdx != null ? cp(d.drafts[hitIdx].text) : null,
-    },
-    audioSec: { intended: d.singleIntended.audioSec, hitDraft: hitIdx != null ? d.prespeak[hitIdx]?.audioSec ?? null : null },
-    motor: {
-      typingKeys: keysTyping,
-      typingKeysNativeCount: keysTypingNative,
-      kanthTouch: touchKanth,
-      scanTypingPresses,
-      scanKanthPresses,
-      scanKanthWaitSteps,
-    },
-    turnGapSec: gaps, // MODELED totals built from measured + modeled parts (see conversations.md)
-    wallClock: d.at,
+    run1: m1 === undefined ? "parse-fail" : (m1 ?? "none"),
+    run2: m2 === undefined ? "parse-fail" : (m2 ?? "none"),
+    agree,
+    hitIdx,
+    either: typeof m1 === "number" || typeof m2 === "number",
+    reasons: runs.map((r) => r?.parsed?.reason ?? r?.error ?? null),
+    wrongLanguage: flags("wrong_language"),
+    wrongScript: flags("wrong_script"),
   };
-});
+}
 
-// ------------------------------------------------------------------ aggregates
-function hitStats(rs: typeof rows) {
+type Outcome = "hit" | "steer-hit" | "steer-miss" | "miss-unsteered";
+
+function buildRows(setName: SetName) {
+  const turns: ScriptedTurn[] = SETS[setName].TURNS;
+  const draft = load(`${V2}/${setName}-raw-draft.json`);
+  const judge = load(`${V2}/${setName}-raw-judge.json`);
+  // The original set's intended replies are unchanged since v1, so its v1 romanizations are reused.
+  const translit = setName === "original" ? load(`${OUT}/v1/conversations-raw-translit.json`) : load(`${V2}/heldout-raw-translit.json`);
+  const kw = loadOpt(`${V2}/${setName}-raw-keywords.json`);
+  const steer = loadOpt(`${V2}/${setName}-raw-steer.json`);
+  const steerJudge = loadOpt(`${V2}/${setName}-raw-steerjudge.json`);
+  const typedTtfaFallback = med(draft.turns.filter((x: any) => !x.error).map((x: any) => x.singleIntended?.ttfaMs as number));
+
+  return turns.map((t) => {
+    const d = draft.turns.find((x: any) => x.id === t.id && !x.error);
+    if (!d) throw new Error(`no draft for ${setName}/${t.id}`);
+    const j = judge.turns.find((x: any) => x.id === t.id);
+    const js = judgeSummary(j?.runs ?? []);
+    const hitIdx = js.hitIdx;
+    const tr = translit.rows.find((x: any) => x.id === t.id);
+    const kwRow = hitIdx == null ? (kw?.rows.find((x: any) => x.id === t.id) ?? null) : null;
+    const sd = hitIdx == null ? (steer?.turns.find((x: any) => x.id === t.id && !x.error) ?? null) : null;
+    const sj = hitIdx == null ? (steerJudge?.turns.find((x: any) => x.id === t.id) ?? null) : null;
+    const sjs = sj ? judgeSummary(sj.runs) : null;
+    const steered = hitIdx == null && !!sd && !!sjs;
+    const steerHitIdx = steered ? sjs!.hitIdx : null;
+    const keywords: string | null = steered ? (sd.keywords as string) : null;
+    const kwChars = keywords ? cp(keywords) : 0;
+    const outcome: Outcome = hitIdx != null ? "hit" : !steered ? "miss-unsteered" : steerHitIdx != null ? "steer-hit" : "steer-miss";
+
+    const scriptIssues = (drafts: any[]) =>
+      drafts
+        .map((x: any, i: number) => {
+          const s = x.text as string;
+          if (t.lang === "en-IN") return hasIndic(s) ? i + 1 : null;
+          if (t.lang === "ta-IN") return !hasTamil(s) || hasDeva(s) ? i + 1 : null;
+          return !hasDeva(s) || hasTamil(s) ? i + 1 : null;
+        })
+        .filter((x: number | null) => x != null);
+
+    const roman: string = t.lang === "en-IN" ? t.intended : (tr?.roman ?? t.intended);
+    const romanChars = cp(roman);
+    const nativeChars = cp(t.intended);
+    const typingKeys = romanChars + 1; // +1 to speak
+
+    // ---- motor actions (counted; scanning presses MODELED at 2 per character)
+    const touchNoSteer = hitIdx != null ? 1 : typingKeys;
+    const touchSteer = outcome === "hit" ? 1 : outcome === "steer-hit" ? kwChars + 1 + 1 : outcome === "steer-miss" ? kwChars + 1 + typingKeys : typingKeys;
+    const scanTyping = typingKeys * SCAN_PRESSES_PER_CHAR;
+    const kwScan = (kwChars + 1) * SCAN_PRESSES_PER_CHAR; // keywords, then the steer key counted as one more character
+    const scanNoSteer = hitIdx != null ? 1 : scanTyping;
+    const scanSteer = outcome === "hit" ? 1 : outcome === "steer-hit" ? kwScan + 1 : outcome === "steer-miss" ? kwScan + scanTyping : scanTyping;
+
+    // ---- timings (seconds); measured parts from this run, human parts modeled
+    const allDrafts = (d.allDraftsMs ?? d.llmTotalMs) / 1000; // fewer than 4 drafts -> end of stream
+    const allVoiced = (d.allVoicedMs ?? d.allVoicedWallMs) / 1000;
+    const ttfaTyped = (d.singleIntended?.ttfaMs ?? typedTtfaFallback) / 1000;
+    const ttfaChoice = (d.singleDraft0?.ttfaMs ?? d.singleIntended?.ttfaMs ?? typedTtfaFallback) / 1000;
+    const sAll = sd ? (sd.allDraftsMs ?? sd.llmTotalMs) / 1000 : NaN;
+    const sVoiced = sd ? (sd.allVoicedMs ?? sd.allVoicedWallMs) / 1000 : NaN;
+    const sTtfa = sd ? (sd.singleDraft0?.ttfaMs ?? sd.singleIntended?.ttfaMs ?? typedTtfaFallback) / 1000 : NaN;
+    const stt = STT_MS / 1000;
+    const play = PLAYBACK_START_MS / 1000;
+    const spc = (a: "direct" | "scan") => (a === "direct" ? SEC_PER_CHAR_DIRECT : SEC_PER_CHAR_SCAN);
+    const typingTime = (a: "direct" | "scan") => typingKeys * spc(a);
+    const kwTime = (a: "direct" | "scan") => (kwChars + 1) * spc(a); // keywords + steer key
+    const selectTime = (a: "direct" | "scan", idx: number) => (a === "direct" ? SELECT_DIRECT_S : (idx + 1) * SCAN_INTERVAL_S);
+    const missOverhead = (a: "direct" | "scan") => (a === "direct" ? MISS_DIRECT_SELECTIONS * SELECT_DIRECT_S : MISS_SCAN_STEPS * SCAN_INTERVAL_S);
+
+    const gaps: Record<string, Record<string, number>> = {};
+    const gapsNoSteer: Record<string, Record<string, number>> = {};
+    for (const access of ["direct", "scan"] as const) {
+      const a = typingTime(access) + ttfaTyped + play;
+      let b: number;
+      let c: number;
+      if (hitIdx != null) {
+        const choiceAt = stt + allDrafts + selectTime(access, hitIdx);
+        b = choiceAt + ttfaChoice + play;
+        c = Math.max(choiceAt, stt + allVoiced) + play;
+      } else {
+        b = c = stt + allDrafts + missOverhead(access) + typingTime(access) + ttfaTyped + play;
+      }
+      gapsNoSteer[access] = { a, b, c };
+      if (outcome === "steer-hit" || outcome === "steer-miss") {
+        const steerStart = stt + allDrafts + missOverhead(access) + kwTime(access);
+        if (outcome === "steer-hit") {
+          const choiceAt = steerStart + sAll + selectTime(access, steerHitIdx!);
+          b = choiceAt + sTtfa + play;
+          c = Math.max(choiceAt, steerStart + sVoiced) + play;
+        } else {
+          // honest worst case: keywords typed and steered drafts waited for, then a second miss
+          // overhead and the full reply typed (typed text is not prespoken)
+          b = c = steerStart + sAll + missOverhead(access) + typingTime(access) + ttfaTyped + play;
+        }
+      }
+      gaps[access] = { a, b, c };
+    }
+
+    const priorThread = turns.filter((x) => x.thread === t.thread && x.id < t.id);
+    const leakRe = (re: RegExp) => (text: string) => re.test(text) && !re.test(t.partner) && !priorThread.some((x) => re.test(x.partner + x.intended));
+    const leak = leakRe(rasamRe);
+    const cricketLeak = (text: string) => cricketRe.test(text) && !cricketTopicRe.test(t.partner) && !priorThread.some((x) => cricketTopicRe.test(x.partner + x.intended));
+    const wrongAddr = (text: string) => t.who !== "Amma" && ammaRe.test(text);
+    const sDrafts: any[] = sd?.drafts ?? [];
+
+    return {
+      set: setName,
+      id: t.id,
+      thread: t.thread,
+      lang: t.lang,
+      who: t.who,
+      relation: t.relation,
+      setting: t.setting,
+      partner: t.partner,
+      intended: t.intended,
+      outcome,
+      drafts: d.drafts.map((x: any) => ({ text: x.text, gloss: x.gloss, atMs: x.atMs })),
+      judge: js,
+      steer: steered
+        ? {
+            keywords,
+            keywordChars: kwChars,
+            keywordModelRaw: kwRow?.content ?? null,
+            drafts: sDrafts.map((x: any) => ({ text: x.text, gloss: x.gloss, atMs: x.atMs })),
+            judge: sjs,
+            hitIdx: steerHitIdx,
+            measuredMs: {
+              firstDraftMs: sd.firstDraftMs,
+              allDraftsMs: sd.allDraftsMs,
+              llmTotalMs: sd.llmTotalMs,
+              allVoicedMs: sd.allVoicedMs,
+              ttfaChoiceMs: sd.singleDraft0?.ttfaMs ?? null,
+            },
+            tokens: { prompt: sd.usageStream?.prompt_tokens ?? null, completion: sd.usageStream?.completion_tokens ?? null },
+            chars: { prespokenTotal: sd.prespeak.reduce((a: number, p: any) => a + p.chars, 0), hitDraft: steerHitIdx != null ? cp(sd.drafts[steerHitIdx].text) : null },
+            audioSecHitDraft: steerHitIdx != null ? (sd.prespeak[steerHitIdx]?.audioSec ?? null) : null,
+          }
+        : null,
+      steerSkippedReason: hitIdx == null && !steered ? (kwRow ? "steer draft or judge missing" : "no keywords derived") : null,
+      scriptCheck: { draftsWithScriptIssue: scriptIssues(d.drafts), steerDraftsWithScriptIssue: scriptIssues(sDrafts) },
+      problems: {
+        rasamLeak: d.drafts.filter((x: any) => leak(x.text)).map((x: any) => x.text),
+        cricketLeak: d.drafts.filter((x: any) => cricketLeak(x.text)).map((x: any) => x.text),
+        wrongAddressAmma: d.drafts.filter((x: any) => wrongAddr(x.text)).map((x: any) => x.text),
+        steerRasamLeak: sDrafts.filter((x: any) => leak(x.text)).map((x: any) => x.text),
+        steerWrongAddressAmma: sDrafts.filter((x: any) => wrongAddr(x.text)).map((x: any) => x.text),
+      },
+      measuredMs: {
+        firstTokenMs: d.firstTokenMs,
+        firstDraftMs: d.firstDraftMs,
+        allDraftsMs: d.allDraftsMs,
+        llmTotalMs: d.llmTotalMs,
+        allVoicedMs: d.allVoicedMs,
+        allFirstAudioMs: d.allFirstAudioMs,
+        ttfaTypedMs: d.singleIntended?.ttfaMs ?? null,
+        ttfaChoiceMs: d.singleDraft0?.ttfaMs ?? null,
+        prespeakTransports: d.prespeak.map((p: any) => p.transport),
+        prespeakAudioSec: d.prespeak.map((p: any) => p.audioSec),
+      },
+      tokens: { prompt: d.usageStream?.prompt_tokens ?? null, completion: d.usageStream?.completion_tokens ?? null },
+      chars: {
+        intendedNative: nativeChars,
+        intendedRoman: romanChars,
+        roman,
+        drafts: d.drafts.map((x: any) => cp(x.text)),
+        prespokenTotal: d.prespeak.reduce((a: number, p: any) => a + p.chars, 0),
+        hitDraft: hitIdx != null ? cp(d.drafts[hitIdx].text) : null,
+      },
+      audioSec: { intended: d.singleIntended?.audioSec ?? null, hitDraft: hitIdx != null ? (d.prespeak[hitIdx]?.audioSec ?? null) : null },
+      motor: {
+        typingKeys,
+        typingKeysNativeCount: nativeChars + 1,
+        keywordChars: kwChars,
+        kanthTouchNoSteer: touchNoSteer,
+        kanthTouch: touchSteer,
+        scanTypingPresses: scanTyping,
+        scanKanthPressesNoSteer: scanNoSteer,
+        scanKanthPresses: scanSteer,
+      },
+      turnGapSec: gaps, // MODELED totals, steering included (the v2 headline)
+      turnGapNoSteerSec: gapsNoSteer, // MODELED totals, v1 rule (miss = type)
+      wallClock: d.at,
+    };
+  });
+}
+
+type Row = ReturnType<typeof buildRows>[number];
+
+function hitStats(rs: Row[]) {
   const n = rs.length;
   const top1 = rs.filter((r) => r.judge.hitIdx === 0).length;
   const top4 = rs.filter((r) => r.judge.hitIdx != null).length;
-  const agree = rs.filter((r) => r.judge.agree).length;
-  const either = rs.filter((r) => typeof r.judge.run1 === "number" || typeof r.judge.run2 === "number").length;
-  return { n, top1, top4, top1Pct: pct(top1, n), top4Pct: pct(top4, n), judgeAgree: agree, judgeAgreePct: pct(agree, n), hitInEitherRun: either };
+  const misses = rs.filter((r) => r.judge.hitIdx == null).length;
+  const steered = rs.filter((r) => r.steer).length;
+  const steerHits = rs.filter((r) => r.outcome === "steer-hit").length;
+  const steerAgree = rs.filter((r) => r.steer?.judge?.agree).length;
+  const steerEither = rs.filter((r) => r.steer?.judge?.either).length;
+  return {
+    n,
+    top1,
+    top4,
+    top1Pct: pct(top1, n),
+    top4Pct: pct(top4, n),
+    judgeAgree: rs.filter((r) => r.judge.agree).length,
+    hitInEitherRun: rs.filter((r) => r.judge.either).length,
+    misses,
+    steered,
+    steerHits,
+    steerHitPctOfSteered: pct(steerHits, steered),
+    steerJudgeAgree: steerAgree,
+    steerHitInEitherRun: steerEither,
+    resolvedWithoutTyping: top4 + steerHits,
+    resolvedWithoutTypingPct: pct(top4 + steerHits, n),
+  };
 }
-const groups: Record<string, typeof rows> = { all: rows };
-for (const l of LANGS) groups[l] = rows.filter((r) => r.lang === l);
 
-const hit = Object.fromEntries(Object.entries(groups).map(([k, rs]) => [k, hitStats(rs)]));
+function motorStats(rs: Row[]) {
+  const tk = mean(rs.map((r) => r.motor.typingKeys));
+  const ktn = mean(rs.map((r) => r.motor.kanthTouchNoSteer));
+  const kt = mean(rs.map((r) => r.motor.kanthTouch));
+  const sp = mean(rs.map((r) => r.motor.scanTypingPresses));
+  const skn = mean(rs.map((r) => r.motor.scanKanthPressesNoSteer));
+  const sk = mean(rs.map((r) => r.motor.scanKanthPresses));
+  return {
+    typingKeysMean: tk,
+    typingKeysNativeCountMean: mean(rs.map((r) => r.motor.typingKeysNativeCount)),
+    keywordCharsMeanOnSteered: mean(rs.filter((r) => r.steer).map((r) => r.motor.keywordChars)),
+    kanthTouchNoSteerMean: ktn,
+    touchReductionNoSteerPct: 100 * (1 - ktn / tk),
+    kanthTouchMean: kt,
+    touchReductionPct: 100 * (1 - kt / tk),
+    scanTypingPressesMean: sp,
+    scanKanthPressesNoSteerMean: skn,
+    scanReductionNoSteerPct: 100 * (1 - skn / sp),
+    scanKanthPressesMean: sk,
+    scanReductionPct: 100 * (1 - sk / sp),
+  };
+}
 
-const motor = Object.fromEntries(
-  Object.entries(groups).map(([k, rs]) => {
-    const tk = mean(rs.map((r) => r.motor.typingKeys));
-    const kt = mean(rs.map((r) => r.motor.kanthTouch));
-    const sp = mean(rs.map((r) => r.motor.scanTypingPresses));
-    const sk = mean(rs.map((r) => r.motor.scanKanthPresses));
-    const tkN = mean(rs.map((r) => r.motor.typingKeysNativeCount));
-    const hitsOnlyWait = mean(rs.filter((r) => r.judge.hitIdx != null).map((r) => r.motor.scanKanthWaitSteps as number));
-    return [
-      k,
-      {
-        typingKeysMean: tk,
-        typingKeysNativeCountMean: tkN,
-        kanthTouchMean: kt,
-        touchReductionPct: 100 * (1 - kt / tk),
-        scanTypingPressesMean: sp,
-        scanKanthPressesMean: sk,
-        scanReductionPct: 100 * (1 - sk / sp),
-        scanWaitStepsOnHitsMean: hitsOnlyWait,
-      },
-    ];
-  }),
-);
-
-function gapSummary(rs: typeof rows) {
+function gapStats(rs: Row[]) {
   const out: any = {};
-  for (const access of ["direct", "scan"]) {
-    out[access] = {};
-    for (const cond of ["a", "b", "c"]) {
-      const xs = rs.map((r) => r.turnGapSec[access]![cond]!);
-      const hx = rs.filter((r) => r.judge.hitIdx != null).map((r) => r.turnGapSec[access]![cond]!);
-      out[access][cond] = { median: med(xs), mean: mean(xs), p25: q(xs, 0.25), p75: q(xs, 0.75), min: Math.min(...xs), max: Math.max(...xs), hitsMedian: med(hx), hitsN: hx.length };
+  for (const variant of ["steer", "noSteer"] as const) {
+    out[variant] = {};
+    for (const access of ["direct", "scan"] as const) {
+      out[variant][access] = {};
+      for (const cond of ["a", "b", "c"] as const) {
+        const g = (r: Row) => (variant === "steer" ? r.turnGapSec : r.turnGapNoSteerSec)[access]![cond]!;
+        const xs = rs.map(g);
+        const by = (o: Outcome) => rs.filter((r) => r.outcome === o).map(g);
+        out[variant][access][cond] = {
+          median: med(xs),
+          mean: mean(xs),
+          p25: q(xs, 0.25),
+          p75: q(xs, 0.75),
+          min: Math.min(...xs),
+          max: Math.max(...xs),
+          hitsMedian: med(by("hit")),
+          hitsN: by("hit").length,
+          steerHitsMedian: med(by("steer-hit")),
+          steerHitsN: by("steer-hit").length,
+          steerMissMedian: med(by("steer-miss")),
+          steerMissN: by("steer-miss").length,
+        };
+      }
     }
   }
   return out;
 }
-const gaps = Object.fromEntries(Object.entries(groups).map(([k, rs]) => [k, gapSummary(rs)]));
 
-const lat = (key: keyof (typeof rows)[number]["measuredMs"]) => {
-  const xs = rows.map((r) => r.measuredMs[key] as number).filter((x) => typeof x === "number");
-  return { n: xs.length, median: med(xs), p25: q(xs, 0.25), p75: q(xs, 0.75), min: Math.min(...xs), max: Math.max(...xs) };
-};
-const latency = {
-  firstTokenMs: lat("firstTokenMs"),
-  firstDraftMs: lat("firstDraftMs"),
-  allDraftsMs: lat("allDraftsMs"),
-  allFirstAudioMs: lat("allFirstAudioMs"),
-  allVoicedMs: lat("allVoicedMs"),
-  ttfaTypedMs: lat("ttfaTypedMs"),
-  ttfaChoiceMs: lat("ttfaChoiceMs"),
-};
-const allPrespeak = draft.turns.filter((t: any) => !t.error).flatMap((t: any) => t.prespeak);
-const transportCounts = allPrespeak.reduce((a: any, p: any) => ((a[p.transport ?? "error"] = (a[p.transport ?? "error"] ?? 0) + 1), a), {});
-const runaway = draft.turns
-  .filter((t: any) => !t.error)
-  .flatMap((t: any) => t.prespeak.map((p: any) => ({ id: t.id, text: p.text, chars: p.chars, audioSec: p.audioSec, secPerChar: p.audioSec / p.chars })))
-  .filter((p: any) => p.secPerChar > 0.25);
+function latencyStats(rs: Row[]) {
+  const s = (xs: number[]) => {
+    const v = xs.filter((x) => typeof x === "number" && Number.isFinite(x));
+    return { n: v.length, median: med(v), p25: q(v, 0.25), p75: q(v, 0.75), min: Math.min(...v), max: Math.max(...v) };
+  };
+  return {
+    firstDraftMs: s(rs.map((r) => r.measuredMs.firstDraftMs)),
+    allDraftsMs: s(rs.map((r) => r.measuredMs.allDraftsMs)),
+    allFirstAudioMs: s(rs.map((r) => r.measuredMs.allFirstAudioMs)),
+    allVoicedMs: s(rs.map((r) => r.measuredMs.allVoicedMs)),
+    ttfaChoiceMs: s(rs.map((r) => r.measuredMs.ttfaChoiceMs)),
+    ttfaTypedMs: s(rs.map((r) => r.measuredMs.ttfaTypedMs)),
+    steerFirstDraftMs: s(rs.filter((r) => r.steer).map((r) => r.steer!.measuredMs.firstDraftMs)),
+    steerAllDraftsMs: s(rs.filter((r) => r.steer).map((r) => r.steer!.measuredMs.allDraftsMs ?? r.steer!.measuredMs.llmTotalMs)),
+    steerAllVoicedMs: s(rs.filter((r) => r.steer).map((r) => r.steer!.measuredMs.allVoicedMs)),
+    fewerThan4Drafts: rs.filter((r) => r.measuredMs.allDraftsMs == null).map((r) => r.id),
+    steerFewerThan4Drafts: rs.filter((r) => r.steer && r.steer.measuredMs.allDraftsMs == null).map((r) => r.id),
+  };
+}
 
-const flagCounts = {
-  judgeWrongLanguageBothRuns: rows.reduce((a, r) => a + r.judge.wrongLanguage.both.length, 0),
-  judgeWrongLanguageEitherRun: rows.reduce((a, r) => a + r.judge.wrongLanguage.either.length, 0),
-  judgeWrongScriptBothRuns: rows.reduce((a, r) => a + r.judge.wrongScript.both.length, 0),
-  judgeWrongScriptEitherRun: rows.reduce((a, r) => a + r.judge.wrongScript.either.length, 0),
-  deterministicScriptIssues: rows.reduce((a, r) => a + r.scriptCheck.draftsWithScriptIssue.length, 0),
-  totalDrafts: rows.reduce((a, r) => a + r.drafts.length, 0),
-};
+function problemStats(rs: Row[]) {
+  const c = (k: keyof Row["problems"]) => rs.reduce((a, r) => a + r.problems[k].length, 0);
+  return {
+    totalDrafts: rs.reduce((a, r) => a + r.drafts.length, 0),
+    totalSteerDrafts: rs.reduce((a, r) => a + (r.steer?.drafts.length ?? 0), 0),
+    rasamLeak: c("rasamLeak"),
+    cricketLeak: c("cricketLeak"),
+    examplesCricket: rs.flatMap((r) => r.problems.cricketLeak.map((x: string) => `${r.id}: ${x}`)),
+    wrongAddressAmma: c("wrongAddressAmma"),
+    deflect: rs.reduce((a, r) => a + r.drafts.filter((x: any) => deflectRe.test(x.text) && !deflectRe.test(r.partner)).length, 0),
+    steerRasamLeak: c("steerRasamLeak"),
+    steerWrongAddressAmma: c("steerWrongAddressAmma"),
+    deterministicScriptIssues: rs.reduce((a, r) => a + r.scriptCheck.draftsWithScriptIssue.length, 0),
+    steerDeterministicScriptIssues: rs.reduce((a, r) => a + r.scriptCheck.steerDraftsWithScriptIssue.length, 0),
+    judgeWrongLanguageBothRuns: rs.reduce((a, r) => a + r.judge.wrongLanguage.both.length, 0),
+    judgeWrongScriptBothRuns: rs.reduce((a, r) => a + r.judge.wrongScript.both.length, 0),
+    examplesRasam: rs.flatMap((r) => r.problems.rasamLeak.map((x: string) => `${r.id}: ${x}`)),
+    examplesAmma: rs.flatMap((r) => r.problems.wrongAddressAmma.map((x: string) => `${r.id} (${r.who}): ${x}`)),
+  };
+}
 
-const tokens = {
-  promptMean: mean(rows.map((r) => r.tokens.prompt as number)),
-  completionMean: mean(rows.map((r) => r.tokens.completion as number)),
-  source: "usage object in the streamed chat response (measured)",
-};
+function tokenStats(rs: Row[]) {
+  return {
+    promptMean: mean(rs.map((r) => r.tokens.prompt as number)),
+    completionMean: mean(rs.map((r) => r.tokens.completion as number)),
+    steerPromptMean: mean(rs.filter((r) => r.steer).map((r) => r.steer!.tokens.prompt as number)),
+    steerCompletionMean: mean(rs.filter((r) => r.steer).map((r) => r.steer!.tokens.completion as number)),
+    meanDraftChars: mean(rs.map((r) => r.chars.drafts.reduce((a: number, b: number) => a + b, 0) / r.chars.drafts.length)),
+    meanPrespokenChars: mean(rs.map((r) => r.chars.prespokenTotal)),
+  };
+}
+
+function summarize(rs: Row[]) {
+  const groups: Record<string, Row[]> = { all: rs };
+  for (const l of LANGS) groups[l] = rs.filter((r) => r.lang === l);
+  const per = <T>(f: (x: Row[]) => T) => Object.fromEntries(Object.entries(groups).map(([k, v]) => [k, f(v)])) as Record<string, T>;
+  return { hit: per(hitStats), motor: per(motorStats), gaps: per(gapStats), latency: latencyStats(rs), problems: problemStats(rs), tokens: tokenStats(rs) };
+}
+
+// ------------------------------------------------------------------ build
+const rows: Record<SetName, Row[]> = { heldout: buildRows("heldout"), original: buildRows("original") };
+const S = { heldout: summarize(rows.heldout), original: summarize(rows.original) };
+const raw = (set: SetName, stage: string) => loadOpt(`${V2}/${set}-raw-${stage}.json`);
+
+// v1 (preserved) for comparison; problem counts recomputed from the v1 drafts with the same regexes
+const v1 = load(`${OUT}/v1/conversations.json`);
+const v1Problems = (() => {
+  let rasam = 0;
+  let amma = 0;
+  let cricket = 0;
+  let deflect = 0;
+  for (const r of v1.turns as any[]) {
+    const prior = ORIGINAL.TURNS.filter((x) => x.thread === r.thread && x.id < r.id);
+    for (const d of r.drafts as any[]) {
+      if (rasamRe.test(d.text) && !rasamRe.test(r.partner) && !prior.some((x) => rasamRe.test(x.partner + x.intended))) rasam++;
+      if (cricketRe.test(d.text) && !cricketTopicRe.test(r.partner) && !prior.some((x) => cricketTopicRe.test(x.partner + x.intended))) cricket++;
+      if (r.who !== "Amma" && ammaRe.test(d.text)) amma++;
+      if (deflectRe.test(d.text) && !deflectRe.test(r.partner)) deflect++;
+    }
+  }
+  return { rasamLeak: rasam, cricketLeak: cricket, deflect, wrongAddressAmma: amma, totalDrafts: (v1.turns as any[]).reduce((a: number, r: any) => a + r.drafts.length, 0) };
+})();
 
 const result = {
   meta: {
-    set: SET_LABEL,
     generated: new Date().toISOString(),
-    draftRun: draft.meta,
-    judgeRun: { ...judge.meta, systemPrompt: undefined },
-    judgeSystemPrompt: judge.meta.systemPrompt,
-    translitRun: translit.meta,
+    version: "v2",
+    sets: Object.fromEntries(SET_NAMES.map((s) => [s, { label: SETS[s].SET_LABEL, n: rows[s].length }])),
+    runs: Object.fromEntries(
+      SET_NAMES.map((s) => [
+        s,
+        Object.fromEntries(["draft", "judge", "translit", "keywords", "steer", "steerjudge"].map((st) => [st, raw(s, st)?.meta ? { ...raw(s, st).meta, systemPrompt: undefined, profile: undefined, ttsStates: undefined } : null])),
+      ]),
+    ),
+    judgeSystemPrompt: raw("heldout", "judge")?.meta?.systemPrompt,
+    keywordInstruction: raw("heldout", "keywords")?.meta?.instruction ?? raw("original", "keywords")?.meta?.instruction,
   },
   parameters: {
     measuredInApp: { sttFinalMs: STT_FINAL_MS_INAPP, sttUsedMs: STT_MS, playbackStartMs: PLAYBACK_START_MS, typedToAudibleMs: INAPP_TYPED_TO_AUDIBLE_MS },
@@ -291,31 +483,35 @@ const result = {
       missDirectSelections: MISS_DIRECT_SELECTIONS,
     },
   },
-  hit,
-  motor,
-  latency,
-  transportCounts,
-  runawayAudio: runaway,
-  flagCounts,
-  tokens,
-  turnGap: gaps,
-  turns: rows,
+  v1: { hit: v1.hit, motor: v1.motor, turnGap: v1.turnGap, tokens: v1.tokens, problems: v1Problems, latency: v1.latency },
+  heldout: S.heldout,
+  original: S.original,
+  // all v2 turns, held-out first; each row carries `set`
+  turns: [...rows.heldout, ...rows.original],
 };
 writeFileSync(`${OUT}/conversations.json`, JSON.stringify(result, null, 1));
 
-// chart input for the Python renderer
+// chart input for the Python renderer: v2 held-out, steering included
+const H = S.heldout;
 writeFileSync(
   `${OUT}/conversations-chart.json`,
   JSON.stringify(
     {
       humanNormS: 0.2,
       dispreferredS: 0.7,
+      set: "heldout",
       groups: ["direct", "scan"].map((access) => ({
         access,
-        bars: ["a", "b", "c"].map((c) => ({ cond: c, median: gaps.all[access][c].median, p25: gaps.all[access][c].p25, p75: gaps.all[access][c].p75, hitsMedian: gaps.all[access][c].hitsMedian })),
+        bars: ["a", "b", "c"].map((c) => {
+          const g = H.gaps.all!.steer[access][c];
+          return { cond: c, median: g.median, p25: g.p25, p75: g.p75, hitsMedian: g.hitsMedian, steerHitsMedian: g.steerHitsMedian };
+        }),
       })),
-      hitTop4Pct: hit.all.top4Pct,
-      n: rows.length,
+      hitTop4Pct: H.hit.all!.top4Pct,
+      resolvedPct: H.hit.all!.resolvedWithoutTypingPct,
+      steerHits: H.hit.all!.steerHits,
+      steered: H.hit.all!.steered,
+      n: rows.heldout.length,
     },
     null,
     1,
@@ -325,153 +521,287 @@ writeFileSync(
 // ------------------------------------------------------------------ markdown
 const L: string[] = [];
 const P = (s = "") => L.push(s);
-P("# Kanth conversation benchmark: hit rate, motor actions, turn gap");
-P();
-P(`Generated ${new Date().toISOString().slice(0, 16).replace("T", " ")} UTC from raw files in \`bench/results/conversations-raw-*.json\`. Code: \`bench/conversations.ts\` (API runs), \`bench/conversations_analyze.ts\` (this report), test set \`bench/conversations.data.ts\`.`);
-P();
-P("**Test set: SCRIPTED, not real users.** 36 hand-written partner turns in 12 three-turn threads (12 Tamil, 12 Hindi/Hinglish, 12 Indian English) for the fictional demo user Arjun (34, ALS, Chennai). Each turn has the reply the user actually wants to say. All 36 intended replies were written before any model drafted a reply for these turns, and none was changed after seeing model output.");
-P();
-P("**How to read the numbers.** Every number is labelled **MEASURED** (timed or counted in a run) or **MODELED** (computed from cited human rates and stated assumptions). The turn gaps are MODELED totals: they add measured system latencies to modeled human selection and typing times.");
-P();
-P(`**Measurement conditions.** Run started ${draft.meta.startedIST} IST on a home connection in India (Windows, Node ${draft.meta.node}). Up to two other agents may have been calling the same Sarvam account concurrently, so these latencies were measured under shared load.`);
-P();
+const CN: Record<string, string> = { a: "(a) Plain typing", b: "(b) Suggestions, no prespeak", c: "(c) Suggestions + prespeak" };
+const dm = raw("heldout", "draft")?.meta;
+const om = raw("original", "draft")?.meta;
+// one prompt version across every v2 drafting/steering run
+const PROMPT_SHAS = (() => {
+  const metas = SET_NAMES.flatMap((s) => ["draft", "steer"].map((st) => raw(s, st)?.meta)).filter(Boolean);
+  return { n: metas.length, shas: new Set(metas.map((m: any) => m.suggestTsSha256)), notes: new Set(metas.map((m: any) => m.profileNotes)), dirty: metas.some((m: any) => m.suggestTsGit?.dirty !== false) };
+})();
+const PROMPT_CONSISTENT = PROMPT_SHAS.shas.size === 1 && PROMPT_SHAS.notes.size === 1 && !PROMPT_SHAS.dirty;
+if (!PROMPT_CONSISTENT) console.warn("WARNING: v2 raw files record more than one prompt version", PROMPT_SHAS);
 
-P("## 1. Do the drafts say what the user meant? (MEASURED, LLM-judged)");
+P("# Kanth conversation benchmark v2: held-out set, keyword steering, motor actions, turn gap");
 P();
-P("For each turn the real drafting code (`server/suggest.ts` `streamSuggestions`, model `sarvam-105b-conversations`, thinking off, temperature 0.7, tone warm, demo profile) drafted 4 replies. The history included the earlier turns of the same thread, with the intended replies standing in for the user's past turns.");
+P(`Generated ${new Date().toISOString().slice(0, 16).replace("T", " ")} UTC by \`bench/conversations_analyze.ts\` from the raw files in \`bench/results/v2/\`. The v1 report, data and chart are preserved unchanged in \`bench/results/v1/\`.`);
 P();
-P("A judge (`sarvam-105b`, reasoning on, temperature 0) was asked: *Which draft, if any, conveys the same core meaning and intent as the intended reply, such that the user would accept it as saying what they meant?* The judge ran twice per turn. A turn counts as a hit only if both runs named the same draft.");
+P("**Every number is labelled MEASURED (timed or counted in a run, or judged by the LLM judge) or MODELED (computed from cited human rates and stated assumptions).** Hit rates are MEASURED by an LLM judge; motor actions are counted from the data, with scanning presses MODELED; turn gaps are MODELED totals that add measured system latencies to modeled human times.");
 P();
-P("| Language | Turns | Top-1 hit | Top-4 hit | Judge runs agree | Hit in either run |");
-P("|---|---:|---:|---:|---:|---:|");
-for (const k of ["ta-IN", "hi-IN", "en-IN", "all"]) {
-  const h = hit[k];
-  P(`| ${k === "all" ? "**All**" : LNAME[k]} | ${h.n} | ${h.top1} (${f1(h.top1Pct)}%) | ${h.top4} (${f1(h.top4Pct)}%) | ${h.judgeAgree}/${h.n} | ${h.hitInEitherRun} |`);
+P("## 0. Headline");
+P();
+const hh = S.heldout.hit.all!;
+const oh = S.original.hit.all!;
+P("| | v1 (old prompt) | v2, original 36 (biased) | v2, held-out 24 (unbiased) |");
+P("|---|---:|---:|---:|");
+P(`| Top-4 hit rate, first drafts (MEASURED, judge) | ${v1.hit.all.top4}/36 (${f1(v1.hit.all.top4Pct)}%) | ${oh.top4}/${oh.n} (${f1(oh.top4Pct)}%) | ${hh.top4}/${hh.n} (${f1(hh.top4Pct)}%) |`);
+P(`| Top-1 hit rate (MEASURED) | ${v1.hit.all.top1}/36 (${f1(v1.hit.all.top1Pct)}%) | ${oh.top1}/${oh.n} (${f1(oh.top1Pct)}%) | ${hh.top1}/${hh.n} (${f1(hh.top1Pct)}%) |`);
+P(`| Steer hit rate on misses, one round of 1 to 2 keywords (MEASURED) | not run | ${oh.steerHits}/${oh.steered} (${f1(oh.steerHitPctOfSteered)}%) | ${hh.steerHits}/${hh.steered} (${f1(hh.steerHitPctOfSteered)}%) |`);
+P(`| Turns resolved without typing the reply (first drafts or one steer) | ${v1.hit.all.top4}/36 (${f1(v1.hit.all.top4Pct)}%) | ${oh.resolvedWithoutTyping}/${oh.n} (${f1(oh.resolvedWithoutTypingPct)}%) | ${hh.resolvedWithoutTyping}/${hh.n} (${f1(hh.resolvedWithoutTypingPct)}%) |`);
+P(`| Touch motor actions vs plain typing (counted) | ${f0(-v1.motor.all.touchReductionPct)}% | ${f0(-S.original.motor.all!.touchReductionPct)}% | ${f0(-S.heldout.motor.all!.touchReductionPct)}% |`);
+P(`| Scanning presses vs plain typing (MODELED, 2 per char) | ${f0(-v1.motor.all.scanReductionPct)}% | ${f0(-S.original.motor.all!.scanReductionPct)}% | ${f0(-S.heldout.motor.all!.scanReductionPct)}% |`);
+for (const access of ["direct", "scan"] as const) {
+  for (const c of ["a", "c"] as const) {
+    P(`| Median turn gap, ${access === "direct" ? "direct selection" : "switch scanning"}, ${CN[c]} (MODELED) | ${fs(v1.turnGap.all[access][c].median)} | ${fs(S.original.gaps.all!.steer[access][c].median)} | ${fs(S.heldout.gaps.all!.steer[access][c].median)} |`);
+  }
 }
 P();
-P(`What this means: on about ${f0(hit.all.top4Pct)}% of turns one of the four drafts says what the user meant, so one selection replaces typing. On the other ${f0(100 - hit.all.top4Pct)}%, the user types (Kanth's free-typing path). This is a finding about this scripted set. The intended replies are deliberately specific (a time, a side of the body, a drug name, a preference), and a draft cannot know those facts.`);
-P();
-P("**Language and script of the drafts.**");
-P(`- Judge flags across all ${flagCounts.totalDrafts} drafts: wrong language ${flagCounts.judgeWrongLanguageBothRuns} (both runs) / ${flagCounts.judgeWrongLanguageEitherRun} (either run); wrong script ${flagCounts.judgeWrongScriptBothRuns} (both) / ${flagCounts.judgeWrongScriptEitherRun} (either).`);
-P(`- Deterministic script check (Tamil drafts must contain Tamil script and no Devanagari; Hindi drafts must contain Devanagari and no Tamil; English drafts contain no Indic script): ${flagCounts.deterministicScriptIssues} drafts fail.`);
-P();
-P("Per-turn detail: the intended reply, the four drafts, both judge verdicts, and the judge's reasons are in `conversations.json` under `turns`.");
+P("- v1 numbers are the preserved v1 run (old prompt, no steering). v2 motor and turn-gap numbers include the steering round; section 3 and 4 also give them without steering.");
+P("- **The held-out number is the one to quote.** The original 36 turns are the set whose failures motivated the prompt fix, so their v2 hit rate is not an unbiased estimate.");
 P();
 
-P("## 2. Measured system latency (MEASURED, this run, n = 36 turns)");
+P("## 1. What changed between v1 and v2, and the method");
 P();
-P("Clocks start when the drafting request is sent, which in the app is right after Saaras returns the final transcript.");
+P("**Prompt (not edited by this benchmark).** Between v1 and v2 the lead changed `server/suggest.ts`:");
+P("- the format examples no longer contain names;");
+P("- a rule that names such as Amma or Doctor belong only to their owners;");
+P("- a rule to use profile notes only when they bear on what was said;");
+P("- a new optional `keywords` field (steering: \"Every reply must say that, built around these words\").");
+P("- The lead then made one more change before the v2 runs: rule 7 now reads \"Never invent facts: no appointments, plans, symptoms or events that were not mentioned. When <name> might need to give a detail you do not know, write a reply that asks or defers instead.\"");
+P(`- The demo profile notes were trimmed to "${dm?.profileNotes ?? "n/a"}" (v1: "... Loves cricket and his mother's rasam.").`);
+P(`- **Prompt version for every v2 number:** \`server/suggest.ts\` at git commit \`${dm?.suggestTsGit?.commit ?? "n/a"}\` (sha256 \`${String(dm?.suggestTsSha256 ?? "").slice(0, 16)}...\`, uncommitted changes: ${dm?.suggestTsGit?.dirty === false ? "none" : "UNKNOWN"}), with the profile from \`web/src/lib/settings.ts\` at \`${dm?.settingsTsGit?.commit ?? "n/a"}\`.`);
+P(`  - ${PROMPT_CONSISTENT ? `All ${PROMPT_SHAS.n} v2 drafting and steering raw files record this same sha256 and these profile notes.` : "**WARNING: the v2 raw files record different prompt versions; see conversations.json meta.runs.**"}`);
+P("  - A first v2 attempt began before that last change and was stopped. Its partial raw files are kept in `bench/results/v2/superseded-stale-prompt/` and are not used anywhere in this report.");
 P();
-P("| Stage | Median | P25 to P75 | Min to max |");
-P("|---|---:|---:|---:|");
-const latRow = (name: string, s: any) => P(`| ${name} | ${f0(s.median)} ms | ${f0(s.p25)} to ${f0(s.p75)} ms | ${f0(s.min)} to ${f0(s.max)} ms |`);
-latRow("First draft parsed", latency.firstDraftMs);
-latRow("All 4 drafts parsed", latency.allDraftsMs);
-latRow("All 4 drafts have first audio (prespeak)", latency.allFirstAudioMs);
-latRow("All 4 drafts fully synthesized (prespeak, pool of 4)", latency.allVoicedMs);
-latRow("TTFA, single synthesis of a draft on choice (warm socket)", latency.ttfaChoiceMs);
-latRow("TTFA, single synthesis of the typed reply (warm socket)", latency.ttfaTypedMs);
+P("**Held-out set.** `bench/conversations.heldout.ts`: 24 new turns in 9 threads, 8 Tamil, 8 Hindi/Hinglish, 8 Indian English.");
+P("- Partners: elder sister, physiotherapist, office colleagues, a ward nurse, an electronics shopkeeper, a speech therapist, a college friend, a bank officer. None of these partners or topics is in the original 36.");
+P("- The turns and intended replies were written after the prompt fix and **before any model output for them existed**, and were not changed after seeing output.");
+P(`- The file's sha256 at run time (\`${String(dm?.setFileSha256 ?? "").slice(0, 16)}...\`) is recorded in every v2 raw file, so later edits would be detectable.`);
+P("- Same format and same fictional user (Arjun) as the original set. They were written by a different author (agent) from the original 36, but one author for all 24.");
 P();
-P(`Prespeak ran exactly as \`server/session.ts\` runs it: each draft starts synthesizing on a \`TtsEngine\` pool of 4 warm Bulbul v4 Flash WebSockets the moment it is parsed. Transports used across ${allPrespeak.length} prespoken drafts: ${Object.entries(transportCounts).map(([k, v]) => `${k} ${v}`).join(", ")}.`);
+P("**Drafting.** As v1:");
+P("- the real `streamSuggestions` (model `sarvam-105b-conversations`, thinking off, temperature 0.7, tone warm, demo profile);");
+P("- history = earlier turns of the same thread, with the intended replies standing in for the user's past turns;");
+P("- prespeak on a pool of 4 warm Bulbul v4 Flash sockets, plus single-synthesis TTFA for the typed reply and for draft 1.");
+P(`- Runs: original started ${om?.startedIST ?? "n/a"} IST, held-out started ${dm?.startedIST ?? "n/a"} IST, on a home connection in India, possibly with other agents using the same Sarvam account.`);
 P();
-P("**Anomalies seen (MEASURED; they are kept in the medians above):**");
-P("- ta05: one socket gave no audio within 5 s. The engine fell back to HTTP streaming (first audio at 5.4 s), so all 4 were voiced only at 6.1 s.");
-if (runaway.length) for (const r of runaway) P(`- ${r.id}: Bulbul returned ${r.audioSec.toFixed(1)} s of audio for a ${r.chars}-character draft ("${r.text}"). Runaway audio like this would be heard by the partner if that draft were chosen. Kanth should cap playback by expected duration.`);
+P("**Judge (same protocol as v1).**");
+P("- Model `sarvam-105b`, reasoning on, temperature 0, with the identical v1 system prompt, run twice per turn.");
+P("- A turn is a hit only if both runs parsed and named the same draft.");
 P();
-P("**Comparison with the live app** (MEASURED in-app by the team, 3 demo turns): first draft 321 to 367 ms; all 4 drafts 480 to 561 ms; all 4 voiced 1.06 to 1.21 s; Saaras final transcript 102 to 123 ms after the partner stopped; choice to audible 58 to 59 ms when prespoken; typed text to audible about 397 ms.");
-P(`- The in-app figures are counted from the partner stopping, and include the browser hop.`);
-P(`- Cross-check for the typed path: TTFA here (median ${f0(latency.ttfaTypedMs.median)} ms) plus ${PLAYBACK_START_MS} ms playback start = ${f0(latency.ttfaTypedMs.median + PLAYBACK_START_MS)} ms, against about ${INAPP_TYPED_TO_AUDIBLE_MS} ms in the app.`);
+P("**Keyword steering (new in v2), for every miss.** Pre-declared, fixed rule, written into `bench/conversations.ts` before any steering run.");
+P(`- Steering words come from \`sarvam-105b\` at temperature 0, given **only the intended reply** (no partner turn, no drafts, no language label), with the instruction: *"${(result.meta.keywordInstruction ?? "").replace(/"/g, "'")}"* followed by "Reply with only those words."`);
+P("- Post-processing: first non-empty line, quotes and a leading label stripped, at most two tokens kept. No manual edits.");
+P("- The miss is then redrafted with `keywords=<those words>` through the same `streamSuggestions`, with the same history, and prespoken the same way. The steered drafts are judged with the same two-run protocol.");
+P("- This simulates a user who types one or two Roman words. The model that picks the words never saw the drafts.");
+P();
+
+P("## 2. Do the drafts say what the user meant? (MEASURED, LLM-judged)");
+P();
+for (const s of SET_NAMES) {
+  P(`### ${SET_TITLE[s]}`);
+  P();
+  P("| Language | Turns | Top-1 hit | Top-4 hit | Judge runs agree | Hit in either run | Misses steered | Steer hits | Resolved without typing |");
+  P("|---|---:|---:|---:|---:|---:|---:|---:|---:|");
+  for (const k of ["ta-IN", "hi-IN", "en-IN", "all"]) {
+    const h = S[s].hit[k]!;
+    P(`| ${k === "all" ? "**All**" : LNAME[k]} | ${h.n} | ${h.top1} (${f1(h.top1Pct)}%) | ${h.top4} (${f1(h.top4Pct)}%) | ${h.judgeAgree}/${h.n} | ${h.hitInEitherRun} | ${h.steered}/${h.misses} | ${h.steerHits} (${f1(h.steerHitPctOfSteered)}%) | ${h.resolvedWithoutTyping} (${f1(h.resolvedWithoutTypingPct)}%) |`);
+  }
+  P();
+}
+P("v1, same original 36 turns, old prompt (preserved in `bench/results/v1/`):");
+P();
+P("| Language | Top-1 | Top-4 |");
+P("|---|---:|---:|");
+for (const k of ["ta-IN", "hi-IN", "en-IN", "all"]) {
+  const h = v1.hit[k];
+  P(`| ${k === "all" ? "**All**" : LNAME[k]} | ${h.top1}/${h.n} (${f1(h.top1Pct)}%) | ${h.top4}/${h.n} (${f1(h.top4Pct)}%) |`);
+}
+P();
+P("Chart: `docs/img/steering.png` and `.svg` (`bench/steering_chart.py`). It shows how each turn ends: first-draft hit, steer hit, or typed.");
+P();
+P("**Did the prompt fix remove the two v1 problems?** Deterministic counts over drafts, with the same regexes as v1:");
+P();
+P("| | v1, original (144 drafts) | v2 original, first drafts | v2 held-out, first drafts | v2 steered drafts (both sets) |");
+P("|---|---:|---:|---:|---:|");
+P(`| Rasam brought up unprompted (profile leakage) | ${v1Problems.rasamLeak} | ${S.original.problems.rasamLeak} | ${S.heldout.problems.rasamLeak} | ${S.original.problems.steerRasamLeak + S.heldout.problems.steerRasamLeak} |`);
+P(`| Cricket brought up when nobody mentioned cricket or a match (profile leakage) | ${v1Problems.cricketLeak} | ${S.original.problems.cricketLeak} | ${S.heldout.problems.cricketLeak} | n/a |`);
+P(`| Drafts that deflect to rest, tiredness or sleep (counted only when the partner did not raise it) | ${v1Problems.deflect} | ${S.original.problems.deflect} | ${S.heldout.problems.deflect} | n/a |`);
+P(`| Someone other than his mother addressed as "Amma" | ${v1Problems.wrongAddressAmma} | ${S.original.problems.wrongAddressAmma} | ${S.heldout.problems.wrongAddressAmma} | ${S.original.problems.steerWrongAddressAmma + S.heldout.problems.steerWrongAddressAmma} |`);
+P(`| Drafts failing the deterministic script check | ${v1.flagCounts?.deterministicScriptIssues ?? "n/a"} | ${S.original.problems.deterministicScriptIssues} | ${S.heldout.problems.deterministicScriptIssues} | ${S.original.problems.steerDeterministicScriptIssues + S.heldout.problems.steerDeterministicScriptIssues} |`);
+P(`| Total drafts | ${v1Problems.totalDrafts} | ${S.original.problems.totalDrafts} | ${S.heldout.problems.totalDrafts} | ${S.original.problems.totalSteerDrafts + S.heldout.problems.totalSteerDrafts} |`);
+P();
+const ex = [...S.original.problems.examplesRasam, ...S.heldout.problems.examplesRasam, ...S.original.problems.examplesCricket, ...S.heldout.problems.examplesCricket, ...S.original.problems.examplesAmma, ...S.heldout.problems.examplesAmma];
+if (ex.length) P(`Remaining examples: ${ex.slice(0, 6).map((x) => `\`${x}\``).join("; ")}.`);
+P();
+P("- The v2 profile notes no longer mention rasam, so a zero in the rasam row is expected from the notes change alone. It does not by itself show that the rule \"use notes only when relevant\" works.");
+P("- The cricket row is the fairer test of that rule: cricket is still in the v2 notes (\"Follows cricket\"). A draft counts if it mentions cricket when nobody in the thread said cricket, match or Kohli.");
 P();
 
 P("## 3. Motor actions per utterance (counted from the data; scanning presses are MODELED)");
 P();
-P("**Plain typing.** Keystrokes = characters of the intended reply on a Roman keyboard, + 1 to speak.");
-P("- Tamil and Hindi replies were romanized with Sarvam `POST /transliterate` (native to `en-IN`). `research/probes/p08_translit_lid.py` shows this path works.");
-P("- The romanization is not always right: for example, ta07 \"ஏழு மணிக்கு\" came back as \"satta gantalaku\". Its length is still a reasonable proxy for what a person would type.");
-P("- No word prediction, no shift key. Native code-point counts are given as a sensitivity check.");
+P("**Counting rules** (v1 rules, extended for steering):");
+P("- **Plain typing:** characters of the intended reply on a Roman keyboard, + 1 to speak.");
+P("  - Tamil and Hindi replies are romanized with Sarvam `POST /transliterate`. The original set reuses its v1 romanizations, since its replies are unchanged.");
+P("- **Kanth, first drafts hit:** 1.");
+P("- **Kanth, miss then steer hit:** keyword characters + 1 (steer) + 1 (select).");
+P("- **Kanth, miss after steering (honest worst case):** keyword characters + 1, already spent, + the full typing cost.");
+P("- **Single-switch scanning:**");
+P("  - 2 presses per character, with the speak key and the steer key each counted as one more character.");
+P("  - A selection of a draft is 1 press.");
+P("- \"Without steering\" is the v1 rule: a hit is 1, a miss is the full typing cost.");
 P();
-P("**Kanth.** A hit is 1 selection. A miss costs the plain-typing count.");
-P();
-P("**Single-switch scanning.**");
-P("- Typing on a scanning keyboard is modeled as 2 presses per character (row, then column), and the speak key counts as one more character.");
-P("- A Kanth hit is 1 press, after waiting (index + 1) scan steps.");
-P();
-P("| Language | Typing keys (Roman) | Typing keys (native count) | Kanth, touch | Reduction | Scan presses, typing | Scan presses, Kanth | Reduction | Scan steps waited on hits |");
-P("|---|---:|---:|---:|---:|---:|---:|---:|---:|");
-for (const k of ["ta-IN", "hi-IN", "en-IN", "all"]) {
-  const m = motor[k];
-  P(`| ${k === "all" ? "**All**" : LNAME[k]} | ${f1(m.typingKeysMean)} | ${f1(m.typingKeysNativeCountMean)} | ${f1(m.kanthTouchMean)} | ${f0(m.touchReductionPct)}% | ${f1(m.scanTypingPressesMean)} | ${f1(m.scanKanthPressesMean)} | ${f0(m.scanReductionPct)}% | ${f1(m.scanWaitStepsOnHitsMean)} |`);
+for (const s of SET_NAMES) {
+  P(`### ${SET_TITLE[s]}`);
+  P();
+  P("| Language | Typing keys (Roman) | Kanth touch, no steering | Reduction | Kanth touch, with steering | Reduction | Scan presses, typing | Scan, Kanth no steering | Reduction | Scan, Kanth with steering | Reduction | Mean keyword chars (steered turns) |");
+  P("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|");
+  for (const k of ["ta-IN", "hi-IN", "en-IN", "all"]) {
+    const m = S[s].motor[k]!;
+    P(`| ${k === "all" ? "**All**" : LNAME[k]} | ${f1(m.typingKeysMean)} | ${f1(m.kanthTouchNoSteerMean)} | ${f0(m.touchReductionNoSteerPct)}% | ${f1(m.kanthTouchMean)} | ${f0(m.touchReductionPct)}% | ${f1(m.scanTypingPressesMean)} | ${f1(m.scanKanthPressesNoSteerMean)} | ${f0(m.scanReductionNoSteerPct)}% | ${f1(m.scanKanthPressesMean)} | ${f0(m.scanReductionPct)}% | ${f1(m.keywordCharsMeanOnSteered)} |`);
+  }
+  P();
 }
-P();
-P("Because a miss costs the full typing count, the reduction is roughly the hit rate. The hit rate is the lever.");
+P(`v1 (original 36, no steering): typing ${f1(v1.motor.all.typingKeysMean)} keys, Kanth ${f1(v1.motor.all.kanthTouchMean)} (${f0(v1.motor.all.touchReductionPct)}% fewer); scanning ${f1(v1.motor.all.scanTypingPressesMean)} vs ${f1(v1.motor.all.scanKanthPressesMean)} presses (${f0(v1.motor.all.scanReductionPct)}% fewer).`);
 P();
 
 P("## 4. Turn gap: partner stops speaking to the user's voice being audible (MODELED totals)");
 P();
-P("There are two access methods.");
-P(`- **Direct selection** (touch, or an eye-gaze or head pointer). One selection or keystroke = ${SEC_PER_CHAR_DIRECT.toFixed(2)} s.`);
-P(`  - This is derived from 4.2 wpm for cursor-based on-screen keyboards (Koester and Arthanat 2018, Assistive Technology 30(3), via research/evidence.md A2, verified) at 5 characters per word.`);
-P(`- **Single-switch scanning** at the app's default 1.4 s interval. Typing costs ${SEC_PER_CHAR_SCAN.toFixed(2)} s per character, from 1.7 wpm for scanning on-screen keyboards (same source).`);
+P("**Parts and their status** (unchanged from v1, plus steering):");
 P();
 P("| Part | Value | Status |");
 P("|---|---|---|");
-P(`| Saaras final transcript after partner stops | ${STT_MS} ms (upper end of 102 to 123 ms) | MEASURED in-app (not re-measured here) |`);
-P("| Drafting, all 4 parsed | per turn | MEASURED this run |");
+P(`| Saaras final transcript after partner stops | ${STT_MS} ms (upper end of 102 to 123 ms) | MEASURED in-app (not re-measured) |`);
+P("| Drafting, all 4 parsed (or end of stream if fewer than 4) | per turn | MEASURED this run |");
 P("| All 4 prespoken, fully synthesized | per turn | MEASURED this run |");
-P("| TTFA when synthesizing on choice or after typing | per turn | MEASURED this run (single synthesis, warm socket) |");
+P("| TTFA when synthesizing on choice, or after typing | per turn | MEASURED this run (single synthesis, warm socket) |");
+P("| Steered redraft, all 4 parsed; steered prespeak; TTFA of steered draft 1 | per steered turn | MEASURED this run |");
 P(`| Playback start once audio is in the browser | ${PLAYBACK_START_MS} ms | MEASURED in-app |`);
 P(`| Direct selection of a draft | ${SELECT_DIRECT_S.toFixed(2)} s (one keystroke-time) | MODELED from cited 4.2 wpm |`);
 P(`| Scanning selection of draft i | (i + 1) x ${SCAN_INTERVAL_S} s | MODELED (app default interval) |`);
-P(`| Typing | (chars + 1) x ${SEC_PER_CHAR_DIRECT.toFixed(2)} s direct, x ${SEC_PER_CHAR_SCAN.toFixed(2)} s scanning | MODELED from cited rates |`);
-P(`| Miss overhead before typing | wait for drafts + 1 selection (direct) or ${MISS_SCAN_STEPS} scan steps (scanning) | MODELED |`);
+P(`| Typing, and typing the keywords + steer key | (chars + 1) x ${SEC_PER_CHAR_DIRECT.toFixed(2)} s direct, x ${SEC_PER_CHAR_SCAN.toFixed(2)} s scanning | MODELED from cited 4.2 and 1.7 wpm, 5 chars/word |`);
+P(`| Miss overhead (reach the keyboard) | 1 selection (direct) or ${MISS_SCAN_STEPS} scan steps | MODELED |`);
 P();
-P("**The three conditions:**");
+P("**Conditions** (b and c include steering):");
 P("- **(a) Plain typing.** Typing time + TTFA + playback start.");
 P("- **(b) Suggestions, no prespeak.**");
-P("  - Hit: STT + all-4-drafted + selection + TTFA on choice + playback start.");
-P("  - Miss: STT + all-4-drafted + miss overhead + typing + TTFA + playback start.");
-P("- **(c) Suggestions with prespeak.**");
-P("  - Hit: the choice happens at STT + all-4-drafted + selection. Audio starts at that moment if all 4 drafts were fully synthesized by then; otherwise it waits for the remainder. Then add playback start.");
-P("  - Miss: same as (b), because typed text cannot be prespoken.");
+P("  - Hit: STT + all-4-drafted + selection + TTFA + playback.");
+P("  - Steer hit: STT + all-4-drafted + miss overhead + keyword typing (+ steer key) + measured steered redraft + selection + TTFA of the steered draft + playback.");
+P("  - Steer miss: STT + all-4-drafted + miss overhead + keyword typing + steered redraft + miss overhead + full typing + TTFA + playback.");
+P("- **(c) Suggestions + prespeak.** As (b), but a chosen draft (first or steered) is audible at max(choice time, its batch fully synthesized) + playback. Typed text is not prespoken.");
 P();
-P("| Access | Condition | Median, all 36 turns | P25 to P75 | Median, hits only |");
-P("|---|---|---:|---:|---:|");
-const CN: Record<string, string> = { a: "(a) Plain typing", b: "(b) Suggestions, no prespeak", c: "(c) Suggestions + prespeak" };
-for (const access of ["direct", "scan"]) {
-  for (const c of ["a", "b", "c"]) {
-    const g = gaps.all[access][c];
-    P(`| ${access === "direct" ? "Direct (touch)" : "Switch scanning"} | ${CN[c]} | ${fs(g.median)} | ${fs(g.p25)} to ${fs(g.p75)} | ${c === "a" ? "n/a" : `${fs(g.hitsMedian)} (n=${g.hitsN})`} |`);
+for (const s of SET_NAMES) {
+  P(`### ${SET_TITLE[s]}`);
+  P();
+  P("| Access | Condition | Median, all turns | Mean | P25 to P75 | Median, first-draft hits | Median, steer hits | Median, steer misses | Median without steering (v1 rule) |");
+  P("|---|---|---:|---:|---:|---:|---:|---:|---:|");
+  for (const access of ["direct", "scan"] as const) {
+    for (const c of ["a", "b", "c"] as const) {
+      const g = S[s].gaps.all!.steer[access][c];
+      const gn = S[s].gaps.all!.noSteer[access][c];
+      P(`| ${access === "direct" ? "Direct (touch)" : "Switch scanning"} | ${CN[c]} | ${fs(g.median)} | ${fs(g.mean)} | ${fs(g.p25)} to ${fs(g.p75)} | ${c === "a" ? "n/a" : `${fs(g.hitsMedian)} (n=${g.hitsN})`} | ${c === "a" ? "n/a" : `${fs(g.steerHitsMedian)} (n=${g.steerHitsN})`} | ${c === "a" ? "n/a" : `${fs(g.steerMissMedian)} (n=${g.steerMissN})`} | ${fs(gn.median)} |`);
+    }
   }
+  P();
+  P("Per language (median, steering included):");
+  P();
+  P("| Language | Direct (a) | Direct (b) | Direct (c) | Scan (a) | Scan (b) | Scan (c) |");
+  P("|---|---:|---:|---:|---:|---:|---:|");
+  for (const k of LANGS) {
+    const g = S[s].gaps[k]!.steer;
+    P(`| ${LNAME[k]} | ${fs(g.direct.a.median)} | ${fs(g.direct.b.median)} | ${fs(g.direct.c.median)} | ${fs(g.scan.a.median)} | ${fs(g.scan.b.median)} | ${fs(g.scan.c.median)} |`);
+  }
+  P();
 }
+P(`v1 medians (original 36, no steering): direct ${fs(v1.turnGap.all.direct.a.median)} / ${fs(v1.turnGap.all.direct.b.median)} / ${fs(v1.turnGap.all.direct.c.median)}; scanning ${fs(v1.turnGap.all.scan.a.median)} / ${fs(v1.turnGap.all.scan.b.median)} / ${fs(v1.turnGap.all.scan.c.median)} for (a) / (b) / (c).`);
 P();
-P("Per language (median over all turns of that language):");
-P();
-P("| Language | Direct (a) | Direct (b) | Direct (c) | Scan (a) | Scan (b) | Scan (c) |");
-P("|---|---:|---:|---:|---:|---:|---:|");
-for (const k of ["ta-IN", "hi-IN", "en-IN"]) {
-  const g = gaps[k];
-  P(`| ${LNAME[k]} | ${fs(g.direct.a.median)} | ${fs(g.direct.b.median)} | ${fs(g.direct.c.median)} | ${fs(g.scan.a.median)} | ${fs(g.scan.b.median)} | ${fs(g.scan.c.median)} |`);
-}
-P();
-P("How to read this:");
-P("- The human norm for a turn gap is about 200 ms. Levinson and Torreira 2015 put it \"of the order of 200 ms\", with modes of 0 to 200 ms across 10 languages (Stivers et al. 2009).");
-P("- Gaps of 700 ms or more are heard as reluctance (Levinson and Torreira 2015). Both are in research/evidence.md A3, verified.");
-P("- No condition reaches that norm for a person who has to select with their body. On a hit, Kanth removes the typing and leaves one selection.");
-P("- Prespeak then removes the synthesis wait after that selection: direct-selection hits drop by about the TTFA, roughly 0.3 s.");
-P("- When the median turn is a miss, the all-turns median is still a typing time. The hits-only column shows what a hit costs.");
-P();
-P("Chart: `docs/img/turn-gap.png` and `docs/img/turn-gap.svg`.");
+P("Chart: `docs/img/turn-gap.png` and `.svg` (v2 held-out, steering included). The v1 chart is in `bench/results/v1/turn-gap.png`.");
 P();
 
-P("## 5. Caveats");
-P("- **Scripted set, one author, 36 turns.** Intended replies are not real user data. Hit rates carry wide uncertainty: with n = 12 per language, one turn moves the rate by 8 points.");
-P("- **LLM judge.** The judge is a Sarvam model judging Sarvam drafts, so self-preference is possible. Requiring two-run agreement reduces noise, not bias. The drafts were shown in app order, so position bias is possible.");
-P("- **Human timing is modeled, not measured.**");
-P("  - Seconds per keystroke come from population averages for text entry. Those averages already include whatever prediction the studied systems had, and errors.");
-P("  - Reading the 4 drafts is folded into one selection time.");
-P("  - Real users vary widely: SpeakFaster's two ALS gaze typists ran at 4.05 and 8.1 wpm (evidence.md A2).");
-P("- STT latency is the in-app measurement from 3 turns (upper end used), not re-measured here.");
-P("- Prespeak readiness uses the strict definition (all 4 fully synthesized). With streaming playback, the chosen draft could start as soon as its own first audio arrived.");
-P("- Concurrency: other agents may have been using the same API key during the run.");
+P("## 5. Measured system latency (MEASURED, this run)");
+P();
+P("| Stage | Held-out median (P25 to P75) | Original median (P25 to P75) | v1 median |");
+P("|---|---:|---:|---:|");
+const lr = (name: string, k: string, v1k?: string) => {
+  const a = (S.heldout.latency as any)[k];
+  const b = (S.original.latency as any)[k];
+  const c = v1k ? v1.latency?.[v1k] : null;
+  P(`| ${name} | ${f0(a.median)} ms (${f0(a.p25)} to ${f0(a.p75)}), n=${a.n} | ${f0(b.median)} ms (${f0(b.p25)} to ${f0(b.p75)}), n=${b.n} | ${c ? `${f0(c.median)} ms` : "n/a"} |`);
+};
+lr("First draft parsed", "firstDraftMs", "firstDraftMs");
+lr("All 4 drafts parsed", "allDraftsMs", "allDraftsMs");
+lr("All 4 drafts fully synthesized (prespeak)", "allVoicedMs", "allVoicedMs");
+lr("TTFA, draft synthesized on choice", "ttfaChoiceMs", "ttfaChoiceMs");
+lr("TTFA, typed reply", "ttfaTypedMs", "ttfaTypedMs");
+lr("Steered redraft, first draft parsed", "steerFirstDraftMs");
+lr("Steered redraft, all 4 parsed (end of stream if fewer)", "steerAllDraftsMs");
+lr("Steered drafts fully synthesized (prespeak)", "steerAllVoicedMs");
+P();
+const few = [...S.heldout.latency.fewerThan4Drafts, ...S.original.latency.fewerThan4Drafts];
+const sfew = [...S.heldout.latency.steerFewerThan4Drafts, ...S.original.latency.steerFewerThan4Drafts];
+P(`Turns where the stream yielded fewer than 4 usable drafts (end of stream used as "all drafted"): first drafts ${few.length ? few.join(", ") : "none"}; steered ${sfew.length ? sfew.join(", ") : "none"}.`);
+P();
+P(`Tokens per drafting call (MEASURED, streamed \`usage\`): held-out ${f0(S.heldout.tokens.promptMean)} prompt + ${f0(S.heldout.tokens.completionMean)} completion; original ${f0(S.original.tokens.promptMean)} + ${f0(S.original.tokens.completionMean)}; steered calls ${f0(mean([...rows.heldout, ...rows.original].filter((r) => r.steer).map((r) => r.steer!.tokens.prompt as number)))} + ${f0(mean([...rows.heldout, ...rows.original].filter((r) => r.steer).map((r) => r.steer!.tokens.completion as number)))}; v1 ${f0(v1.tokens.promptMean)} + ${f0(v1.tokens.completionMean)}. Mean draft length: held-out ${f1(S.heldout.tokens.meanDraftChars)} characters, original ${f1(S.original.tokens.meanDraftChars)}.`);
+P();
+
+P("## 6. Steering: what the user would have typed, and what came back");
+P();
+P("Every miss, with the pre-declared steering words. The verdict uses the same two-run judge.");
+P();
+P("| Set | Turn | Intended reply | Steering words (chars) | Steer judge runs | Result | Steered draft 1 |");
+P("|---|---|---|---|---|---|---|");
+for (const s of SET_NAMES)
+  for (const r of rows[s].filter((x) => x.outcome !== "hit"))
+    P(`| ${s} | ${r.id} | ${r.intended} | ${r.steer ? `\`${r.steer.keywords}\` (${r.steer.keywordChars})` : "n/a"} | ${r.steer ? `${r.steer.judge!.run1}, ${r.steer.judge!.run2}` : "n/a"} | ${r.outcome} | ${r.steer?.drafts[0]?.text ?? r.steerSkippedReason ?? ""} |`);
+P();
+
+P("## 7. Caveats");
+P("- **Scripted sets.** Two sets of AI-written turns, each by a single author. The intended replies are not real user data.");
+P("  - The held-out author also knew the v1 failure modes, which may have shaped the turns, for example by avoiding rasam topics. The turns were still written blind to any v2 draft.");
+P("  - Small n: 24 held-out turns, 8 per language, so one turn moves a language's rate by 12.5 points.");
+P("- **Self-judging.** The judge (`sarvam-105b`) is a Sarvam model judging Sarvam drafts, and the steering words come from the same model. Self-preference is possible.");
+P("  - Two-run agreement reduces noise, not bias.");
+P("  - The drafts are shown in app order, so position bias is possible.");
+P("- **The original-set v2 number is biased.** Those 36 turns motivated the prompt fix.");
+P("- **Steering is simulated.**");
+P("  - A model, not a person, chose the 1 to 2 words, given only the intended reply. Real users might pick different words, or more of them.");
+P("  - Only one steering round is modeled.");
+P("- **Human times are modeled, not measured.**");
+P("  - Keystroke and selection times come from population text-entry rates (4.2 and 1.7 wpm, 5 characters per word).");
+P("  - Reading the drafts is folded into one selection time.");
+P("  - STT and playback-start latencies are the in-app measurements from 3 turns.");
+P("- **Measurement conditions.** System latencies were measured on a home connection under possible shared load from other agents on the same Sarvam account.");
+P("- **Judge parse failures and disagreements count as misses,** as in v1.");
+P();
+P("## Appendix A. Per-turn verdicts");
+P();
+P("| Set | Turn | Partner | Intended reply | First drafts: run 1, run 2 | Outcome | All 4 drafted | All 4 voiced |");
+P("|---|---|---|---|---|---|---:|---:|");
+for (const s of SET_NAMES) for (const r of rows[s]) P(`| ${s} | ${r.id} | ${r.who} | ${r.intended} | ${r.judge.run1}, ${r.judge.run2} | ${r.outcome}${r.judge.hitIdx != null ? ` (draft ${r.judge.hitIdx + 1})` : r.steer?.hitIdx != null ? ` (steered draft ${r.steer.hitIdx + 1})` : ""} | ${f0(r.measuredMs.allDraftsMs ?? NaN)} ms | ${f0(r.measuredMs.allVoicedMs ?? NaN)} ms |`);
+P();
+P("## Appendix B. Files");
+P("- `bench/conversations.data.ts`: original 36 turns.");
+P("- `bench/conversations.heldout.ts`: held-out 24 turns.");
+P("- `bench/conversations.ts`: API runs (draft, judge, translit, keywords, steer, steerjudge), per set.");
+P("- `bench/conversations_analyze.ts`: this report.");
+P("- `bench/conversations_chart.py`: the turn-gap chart (`docs/img/turn-gap.*`).");
+P("- `bench/steering_chart.py`: the outcome chart (`docs/img/steering.*`).");
+P("- `bench/results/v2/<set>-raw-{draft,judge,translit,keywords,steer,steerjudge}.json`: every call kept.");
+P("  - The original set has no v2 translit file; it reuses `v1/conversations-raw-translit.json`.");
+P("- `bench/results/v2/*.log`: run logs.");
+P("- `bench/results/conversations.json`: joined per-turn rows for both sets, plus aggregates and the v1 summary.");
+P("- `bench/results/v1/`: the v1 run, unchanged.");
+P("  - It contains raw files, report, chart and the v1 analysis code as `.txt`.");
+P("  - `bench/results/conversations-raw-*.json` at the top level are the same v1 raw files, left in place.");
 writeFileSync(`${OUT}/conversations.md`, L.join("\n") + "\n");
-console.log(JSON.stringify({ hit: hit.all, perLang: LANGS.map((l) => [l, hit[l].top4Pct]), motor: motor.all, gaps: gaps.all, latency }, null, 1));
+console.log(
+  JSON.stringify(
+    {
+      heldout: { hit: S.heldout.hit.all, motor: S.heldout.motor.all, gapsSteer: S.heldout.gaps.all!.steer, problems: { ...S.heldout.problems, examplesRasam: undefined, examplesAmma: undefined } },
+      original: { hit: S.original.hit.all, motor: S.original.motor.all, gapsSteer: S.original.gaps.all!.steer, problems: { ...S.original.problems, examplesRasam: undefined } },
+      v1Problems,
+    },
+    null,
+    1,
+  ),
+);

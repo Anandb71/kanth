@@ -1,0 +1,4893 @@
+{
+ "meta": {
+  "stage": "draft",
+  "started": "2026-10-15T02:29:07.538Z",
+  "startedIST": "15/10/2026, 7:59:07 am",
+  "setName": "original",
+  "set": "Scripted (hand-written, not real users); intended replies fixed before any model output",
+  "setFileSha256": "3d9a19284e437193fcb60e9d34c3d6f50252b8f9d5984d797c570a913284d02d",
+  "suggestTsSha256": "614c1f7a29b86eb3db3348f4c2f83f94e9cf1678450b830afbe3dec0f3cf8bd1",
+  "network": "a home connection in India",
+  "node": "v25.2.1",
+  "os": "win32 10.0.26300",
+  "cpu": "13th Gen Intel(R) Core(TM) i5-13450HX",
+  "condition": "Two other agents may have been calling the same Sarvam account concurrently during this run (shared rate limits and possibly shared backend load).",
+  "profile": {
+   "name": "Arjun",
+   "languages": [
+    "ta-IN",
+    "en-IN",
+    "hi-IN"
+   ],
+   "mixStyle": "Tamil at home with English words mixed in; Hindi with his doctor and his Delhi friends",
+   "people": [
+    {
+     "name": "Amma",
+     "relation": "mother",
+     "addressAs": "Amma"
+    },
+    {
+     "name": "Dr. Mehra",
+     "relation": "neurologist",
+     "addressAs": "Doctor"
+    },
+    {
+     "name": "Rohit",
+     "relation": "college friend",
+     "addressAs": "Rohit"
+    }
+   ],
+   "notes": "34, software engineer in Chennai. Has ALS and can no longer speak. Loves cricket and his mother's rasam."
+  },
+  "tone": "warm",
+  "voice": "shubh",
+  "chatModel": "sarvam-105b-conversations",
+  "ttsPoolSize": 4,
+  "ttsStates": [
+   "2026-10-15T02:29:06.951Z connecting ",
+   "2026-10-15T02:29:07.195Z ready 4 warm sockets"
+  ]
+ },
+ "turns": [
+  {
+   "id": "ta01",
+   "lang": "ta-IN",
+   "who": "Amma",
+   "partner": "கண்ணா, டிபன் ரெடி. இட்லி சாப்பிடறியா இல்ல dosa வேணுமா?",
+   "intended": "இட்லி போதும் Amma, ரெண்டு மட்டும்",
+   "keywords": null,
+   "historyTurns": 0,
+   "promptChars": 2096,
+   "attempt": 1,
+   "firstTokenMs": 232.1,
+   "llmTotalMs": 446.9,
+   "firstDraftMs": 245.2,
+   "allDraftsMs": 446.9,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "இட்லி போதும் Amma",
+     "gloss": "Idli is enough, Amma",
+     "lang": "ta-IN",
+     "atMs": 245.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "இன்னைக்கு dosa தான் வேணும் Amma",
+     "gloss": "Today I want dosa, Amma",
+     "lang": "ta-IN",
+     "atMs": 294.5,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "ரசம் கூட வைப்பியா Amma?",
+     "gloss": "Will you keep rasam too, Amma?",
+     "lang": "ta-IN",
+     "atMs": 370.7,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "ஒரு நிமிஷம், நான் வந்துட்டு இருக்கேன்",
+     "gloss": "One minute, I am coming now",
+     "lang": "ta-IN",
+     "atMs": 446.9,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "இட்லி போதும் Amma",
+     "chars": 17,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 245.2,
+     "ttfaMs": 304.5,
+     "totalMs": 528.4,
+     "libTtfaMs": 304.4,
+     "transport": "ws",
+     "audioSec": 2.038
+    },
+    {
+     "text": "இன்னைக்கு dosa தான் வேணும் Amma",
+     "chars": 31,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 294.5,
+     "ttfaMs": 380.3,
+     "totalMs": 482.2,
+     "libTtfaMs": 380.3,
+     "transport": "ws",
+     "audioSec": 1.678
+    },
+    {
+     "text": "ரசம் கூட வைப்பியா Amma?",
+     "chars": 23,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 370.8,
+     "ttfaMs": 419.5,
+     "totalMs": 438.4,
+     "libTtfaMs": 419.4,
+     "transport": "ws",
+     "audioSec": 1.465
+    },
+    {
+     "text": "ஒரு நிமிஷம், நான் வந்துட்டு இருக்கேன்",
+     "chars": 37,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 446.9,
+     "ttfaMs": 344.3,
+     "totalMs": 520,
+     "libTtfaMs": 344.2,
+     "transport": "ws",
+     "audioSec": 2.115
+    }
+   ],
+   "allVoicedMs": 966.9,
+   "allFirstAudioMs": 791.2,
+   "allVoicedWallMs": 966.9,
+   "singleIntended": {
+    "text": "இட்லி போதும் Amma, ரெண்டு மட்டும்",
+    "chars": 33,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.2,
+    "ttfaMs": 304.5,
+    "totalMs": 557.7,
+    "libTtfaMs": 304.4,
+    "transport": "ws",
+    "audioSec": 2.344
+   },
+   "singleDraft0": {
+    "text": "இட்லி போதும் Amma",
+    "chars": 17,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 391.5,
+    "totalMs": 406.8,
+    "libTtfaMs": 391.4,
+    "transport": "ws",
+    "audioSec": 1.262
+   },
+   "usageStream": {
+    "completion_tokens": 79,
+    "prompt_tokens": 523,
+    "total_tokens": 602,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:09.949Z"
+  },
+  {
+   "id": "ta02",
+   "lang": "ta-IN",
+   "who": "Amma",
+   "partner": "சட்னி கொஞ்சம் காரமா இருக்கு, பரவாயில்லையா?",
+   "intended": "பரவாயில்ல Amma, பக்கத்துல தண்ணி வச்சுடுங்க",
+   "keywords": null,
+   "historyTurns": 2,
+   "promptChars": 2208,
+   "attempt": 1,
+   "firstTokenMs": 110.4,
+   "llmTotalMs": 369.7,
+   "firstDraftMs": 140.9,
+   "allDraftsMs": 369.6,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "ரொம்ப நல்லது Amma",
+     "gloss": "That's very good, Amma",
+     "lang": "ta-IN",
+     "atMs": 140.9,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "எனக்கு காரம் சம்மதம் தான்",
+     "gloss": "I am fine with the spice",
+     "lang": "ta-IN",
+     "atMs": 196.1,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "பரவால Amma, கொஞ்சம் தண்ணி ஊத்தி விடு",
+     "gloss": "It's okay Amma, add a little water",
+     "lang": "ta-IN",
+     "atMs": 287.1,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "இல்ல, எனக்கு அந்த rasam தான் வேணும்",
+     "gloss": "No, I want that rasam instead",
+     "lang": "ta-IN",
+     "atMs": 369.6,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "ரொம்ப நல்லது Amma",
+     "chars": 17,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 140.9,
+     "ttfaMs": 380.3,
+     "totalMs": 389.6,
+     "libTtfaMs": 380.2,
+     "transport": "ws",
+     "audioSec": 1.181
+    },
+    {
+     "text": "எனக்கு காரம் சம்மதம் தான்",
+     "chars": 25,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 196.2,
+     "ttfaMs": 310,
+     "totalMs": 449.9,
+     "libTtfaMs": 309.7,
+     "transport": "ws",
+     "audioSec": 1.59
+    },
+    {
+     "text": "பரவால Amma, கொஞ்சம் தண்ணி ஊத்தி விடு",
+     "chars": 36,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 287.1,
+     "ttfaMs": 295.8,
+     "totalMs": 632.7,
+     "libTtfaMs": 295.7,
+     "transport": "ws",
+     "audioSec": 2.688
+    },
+    {
+     "text": "இல்ல, எனக்கு அந்த rasam தான் வேணும்",
+     "chars": 35,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 369.6,
+     "ttfaMs": 299.6,
+     "totalMs": 550.3,
+     "libTtfaMs": 299.5,
+     "transport": "ws",
+     "audioSec": 2.105
+    }
+   ],
+   "allVoicedMs": 919.9,
+   "allFirstAudioMs": 669.2,
+   "allVoicedWallMs": 920,
+   "singleIntended": {
+    "text": "பரவாயில்ல Amma, பக்கத்துல தண்ணி வச்சுடுங்க",
+    "chars": 42,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 299.6,
+    "totalMs": 642,
+    "libTtfaMs": 299.5,
+    "transport": "ws",
+    "audioSec": 2.96
+   },
+   "singleDraft0": {
+    "text": "ரொம்ப நல்லது Amma",
+    "chars": 17,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 376.2,
+    "totalMs": 379.2,
+    "libTtfaMs": 376.1,
+    "transport": "ws",
+    "audioSec": 1.097
+   },
+   "usageStream": {
+    "completion_tokens": 81,
+    "prompt_tokens": 560,
+    "total_tokens": 641,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:13.157Z"
+  },
+  {
+   "id": "ta03",
+   "lang": "ta-IN",
+   "who": "Amma",
+   "partner": "மதியம் உனக்கு பிடிச்ச ரசம் வைக்கட்டுமா?",
+   "intended": "ஆமா Amma, ரசம் சாதம் வேணும்",
+   "keywords": null,
+   "historyTurns": 4,
+   "promptChars": 2304,
+   "attempt": 1,
+   "firstTokenMs": 103.9,
+   "llmTotalMs": 294.2,
+   "firstDraftMs": 142.2,
+   "allDraftsMs": 294.2,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "ரசம் வச்சுடுங்க Amma",
+     "gloss": "Put the rasam, Amma",
+     "lang": "ta-IN",
+     "atMs": 142.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "இப்ப சாப்பிடலாம் Amma",
+     "gloss": "I can eat now, Amma",
+     "lang": "ta-IN",
+     "atMs": 197.6,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "ரசம் எனக்கு ரொம்ப பிடிக்கும்",
+     "gloss": "I really like rasam",
+     "lang": "ta-IN",
+     "atMs": 240.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "ரசம் சூடா இருக்கான்னு பாருங்க",
+     "gloss": "Check if the rasam is hot",
+     "lang": "ta-IN",
+     "atMs": 294.2,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "ரசம் வச்சுடுங்க Amma",
+     "chars": 20,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 142.3,
+     "ttfaMs": 395.7,
+     "totalMs": 407.4,
+     "libTtfaMs": 395.6,
+     "transport": "ws",
+     "audioSec": 1.268
+    },
+    {
+     "text": "இப்ப சாப்பிடலாம் Amma",
+     "chars": 21,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 197.6,
+     "ttfaMs": 423.1,
+     "totalMs": 442.9,
+     "libTtfaMs": 423,
+     "transport": "ws",
+     "audioSec": 1.444
+    },
+    {
+     "text": "ரசம் எனக்கு ரொம்ப பிடிக்கும்",
+     "chars": 28,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 240.3,
+     "ttfaMs": 322.2,
+     "totalMs": 431.6,
+     "libTtfaMs": 322.1,
+     "transport": "ws",
+     "audioSec": 1.539
+    },
+    {
+     "text": "ரசம் சூடா இருக்கான்னு பாருங்க",
+     "chars": 29,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 294.2,
+     "ttfaMs": 303.3,
+     "totalMs": 522.7,
+     "libTtfaMs": 303.3,
+     "transport": "ws",
+     "audioSec": 2.101
+    }
+   ],
+   "allVoicedMs": 816.9,
+   "allFirstAudioMs": 620.7,
+   "allVoicedWallMs": 816.9,
+   "singleIntended": {
+    "text": "ஆமா Amma, ரசம் சாதம் வேணும்",
+    "chars": 27,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 299.8,
+    "totalMs": 468,
+    "libTtfaMs": 299.8,
+    "transport": "ws",
+    "audioSec": 1.765
+   },
+   "singleDraft0": {
+    "text": "ரசம் வச்சுடுங்க Amma",
+    "chars": 20,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 395.8,
+    "totalMs": 405.4,
+    "libTtfaMs": 395.8,
+    "transport": "ws",
+    "audioSec": 1.255
+   },
+   "usageStream": {
+    "completion_tokens": 67,
+    "prompt_tokens": 598,
+    "total_tokens": 665,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:16.108Z"
+  },
+  {
+   "id": "ta04",
+   "lang": "ta-IN",
+   "who": "Sister Kavitha",
+   "partner": "Sir, suction பண்ணட்டுமா? சத்தம் கேக்குது.",
+   "intended": "சரி, பண்ணுங்க. தொண்டை அடைக்குது",
+   "keywords": null,
+   "historyTurns": 0,
+   "promptChars": 2113,
+   "attempt": 1,
+   "firstTokenMs": 108.5,
+   "llmTotalMs": 282.4,
+   "firstDraftMs": 160.3,
+   "allDraftsMs": 282.3,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "இப்ப வேண்டாம் Sister",
+     "gloss": "Not now, Sister",
+     "lang": "ta-IN",
+     "atMs": 160.3,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "இன்னும் கொஞ்சம் wait பண்ணலாம்",
+     "gloss": "Let's wait a little more",
+     "lang": "ta-IN",
+     "atMs": 188.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "Amma-க்கு rasam குடுக்கணும்",
+     "gloss": "I need to give Amma rasam",
+     "lang": "ta-IN",
+     "atMs": 237.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "எனக்கு throat கொஞ்சம் dry-ஆ இருக்கு",
+     "gloss": "My throat is a bit dry",
+     "lang": "ta-IN",
+     "atMs": 282.3,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "இப்ப வேண்டாம் Sister",
+     "chars": 20,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 160.4,
+     "ttfaMs": 366.1,
+     "totalMs": 393.3,
+     "libTtfaMs": 366.1,
+     "transport": "ws",
+     "audioSec": 1.174
+    },
+    {
+     "text": "இன்னும் கொஞ்சம் wait பண்ணலாம்",
+     "chars": 29,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 188.2,
+     "ttfaMs": 427,
+     "totalMs": 452.3,
+     "libTtfaMs": 426.9,
+     "transport": "ws",
+     "audioSec": 1.431
+    },
+    {
+     "text": "Amma-க்கு rasam குடுக்கணும்",
+     "chars": 27,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 237.2,
+     "ttfaMs": 316.9,
+     "totalMs": 534.2,
+     "libTtfaMs": 316.8,
+     "transport": "ws",
+     "audioSec": 2.283
+    },
+    {
+     "text": "எனக்கு throat கொஞ்சம் dry-ஆ இருக்கு",
+     "chars": 35,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 282.4,
+     "ttfaMs": 307.7,
+     "totalMs": 542.1,
+     "libTtfaMs": 307.6,
+     "transport": "ws",
+     "audioSec": 2.203
+    }
+   ],
+   "allVoicedMs": 824.5,
+   "allFirstAudioMs": 615.2,
+   "allVoicedWallMs": 824.5,
+   "singleIntended": {
+    "text": "சரி, பண்ணுங்க. தொண்டை அடைக்குது",
+    "chars": 31,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 296.9,
+    "totalMs": 629.3,
+    "libTtfaMs": 296.8,
+    "transport": "ws",
+    "audioSec": 2.874
+   },
+   "singleDraft0": {
+    "text": "இப்ப வேண்டாம் Sister",
+    "chars": 20,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 389.5,
+    "totalMs": 398.9,
+    "libTtfaMs": 389.4,
+    "transport": "ws",
+    "audioSec": 1.271
+   },
+   "usageStream": {
+    "completion_tokens": 65,
+    "prompt_tokens": 519,
+    "total_tokens": 584,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:19.237Z"
+  },
+  {
+   "id": "ta05",
+   "lang": "ta-IN",
+   "who": "Sister Kavitha",
+   "partner": "Position மாத்தணுமா? ரொம்ப நேரமா இதே பக்கம் இருக்கீங்க.",
+   "intended": "ஆமா, இடது பக்கம் திருப்புங்க",
+   "keywords": null,
+   "historyTurns": 2,
+   "promptChars": 2245,
+   "attempt": 1,
+   "firstTokenMs": 105.6,
+   "llmTotalMs": 358.9,
+   "firstDraftMs": 171.4,
+   "allDraftsMs": 358.8,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "இல்ல Sister, அப்படியே இருக்கட்டும்",
+     "gloss": "No Sister, let it be like this",
+     "lang": "ta-IN",
+     "atMs": 171.4,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "இப்போ கொஞ்சம் rest எடுக்கிறேன் Sister",
+     "gloss": "I will rest a bit now Sister",
+     "lang": "ta-IN",
+     "atMs": 248.9,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "Amma-க்கு call பண்ணணுமா?",
+     "gloss": "Should I call Amma?",
+     "lang": "ta-IN",
+     "atMs": 298.3,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "இன்னும் ஒரு ten minutes மட்டும்",
+     "gloss": "Just ten more minutes only",
+     "lang": "ta-IN",
+     "atMs": 358.8,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "இல்ல Sister, அப்படியே இருக்கட்டும்",
+     "chars": 34,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 171.4,
+     "ttfaMs": 304.7,
+     "totalMs": 537,
+     "libTtfaMs": 304.6,
+     "transport": "ws",
+     "audioSec": 2.211
+    },
+    {
+     "text": "இப்போ கொஞ்சம் rest எடுக்கிறேன் Sister",
+     "chars": 37,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 248.9,
+     "ttfaMs": 312.8,
+     "totalMs": 599.6,
+     "libTtfaMs": 312.7,
+     "transport": "ws",
+     "audioSec": 2.611
+    },
+    {
+     "text": "Amma-க்கு call பண்ணணுமா?",
+     "chars": 24,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 298.3,
+     "ttfaMs": 424.4,
+     "totalMs": 436.4,
+     "libTtfaMs": 424.3,
+     "transport": "ws",
+     "audioSec": 1.538
+    },
+    {
+     "text": "இன்னும் ஒரு ten minutes மட்டும்",
+     "chars": 31,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 358.9,
+     "ttfaMs": 301.9,
+     "totalMs": 468.2,
+     "libTtfaMs": 301.8,
+     "transport": "ws",
+     "audioSec": 1.76
+    }
+   ],
+   "allVoicedMs": 848.5,
+   "allFirstAudioMs": 722.7,
+   "allVoicedWallMs": 848.6,
+   "singleIntended": {
+    "text": "ஆமா, இடது பக்கம் திருப்புங்க",
+    "chars": 28,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 292.7,
+    "totalMs": 529.1,
+    "libTtfaMs": 292.7,
+    "transport": "ws",
+    "audioSec": 2.124
+   },
+   "singleDraft0": {
+    "text": "இல்ல Sister, அப்படியே இருக்கட்டும்",
+    "chars": 34,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 418.3,
+    "totalMs": 432.3,
+    "libTtfaMs": 418.2,
+    "transport": "ws",
+    "audioSec": 1.452
+   },
+   "usageStream": {
+    "completion_tokens": 68,
+    "prompt_tokens": 559,
+    "total_tokens": 627,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:22.322Z"
+  },
+  {
+   "id": "ta06",
+   "lang": "ta-IN",
+   "who": "Sister Kavitha",
+   "partner": "BP check பண்ணிட்டேன், கொஞ்சம் low-ஆ இருக்கு. தலை சுத்துதா?",
+   "intended": "இல்ல, ஆனா கொஞ்சம் tired-ஆ இருக்கு",
+   "keywords": null,
+   "historyTurns": 4,
+   "promptChars": 2356,
+   "attempt": 1,
+   "firstTokenMs": 106.9,
+   "llmTotalMs": 375,
+   "firstDraftMs": 166.5,
+   "allDraftsMs": 374.9,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "இல்ல Sister, தலை சுத்தல",
+     "gloss": "No, Sister, I'm not dizzy",
+     "lang": "ta-IN",
+     "atMs": 166.5,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "கொஞ்சம் தண்ணி குடுக்கலாமா?",
+     "gloss": "Can I get some water?",
+     "lang": "ta-IN",
+     "atMs": 230.9,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "இப்போதைக்கு பரவால்ல, wait பண்ணலாம்",
+     "gloss": "It's fine for now, let's wait",
+     "lang": "ta-IN",
+     "atMs": 299.9,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "இன்னும் ஒரு நிமிஷம் அப்படியே இருக்கட்டும்",
+     "gloss": "Let it be like this for one more minute",
+     "lang": "ta-IN",
+     "atMs": 374.9,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "இல்ல Sister, தலை சுத்தல",
+     "chars": 23,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 166.6,
+     "ttfaMs": 297.7,
+     "totalMs": 528.4,
+     "libTtfaMs": 297.7,
+     "transport": "ws",
+     "audioSec": 2.122
+    },
+    {
+     "text": "கொஞ்சம் தண்ணி குடுக்கலாமா?",
+     "chars": 26,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 231,
+     "ttfaMs": 304.9,
+     "totalMs": 435,
+     "libTtfaMs": 304.8,
+     "transport": "ws",
+     "audioSec": 1.637
+    },
+    {
+     "text": "இப்போதைக்கு பரவால்ல, wait பண்ணலாம்",
+     "chars": 34,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 299.9,
+     "ttfaMs": 300.5,
+     "totalMs": 621.5,
+     "libTtfaMs": 300.4,
+     "transport": "ws",
+     "audioSec": 2.773
+    },
+    {
+     "text": "இன்னும் ஒரு நிமிஷம் அப்படியே இருக்கட்டும்",
+     "chars": 41,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 375,
+     "ttfaMs": 309,
+     "totalMs": 535.1,
+     "libTtfaMs": 309,
+     "transport": "ws",
+     "audioSec": 2.115
+    }
+   ],
+   "allVoicedMs": 921.4,
+   "allFirstAudioMs": 684,
+   "allVoicedWallMs": 921.4,
+   "singleIntended": {
+    "text": "இல்ல, ஆனா கொஞ்சம் tired-ஆ இருக்கு",
+    "chars": 33,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 298.8,
+    "totalMs": 590.5,
+    "libTtfaMs": 298.7,
+    "transport": "ws",
+    "audioSec": 2.613
+   },
+   "singleDraft0": {
+    "text": "இல்ல Sister, தலை சுத்தல",
+    "chars": 23,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 304,
+    "totalMs": 513.6,
+    "libTtfaMs": 303.9,
+    "transport": "ws",
+    "audioSec": 2.121
+   },
+   "usageStream": {
+    "completion_tokens": 85,
+    "prompt_tokens": 594,
+    "total_tokens": 679,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:25.621Z"
+  },
+  {
+   "id": "ta07",
+   "lang": "ta-IN",
+   "who": "Karthik",
+   "partner": "டேய், இன்னிக்கு India match பாக்கலாமா? நான் வீட்டுக்கு வரேன்.",
+   "intended": "வா டா, ஏழு மணிக்கு வா",
+   "keywords": null,
+   "historyTurns": 0,
+   "promptChars": 2112,
+   "attempt": 1,
+   "firstTokenMs": 773.1,
+   "llmTotalMs": 1064.7,
+   "firstDraftMs": 847.9,
+   "allDraftsMs": 1064.7,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "சரிடா, நீ சீக்கிரம் வந்துடு",
+     "gloss": "Okay, you come quickly",
+     "lang": "ta-IN",
+     "atMs": 847.9,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "ரசம் குடிச்சிட்டு வரட்டுமா?",
+     "gloss": "Should I drink rasam and come?",
+     "lang": "ta-IN",
+     "atMs": 923.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "இன்னிக்கி match பாக்க time இல்லடா",
+     "gloss": "No time to watch match today",
+     "lang": "ta-IN",
+     "atMs": 996.4,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "எனக்கு ரொம்ப tired-ஆ இருக்குடா",
+     "gloss": "I am very tired, man",
+     "lang": "ta-IN",
+     "atMs": 1064.7,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "சரிடா, நீ சீக்கிரம் வந்துடு",
+     "chars": 27,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 848,
+     "ttfaMs": 299.4,
+     "totalMs": 488.5,
+     "libTtfaMs": 299.3,
+     "transport": "ws",
+     "audioSec": 1.939
+    },
+    {
+     "text": "ரசம் குடிச்சிட்டு வரட்டுமா?",
+     "chars": 27,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 923.8,
+     "ttfaMs": 316.4,
+     "totalMs": 462,
+     "libTtfaMs": 316.3,
+     "transport": "ws",
+     "audioSec": 1.698
+    },
+    {
+     "text": "இன்னிக்கி match பாக்க time இல்லடா",
+     "chars": 33,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 996.4,
+     "ttfaMs": 304.5,
+     "totalMs": 471.5,
+     "libTtfaMs": 304.4,
+     "transport": "ws",
+     "audioSec": 1.757
+    },
+    {
+     "text": "எனக்கு ரொம்ப tired-ஆ இருக்குடா",
+     "chars": 30,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 1064.7,
+     "ttfaMs": 321.9,
+     "totalMs": 474.7,
+     "libTtfaMs": 321.8,
+     "transport": "ws",
+     "audioSec": 1.769
+    }
+   ],
+   "allVoicedMs": 1539.4,
+   "allFirstAudioMs": 1386.6,
+   "allVoicedWallMs": 1539.4,
+   "singleIntended": {
+    "text": "வா டா, ஏழு மணிக்கு வா",
+    "chars": 21,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 299,
+    "totalMs": 424.1,
+    "libTtfaMs": 298.9,
+    "transport": "ws",
+    "audioSec": 1.532
+   },
+   "singleDraft0": {
+    "text": "சரிடா, நீ சீக்கிரம் வந்துடு",
+    "chars": 27,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 297.9,
+    "totalMs": 483.4,
+    "libTtfaMs": 297.8,
+    "transport": "ws",
+    "audioSec": 1.853
+   },
+   "usageStream": {
+    "completion_tokens": 81,
+    "prompt_tokens": 523,
+    "total_tokens": 604,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:29.351Z"
+  },
+  {
+   "id": "ta08",
+   "lang": "ta-IN",
+   "who": "Karthik",
+   "partner": "என்ன வாங்கிட்டு வரட்டும்? Biryani ஓகேவா?",
+   "intended": "நீ வாங்கிக்கோ, நான் Amma ரசம் சாப்பிடறேன்",
+   "keywords": null,
+   "historyTurns": 2,
+   "promptChars": 2213,
+   "attempt": 1,
+   "firstTokenMs": 115.6,
+   "llmTotalMs": 378.7,
+   "firstDraftMs": 164.8,
+   "allDraftsMs": 378.6,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "Biryani சூப்பரா இருக்கும் டா",
+     "gloss": "Biryani will be super",
+     "lang": "ta-IN",
+     "atMs": 164.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "இன்னிக்கு rasam கூட வெச்சு வா",
+     "gloss": "Bring rasam too today",
+     "lang": "ta-IN",
+     "atMs": 233.9,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "சரி, chicken வேணுமா இல்ல mutton வேணுமா?",
+     "gloss": "Okay, do you want chicken or mutton?",
+     "lang": "ta-IN",
+     "atMs": 297.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "எனக்கு கொஞ்சம் லேட்டா வரும் போல",
+     "gloss": "Looks like it will reach a bit late for me",
+     "lang": "ta-IN",
+     "atMs": 378.6,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "Biryani சூப்பரா இருக்கும் டா",
+     "chars": 28,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 164.9,
+     "ttfaMs": 303.9,
+     "totalMs": 458.5,
+     "libTtfaMs": 303.8,
+     "transport": "ws",
+     "audioSec": 1.679
+    },
+    {
+     "text": "இன்னிக்கு rasam கூட வெச்சு வா",
+     "chars": 29,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 233.9,
+     "ttfaMs": 304.2,
+     "totalMs": 457.3,
+     "libTtfaMs": 304.1,
+     "transport": "ws",
+     "audioSec": 1.596
+    },
+    {
+     "text": "சரி, chicken வேணுமா இல்ல mutton வேணுமா?",
+     "chars": 39,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 297.3,
+     "ttfaMs": 296.6,
+     "totalMs": 620.8,
+     "libTtfaMs": 296.6,
+     "transport": "ws",
+     "audioSec": 2.717
+    },
+    {
+     "text": "எனக்கு கொஞ்சம் லேட்டா வரும் போல",
+     "chars": 31,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 378.7,
+     "ttfaMs": 346.5,
+     "totalMs": 532,
+     "libTtfaMs": 346.4,
+     "transport": "ws",
+     "audioSec": 2.118
+    }
+   ],
+   "allVoicedMs": 918.1,
+   "allFirstAudioMs": 725.2,
+   "allVoicedWallMs": 918.1,
+   "singleIntended": {
+    "text": "நீ வாங்கிக்கோ, நான் Amma ரசம் சாப்பிடறேன்",
+    "chars": 41,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 300.5,
+    "totalMs": 643.8,
+    "libTtfaMs": 300.4,
+    "transport": "ws",
+    "audioSec": 3.052
+   },
+   "singleDraft0": {
+    "text": "Biryani சூப்பரா இருக்கும் டா",
+    "chars": 28,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 302,
+    "totalMs": 521.9,
+    "libTtfaMs": 301.9,
+    "transport": "ws",
+    "audioSec": 2.112
+   },
+   "usageStream": {
+    "completion_tokens": 85,
+    "prompt_tokens": 555,
+    "total_tokens": 640,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:32.704Z"
+  },
+  {
+   "id": "ta09",
+   "lang": "ta-IN",
+   "who": "Karthik",
+   "partner": "Office-ல எல்லாரும் உன்ன கேட்டாங்க டா. என்ன சொல்லட்டும்?",
+   "intended": "நான் நல்லா இருக்கேன்னு சொல்லு, எல்லாரையும் miss பண்றேன்",
+   "keywords": null,
+   "historyTurns": 4,
+   "promptChars": 2327,
+   "attempt": 1,
+   "firstTokenMs": 105.8,
+   "llmTotalMs": 368.8,
+   "firstDraftMs": 156.5,
+   "allDraftsMs": 368.8,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "சொல்லு டா நான் busy-ஆ இருக்கேன்",
+     "gloss": "Tell them I'm busy",
+     "lang": "ta-IN",
+     "atMs": 156.5,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "அப்புறம் பேசலாம் டா, match start ஆகுது",
+     "gloss": "We can talk later, match is starting",
+     "lang": "ta-IN",
+     "atMs": 240.6,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "என்னாச்சு, நான் நல்லா இருக்கேன்னு சொல்லுங்க",
+     "gloss": "What happened, tell them I'm doing fine",
+     "lang": "ta-IN",
+     "atMs": 307.7,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "எனக்கு கொஞ்சம் rest வேணும் டா சொல்லுங்க",
+     "gloss": "I need some rest, tell them",
+     "lang": "ta-IN",
+     "atMs": 368.8,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "சொல்லு டா நான் busy-ஆ இருக்கேன்",
+     "chars": 31,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 156.5,
+     "ttfaMs": 321.6,
+     "totalMs": 541.3,
+     "libTtfaMs": 321.5,
+     "transport": "ws",
+     "audioSec": 2.209
+    },
+    {
+     "text": "அப்புறம் பேசலாம் டா, match start ஆகுது",
+     "chars": 38,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 240.7,
+     "ttfaMs": 306.8,
+     "totalMs": 614.5,
+     "libTtfaMs": 306.7,
+     "transport": "ws",
+     "audioSec": 2.695
+    },
+    {
+     "text": "என்னாச்சு, நான் நல்லா இருக்கேன்னு சொல்லுங்க",
+     "chars": 43,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 307.7,
+     "ttfaMs": 301.8,
+     "totalMs": 589,
+     "libTtfaMs": 301.6,
+     "transport": "ws",
+     "audioSec": 2.6
+    },
+    {
+     "text": "எனக்கு கொஞ்சம் rest வேணும் டா சொல்லுங்க",
+     "chars": 39,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 368.8,
+     "ttfaMs": 300.3,
+     "totalMs": 608.6,
+     "libTtfaMs": 300.2,
+     "transport": "ws",
+     "audioSec": 2.784
+    }
+   ],
+   "allVoicedMs": 977.4,
+   "allFirstAudioMs": 669.1,
+   "allVoicedWallMs": 977.4,
+   "singleIntended": {
+    "text": "நான் நல்லா இருக்கேன்னு சொல்லு, எல்லாரையும் miss பண்றேன்",
+    "chars": 55,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 304.8,
+    "totalMs": 662.4,
+    "libTtfaMs": 304.7,
+    "transport": "ws",
+    "audioSec": 3.108
+   },
+   "singleDraft0": {
+    "text": "சொல்லு டா நான் busy-ஆ இருக்கேன்",
+    "chars": 31,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 304.3,
+    "totalMs": 565.5,
+    "libTtfaMs": 304.3,
+    "transport": "ws",
+    "audioSec": 2.406
+   },
+   "usageStream": {
+    "completion_tokens": 88,
+    "prompt_tokens": 593,
+    "total_tokens": 681,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:36.184Z"
+  },
+  {
+   "id": "ta10",
+   "lang": "ta-IN",
+   "who": "Pharmacist",
+   "partner": "Sir, இந்த tablet stock இல்ல. வேற brand குடுக்கட்டுமா?",
+   "intended": "Same salt-ஆ இருந்தா குடுங்க",
+   "keywords": null,
+   "historyTurns": 0,
+   "promptChars": 2113,
+   "attempt": 1,
+   "firstTokenMs": 98.4,
+   "llmTotalMs": 403.9,
+   "firstDraftMs": 151.3,
+   "allDraftsMs": 403.8,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "இல்ல, இந்த brand தான் வேணும்",
+     "gloss": "No, I need this brand only",
+     "lang": "ta-IN",
+     "atMs": 151.3,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "இப்போ வேணாம், அப்புறமா பாக்கலாம்",
+     "gloss": "Not now, let's see later",
+     "lang": "ta-IN",
+     "atMs": 239,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "வேற எதுனாலும் dosage same-ஆ இருக்கா?",
+     "gloss": "Is the dosage same for any other?",
+     "lang": "ta-IN",
+     "atMs": 330.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "சரிங்க, நீங்க என்ன சொல்றீங்களோ அத குடுங்க",
+     "gloss": "Okay, give whatever you say",
+     "lang": "ta-IN",
+     "atMs": 403.8,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "இல்ல, இந்த brand தான் வேணும்",
+     "chars": 28,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 151.3,
+     "ttfaMs": 427.3,
+     "totalMs": 440,
+     "libTtfaMs": 427.2,
+     "transport": "ws",
+     "audioSec": 1.443
+    },
+    {
+     "text": "இப்போ வேணாம், அப்புறமா பாக்கலாம்",
+     "chars": 32,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 239,
+     "ttfaMs": 326.6,
+     "totalMs": 541.5,
+     "libTtfaMs": 326.6,
+     "transport": "ws",
+     "audioSec": 2.12
+    },
+    {
+     "text": "வேற எதுனாலும் dosage same-ஆ இருக்கா?",
+     "chars": 36,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 330.2,
+     "ttfaMs": 297.3,
+     "totalMs": 637.1,
+     "libTtfaMs": 297.3,
+     "transport": "ws",
+     "audioSec": 3.141
+    },
+    {
+     "text": "சரிங்க, நீங்க என்ன சொல்றீங்களோ அத குடுங்க",
+     "chars": 41,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 403.9,
+     "ttfaMs": 326.3,
+     "totalMs": 712,
+     "libTtfaMs": 326.3,
+     "transport": "ws",
+     "audioSec": 3.274
+    }
+   ],
+   "allVoicedMs": 1115.9,
+   "allFirstAudioMs": 730.2,
+   "allVoicedWallMs": 1115.9,
+   "singleIntended": {
+    "text": "Same salt-ஆ இருந்தா குடுங்க",
+    "chars": 27,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 301.9,
+    "totalMs": 467.9,
+    "libTtfaMs": 301.9,
+    "transport": "ws",
+    "audioSec": 1.754
+   },
+   "singleDraft0": {
+    "text": "இல்ல, இந்த brand தான் வேணும்",
+    "chars": 28,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 287.8,
+    "totalMs": 494.3,
+    "libTtfaMs": 287.8,
+    "transport": "ws",
+    "audioSec": 1.939
+   },
+   "usageStream": {
+    "completion_tokens": 88,
+    "prompt_tokens": 517,
+    "total_tokens": 605,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:39.543Z"
+  },
+  {
+   "id": "ta11",
+   "lang": "ta-IN",
+   "who": "Pharmacist",
+   "partner": "Total ஆயிரத்து இருநூறு ரூபாய். GPay-ஆ cash-ஆ?",
+   "intended": "GPay பண்றேன், QR காட்டுங்க",
+   "keywords": null,
+   "historyTurns": 2,
+   "promptChars": 2228,
+   "attempt": 1,
+   "firstTokenMs": 107.7,
+   "llmTotalMs": 319.9,
+   "firstDraftMs": 130.8,
+   "allDraftsMs": 319.9,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "GPay-ல போட்டுடுங்க",
+     "gloss": "Put it on GPay",
+     "lang": "ta-IN",
+     "atMs": 130.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "Amma-க்கு கொஞ்சம் late-ஆ அனுப்பவா?",
+     "gloss": "Should I send it to Amma a bit late?",
+     "lang": "ta-IN",
+     "atMs": 205.1,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "Cash குடுத்தா change தருவீங்களா?",
+     "gloss": "Will you give change if I pay cash?",
+     "lang": "ta-IN",
+     "atMs": 264.3,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "சரி, நான் GPay பண்றேன்",
+     "gloss": "Okay, I will do GPay",
+     "lang": "ta-IN",
+     "atMs": 319.9,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "GPay-ல போட்டுடுங்க",
+     "chars": 18,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 130.9,
+     "ttfaMs": 298.4,
+     "totalMs": 498.9,
+     "libTtfaMs": 298.3,
+     "transport": "ws",
+     "audioSec": 1.94
+    },
+    {
+     "text": "Amma-க்கு கொஞ்சம் late-ஆ அனுப்பவா?",
+     "chars": 34,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 205.1,
+     "ttfaMs": 304.1,
+     "totalMs": 623.7,
+     "libTtfaMs": 304,
+     "transport": "ws",
+     "audioSec": 2.888
+    },
+    {
+     "text": "Cash குடுத்தா change தருவீங்களா?",
+     "chars": 32,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 264.3,
+     "ttfaMs": 301.3,
+     "totalMs": 457.4,
+     "libTtfaMs": 301.2,
+     "transport": "ws",
+     "audioSec": 1.785
+    },
+    {
+     "text": "சரி, நான் GPay பண்றேன்",
+     "chars": 22,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 319.9,
+     "ttfaMs": 324.4,
+     "totalMs": 458.9,
+     "libTtfaMs": 324.4,
+     "transport": "ws",
+     "audioSec": 1.673
+    }
+   ],
+   "allVoicedMs": 828.8,
+   "allFirstAudioMs": 644.3,
+   "allVoicedWallMs": 828.8,
+   "singleIntended": {
+    "text": "GPay பண்றேன், QR காட்டுங்க",
+    "chars": 26,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 305,
+    "totalMs": 525.6,
+    "libTtfaMs": 305,
+    "transport": "ws",
+    "audioSec": 2.21
+   },
+   "singleDraft0": {
+    "text": "GPay-ல போட்டுடுங்க",
+    "chars": 18,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 312.7,
+    "totalMs": 468.3,
+    "libTtfaMs": 312.6,
+    "transport": "ws",
+    "audioSec": 1.59
+   },
+   "usageStream": {
+    "completion_tokens": 81,
+    "prompt_tokens": 556,
+    "total_tokens": 637,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:42.633Z"
+  },
+  {
+   "id": "ta12",
+   "lang": "ta-IN",
+   "who": "Pharmacist",
+   "partner": "Syrup அடுத்த வாரம் தான் வரும். Home delivery பண்ணட்டுமா?",
+   "intended": "ஆமா, delivery பண்ணுங்க, அதே address தான்",
+   "keywords": null,
+   "historyTurns": 4,
+   "promptChars": 2331,
+   "attempt": 1,
+   "firstTokenMs": 88.4,
+   "llmTotalMs": 320.4,
+   "firstDraftMs": 163,
+   "allDraftsMs": 320.3,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "அப்படியே home delivery பண்ணிடுங்க",
+     "gloss": "Just get it delivered home",
+     "lang": "ta-IN",
+     "atMs": 163,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "அடுத்த வாரம் வரைக்கும் wait பண்ணலாம்",
+     "gloss": "We can wait till next week",
+     "lang": "ta-IN",
+     "atMs": 198,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "Amma-க்கு rasam வேணும், சீக்கிரம் அனுப்புங்க",
+     "gloss": "Amma needs rasam, send it fast",
+     "lang": "ta-IN",
+     "atMs": 260.5,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "இப்போதைக்கு வேற brand ஏதாச்சும் இருக்கா?",
+     "gloss": "Do you have any other brand right now?",
+     "lang": "ta-IN",
+     "atMs": 320.3,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "அப்படியே home delivery பண்ணிடுங்க",
+     "chars": 33,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 163,
+     "ttfaMs": 349.7,
+     "totalMs": 545.1,
+     "libTtfaMs": 349.6,
+     "transport": "ws",
+     "audioSec": 1.825
+    },
+    {
+     "text": "அடுத்த வாரம் வரைக்கும் wait பண்ணலாம்",
+     "chars": 36,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 198,
+     "ttfaMs": 328.8,
+     "totalMs": 508.1,
+     "libTtfaMs": 328.7,
+     "transport": "ws",
+     "audioSec": 1.756
+    },
+    {
+     "text": "Amma-க்கு rasam வேணும், சீக்கிரம் அனுப்புங்க",
+     "chars": 44,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 260.5,
+     "ttfaMs": 300.7,
+     "totalMs": 728.2,
+     "libTtfaMs": 300.6,
+     "transport": "ws",
+     "audioSec": 3.547
+    },
+    {
+     "text": "இப்போதைக்கு வேற brand ஏதாச்சும் இருக்கா?",
+     "chars": 40,
+     "speaker": "vijay_ta_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 320.3,
+     "ttfaMs": 310.2,
+     "totalMs": 646.8,
+     "libTtfaMs": 310.1,
+     "transport": "ws",
+     "audioSec": 3.154
+    }
+   ],
+   "allVoicedMs": 988.7,
+   "allFirstAudioMs": 630.5,
+   "allVoicedWallMs": 988.7,
+   "singleIntended": {
+    "text": "ஆமா, delivery பண்ணுங்க, அதே address தான்",
+    "chars": 40,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 288,
+    "totalMs": 669,
+    "libTtfaMs": 287.9,
+    "transport": "ws",
+    "audioSec": 3.187
+   },
+   "singleDraft0": {
+    "text": "அப்படியே home delivery பண்ணிடுங்க",
+    "chars": 33,
+    "speaker": "vijay_ta_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 303.8,
+    "totalMs": 471.1,
+    "libTtfaMs": 303.7,
+    "transport": "ws",
+    "audioSec": 1.755
+   },
+   "usageStream": {
+    "completion_tokens": 95,
+    "prompt_tokens": 587,
+    "total_tokens": 682,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:46.024Z"
+  },
+  {
+   "id": "hi01",
+   "lang": "hi-IN",
+   "who": "Dr. Mehra",
+   "partner": "Arjun, पिछले हफ्ते से कैसा feel हो रहा है? कोई नई problem?",
+   "intended": "निगलने में थोड़ी दिक्कत बढ़ गई है",
+   "keywords": null,
+   "historyTurns": 0,
+   "promptChars": 2115,
+   "attempt": 1,
+   "firstTokenMs": 105.9,
+   "llmTotalMs": 365.9,
+   "firstDraftMs": 150.7,
+   "allDraftsMs": 365.7,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "मैं थोड़ा tired feel कर रहा हूँ Doctor",
+     "gloss": "Feeling a little tired",
+     "lang": "hi-IN",
+     "atMs": 150.7,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "अभी कोई नई problem नहीं है Doctor",
+     "gloss": "No new problem right now",
+     "lang": "hi-IN",
+     "atMs": 194,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "Amma का rasam खाया तो थोड़ा आराम मिला",
+     "gloss": "Felt some relief after having Amma's rasam",
+     "lang": "hi-IN",
+     "atMs": 277.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "थोड़ा rest करके बताता हूँ Doctor",
+     "gloss": "Will tell after resting a bit",
+     "lang": "hi-IN",
+     "atMs": 365.7,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "मैं थोड़ा tired feel कर रहा हूँ Doctor",
+     "chars": 38,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 150.7,
+     "ttfaMs": 300.7,
+     "totalMs": 498.2,
+     "libTtfaMs": 300.7,
+     "transport": "ws",
+     "audioSec": 1.93
+    },
+    {
+     "text": "अभी कोई नई problem नहीं है Doctor",
+     "chars": 33,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 194.1,
+     "ttfaMs": 311.2,
+     "totalMs": 469.3,
+     "libTtfaMs": 311.1,
+     "transport": "ws",
+     "audioSec": 1.672
+    },
+    {
+     "text": "Amma का rasam खाया तो थोड़ा आराम मिला",
+     "chars": 37,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 277.3,
+     "ttfaMs": 301.3,
+     "totalMs": 657.9,
+     "libTtfaMs": 301.2,
+     "transport": "ws",
+     "audioSec": 3.105
+    },
+    {
+     "text": "थोड़ा rest करके बताता हूँ Doctor",
+     "chars": 32,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 365.8,
+     "ttfaMs": 317.7,
+     "totalMs": 495.7,
+     "libTtfaMs": 317.6,
+     "transport": "ws",
+     "audioSec": 1.914
+    }
+   ],
+   "allVoicedMs": 935.2,
+   "allFirstAudioMs": 683.5,
+   "allVoicedWallMs": 935.2,
+   "singleIntended": {
+    "text": "निगलने में थोड़ी दिक्कत बढ़ गई है",
+    "chars": 33,
+    "speaker": "shubh_hi_customer",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 317.7,
+    "totalMs": 458.2,
+    "libTtfaMs": 317.6,
+    "transport": "ws",
+    "audioSec": 1.673
+   },
+   "singleDraft0": {
+    "text": "मैं थोड़ा tired feel कर रहा हूँ Doctor",
+    "chars": 38,
+    "speaker": "shubh_enhi_companion",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 301.6,
+    "totalMs": 537.1,
+    "libTtfaMs": 301.6,
+    "transport": "ws",
+    "audioSec": 2.198
+   },
+   "usageStream": {
+    "completion_tokens": 73,
+    "prompt_tokens": 521,
+    "total_tokens": 594,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:49.222Z"
+  },
+  {
+   "id": "hi02",
+   "lang": "hi-IN",
+   "who": "Dr. Mehra",
+   "partner": "रात को नींद ठीक आती है? लेटने पर साँस लेने में तकलीफ़ होती है?",
+   "intended": "हाँ, लेटने पर साँस फूलती है",
+   "keywords": null,
+   "historyTurns": 2,
+   "promptChars": 2252,
+   "attempt": 1,
+   "firstTokenMs": 106.2,
+   "llmTotalMs": 295.4,
+   "firstDraftMs": 149.4,
+   "allDraftsMs": 295.3,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "रात को नींद थोड़ी restless है Doctor",
+     "gloss": "Sleep is a bit restless at night",
+     "lang": "hi-IN",
+     "atMs": 149.4,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "लेटने पर साँस थोड़ी अटकती है",
+     "gloss": "Breathing gets stuck when lying down",
+     "lang": "hi-IN",
+     "atMs": 216.1,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "कल तक wait कर लूँ?",
+     "gloss": "Can I wait until tomorrow?",
+     "lang": "hi-IN",
+     "atMs": 254.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "थोड़ा heavy feel हो रहा है",
+     "gloss": "Feeling a bit heavy",
+     "lang": "hi-IN",
+     "atMs": 295.3,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "रात को नींद थोड़ी restless है Doctor",
+     "chars": 36,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 149.4,
+     "ttfaMs": 322.6,
+     "totalMs": 657.2,
+     "libTtfaMs": 322.5,
+     "transport": "ws",
+     "audioSec": 3.107
+    },
+    {
+     "text": "लेटने पर साँस थोड़ी अटकती है",
+     "chars": 28,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 216.2,
+     "ttfaMs": 304.4,
+     "totalMs": 443.3,
+     "libTtfaMs": 304.3,
+     "transport": "ws",
+     "audioSec": 1.574
+    },
+    {
+     "text": "कल तक wait कर लूँ?",
+     "chars": 18,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 254.8,
+     "ttfaMs": 371.3,
+     "totalMs": 372,
+     "libTtfaMs": 371.2,
+     "transport": "ws",
+     "audioSec": 1.005
+    },
+    {
+     "text": "थोड़ा heavy feel हो रहा है",
+     "chars": 26,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 295.4,
+     "ttfaMs": 410,
+     "totalMs": 421.3,
+     "libTtfaMs": 409.9,
+     "transport": "ws",
+     "audioSec": 1.349
+    }
+   ],
+   "allVoicedMs": 806.6,
+   "allFirstAudioMs": 705.4,
+   "allVoicedWallMs": 806.6,
+   "singleIntended": {
+    "text": "हाँ, लेटने पर साँस फूलती है",
+    "chars": 27,
+    "speaker": "shubh_hi_customer",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 288.6,
+    "totalMs": 482,
+    "libTtfaMs": 288.5,
+    "transport": "ws",
+    "audioSec": 1.852
+   },
+   "singleDraft0": {
+    "text": "रात को नींद थोड़ी restless है Doctor",
+    "chars": 36,
+    "speaker": "shubh_enhi_companion",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 3342,
+    "totalMs": 3676.1,
+    "libTtfaMs": 3342,
+    "transport": "ws",
+    "audioSec": 2.597
+   },
+   "usageStream": {
+    "completion_tokens": 65,
+    "prompt_tokens": 565,
+    "total_tokens": 630,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:55.453Z"
+  },
+  {
+   "id": "hi03",
+   "lang": "hi-IN",
+   "who": "Dr. Mehra",
+   "partner": "तो हम रात के लिए BiPAP start करते हैं। कोई सवाल?",
+   "intended": "क्या mask पूरी रात पहनना पड़ेगा?",
+   "keywords": null,
+   "historyTurns": 4,
+   "promptChars": 2347,
+   "attempt": 1,
+   "firstTokenMs": 241.5,
+   "llmTotalMs": 470.2,
+   "firstDraftMs": 289.1,
+   "allDraftsMs": 470.2,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "ठीक है Doctor, कर देते हैं",
+     "gloss": "Okay Doctor, let's do it",
+     "lang": "hi-IN",
+     "atMs": 289.1,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "एक बार Amma से बात करनी है",
+     "gloss": "Need to talk to Amma first",
+     "lang": "hi-IN",
+     "atMs": 336.9,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "कितना time लगेगा setup होने में?",
+     "gloss": "How long will the setup take?",
+     "lang": "hi-IN",
+     "atMs": 394.9,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "थोड़ा आराम मिलेगा इससे, thank you",
+     "gloss": "I'll get some rest from this, thank you",
+     "lang": "hi-IN",
+     "atMs": 470.2,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "ठीक है Doctor, कर देते हैं",
+     "chars": 26,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 289.2,
+     "ttfaMs": 305.7,
+     "totalMs": 507.3,
+     "libTtfaMs": 305.6,
+     "transport": "ws",
+     "audioSec": 1.77
+    },
+    {
+     "text": "एक बार Amma से बात करनी है",
+     "chars": 26,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 336.9,
+     "ttfaMs": 313.5,
+     "totalMs": 460.9,
+     "libTtfaMs": 313.4,
+     "transport": "ws",
+     "audioSec": 1.537
+    },
+    {
+     "text": "कितना time लगेगा setup होने में?",
+     "chars": 32,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 395,
+     "ttfaMs": 305,
+     "totalMs": 562.8,
+     "libTtfaMs": 305,
+     "transport": "ws",
+     "audioSec": 2.456
+    },
+    {
+     "text": "थोड़ा आराम मिलेगा इससे, thank you",
+     "chars": 33,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 470.2,
+     "ttfaMs": 454.4,
+     "totalMs": 565.1,
+     "libTtfaMs": 454.3,
+     "transport": "ws",
+     "audioSec": 2.514
+    }
+   ],
+   "allVoicedMs": 1035.3,
+   "allFirstAudioMs": 924.6,
+   "allVoicedWallMs": 1035.4,
+   "singleIntended": {
+    "text": "क्या mask पूरी रात पहनना पड़ेगा?",
+    "chars": 32,
+    "speaker": "shubh_enhi_companion",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 302.3,
+    "totalMs": 531.4,
+    "libTtfaMs": 302.2,
+    "transport": "ws",
+    "audioSec": 2.373
+   },
+   "singleDraft0": {
+    "text": "ठीक है Doctor, कर देते हैं",
+    "chars": 26,
+    "speaker": "shubh_enhi_companion",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 303.3,
+    "totalMs": 532.7,
+    "libTtfaMs": 303.3,
+    "transport": "ws",
+    "audioSec": 2.293
+   },
+   "usageStream": {
+    "completion_tokens": 76,
+    "prompt_tokens": 599,
+    "total_tokens": 675,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:29:58.829Z"
+  },
+  {
+   "id": "hi04",
+   "lang": "hi-IN",
+   "who": "Rohit",
+   "partner": "भाई, Delhi से सिर्फ तुझसे मिलने आया हूँ! कैसा है तू?",
+   "intended": "अरे Rohit! तुझे देखकर बहुत अच्छा लगा",
+   "keywords": null,
+   "historyTurns": 0,
+   "promptChars": 2097,
+   "attempt": 1,
+   "firstTokenMs": 134.8,
+   "llmTotalMs": 407.7,
+   "firstDraftMs": 186.8,
+   "allDraftsMs": 407.7,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "बहुत अच्छा लग रहा है, आ जा ना",
+     "gloss": "Feeling really good, come over",
+     "lang": "hi-IN",
+     "atMs": 186.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "अभी rasam बना रहा हूँ, बाद में बात करते हैं",
+     "gloss": "Making rasam right now, talk later",
+     "lang": "hi-IN",
+     "atMs": 257.4,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "तूने बताया नहीं, कहाँ रुक रहा है तू?",
+     "gloss": "You didn't tell me, where are you staying?",
+     "lang": "hi-IN",
+     "atMs": 333.3,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "चल ना, शाम को मिलते हैं आराम से",
+     "gloss": "Come on, let's meet peacefully in the evening.",
+     "lang": "hi-IN",
+     "atMs": 407.7,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "बहुत अच्छा लग रहा है, आ जा ना",
+     "chars": 29,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 186.9,
+     "ttfaMs": 299.6,
+     "totalMs": 438.6,
+     "libTtfaMs": 299.6,
+     "transport": "ws",
+     "audioSec": 1.591
+    },
+    {
+     "text": "अभी rasam बना रहा हूँ, बाद में बात करते हैं",
+     "chars": 43,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 257.5,
+     "ttfaMs": 313.8,
+     "totalMs": 590.2,
+     "libTtfaMs": 313.8,
+     "transport": "ws",
+     "audioSec": 2.494
+    },
+    {
+     "text": "तूने बताया नहीं, कहाँ रुक रहा है तू?",
+     "chars": 36,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 333.3,
+     "ttfaMs": 307.3,
+     "totalMs": 485.8,
+     "libTtfaMs": 307.2,
+     "transport": "ws",
+     "audioSec": 1.933
+    },
+    {
+     "text": "चल ना, शाम को मिलते हैं आराम से",
+     "chars": 31,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 407.7,
+     "ttfaMs": 289.4,
+     "totalMs": 534.5,
+     "libTtfaMs": 289.3,
+     "transport": "ws",
+     "audioSec": 2.276
+    }
+   ],
+   "allVoicedMs": 942.2,
+   "allFirstAudioMs": 697.1,
+   "allVoicedWallMs": 942.2,
+   "singleIntended": {
+    "text": "अरे Rohit! तुझे देखकर बहुत अच्छा लगा",
+    "chars": 36,
+    "speaker": "shubh_enhi_companion",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 339.9,
+    "totalMs": 633.9,
+    "libTtfaMs": 339.9,
+    "transport": "ws",
+    "audioSec": 2.614
+   },
+   "singleDraft0": {
+    "text": "बहुत अच्छा लग रहा है, आ जा ना",
+    "chars": 29,
+    "speaker": "shubh_hi_customer",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 305.9,
+    "totalMs": 429.3,
+    "libTtfaMs": 305.8,
+    "transport": "ws",
+    "audioSec": 1.538
+   },
+   "usageStream": {
+    "completion_tokens": 91,
+    "prompt_tokens": 513,
+    "total_tokens": 604,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:02.092Z"
+  },
+  {
+   "id": "hi05",
+   "lang": "hi-IN",
+   "who": "Rohit",
+   "partner": "कल का match देखा? Kohli ने क्या खेला यार!",
+   "intended": "हाँ देखा, last over में मज़ा आ गया",
+   "keywords": null,
+   "historyTurns": 2,
+   "promptChars": 2212,
+   "attempt": 1,
+   "firstTokenMs": 114.6,
+   "llmTotalMs": 331,
+   "firstDraftMs": 180.3,
+   "allDraftsMs": 331,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "हाँ यार, Kohli ने तो कमाल ही किया",
+     "gloss": "Yes bro, Kohli was just amazing",
+     "lang": "hi-IN",
+     "atMs": 180.3,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "अभी match देखने की energy नहीं है",
+     "gloss": "No energy right now to watch the match",
+     "lang": "hi-IN",
+     "atMs": 229.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "तू कल का score बता मुझे",
+     "gloss": "Tell me tomorrow's score",
+     "lang": "hi-IN",
+     "atMs": 283.4,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "Amma का rasam खाने का मन कर रहा है",
+     "gloss": "Feeling like eating Amma's rasam",
+     "lang": "hi-IN",
+     "atMs": 331,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "हाँ यार, Kohli ने तो कमाल ही किया",
+     "chars": 33,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 180.3,
+     "ttfaMs": 303.2,
+     "totalMs": 681.1,
+     "libTtfaMs": 303.1,
+     "transport": "ws",
+     "audioSec": 3.196
+    },
+    {
+     "text": "अभी match देखने की energy नहीं है",
+     "chars": 33,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 229.2,
+     "ttfaMs": 311,
+     "totalMs": 541.6,
+     "libTtfaMs": 310.9,
+     "transport": "ws",
+     "audioSec": 2.294
+    },
+    {
+     "text": "तू कल का score बता मुझे",
+     "chars": 23,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 283.4,
+     "ttfaMs": 296,
+     "totalMs": 884.1,
+     "libTtfaMs": 296,
+     "transport": "ws",
+     "audioSec": 4.617
+    },
+    {
+     "text": "Amma का rasam खाने का मन कर रहा है",
+     "chars": 34,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 331,
+     "ttfaMs": 306.2,
+     "totalMs": 499.6,
+     "libTtfaMs": 306.1,
+     "transport": "ws",
+     "audioSec": 1.933
+    }
+   ],
+   "allVoicedMs": 1167.5,
+   "allFirstAudioMs": 637.2,
+   "allVoicedWallMs": 1167.5,
+   "singleIntended": {
+    "text": "हाँ देखा, last over में मज़ा आ गया",
+    "chars": 34,
+    "speaker": "shubh_enhi_companion",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 299.5,
+    "totalMs": 599.3,
+    "libTtfaMs": 299.4,
+    "transport": "ws",
+    "audioSec": 2.676
+   },
+   "singleDraft0": {
+    "text": "हाँ यार, Kohli ने तो कमाल ही किया",
+    "chars": 33,
+    "speaker": "shubh_enhi_companion",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 320,
+    "totalMs": 657.9,
+    "libTtfaMs": 320,
+    "transport": "ws",
+    "audioSec": 3.046
+   },
+   "usageStream": {
+    "completion_tokens": 75,
+    "prompt_tokens": 545,
+    "total_tokens": 620,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:05.779Z"
+  },
+  {
+   "id": "hi06",
+   "lang": "hi-IN",
+   "who": "Rohit",
+   "partner": "चल, कल Marina beach चलते हैं। Wheelchair मैं संभाल लूँगा।",
+   "intended": "शाम को चलेंगे, धूप में नहीं",
+   "keywords": null,
+   "historyTurns": 4,
+   "promptChars": 2319,
+   "attempt": 1,
+   "firstTokenMs": 103.2,
+   "llmTotalMs": 326.8,
+   "firstDraftMs": 155.2,
+   "allDraftsMs": 326.8,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "हाँ चल, मज़ा आएगा",
+     "gloss": "Yes, let's go, will be fun",
+     "lang": "hi-IN",
+     "atMs": 155.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "अभी थोड़ी rest कर लेता हूँ",
+     "gloss": "I'll rest a bit right now",
+     "lang": "hi-IN",
+     "atMs": 211,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "तू वहाँ जाना चाहता है क्या?",
+     "gloss": "Do you really want to go there?",
+     "lang": "hi-IN",
+     "atMs": 259.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "आजrasam पीने का मन है यार",
+     "gloss": "Feeling like having rasam today, man",
+     "lang": "hi-IN",
+     "atMs": 326.8,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "हाँ चल, मज़ा आएगा",
+     "chars": 17,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 155.3,
+     "ttfaMs": 412.5,
+     "totalMs": 422.2,
+     "libTtfaMs": 412.4,
+     "transport": "ws",
+     "audioSec": 1.357
+    },
+    {
+     "text": "अभी थोड़ी rest कर लेता हूँ",
+     "chars": 26,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 211,
+     "ttfaMs": 303.3,
+     "totalMs": 521,
+     "libTtfaMs": 303.3,
+     "transport": "ws",
+     "audioSec": 2.001
+    },
+    {
+     "text": "तू वहाँ जाना चाहता है क्या?",
+     "chars": 27,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 259.8,
+     "ttfaMs": 296.9,
+     "totalMs": 475.7,
+     "libTtfaMs": 296.9,
+     "transport": "ws",
+     "audioSec": 1.78
+    },
+    {
+     "text": "आजrasam पीने का मन है यार",
+     "chars": 25,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 326.8,
+     "ttfaMs": 304.4,
+     "totalMs": 585.2,
+     "libTtfaMs": 304.4,
+     "transport": "ws",
+     "audioSec": 2.597
+    }
+   ],
+   "allVoicedMs": 912,
+   "allFirstAudioMs": 631.2,
+   "allVoicedWallMs": 912,
+   "singleIntended": {
+    "text": "शाम को चलेंगे, धूप में नहीं",
+    "chars": 27,
+    "speaker": "shubh_hi_customer",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 303,
+    "totalMs": 478.1,
+    "libTtfaMs": 302.9,
+    "transport": "ws",
+    "audioSec": 1.859
+   },
+   "singleDraft0": {
+    "text": "हाँ चल, मज़ा आएगा",
+    "chars": 17,
+    "speaker": "shubh_hi_customer",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 347.2,
+    "totalMs": 349.5,
+    "libTtfaMs": 347.1,
+    "transport": "ws",
+    "audioSec": 0.912
+   },
+   "usageStream": {
+    "completion_tokens": 73,
+    "prompt_tokens": 578,
+    "total_tokens": 651,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:08.797Z"
+  },
+  {
+   "id": "hi07",
+   "lang": "hi-IN",
+   "who": "Ramesh",
+   "partner": "भैया, नहाने का पानी गरम कर दिया है। अभी नहाएँगे?",
+   "intended": "दस मिनट रुको, पहले चाय पीनी है",
+   "keywords": null,
+   "historyTurns": 0,
+   "promptChars": 2096,
+   "attempt": 1,
+   "firstTokenMs": 101.2,
+   "llmTotalMs": 324,
+   "firstDraftMs": 142.7,
+   "allDraftsMs": 324,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "थोड़ी देर में नहाता हूँ",
+     "gloss": "I will bathe in a little while",
+     "lang": "hi-IN",
+     "atMs": 142.7,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "अभी बहुत आराम से बैठा हूँ",
+     "gloss": "I am resting very comfortably right now",
+     "lang": "hi-IN",
+     "atMs": 184.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "ठीक है भैया, अभी नहीं जा पाऊँगा",
+     "gloss": "Okay brother, won't be able to go right now",
+     "lang": "hi-IN",
+     "atMs": 256.6,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "पानी गरम है ना? बहुत अच्छा किया",
+     "gloss": "Is the water hot? You did very well",
+     "lang": "hi-IN",
+     "atMs": 324,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "थोड़ी देर में नहाता हूँ",
+     "chars": 23,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 142.9,
+     "ttfaMs": 387.9,
+     "totalMs": 395.1,
+     "libTtfaMs": 387.8,
+     "transport": "ws",
+     "audioSec": 1.166
+    },
+    {
+     "text": "अभी बहुत आराम से बैठा हूँ",
+     "chars": 25,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 184.3,
+     "ttfaMs": 311.9,
+     "totalMs": 437.3,
+     "libTtfaMs": 311.9,
+     "transport": "ws",
+     "audioSec": 1.54
+    },
+    {
+     "text": "ठीक है भैया, अभी नहीं जा पाऊँगा",
+     "chars": 31,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 256.6,
+     "ttfaMs": 303.8,
+     "totalMs": 454.7,
+     "libTtfaMs": 303.7,
+     "transport": "ws",
+     "audioSec": 1.59
+    },
+    {
+     "text": "पानी गरम है ना? बहुत अच्छा किया",
+     "chars": 31,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 324,
+     "ttfaMs": 306.6,
+     "totalMs": 517,
+     "libTtfaMs": 306.5,
+     "transport": "ws",
+     "audioSec": 1.94
+    }
+   ],
+   "allVoicedMs": 841,
+   "allFirstAudioMs": 630.6,
+   "allVoicedWallMs": 841.1,
+   "singleIntended": {
+    "text": "दस मिनट रुको, पहले चाय पीनी है",
+    "chars": 30,
+    "speaker": "shubh_hi_customer",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 304.9,
+    "totalMs": 483,
+    "libTtfaMs": 304.9,
+    "transport": "ws",
+    "audioSec": 1.824
+   },
+   "singleDraft0": {
+    "text": "थोड़ी देर में नहाता हूँ",
+    "chars": 23,
+    "speaker": "shubh_hi_customer",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 342.4,
+    "totalMs": 345.8,
+    "libTtfaMs": 342.4,
+    "transport": "ws",
+    "audioSec": 0.922
+   },
+   "usageStream": {
+    "completion_tokens": 79,
+    "prompt_tokens": 514,
+    "total_tokens": 593,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:11.740Z"
+  },
+  {
+   "id": "hi08",
+   "lang": "hi-IN",
+   "who": "Ramesh",
+   "partner": "चाय में चीनी कम डालूँ ना?",
+   "intended": "हाँ, बस आधा चम्मच",
+   "keywords": null,
+   "historyTurns": 2,
+   "promptChars": 2190,
+   "attempt": 1,
+   "firstTokenMs": 95.8,
+   "llmTotalMs": 355.2,
+   "firstDraftMs": 154.6,
+   "allDraftsMs": 355.2,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "नहीं भैया, normal sugar ही डालना",
+     "gloss": "No bro, put normal sugar",
+     "lang": "hi-IN",
+     "atMs": 154.6,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "चलो, बस एक cup ही पी लेता हूँ",
+     "gloss": "Alright, I'll just have one cup",
+     "lang": "hi-IN",
+     "atMs": 240.3,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "हाँ, फिर नहाने चलते हैं जल्दी से",
+     "gloss": "Yes, then let's go bathe quickly",
+     "lang": "hi-IN",
+     "atMs": 301.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "मुझे आज rasam का मन कर रहा है",
+     "gloss": "I'm craving rasam today",
+     "lang": "hi-IN",
+     "atMs": 355.2,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "नहीं भैया, normal sugar ही डालना",
+     "chars": 32,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 154.6,
+     "ttfaMs": 306.9,
+     "totalMs": 497.3,
+     "libTtfaMs": 306.8,
+     "transport": "ws",
+     "audioSec": 1.922
+    },
+    {
+     "text": "चलो, बस एक cup ही पी लेता हूँ",
+     "chars": 29,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 240.3,
+     "ttfaMs": 293.2,
+     "totalMs": 542.8,
+     "libTtfaMs": 293.1,
+     "transport": "ws",
+     "audioSec": 2.298
+    },
+    {
+     "text": "हाँ, फिर नहाने चलते हैं जल्दी से",
+     "chars": 32,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 301.9,
+     "ttfaMs": 293.3,
+     "totalMs": 520.8,
+     "libTtfaMs": 293.3,
+     "transport": "ws",
+     "audioSec": 1.926
+    },
+    {
+     "text": "मुझे आज rasam का मन कर रहा है",
+     "chars": 29,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 355.2,
+     "ttfaMs": 320,
+     "totalMs": 566.7,
+     "libTtfaMs": 320,
+     "transport": "ws",
+     "audioSec": 2.428
+    }
+   ],
+   "allVoicedMs": 921.9,
+   "allFirstAudioMs": 675.2,
+   "allVoicedWallMs": 921.9,
+   "singleIntended": {
+    "text": "हाँ, बस आधा चम्मच",
+    "chars": 17,
+    "speaker": "shubh_hi_customer",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 298,
+    "totalMs": 453.1,
+    "libTtfaMs": 298,
+    "transport": "ws",
+    "audioSec": 1.668
+   },
+   "singleDraft0": {
+    "text": "नहीं भैया, normal sugar ही डालना",
+    "chars": 32,
+    "speaker": "shubh_enhi_companion",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 297.4,
+    "totalMs": 529.5,
+    "libTtfaMs": 297.3,
+    "transport": "ws",
+    "audioSec": 2.212
+   },
+   "usageStream": {
+    "completion_tokens": 79,
+    "prompt_tokens": 545,
+    "total_tokens": 624,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:14.907Z"
+  },
+  {
+   "id": "hi09",
+   "lang": "hi-IN",
+   "who": "Ramesh",
+   "partner": "आज physiotherapy वाले चार बजे आएँगे, याद है?",
+   "intended": "हाँ याद है, उससे पहले मुझे बैठा देना",
+   "keywords": null,
+   "historyTurns": 4,
+   "promptChars": 2268,
+   "attempt": 1,
+   "firstTokenMs": 110.7,
+   "llmTotalMs": 254.5,
+   "firstDraftMs": 141.1,
+   "allDraftsMs": 254.4,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "ठीक है, याद है",
+     "gloss": "Okay, I remember",
+     "lang": "hi-IN",
+     "atMs": 141.1,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "हाँ, चार बजे ready रहूँगा",
+     "gloss": "Yes, I will be ready at four",
+     "lang": "hi-IN",
+     "atMs": 183.4,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "चार बजे तक आराम करूँगा",
+     "gloss": "I will rest till four",
+     "lang": "hi-IN",
+     "atMs": 217.6,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "अभी के लिए मुझे सोने दो",
+     "gloss": "Let me sleep for now",
+     "lang": "hi-IN",
+     "atMs": 254.4,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "ठीक है, याद है",
+     "chars": 14,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 141.1,
+     "ttfaMs": 368.3,
+     "totalMs": 383.2,
+     "libTtfaMs": 368.3,
+     "transport": "ws",
+     "audioSec": 1.182
+    },
+    {
+     "text": "हाँ, चार बजे ready रहूँगा",
+     "chars": 25,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 183.4,
+     "ttfaMs": 306.5,
+     "totalMs": 549.8,
+     "libTtfaMs": 306.4,
+     "transport": "ws",
+     "audioSec": 2.34
+    },
+    {
+     "text": "चार बजे तक आराम करूँगा",
+     "chars": 22,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 217.6,
+     "ttfaMs": 419.8,
+     "totalMs": 443.6,
+     "libTtfaMs": 419.7,
+     "transport": "ws",
+     "audioSec": 1.356
+    },
+    {
+     "text": "अभी के लिए मुझे सोने दो",
+     "chars": 23,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 254.5,
+     "ttfaMs": 369.9,
+     "totalMs": 391.2,
+     "libTtfaMs": 369.9,
+     "transport": "ws",
+     "audioSec": 1.096
+    }
+   ],
+   "allVoicedMs": 733.2,
+   "allFirstAudioMs": 637.4,
+   "allVoicedWallMs": 733.2,
+   "singleIntended": {
+    "text": "हाँ याद है, उससे पहले मुझे बैठा देना",
+    "chars": 36,
+    "speaker": "shubh_hi_customer",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 298,
+    "totalMs": 506,
+    "libTtfaMs": 297.9,
+    "transport": "ws",
+    "audioSec": 2.02
+   },
+   "singleDraft0": {
+    "text": "ठीक है, याद है",
+    "chars": 14,
+    "speaker": "shubh_hi_customer",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 311.9,
+    "totalMs": 312.1,
+    "libTtfaMs": 311.7,
+    "transport": "ws",
+    "audioSec": 0.695
+   },
+   "usageStream": {
+    "completion_tokens": 58,
+    "prompt_tokens": 570,
+    "total_tokens": 628,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:17.737Z"
+  },
+  {
+   "id": "hi10",
+   "lang": "hi-IN",
+   "who": "Lab technician",
+   "partner": "Sir, blood sample लेना है। किस हाथ से लूँ?",
+   "intended": "बाएँ हाथ से लीजिए, वहाँ vein अच्छी है",
+   "keywords": null,
+   "historyTurns": 0,
+   "promptChars": 2114,
+   "attempt": 1,
+   "firstTokenMs": 96.8,
+   "llmTotalMs": 300.4,
+   "firstDraftMs": 143.4,
+   "allDraftsMs": 300.4,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "left arm से ले लो",
+     "gloss": "Take it from the left arm",
+     "lang": "hi-IN",
+     "atMs": 143.4,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "पहले check कर लो, ठीक है?",
+     "gloss": "Check first, okay?",
+     "lang": "hi-IN",
+     "atMs": 191.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "right वाला arm है ना?",
+     "gloss": "The right arm is the one, right?",
+     "lang": "hi-IN",
+     "atMs": 240.9,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "जल्दी कर दो please",
+     "gloss": "Please do it quickly.",
+     "lang": "hi-IN",
+     "atMs": 300.4,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "left arm से ले लो",
+     "chars": 17,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 143.5,
+     "ttfaMs": 369.4,
+     "totalMs": 374.8,
+     "libTtfaMs": 369.3,
+     "transport": "ws",
+     "audioSec": 1.011
+    },
+    {
+     "text": "पहले check कर लो, ठीक है?",
+     "chars": 25,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 191.3,
+     "ttfaMs": 307.6,
+     "totalMs": 518.1,
+     "libTtfaMs": 307.5,
+     "transport": "ws",
+     "audioSec": 2.113
+    },
+    {
+     "text": "right वाला arm है ना?",
+     "chars": 21,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 241,
+     "ttfaMs": 416.6,
+     "totalMs": 454.1,
+     "libTtfaMs": 416.4,
+     "transport": "ws",
+     "audioSec": 1.552
+    },
+    {
+     "text": "जल्दी कर दो please",
+     "chars": 18,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 300.4,
+     "ttfaMs": 379,
+     "totalMs": 409.3,
+     "libTtfaMs": 379,
+     "transport": "ws",
+     "audioSec": 1.155
+    }
+   ],
+   "allVoicedMs": 709.7,
+   "allFirstAudioMs": 679.4,
+   "allVoicedWallMs": 709.7,
+   "singleIntended": {
+    "text": "बाएँ हाथ से लीजिए, वहाँ vein अच्छी है",
+    "chars": 37,
+    "speaker": "shubh_enhi_companion",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 303.9,
+    "totalMs": 752.3,
+    "libTtfaMs": 303.8,
+    "transport": "ws",
+    "audioSec": 3.813
+   },
+   "singleDraft0": {
+    "text": "left arm से ले लो",
+    "chars": 17,
+    "speaker": "shubh_enhi_companion",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 297.6,
+    "totalMs": 425.4,
+    "libTtfaMs": 297.5,
+    "transport": "ws",
+    "audioSec": 1.542
+   },
+   "usageStream": {
+    "completion_tokens": 63,
+    "prompt_tokens": 513,
+    "total_tokens": 576,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:20.899Z"
+  },
+  {
+   "id": "hi11",
+   "lang": "hi-IN",
+   "who": "Lab technician",
+   "partner": "Fasting में हैं ना? सुबह से कुछ खाया तो नहीं?",
+   "intended": "नहीं, रात दस बजे के बाद कुछ नहीं खाया",
+   "keywords": null,
+   "historyTurns": 2,
+   "promptChars": 2243,
+   "attempt": 1,
+   "firstTokenMs": 103.4,
+   "llmTotalMs": 365.5,
+   "firstDraftMs": 149.4,
+   "allDraftsMs": 365.4,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "हाँ, मैंने कुछ खाया नहीं है",
+     "gloss": "Yes, I haven't eaten anything",
+     "lang": "hi-IN",
+     "atMs": 149.4,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "बस दो minute wait कर लो ना",
+     "gloss": "Just wait two minutes, okay?",
+     "lang": "hi-IN",
+     "atMs": 210.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "क्यों, result delay होगा क्या?",
+     "gloss": "Why, will the result be delayed?",
+     "lang": "hi-IN",
+     "atMs": 284,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "मेरी Amma ने सुबह से कुछ नहीं दिया",
+     "gloss": "Amma didn't give me anything since morning",
+     "lang": "hi-IN",
+     "atMs": 365.4,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "हाँ, मैंने कुछ खाया नहीं है",
+     "chars": 27,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 149.4,
+     "ttfaMs": 411.8,
+     "totalMs": 420.9,
+     "libTtfaMs": 411.7,
+     "transport": "ws",
+     "audioSec": 1.353
+    },
+    {
+     "text": "बस दो minute wait कर लो ना",
+     "chars": 26,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 210.8,
+     "ttfaMs": 398.3,
+     "totalMs": 406.7,
+     "libTtfaMs": 398.3,
+     "transport": "ws",
+     "audioSec": 1.268
+    },
+    {
+     "text": "क्यों, result delay होगा क्या?",
+     "chars": 30,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 284,
+     "ttfaMs": 294.1,
+     "totalMs": 486.3,
+     "libTtfaMs": 294,
+     "transport": "ws",
+     "audioSec": 1.948
+    },
+    {
+     "text": "मेरी Amma ने सुबह से कुछ नहीं दिया",
+     "chars": 34,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 365.4,
+     "ttfaMs": 301.1,
+     "totalMs": 545.1,
+     "libTtfaMs": 301,
+     "transport": "ws",
+     "audioSec": 2.194
+    }
+   ],
+   "allVoicedMs": 910.5,
+   "allFirstAudioMs": 666.5,
+   "allVoicedWallMs": 910.6,
+   "singleIntended": {
+    "text": "नहीं, रात दस बजे के बाद कुछ नहीं खाया",
+    "chars": 37,
+    "speaker": "shubh_hi_customer",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 302,
+    "totalMs": 498.7,
+    "libTtfaMs": 301.9,
+    "transport": "ws",
+    "audioSec": 1.944
+   },
+   "singleDraft0": {
+    "text": "हाँ, मैंने कुछ खाया नहीं है",
+    "chars": 27,
+    "speaker": "shubh_hi_customer",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 290.5,
+    "totalMs": 487.3,
+    "libTtfaMs": 290.4,
+    "transport": "ws",
+    "audioSec": 1.841
+   },
+   "usageStream": {
+    "completion_tokens": 76,
+    "prompt_tokens": 550,
+    "total_tokens": 626,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:24.064Z"
+  },
+  {
+   "id": "hi12",
+   "lang": "hi-IN",
+   "who": "Lab technician",
+   "partner": "Report कल शाम तक email पर आ जाएगी। और कुछ?",
+   "intended": "Doctor को भी copy भेज दीजिए please",
+   "keywords": null,
+   "historyTurns": 4,
+   "promptChars": 2347,
+   "attempt": 1,
+   "firstTokenMs": 100,
+   "llmTotalMs": 324.2,
+   "firstDraftMs": 137.8,
+   "allDraftsMs": 324.1,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "ठीक है, मैं wait करूँगा",
+     "gloss": "Okay, I will wait",
+     "lang": "hi-IN",
+     "atMs": 137.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "Email पर आ गया तो मुझे बता देना",
+     "gloss": "Let me know once it comes on email",
+     "lang": "hi-IN",
+     "atMs": 207.4,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "Amma को भी copy भेज देना please",
+     "gloss": "Please send a copy to Amma too",
+     "lang": "hi-IN",
+     "atMs": 264.4,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "कल शाम से पहले भेज सकते हो क्या?",
+     "gloss": "Can you send it before tomorrow evening?",
+     "lang": "hi-IN",
+     "atMs": 324.1,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "ठीक है, मैं wait करूँगा",
+     "chars": 23,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 137.8,
+     "ttfaMs": 290.7,
+     "totalMs": 486.6,
+     "libTtfaMs": 290.6,
+     "transport": "ws",
+     "audioSec": 1.947
+    },
+    {
+     "text": "Email पर आ गया तो मुझे बता देना",
+     "chars": 31,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 207.4,
+     "ttfaMs": 318.4,
+     "totalMs": 450.6,
+     "libTtfaMs": 318.4,
+     "transport": "ws",
+     "audioSec": 1.593
+    },
+    {
+     "text": "Amma को भी copy भेज देना please",
+     "chars": 31,
+     "speaker": "shubh_enhi_companion",
+     "model": "bulbul:v4-flash",
+     "startMs": 264.5,
+     "ttfaMs": 300.4,
+     "totalMs": 486.6,
+     "libTtfaMs": 300.3,
+     "transport": "ws",
+     "audioSec": 1.749
+    },
+    {
+     "text": "कल शाम से पहले भेज सकते हो क्या?",
+     "chars": 32,
+     "speaker": "shubh_hi_customer",
+     "model": "bulbul:v4-flash",
+     "startMs": 324.2,
+     "ttfaMs": 422.1,
+     "totalMs": 443.4,
+     "libTtfaMs": 422,
+     "transport": "ws",
+     "audioSec": 1.561
+    }
+   ],
+   "allVoicedMs": 767.6,
+   "allFirstAudioMs": 746.3,
+   "allVoicedWallMs": 767.6,
+   "singleIntended": {
+    "text": "Doctor को भी copy भेज दीजिए please",
+    "chars": 34,
+    "speaker": "shubh_enhi_companion",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 306,
+    "totalMs": 460.5,
+    "libTtfaMs": 306,
+    "transport": "ws",
+    "audioSec": 1.674
+   },
+   "singleDraft0": {
+    "text": "ठीक है, मैं wait करूँगा",
+    "chars": 23,
+    "speaker": "shubh_enhi_companion",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 296.4,
+    "totalMs": 498.9,
+    "libTtfaMs": 296.3,
+    "transport": "ws",
+    "audioSec": 1.94
+   },
+   "usageStream": {
+    "completion_tokens": 73,
+    "prompt_tokens": 581,
+    "total_tokens": 654,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:27.064Z"
+  },
+  {
+   "id": "en01",
+   "lang": "en-IN",
+   "who": "Physiotherapist",
+   "partner": "Good morning Arjun! Shall we start with the stretches, or do you want to rest first?",
+   "intended": "Let's start, but go slow on the legs.",
+   "keywords": null,
+   "historyTurns": 0,
+   "promptChars": 2073,
+   "attempt": 1,
+   "firstTokenMs": 100.3,
+   "llmTotalMs": 257.2,
+   "firstDraftMs": 132.1,
+   "allDraftsMs": 257.2,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "Let's start with the stretches please",
+     "gloss": "Let's start with the stretches please",
+     "lang": "en-IN",
+     "atMs": 132.1,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "Maybe just five minutes of rest first",
+     "gloss": "Maybe just five minutes of rest first",
+     "lang": "en-IN",
+     "atMs": 174.3,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "What stretches are we doing today?",
+     "gloss": "What stretches are we doing today?",
+     "lang": "en-IN",
+     "atMs": 209.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "I am feeling a bit stiff today",
+     "gloss": "I am feeling a bit stiff today",
+     "lang": "en-IN",
+     "atMs": 257.2,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "Let's start with the stretches please",
+     "chars": 37,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 132.2,
+     "ttfaMs": 299.5,
+     "totalMs": 495.6,
+     "libTtfaMs": 299.4,
+     "transport": "ws",
+     "audioSec": 1.945
+    },
+    {
+     "text": "Maybe just five minutes of rest first",
+     "chars": 37,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 174.3,
+     "ttfaMs": 304.4,
+     "totalMs": 720.2,
+     "libTtfaMs": 304.4,
+     "transport": "ws",
+     "audioSec": 3.341
+    },
+    {
+     "text": "What stretches are we doing today?",
+     "chars": 34,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 209.8,
+     "ttfaMs": 299.3,
+     "totalMs": 441.5,
+     "libTtfaMs": 299.3,
+     "transport": "ws",
+     "audioSec": 1.69
+    },
+    {
+     "text": "I am feeling a bit stiff today",
+     "chars": 30,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 257.2,
+     "ttfaMs": 304.5,
+     "totalMs": 637.2,
+     "libTtfaMs": 304.4,
+     "transport": "ws",
+     "audioSec": 2.776
+    }
+   ],
+   "allVoicedMs": 894.5,
+   "allFirstAudioMs": 561.7,
+   "allVoicedWallMs": 894.5,
+   "singleIntended": {
+    "text": "Let's start, but go slow on the legs.",
+    "chars": 37,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 302,
+    "totalMs": 719.3,
+    "libTtfaMs": 301.9,
+    "transport": "ws",
+    "audioSec": 3.623
+   },
+   "singleDraft0": {
+    "text": "Let's start with the stretches please",
+    "chars": 37,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 305.1,
+    "totalMs": 481.2,
+    "libTtfaMs": 305,
+    "transport": "ws",
+    "audioSec": 1.845
+   },
+   "usageStream": {
+    "completion_tokens": 70,
+    "prompt_tokens": 508,
+    "total_tokens": 578,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:30.437Z"
+  },
+  {
+   "id": "en02",
+   "lang": "en-IN",
+   "who": "Physiotherapist",
+   "partner": "How is the right hand? Any cramps since last week?",
+   "intended": "Cramps at night, mostly in the fingers.",
+   "keywords": null,
+   "historyTurns": 2,
+   "promptChars": 2208,
+   "attempt": 1,
+   "firstTokenMs": 111.6,
+   "llmTotalMs": 305.1,
+   "firstDraftMs": 144.1,
+   "allDraftsMs": 305.1,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "My right hand is a bit stiff today",
+     "gloss": "My right hand is a bit stiff today",
+     "lang": "en-IN",
+     "atMs": 144.1,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "Maybe we can do it a little later",
+     "gloss": "Maybe we can do it a little later",
+     "lang": "en-IN",
+     "atMs": 195,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "I am feeling a little tired right now",
+     "gloss": "I am feeling a little tired right now",
+     "lang": "en-IN",
+     "atMs": 237.1,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "Can we use some warm water for it?",
+     "gloss": "Can we use some warm water for it?",
+     "lang": "en-IN",
+     "atMs": 305.1,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "My right hand is a bit stiff today",
+     "chars": 34,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 144.1,
+     "ttfaMs": 304.5,
+     "totalMs": 550.9,
+     "libTtfaMs": 304.4,
+     "transport": "ws",
+     "audioSec": 2.345
+    },
+    {
+     "text": "Maybe we can do it a little later",
+     "chars": 33,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 195,
+     "ttfaMs": 306.9,
+     "totalMs": 474.2,
+     "libTtfaMs": 306.8,
+     "transport": "ws",
+     "audioSec": 1.761
+    },
+    {
+     "text": "I am feeling a little tired right now",
+     "chars": 37,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 237.2,
+     "ttfaMs": 299.9,
+     "totalMs": 514.3,
+     "libTtfaMs": 299.8,
+     "transport": "ws",
+     "audioSec": 2.012
+    },
+    {
+     "text": "Can we use some warm water for it?",
+     "chars": 34,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 305.1,
+     "ttfaMs": 300.8,
+     "totalMs": 551.7,
+     "libTtfaMs": 300.7,
+     "transport": "ws",
+     "audioSec": 2.298
+    }
+   ],
+   "allVoicedMs": 856.8,
+   "allFirstAudioMs": 605.9,
+   "allVoicedWallMs": 856.8,
+   "singleIntended": {
+    "text": "Cramps at night, mostly in the fingers.",
+    "chars": 39,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 300.7,
+    "totalMs": 747.4,
+    "libTtfaMs": 300.6,
+    "transport": "ws",
+    "audioSec": 3.897
+   },
+   "singleDraft0": {
+    "text": "My right hand is a bit stiff today",
+    "chars": 34,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 303,
+    "totalMs": 566.2,
+    "libTtfaMs": 302.9,
+    "transport": "ws",
+    "audioSec": 2.427
+   },
+   "usageStream": {
+    "completion_tokens": 78,
+    "prompt_tokens": 546,
+    "total_tokens": 624,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:33.887Z"
+  },
+  {
+   "id": "en03",
+   "lang": "en-IN",
+   "who": "Physiotherapist",
+   "partner": "Okay, I'll teach your mother a massage for that. Is evening okay for her?",
+   "intended": "Evening is fine, after six.",
+   "keywords": null,
+   "historyTurns": 4,
+   "promptChars": 2346,
+   "attempt": 1,
+   "firstTokenMs": 106.3,
+   "llmTotalMs": 286.5,
+   "firstDraftMs": 136.6,
+   "allDraftsMs": 286.4,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "Evening is perfect, thanks",
+     "gloss": "Evening is perfect, thanks",
+     "lang": "en-IN",
+     "atMs": 136.6,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "Let's try it tomorrow instead",
+     "gloss": "Let's try it tomorrow instead",
+     "lang": "en-IN",
+     "atMs": 180.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "Will that really help my fingers?",
+     "gloss": "Will that really help my fingers?",
+     "lang": "en-IN",
+     "atMs": 224.5,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "Amma will be so relieved to hear that",
+     "gloss": "Amma will be so relieved to hear that",
+     "lang": "en-IN",
+     "atMs": 286.4,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "Evening is perfect, thanks",
+     "chars": 26,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 136.6,
+     "ttfaMs": 305.3,
+     "totalMs": 655.5,
+     "libTtfaMs": 305.2,
+     "transport": "ws",
+     "audioSec": 2.961
+    },
+    {
+     "text": "Let's try it tomorrow instead",
+     "chars": 29,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 180.8,
+     "ttfaMs": 309.6,
+     "totalMs": 475.1,
+     "libTtfaMs": 309.6,
+     "transport": "ws",
+     "audioSec": 1.75
+    },
+    {
+     "text": "Will that really help my fingers?",
+     "chars": 33,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 224.5,
+     "ttfaMs": 300.3,
+     "totalMs": 544.3,
+     "libTtfaMs": 300.3,
+     "transport": "ws",
+     "audioSec": 2.455
+    },
+    {
+     "text": "Amma will be so relieved to hear that",
+     "chars": 37,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 286.5,
+     "ttfaMs": 315.2,
+     "totalMs": 574.9,
+     "libTtfaMs": 315.1,
+     "transport": "ws",
+     "audioSec": 2.512
+    }
+   ],
+   "allVoicedMs": 861.4,
+   "allFirstAudioMs": 601.7,
+   "allVoicedWallMs": 861.3,
+   "singleIntended": {
+    "text": "Evening is fine, after six.",
+    "chars": 27,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 302.8,
+    "totalMs": 509.9,
+    "libTtfaMs": 302.8,
+    "transport": "ws",
+    "audioSec": 2.105
+   },
+   "singleDraft0": {
+    "text": "Evening is perfect, thanks",
+    "chars": 26,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 303.6,
+    "totalMs": 552.5,
+    "libTtfaMs": 303.5,
+    "transport": "ws",
+    "audioSec": 2.347
+   },
+   "usageStream": {
+    "completion_tokens": 68,
+    "prompt_tokens": 584,
+    "total_tokens": 652,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:37.086Z"
+  },
+  {
+   "id": "en04",
+   "lang": "en-IN",
+   "who": "Priya",
+   "partner": "Arjun, the team really misses you. Would you like to review some code from home?",
+   "intended": "Yes, I'd love that. Send me small PRs.",
+   "keywords": null,
+   "historyTurns": 0,
+   "promptChars": 2039,
+   "attempt": 1,
+   "firstTokenMs": 136.3,
+   "llmTotalMs": 385.2,
+   "firstDraftMs": 269.2,
+   "allDraftsMs": null,
+   "draftCount": 3,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "Let me rest for a bit first",
+     "gloss": "Let me rest for a bit first",
+     "lang": "en-IN",
+     "atMs": 269.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "What kind of code is it?",
+     "gloss": "What kind of code is it?",
+     "lang": "en-IN",
+     "atMs": 313.6,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "That is really sweet of you",
+     "gloss": "That is really sweet of you",
+     "lang": "en-IN",
+     "atMs": 385.1,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "Let me rest for a bit first",
+     "chars": 27,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 269.2,
+     "ttfaMs": 308.4,
+     "totalMs": 487.2,
+     "libTtfaMs": 308.4,
+     "transport": "ws",
+     "audioSec": 1.843
+    },
+    {
+     "text": "What kind of code is it?",
+     "chars": 24,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 313.6,
+     "ttfaMs": 304.4,
+     "totalMs": 558.5,
+     "libTtfaMs": 304.3,
+     "transport": "ws",
+     "audioSec": 2.441
+    },
+    {
+     "text": "That is really sweet of you",
+     "chars": 27,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 385.1,
+     "ttfaMs": 299.8,
+     "totalMs": 490.9,
+     "libTtfaMs": 299.7,
+     "transport": "ws",
+     "audioSec": 1.836
+    }
+   ],
+   "allVoicedMs": 876,
+   "allFirstAudioMs": 684.9,
+   "allVoicedWallMs": 876.1,
+   "singleIntended": {
+    "text": "Yes, I'd love that. Send me small PRs.",
+    "chars": 38,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 298.2,
+    "totalMs": 721.9,
+    "libTtfaMs": 298.2,
+    "transport": "ws",
+    "audioSec": 3.542
+   },
+   "singleDraft0": {
+    "text": "Let me rest for a bit first",
+    "chars": 27,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 303.1,
+    "totalMs": 576.8,
+    "libTtfaMs": 303,
+    "transport": "ws",
+    "audioSec": 2.514
+   },
+   "usageStream": {
+    "completion_tokens": 66,
+    "prompt_tokens": 504,
+    "total_tokens": 570,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:40.532Z"
+  },
+  {
+   "id": "en05",
+   "lang": "en-IN",
+   "who": "Priya",
+   "partner": "Great. Is typing long review comments okay, or should we keep it short?",
+   "intended": "Keep it short, I get tired quickly.",
+   "keywords": null,
+   "historyTurns": 2,
+   "promptChars": 2186,
+   "attempt": 1,
+   "firstTokenMs": 99.6,
+   "llmTotalMs": 333.1,
+   "firstDraftMs": 140.1,
+   "allDraftsMs": 333.1,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "Long comments are fine, I will manage",
+     "gloss": "Long comments are fine, I will manage",
+     "lang": "en-IN",
+     "atMs": 140.1,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "Keep them short, my thumbs are getting tired",
+     "gloss": "Keep them short, my thumbs are getting tired",
+     "lang": "en-IN",
+     "atMs": 193,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "How much code do you want me to look at?",
+     "gloss": "How much code do you want me to look at?",
+     "lang": "en-IN",
+     "atMs": 260.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "I will try, but Amma's rasam is waiting",
+     "gloss": "I will try, but Amma's rasam is waiting",
+     "lang": "en-IN",
+     "atMs": 333.1,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "Long comments are fine, I will manage",
+     "chars": 37,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 140.2,
+     "ttfaMs": 301.1,
+     "totalMs": 740.7,
+     "libTtfaMs": 301,
+     "transport": "ws",
+     "audioSec": 3.53
+    },
+    {
+     "text": "Keep them short, my thumbs are getting tired",
+     "chars": 44,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 193,
+     "ttfaMs": 306.9,
+     "totalMs": 764.9,
+     "libTtfaMs": 306.9,
+     "transport": "ws",
+     "audioSec": 3.716
+    },
+    {
+     "text": "How much code do you want me to look at?",
+     "chars": 40,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 260.3,
+     "ttfaMs": 303.3,
+     "totalMs": 671,
+     "libTtfaMs": 303.2,
+     "transport": "ws",
+     "audioSec": 3.279
+    },
+    {
+     "text": "I will try, but Amma's rasam is waiting",
+     "chars": 39,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 333.1,
+     "ttfaMs": 309.7,
+     "totalMs": 763.8,
+     "libTtfaMs": 309.6,
+     "transport": "ws",
+     "audioSec": 3.638
+    }
+   ],
+   "allVoicedMs": 1096.9,
+   "allFirstAudioMs": 642.8,
+   "allVoicedWallMs": 1096.9,
+   "singleIntended": {
+    "text": "Keep it short, I get tired quickly.",
+    "chars": 35,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 305.9,
+    "totalMs": 593.4,
+    "libTtfaMs": 305.8,
+    "transport": "ws",
+    "audioSec": 2.713
+   },
+   "singleDraft0": {
+    "text": "Long comments are fine, I will manage",
+    "chars": 37,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 304,
+    "totalMs": 653.6,
+    "libTtfaMs": 303.9,
+    "transport": "ws",
+    "audioSec": 3.09
+   },
+   "usageStream": {
+    "completion_tokens": 94,
+    "prompt_tokens": 547,
+    "total_tokens": 641,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:44.153Z"
+  },
+  {
+   "id": "en06",
+   "lang": "en-IN",
+   "who": "Priya",
+   "partner": "We're also planning a team lunch at your place next Friday. Is that too much?",
+   "intended": "That sounds lovely, but keep it small.",
+   "keywords": null,
+   "historyTurns": 4,
+   "promptChars": 2314,
+   "attempt": 1,
+   "firstTokenMs": 97.9,
+   "llmTotalMs": 321.6,
+   "firstDraftMs": 138.5,
+   "allDraftsMs": 321.5,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "Next Friday works perfectly for me",
+     "gloss": "Next Friday works perfectly for me",
+     "lang": "en-IN",
+     "atMs": 138.5,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "I might need to rest that morning",
+     "gloss": "I might need to rest that morning",
+     "lang": "en-IN",
+     "atMs": 188.1,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "Can we do it a bit later in the day?",
+     "gloss": "Can we do it a bit later in the day",
+     "lang": "en-IN",
+     "atMs": 260.4,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "That sounds lovely, thank you for asking",
+     "gloss": "That sounds lovely, thank you for asking",
+     "lang": "en-IN",
+     "atMs": 321.5,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "Next Friday works perfectly for me",
+     "chars": 34,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 138.6,
+     "ttfaMs": 306.4,
+     "totalMs": 596.4,
+     "libTtfaMs": 306.3,
+     "transport": "ws",
+     "audioSec": 2.504
+    },
+    {
+     "text": "I might need to rest that morning",
+     "chars": 33,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 188.1,
+     "ttfaMs": 302.9,
+     "totalMs": 559.3,
+     "libTtfaMs": 302.9,
+     "transport": "ws",
+     "audioSec": 2.203
+    },
+    {
+     "text": "Can we do it a bit later in the day?",
+     "chars": 36,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 260.4,
+     "ttfaMs": 403,
+     "totalMs": 420.2,
+     "libTtfaMs": 402.9,
+     "transport": "ws",
+     "audioSec": 1.445
+    },
+    {
+     "text": "That sounds lovely, thank you for asking",
+     "chars": 40,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 321.6,
+     "ttfaMs": 300.2,
+     "totalMs": 591,
+     "libTtfaMs": 300.1,
+     "transport": "ws",
+     "audioSec": 2.603
+    }
+   ],
+   "allVoicedMs": 912.6,
+   "allFirstAudioMs": 663.4,
+   "allVoicedWallMs": 912.6,
+   "singleIntended": {
+    "text": "That sounds lovely, but keep it small.",
+    "chars": 38,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 306.6,
+    "totalMs": 617.1,
+    "libTtfaMs": 306.5,
+    "transport": "ws",
+    "audioSec": 2.893
+   },
+   "singleDraft0": {
+    "text": "Next Friday works perfectly for me",
+    "chars": 34,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 304.2,
+    "totalMs": 606,
+    "libTtfaMs": 303.8,
+    "transport": "ws",
+    "audioSec": 2.679
+   },
+   "usageStream": {
+    "completion_tokens": 75,
+    "prompt_tokens": 583,
+    "total_tokens": 658,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:47.576Z"
+  },
+  {
+   "id": "en07",
+   "lang": "en-IN",
+   "who": "Mrs. Iyer",
+   "partner": "Arjun, I'm going to the market. Do you need anything?",
+   "intended": "Yes aunty, some bananas and bread please.",
+   "keywords": null,
+   "historyTurns": 0,
+   "promptChars": 2024,
+   "attempt": 1,
+   "firstTokenMs": 105,
+   "llmTotalMs": 320.7,
+   "firstDraftMs": 151.8,
+   "allDraftsMs": 320.6,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "Just some rasam ingredients, Amma",
+     "gloss": "Just some rasam ingredients, Amma",
+     "lang": "en-IN",
+     "atMs": 151.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "I'll tell you when I need something",
+     "gloss": "I'll tell you when I need something",
+     "lang": "en-IN",
+     "atMs": 194.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "Nothing right now, I am fine",
+     "gloss": "Nothing right now, I am fine",
+     "lang": "en-IN",
+     "atMs": 242.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "Should I make a list for you, Mrs. Iyer?",
+     "gloss": "Should I make a list for you, Mrs. Iyer?",
+     "lang": "en-IN",
+     "atMs": 320.6,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "Just some rasam ingredients, Amma",
+     "chars": 33,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 151.8,
+     "ttfaMs": 305,
+     "totalMs": 609.8,
+     "libTtfaMs": 304.9,
+     "transport": "ws",
+     "audioSec": 2.69
+    },
+    {
+     "text": "I'll tell you when I need something",
+     "chars": 35,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 194.3,
+     "ttfaMs": 305.1,
+     "totalMs": 494.7,
+     "libTtfaMs": 305,
+     "transport": "ws",
+     "audioSec": 1.847
+    },
+    {
+     "text": "Nothing right now, I am fine",
+     "chars": 28,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 242.9,
+     "ttfaMs": 302.9,
+     "totalMs": 570.3,
+     "libTtfaMs": 302.9,
+     "transport": "ws",
+     "audioSec": 2.343
+    },
+    {
+     "text": "Should I make a list for you, Mrs. Iyer?",
+     "chars": 40,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 320.7,
+     "ttfaMs": 302.3,
+     "totalMs": 545.8,
+     "libTtfaMs": 302.2,
+     "transport": "ws",
+     "audioSec": 2.308
+    }
+   ],
+   "allVoicedMs": 866.5,
+   "allFirstAudioMs": 623,
+   "allVoicedWallMs": 866.5,
+   "singleIntended": {
+    "text": "Yes aunty, some bananas and bread please.",
+    "chars": 41,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 307.6,
+    "totalMs": 677.1,
+    "libTtfaMs": 307.5,
+    "transport": "ws",
+    "audioSec": 3.291
+   },
+   "singleDraft0": {
+    "text": "Just some rasam ingredients, Amma",
+    "chars": 33,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 306.8,
+    "totalMs": 697.8,
+    "libTtfaMs": 306.7,
+    "transport": "ws",
+    "audioSec": 3.37
+   },
+   "usageStream": {
+    "completion_tokens": 84,
+    "prompt_tokens": 506,
+    "total_tokens": 590,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:51.103Z"
+  },
+  {
+   "id": "en08",
+   "lang": "en-IN",
+   "who": "Mrs. Iyer",
+   "partner": "How is your mother keeping? She looked tired yesterday.",
+   "intended": "She's not sleeping well, she worries about me.",
+   "keywords": null,
+   "historyTurns": 2,
+   "promptChars": 2162,
+   "attempt": 1,
+   "firstTokenMs": 100.5,
+   "llmTotalMs": 327.9,
+   "firstDraftMs": 138.2,
+   "allDraftsMs": 327.9,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "Amma is just tired, aunty",
+     "gloss": "Amma is just tired, aunty",
+     "lang": "en-IN",
+     "atMs": 138.2,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "I will check on her this evening",
+     "gloss": "I will check on her this evening",
+     "lang": "en-IN",
+     "atMs": 187.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "Did she finish her medicine on time?",
+     "gloss": "Did she finish her medicine on time?",
+     "lang": "en-IN",
+     "atMs": 259.1,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "Tell her I am sending some rasam",
+     "gloss": "Tell her I am sending some rasam",
+     "lang": "en-IN",
+     "atMs": 327.9,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "Amma is just tired, aunty",
+     "chars": 25,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 138.2,
+     "ttfaMs": 303.7,
+     "totalMs": 678.2,
+     "libTtfaMs": 303.6,
+     "transport": "ws",
+     "audioSec": 3.197
+    },
+    {
+     "text": "I will check on her this evening",
+     "chars": 32,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 187.9,
+     "ttfaMs": 302.5,
+     "totalMs": 472,
+     "libTtfaMs": 302.4,
+     "transport": "ws",
+     "audioSec": 1.751
+    },
+    {
+     "text": "Did she finish her medicine on time?",
+     "chars": 36,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 259.1,
+     "ttfaMs": 316,
+     "totalMs": 589.4,
+     "libTtfaMs": 315.9,
+     "transport": "ws",
+     "audioSec": 2.538
+    },
+    {
+     "text": "Tell her I am sending some rasam",
+     "chars": 32,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 327.9,
+     "ttfaMs": 301.8,
+     "totalMs": 605,
+     "libTtfaMs": 301.8,
+     "transport": "ws",
+     "audioSec": 2.686
+    }
+   ],
+   "allVoicedMs": 932.9,
+   "allFirstAudioMs": 629.7,
+   "allVoicedWallMs": 932.9,
+   "singleIntended": {
+    "text": "She's not sleeping well, she worries about me.",
+    "chars": 46,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 305.3,
+    "totalMs": 609.1,
+    "libTtfaMs": 305.2,
+    "transport": "ws",
+    "audioSec": 2.802
+   },
+   "singleDraft0": {
+    "text": "Amma is just tired, aunty",
+    "chars": 25,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 302.9,
+    "totalMs": 617.3,
+    "libTtfaMs": 302.9,
+    "transport": "ws",
+    "audioSec": 2.788
+   },
+   "usageStream": {
+    "completion_tokens": 74,
+    "prompt_tokens": 541,
+    "total_tokens": 615,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:54.531Z"
+  },
+  {
+   "id": "en09",
+   "lang": "en-IN",
+   "who": "Mrs. Iyer",
+   "partner": "Shall I come and sit with you on Sunday so she can go out?",
+   "intended": "That would be so kind, thank you aunty.",
+   "keywords": null,
+   "historyTurns": 4,
+   "promptChars": 2286,
+   "attempt": 1,
+   "firstTokenMs": 96.6,
+   "llmTotalMs": 245.7,
+   "firstDraftMs": 128.6,
+   "allDraftsMs": 245.7,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "That would be really nice, aunty",
+     "gloss": "That would be really nice, aunty",
+     "lang": "en-IN",
+     "atMs": 128.6,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "Let me check with Amma first",
+     "gloss": "Let me check with Amma first",
+     "lang": "en-IN",
+     "atMs": 170.6,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "Sunday works perfectly for me",
+     "gloss": "Sunday works perfectly for me",
+     "lang": "en-IN",
+     "atMs": 206.5,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "I will let you know by tomorrow",
+     "gloss": "I will let you know by tomorrow",
+     "lang": "en-IN",
+     "atMs": 245.7,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "That would be really nice, aunty",
+     "chars": 32,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 128.6,
+     "ttfaMs": 304,
+     "totalMs": 536.6,
+     "libTtfaMs": 303.9,
+     "transport": "ws",
+     "audioSec": 2.294
+    },
+    {
+     "text": "Let me check with Amma first",
+     "chars": 28,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 170.7,
+     "ttfaMs": 304.8,
+     "totalMs": 462.2,
+     "libTtfaMs": 304.7,
+     "transport": "ws",
+     "audioSec": 1.676
+    },
+    {
+     "text": "Sunday works perfectly for me",
+     "chars": 29,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 206.5,
+     "ttfaMs": 312.9,
+     "totalMs": 575.8,
+     "libTtfaMs": 312.8,
+     "transport": "ws",
+     "audioSec": 2.197
+    },
+    {
+     "text": "I will let you know by tomorrow",
+     "chars": 31,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 245.7,
+     "ttfaMs": 305.3,
+     "totalMs": 510.4,
+     "libTtfaMs": 305.2,
+     "transport": "ws",
+     "audioSec": 1.914
+    }
+   ],
+   "allVoicedMs": 782.3,
+   "allFirstAudioMs": 551,
+   "allVoicedWallMs": 782.3,
+   "singleIntended": {
+    "text": "That would be so kind, thank you aunty.",
+    "chars": 39,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 301,
+    "totalMs": 587.8,
+    "libTtfaMs": 300.9,
+    "transport": "ws",
+    "audioSec": 2.7
+   },
+   "singleDraft0": {
+    "text": "That would be really nice, aunty",
+    "chars": 32,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 300,
+    "totalMs": 619.6,
+    "libTtfaMs": 299.9,
+    "transport": "ws",
+    "audioSec": 2.871
+   },
+   "usageStream": {
+    "completion_tokens": 66,
+    "prompt_tokens": 577,
+    "total_tokens": 643,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:30:57.811Z"
+  },
+  {
+   "id": "en10",
+   "lang": "en-IN",
+   "who": "Emergency doctor",
+   "partner": "Arjun, can you tell me where it hurts? Chest or stomach?",
+   "intended": "Chest feels tight since this morning.",
+   "keywords": null,
+   "historyTurns": 0,
+   "promptChars": 2048,
+   "attempt": 1,
+   "firstTokenMs": 95.6,
+   "llmTotalMs": 328.5,
+   "firstDraftMs": 131.7,
+   "allDraftsMs": 328.5,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "Chest is a bit sore, Doctor",
+     "gloss": "Chest is a bit sore, Doctor",
+     "lang": "en-IN",
+     "atMs": 131.7,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "I will try to check, just give me a minute",
+     "gloss": "I will try to check, just give me a minute",
+     "lang": "en-IN",
+     "atMs": 195.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "Is this normal after the medicine, Doctor?",
+     "gloss": "Is this normal after the medicine, Doctor?",
+     "lang": "en-IN",
+     "atMs": 268.3,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "Not sure right now, I feel a little tired",
+     "gloss": "Not sure right now, I feel a little tired",
+     "lang": "en-IN",
+     "atMs": 328.5,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "Chest is a bit sore, Doctor",
+     "chars": 27,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 131.8,
+     "ttfaMs": 297.1,
+     "totalMs": 567.7,
+     "libTtfaMs": 297.1,
+     "transport": "ws",
+     "audioSec": 2.506
+    },
+    {
+     "text": "I will try to check, just give me a minute",
+     "chars": 42,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 195.8,
+     "ttfaMs": 306.3,
+     "totalMs": 569.5,
+     "libTtfaMs": 306.3,
+     "transport": "ws",
+     "audioSec": 2.43
+    },
+    {
+     "text": "Is this normal after the medicine, Doctor?",
+     "chars": 42,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 268.4,
+     "ttfaMs": 294.3,
+     "totalMs": 652.9,
+     "libTtfaMs": 294.2,
+     "transport": "ws",
+     "audioSec": 3.071
+    },
+    {
+     "text": "Not sure right now, I feel a little tired",
+     "chars": 41,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 328.5,
+     "ttfaMs": 303.4,
+     "totalMs": 776.1,
+     "libTtfaMs": 303.3,
+     "transport": "ws",
+     "audioSec": 3.722
+    }
+   ],
+   "allVoicedMs": 1104.6,
+   "allFirstAudioMs": 631.9,
+   "allVoicedWallMs": 1104.6,
+   "singleIntended": {
+    "text": "Chest feels tight since this morning.",
+    "chars": 37,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.6,
+    "ttfaMs": 302.6,
+    "totalMs": 725.1,
+    "libTtfaMs": 302.5,
+    "transport": "ws",
+    "audioSec": 3.642
+   },
+   "singleDraft0": {
+    "text": "Chest is a bit sore, Doctor",
+    "chars": 27,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0,
+    "ttfaMs": 299.3,
+    "totalMs": 561.1,
+    "libTtfaMs": 299.3,
+    "transport": "ws",
+    "audioSec": 2.434
+   },
+   "usageStream": {
+    "completion_tokens": 86,
+    "prompt_tokens": 502,
+    "total_tokens": 588,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:31:01.473Z"
+  },
+  {
+   "id": "en11",
+   "lang": "en-IN",
+   "who": "Emergency doctor",
+   "partner": "Are you on any blood thinners or any new medicines?",
+   "intended": "Only riluzole, no new medicines.",
+   "keywords": null,
+   "historyTurns": 2,
+   "promptChars": 2185,
+   "attempt": 1,
+   "firstTokenMs": 93.4,
+   "llmTotalMs": 344.2,
+   "firstDraftMs": 140.4,
+   "allDraftsMs": 344.1,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "No Doctor, I am not on anything",
+     "gloss": "No, I am not on any medicine",
+     "lang": "en-IN",
+     "atMs": 140.4,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "I will tell you once Amma brings them",
+     "gloss": "I will tell you once Amma brings my medicines",
+     "lang": "en-IN",
+     "atMs": 226.4,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "What exactly should I be looking out for?",
+     "gloss": "What exactly should I be looking out for?",
+     "lang": "en-IN",
+     "atMs": 296.8,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "I feel a bit scared right now Doctor",
+     "gloss": "I feel a bit scared right now Doctor",
+     "lang": "en-IN",
+     "atMs": 344.1,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "No Doctor, I am not on anything",
+     "chars": 31,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 140.4,
+     "ttfaMs": 305.1,
+     "totalMs": 539,
+     "libTtfaMs": 305,
+     "transport": "ws",
+     "audioSec": 2.278
+    },
+    {
+     "text": "I will tell you once Amma brings them",
+     "chars": 37,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 226.5,
+     "ttfaMs": 304.7,
+     "totalMs": 556.7,
+     "libTtfaMs": 304.6,
+     "transport": "ws",
+     "audioSec": 2.349
+    },
+    {
+     "text": "What exactly should I be looking out for?",
+     "chars": 41,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 296.9,
+     "ttfaMs": 304.4,
+     "totalMs": 560.4,
+     "libTtfaMs": 304.2,
+     "transport": "ws",
+     "audioSec": 2.296
+    },
+    {
+     "text": "I feel a bit scared right now Doctor",
+     "chars": 36,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 344.2,
+     "ttfaMs": 310.2,
+     "totalMs": 473.8,
+     "libTtfaMs": 310.2,
+     "transport": "ws",
+     "audioSec": 1.766
+    }
+   ],
+   "allVoicedMs": 857.3,
+   "allFirstAudioMs": 654.4,
+   "allVoicedWallMs": 857.3,
+   "singleIntended": {
+    "text": "Only riluzole, no new medicines.",
+    "chars": 32,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 297.2,
+    "totalMs": 692.4,
+    "libTtfaMs": 297.1,
+    "transport": "ws",
+    "audioSec": 3.379
+   },
+   "singleDraft0": {
+    "text": "No Doctor, I am not on anything",
+    "chars": 31,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 307.8,
+    "totalMs": 653.9,
+    "libTtfaMs": 307.7,
+    "transport": "ws",
+    "audioSec": 2.968
+   },
+   "usageStream": {
+    "completion_tokens": 81,
+    "prompt_tokens": 534,
+    "total_tokens": 615,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:31:04.945Z"
+  },
+  {
+   "id": "en12",
+   "lang": "en-IN",
+   "who": "Emergency doctor",
+   "partner": "We'll keep you overnight for observation. Shall we call anyone?",
+   "intended": "Please call my mother, she's outside.",
+   "keywords": null,
+   "historyTurns": 4,
+   "promptChars": 2307,
+   "attempt": 1,
+   "firstTokenMs": 102.7,
+   "llmTotalMs": 265.2,
+   "firstDraftMs": 134.5,
+   "allDraftsMs": 265.1,
+   "draftCount": 4,
+   "drafts": [
+    {
+     "idx": 0,
+     "text": "Yes please call my Amma",
+     "gloss": "Yes please call my Amma",
+     "lang": "en-IN",
+     "atMs": 134.5,
+     "foreignScript": false
+    },
+    {
+     "idx": 1,
+     "text": "No need, I am perfectly fine",
+     "gloss": "No need, I am perfectly fine",
+     "lang": "en-IN",
+     "atMs": 175.6,
+     "foreignScript": false
+    },
+    {
+     "idx": 2,
+     "text": "Will you tell me what you see",
+     "gloss": "Will you tell me what you see",
+     "lang": "en-IN",
+     "atMs": 223.9,
+     "foreignScript": false
+    },
+    {
+     "idx": 3,
+     "text": "I just want to go home",
+     "gloss": "I just want to go home",
+     "lang": "en-IN",
+     "atMs": 265.1,
+     "foreignScript": false
+    }
+   ],
+   "prespeak": [
+    {
+     "text": "Yes please call my Amma",
+     "chars": 23,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 134.5,
+     "ttfaMs": 305.9,
+     "totalMs": 525.8,
+     "libTtfaMs": 305.8,
+     "transport": "ws",
+     "audioSec": 2.116
+    },
+    {
+     "text": "No need, I am perfectly fine",
+     "chars": 28,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 175.6,
+     "ttfaMs": 336.7,
+     "totalMs": 564.4,
+     "libTtfaMs": 336.6,
+     "transport": "ws",
+     "audioSec": 2.431
+    },
+    {
+     "text": "Will you tell me what you see",
+     "chars": 29,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 223.9,
+     "ttfaMs": 301.2,
+     "totalMs": 480.9,
+     "libTtfaMs": 301.2,
+     "transport": "ws",
+     "audioSec": 1.746
+    },
+    {
+     "text": "I just want to go home",
+     "chars": 22,
+     "speaker": "shubh_en_narration",
+     "model": "bulbul:v4-flash",
+     "startMs": 265.2,
+     "ttfaMs": 308.1,
+     "totalMs": 438.4,
+     "libTtfaMs": 308.1,
+     "transport": "ws",
+     "audioSec": 1.551
+    }
+   ],
+   "allVoicedMs": 740,
+   "allFirstAudioMs": 573.3,
+   "allVoicedWallMs": 739.9,
+   "singleIntended": {
+    "text": "Please call my mother, she's outside.",
+    "chars": 37,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 303.6,
+    "totalMs": 511.6,
+    "libTtfaMs": 303.5,
+    "transport": "ws",
+    "audioSec": 2.13
+   },
+   "singleDraft0": {
+    "text": "Yes please call my Amma",
+    "chars": 23,
+    "speaker": "shubh_en_narration",
+    "model": "bulbul:v4-flash",
+    "startMs": 0.1,
+    "ttfaMs": 302.5,
+    "totalMs": 442.8,
+    "libTtfaMs": 302.4,
+    "transport": "ws",
+    "audioSec": 1.584
+   },
+   "usageStream": {
+    "completion_tokens": 64,
+    "prompt_tokens": 565,
+    "total_tokens": 629,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+   },
+   "at": "2026-10-15T02:31:07.917Z"
+  }
+ ]
+}

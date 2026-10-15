@@ -1,0 +1,790 @@
+{
+ "meta": {
+  "stage": "keywords",
+  "started": "2026-10-15T02:43:22.107Z",
+  "startedIST": "15/10/2026, 8:13:22 am",
+  "setName": "original",
+  "set": "Scripted (hand-written, not real users); intended replies fixed before any model output",
+  "setFileSha256": "3d9a19284e437193fcb60e9d34c3d6f50252b8f9d5984d797c570a913284d02d",
+  "suggestTsSha256": "84442ce92b621425a4182f5a8427c6cdf641a917b536e4526774d4294d49314b",
+  "suggestTsGit": {
+   "commit": "ffb1b9c",
+   "dirty": false
+  },
+  "settingsTsGit": {
+   "commit": "ffb1b9c",
+   "dirty": false
+  },
+  "profileNotes": "34, software engineer in Chennai. Has ALS and can no longer speak. Follows cricket.",
+  "network": "a home connection in India",
+  "node": "v25.2.1",
+  "os": "win32 10.0.26300",
+  "cpu": "13th Gen Intel(R) Core(TM) i5-13450HX",
+  "condition": "Two other agents may have been calling the same Sarvam account concurrently during this run (shared rate limits and possibly shared backend load).",
+  "model": "sarvam-105b",
+  "temperature": 0,
+  "instruction": "Give the one or two words this person would type to steer a reply-suggestion tool toward this meaning, as they would type them on a Roman keyboard.",
+  "misses": 33
+ },
+ "rows": [
+  {
+   "id": "en01",
+   "lang": "en-IN",
+   "intended": "Let's start, but go slow on the legs.",
+   "attempt": 1,
+   "status": 200,
+   "ms": 10710.4,
+   "usage": {
+    "completion_tokens": 2656,
+    "prompt_tokens": 61,
+    "total_tokens": 2717,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 2650,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nslow legs",
+   "keywords": "slow legs"
+  },
+  {
+   "id": "en02",
+   "lang": "en-IN",
+   "intended": "Cramps at night, mostly in the fingers.",
+   "attempt": 3,
+   "status": 200,
+   "ms": 23220,
+   "usage": {
+    "completion_tokens": 4000,
+    "prompt_tokens": 60,
+    "total_tokens": 4060,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3999,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "length",
+   "content": "",
+   "keywords": ""
+  },
+  {
+   "id": "en03",
+   "lang": "en-IN",
+   "intended": "Evening is fine, after six.",
+   "attempt": 1,
+   "status": 200,
+   "ms": 223.3,
+   "usage": {
+    "completion_tokens": 7,
+    "prompt_tokens": 56,
+    "total_tokens": 63,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 0,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nevening after six",
+   "keywords": "evening after"
+  },
+  {
+   "id": "en04",
+   "lang": "en-IN",
+   "intended": "Yes, I'd love that. Send me small PRs.",
+   "attempt": 1,
+   "status": 200,
+   "ms": 7078.2,
+   "usage": {
+    "completion_tokens": 1562,
+    "prompt_tokens": 63,
+    "total_tokens": 1625,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1555,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nsmall PRs",
+   "keywords": "small PRs"
+  },
+  {
+   "id": "en05",
+   "lang": "en-IN",
+   "intended": "Keep it short, I get tired quickly.",
+   "attempt": 1,
+   "status": 200,
+   "ms": 15666.8,
+   "usage": {
+    "completion_tokens": 3766,
+    "prompt_tokens": 58,
+    "total_tokens": 3824,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3760,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nPlease clarify",
+   "keywords": "Please clarify"
+  },
+  {
+   "id": "en06",
+   "lang": "en-IN",
+   "intended": "That sounds lovely, but keep it small.",
+   "attempt": 2,
+   "status": 200,
+   "ms": 12720.6,
+   "usage": {
+    "completion_tokens": 2564,
+    "prompt_tokens": 58,
+    "total_tokens": 2622,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 2559,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nshort",
+   "keywords": "short"
+  },
+  {
+   "id": "en07",
+   "lang": "en-IN",
+   "intended": "Yes aunty, some bananas and bread please.",
+   "attempt": 3,
+   "status": 200,
+   "ms": 19992.8,
+   "usage": {
+    "completion_tokens": 4000,
+    "prompt_tokens": 59,
+    "total_tokens": 4059,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3999,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "length",
+   "content": "",
+   "keywords": ""
+  },
+  {
+   "id": "en08",
+   "lang": "en-IN",
+   "intended": "She's not sleeping well, she worries about me.",
+   "attempt": 3,
+   "status": 200,
+   "ms": 19009,
+   "usage": {
+    "completion_tokens": 4000,
+    "prompt_tokens": 61,
+    "total_tokens": 4061,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3999,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "length",
+   "content": "",
+   "keywords": ""
+  },
+  {
+   "id": "en10",
+   "lang": "en-IN",
+   "intended": "Chest feels tight since this morning.",
+   "attempt": 2,
+   "status": 200,
+   "ms": 14376.6,
+   "usage": {
+    "completion_tokens": 2878,
+    "prompt_tokens": 56,
+    "total_tokens": 2934,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 2872,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nchest tightness",
+   "keywords": "chest tightness"
+  },
+  {
+   "id": "en11",
+   "lang": "en-IN",
+   "intended": "Only riluzole, no new medicines.",
+   "attempt": 1,
+   "status": 200,
+   "ms": 6050.6,
+   "usage": {
+    "completion_tokens": 1204,
+    "prompt_tokens": 58,
+    "total_tokens": 1262,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1196,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nriluzole only",
+   "keywords": "riluzole only"
+  },
+  {
+   "id": "hi01",
+   "lang": "hi-IN",
+   "intended": "निगलने में थोड़ी दिक्कत बढ़ गई है",
+   "attempt": 1,
+   "status": 200,
+   "ms": 11819.6,
+   "usage": {
+    "completion_tokens": 2371,
+    "prompt_tokens": 58,
+    "total_tokens": 2429,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 2364,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\ndysphagia",
+   "keywords": "dysphagia"
+  },
+  {
+   "id": "hi02",
+   "lang": "hi-IN",
+   "intended": "हाँ, लेटने पर साँस फूलती है",
+   "attempt": 2,
+   "status": 200,
+   "ms": 5145.8,
+   "usage": {
+    "completion_tokens": 1027,
+    "prompt_tokens": 59,
+    "total_tokens": 1086,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1020,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nOrthopnea",
+   "keywords": "Orthopnea"
+  },
+  {
+   "id": "hi03",
+   "lang": "hi-IN",
+   "intended": "क्या mask पूरी रात पहनना पड़ेगा?",
+   "attempt": 1,
+   "status": 200,
+   "ms": 18923.4,
+   "usage": {
+    "completion_tokens": 3822,
+    "prompt_tokens": 57,
+    "total_tokens": 3879,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3816,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nmask raat",
+   "keywords": "mask raat"
+  },
+  {
+   "id": "hi05",
+   "lang": "hi-IN",
+   "intended": "हाँ देखा, last over में मज़ा आ गया",
+   "attempt": 1,
+   "status": 200,
+   "ms": 7576.7,
+   "usage": {
+    "completion_tokens": 1860,
+    "prompt_tokens": 59,
+    "total_tokens": 1919,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1854,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nlast over",
+   "keywords": "last over"
+  },
+  {
+   "id": "hi06",
+   "lang": "hi-IN",
+   "intended": "शाम को चलेंगे, धूप में नहीं",
+   "attempt": 1,
+   "status": 200,
+   "ms": 8500.5,
+   "usage": {
+    "completion_tokens": 1966,
+    "prompt_tokens": 57,
+    "total_tokens": 2023,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1957,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nshaam dhoop",
+   "keywords": "shaam dhoop"
+  },
+  {
+   "id": "hi07",
+   "lang": "hi-IN",
+   "intended": "दस मिनट रुको, पहले चाय पीनी है",
+   "attempt": 2,
+   "status": 200,
+   "ms": 15115.5,
+   "usage": {
+    "completion_tokens": 3063,
+    "prompt_tokens": 59,
+    "total_tokens": 3122,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3057,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nwait tea",
+   "keywords": "wait tea"
+  },
+  {
+   "id": "hi08",
+   "lang": "hi-IN",
+   "intended": "हाँ, बस आधा चम्मच",
+   "attempt": 1,
+   "status": 200,
+   "ms": 17837.8,
+   "usage": {
+    "completion_tokens": 3656,
+    "prompt_tokens": 54,
+    "total_tokens": 3710,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3647,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\naadha chammach",
+   "keywords": "aadha chammach"
+  },
+  {
+   "id": "hi09",
+   "lang": "hi-IN",
+   "intended": "हाँ याद है, उससे पहले मुझे बैठा देना",
+   "attempt": 3,
+   "status": 200,
+   "ms": 17380.7,
+   "usage": {
+    "completion_tokens": 4000,
+    "prompt_tokens": 58,
+    "total_tokens": 4058,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3999,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "length",
+   "content": "",
+   "keywords": ""
+  },
+  {
+   "id": "hi10",
+   "lang": "hi-IN",
+   "intended": "बाएँ हाथ से लीजिए, वहाँ vein अच्छी है",
+   "attempt": 1,
+   "status": 200,
+   "ms": 15677.6,
+   "usage": {
+    "completion_tokens": 3446,
+    "prompt_tokens": 59,
+    "total_tokens": 3505,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3440,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nleft vein",
+   "keywords": "left vein"
+  },
+  {
+   "id": "hi11",
+   "lang": "hi-IN",
+   "intended": "नहीं, रात दस बजे के बाद कुछ नहीं खाया",
+   "attempt": 1,
+   "status": 200,
+   "ms": 10705,
+   "usage": {
+    "completion_tokens": 2400,
+    "prompt_tokens": 60,
+    "total_tokens": 2460,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 2393,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nintermittent fasting",
+   "keywords": "intermittent fasting"
+  },
+  {
+   "id": "hi12",
+   "lang": "hi-IN",
+   "intended": "Doctor को भी copy भेज दीजिए please",
+   "attempt": 2,
+   "status": 200,
+   "ms": 4519.1,
+   "usage": {
+    "completion_tokens": 883,
+    "prompt_tokens": 56,
+    "total_tokens": 939,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 877,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\ndoctor copy",
+   "keywords": "doctor copy"
+  },
+  {
+   "id": "ta01",
+   "lang": "ta-IN",
+   "intended": "இட்லி போதும் Amma, ரெண்டு மட்டும்",
+   "attempt": 1,
+   "status": 200,
+   "ms": 12728.4,
+   "usage": {
+    "completion_tokens": 2550,
+    "prompt_tokens": 59,
+    "total_tokens": 2609,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 2543,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nIdli enough",
+   "keywords": "Idli enough"
+  },
+  {
+   "id": "ta02",
+   "lang": "ta-IN",
+   "intended": "பரவாயில்ல Amma, பக்கத்துல தண்ணி வச்சுடுங்க",
+   "attempt": 3,
+   "status": 200,
+   "ms": 10909.9,
+   "usage": {
+    "completion_tokens": 2560,
+    "prompt_tokens": 65,
+    "total_tokens": 2625,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 2550,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nParavaayilla Amma",
+   "keywords": "Paravaayilla Amma"
+  },
+  {
+   "id": "ta03",
+   "lang": "ta-IN",
+   "intended": "ஆமா Amma, ரசம் சாதம் வேணும்",
+   "attempt": 1,
+   "status": 200,
+   "ms": 12719.5,
+   "usage": {
+    "completion_tokens": 2779,
+    "prompt_tokens": 60,
+    "total_tokens": 2839,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 2772,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nrasam rice",
+   "keywords": "rasam rice"
+  },
+  {
+   "id": "ta04",
+   "lang": "ta-IN",
+   "intended": "சரி, பண்ணுங்க. தொண்டை அடைக்குது",
+   "attempt": 2,
+   "status": 200,
+   "ms": 14089.6,
+   "usage": {
+    "completion_tokens": 2851,
+    "prompt_tokens": 60,
+    "total_tokens": 2911,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 2842,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nthondai adai",
+   "keywords": "thondai adai"
+  },
+  {
+   "id": "ta05",
+   "lang": "ta-IN",
+   "intended": "ஆமா, இடது பக்கம் திருப்புங்க",
+   "attempt": 1,
+   "status": 200,
+   "ms": 210.9,
+   "usage": {
+    "completion_tokens": 6,
+    "prompt_tokens": 58,
+    "total_tokens": 64,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 0,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nturn left",
+   "keywords": "turn left"
+  },
+  {
+   "id": "ta06",
+   "lang": "ta-IN",
+   "intended": "இல்ல, ஆனா கொஞ்சம் tired-ஆ இருக்கு",
+   "attempt": 2,
+   "status": 200,
+   "ms": 8078.2,
+   "usage": {
+    "completion_tokens": 1885,
+    "prompt_tokens": 59,
+    "total_tokens": 1944,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1880,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\ntired",
+   "keywords": "tired"
+  },
+  {
+   "id": "ta07",
+   "lang": "ta-IN",
+   "intended": "வா டா, ஏழு மணிக்கு வா",
+   "attempt": 1,
+   "status": 200,
+   "ms": 193.2,
+   "usage": {
+    "completion_tokens": 10,
+    "prompt_tokens": 55,
+    "total_tokens": 65,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 0,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nCome by\nCome at seven",
+   "keywords": "Come by"
+  },
+  {
+   "id": "ta08",
+   "lang": "ta-IN",
+   "intended": "நீ வாங்கிக்கோ, நான் Amma ரசம் சாப்பிடறேன்",
+   "attempt": 1,
+   "status": 200,
+   "ms": 9113.7,
+   "usage": {
+    "completion_tokens": 1846,
+    "prompt_tokens": 62,
+    "total_tokens": 1908,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1838,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nAmma rasam",
+   "keywords": "Amma rasam"
+  },
+  {
+   "id": "ta09",
+   "lang": "ta-IN",
+   "intended": "நான் நல்லா இருக்கேன்னு சொல்லு, எல்லாரையும் miss பண்றேன்",
+   "attempt": 2,
+   "status": 200,
+   "ms": 12371.2,
+   "usage": {
+    "completion_tokens": 2396,
+    "prompt_tokens": 66,
+    "total_tokens": 2462,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 2390,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nmiss everyone",
+   "keywords": "miss everyone"
+  },
+  {
+   "id": "ta10",
+   "lang": "ta-IN",
+   "intended": "Same salt-ஆ இருந்தா குடுங்க",
+   "attempt": 3,
+   "status": 200,
+   "ms": 17257.5,
+   "usage": {
+    "completion_tokens": 3540,
+    "prompt_tokens": 58,
+    "total_tokens": 3598,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 3534,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nsame salt",
+   "keywords": "same salt"
+  },
+  {
+   "id": "ta11",
+   "lang": "ta-IN",
+   "intended": "GPay பண்றேன், QR காட்டுங்க",
+   "attempt": 1,
+   "status": 200,
+   "ms": 7225.7,
+   "usage": {
+    "completion_tokens": 1432,
+    "prompt_tokens": 59,
+    "total_tokens": 1491,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1425,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nGPay QR",
+   "keywords": "GPay QR"
+  },
+  {
+   "id": "ta12",
+   "lang": "ta-IN",
+   "intended": "ஆமா, delivery பண்ணுங்க, அதே address தான்",
+   "attempt": 1,
+   "status": 200,
+   "ms": 10674.4,
+   "usage": {
+    "completion_tokens": 1934,
+    "prompt_tokens": 60,
+    "total_tokens": 1994,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": null,
+     "audio_tokens": null,
+     "reasoning_tokens": 1928,
+     "rejected_prediction_tokens": null
+    },
+    "prompt_tokens_details": null
+   },
+   "finish": "stop",
+   "content": "\nsame address",
+   "keywords": "same address"
+  }
+ ]
+}

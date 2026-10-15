@@ -44,6 +44,22 @@ function broadcastStatus(service: ServiceName, state: ServiceState, detail?: str
 }
 tts.onState((state, detail) => broadcastStatus("tts", state, detail));
 
+/**
+ * Only this app's own page may use the server, so a website open in another tab cannot spend the key.
+ * Requests without an Origin header (scripts, benchmarks) are allowed: they already run on this machine.
+ */
+function allowedOrigin(req: http.IncomingMessage): boolean {
+  const origin = req.headers.origin;
+  if (!origin) return true;
+  try {
+    const o = new URL(origin);
+    const host = (req.headers.host ?? "").toLowerCase();
+    return o.host.toLowerCase() === host || ["localhost", "127.0.0.1", "[::1]"].includes(o.hostname) && o.port === String(config.port);
+  } catch {
+    return false;
+  }
+}
+
 function sendJson(res: http.ServerResponse, code: number, body: unknown): void {
   res.writeHead(code, { "content-type": "application/json", "cache-control": "no-store" });
   res.end(JSON.stringify(body));
@@ -61,6 +77,14 @@ async function readBody(req: http.IncomingMessage, limit = 8 * 1024 * 1024): Pro
 }
 
 async function handleApi(req: http.IncomingMessage, res: http.ServerResponse, path: string): Promise<boolean> {
+  if (req.method !== "GET" && !allowedOrigin(req)) {
+    sendJson(res, 403, { error: "Requests from other websites are not allowed." });
+    return true;
+  }
+  if (req.method === "POST" && path === "/api/voices/create" && !(req.headers["content-type"] ?? "").startsWith("application/json")) {
+    sendJson(res, 415, { error: "Send JSON." });
+    return true;
+  }
   if (path === "/api/status" && req.method === "GET") {
     sendJson(res, 200, {
       version: VERSION,
@@ -155,6 +179,11 @@ async function main(): Promise<void> {
   const wss = new WebSocketServer({ noServer: true, maxPayload: 4 * 1024 * 1024 });
   server.on("upgrade", (req, socket, head) => {
     if ((req.url ?? "").startsWith("/ws")) {
+      if (!allowedOrigin(req)) {
+        socket.write("HTTP/1.1 403 Forbidden\r\n\r\n");
+        socket.destroy();
+        return;
+      }
       wss.handleUpgrade(req, socket, head, (ws) => {
         const s = new Session(ws, tts, VERSION);
         sessions.add(s);
@@ -174,7 +203,12 @@ async function main(): Promise<void> {
   });
 
   if (keyPresent()) {
-    await refreshRoster();
+    const check = await refreshRoster();
+    if (check === "rejected") {
+      console.log("  Sarvam rejected this SARVAM_API_KEY. Check the key and restart.\n");
+      broadcastStatus("tts", "no-key", "Sarvam rejected the key");
+      return;
+    }
     await tts.warm();
   }
 

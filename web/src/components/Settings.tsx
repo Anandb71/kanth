@@ -23,7 +23,22 @@ export function SettingsDrawer({ s, onClose }: { s: KanthState; onClose: () => v
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     ref.current?.querySelector<HTMLElement>("button")?.focus();
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") return onClose();
+      if (e.key !== "Tab" || !ref.current) return;
+      // Keep focus inside the drawer while it is open.
+      const items = [...ref.current.querySelectorAll<HTMLElement>("button, input, select, textarea, [tabindex]")].filter((el) => !el.hasAttribute("disabled"));
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (!first || !last) return;
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
@@ -142,6 +157,11 @@ export function SettingsDrawer({ s, onClose }: { s: KanthState; onClose: () => v
         <div className="field">
           <span className="label">Profile</span>
           <span className="hint">Drafts use your name, the people in your life, and how you mix languages. Stored on this device only.</span>
+          {s.profile.name === "Arjun" ? (
+            <span className="hint" style={{ color: "var(--accent)", fontWeight: 650 }}>
+              This is the demo profile for Arjun, a fictional user. Replace it with your own before real use.
+            </span>
+          ) : null}
           <ProfileEditor s={s} />
         </div>
       </div>
@@ -170,6 +190,16 @@ function ProfileEditor({ s }: { s: KanthState }) {
           Save profile
         </button>
         <button className="btn btn-soft btn-small" onClick={() => { kanth.updateProfile(DEMO_PROFILE); setDraft(JSON.stringify(DEMO_PROFILE, null, 2)); }}>Reset to demo</button>
+        <button
+          className="btn btn-soft btn-small"
+          onClick={() => {
+            const blank = { name: "Your name", languages: ["en-IN"], mixStyle: "How you mix languages, in your words", people: [{ name: "Amma", relation: "mother", addressAs: "Amma" }], notes: "" };
+            setDraft(JSON.stringify(blank, null, 2));
+            setErr("Edit the fields, then Save profile.");
+          }}
+        >
+          Start my own
+        </button>
         <span className="hint" role="status">{err}</span>
       </div>
     </div>
@@ -249,7 +279,26 @@ function VoiceBank({ s }: { s: KanthState }) {
         >
           Use the demo voice instead
         </button>
+        <label className="btn btn-soft" style={{ cursor: consentOk && !busy ? "pointer" : "not-allowed", opacity: consentOk && !busy ? 1 : 0.55 }}>
+          Upload an old recording
+          <input
+            type="file"
+            accept="audio/wav,audio/x-wav,.wav"
+            disabled={!consentOk || busy}
+            style={{ display: "none" }}
+            onChange={async (e) => {
+              const f = e.target.files?.[0];
+              if (!f) return;
+              if (f.size > 6 * 1024 * 1024) return setStatus("That file is too large. Use 10 to 15 seconds of WAV audio.");
+              const bytes = new Uint8Array(await f.arrayBuffer());
+              let bin = "";
+              for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+              await create(btoa(bin), false);
+            }}
+          />
+        </label>
       </div>
+      <span className="hint">Someone who can no longer speak can use an old voice note, saved as WAV, recorded before their speech changed. The same consent applies.</span>
       <span className="hint">The demo voice is cloned from a clip that Bulbul itself generated, so no real person's voice is involved.</span>
       {s.settings.voice.kind === "clone" ? (
         <button className="btn btn-soft btn-small" onClick={() => kanth.updateSettings({ voice: { kind: "persona", name: "shubh" } })}>Stop using the banked voice</button>

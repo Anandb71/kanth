@@ -1,0 +1,129 @@
+{
+ "measured": "2026-10-15T07:15:13.593Z",
+ "note": "Live app, interactive demo with simulated choices, headless Chromium on the same machine as the server. Times are ms from the moment the partner's audio ended. Negative means before the partner finished (drafting while they talk). choiceToAudibleMs includes the browser's reported output latency.",
+ "runs": 3,
+ "summary": {
+  "transcriptMs": {
+   "n": 9,
+   "min": 205.70000000298023,
+   "p50": 287,
+   "max": 347.6000000014901
+  },
+  "firstReplyMs": {
+   "n": 9,
+   "min": -657.8999999985099,
+   "p50": 15.799999997019768,
+   "max": 421.79999999701977
+  },
+  "allRepliesMs": {
+   "n": 9,
+   "min": -657.3999999985099,
+   "p50": 94.79999999701977,
+   "max": 561.2999999970198
+  },
+  "allVoicedMs": {
+   "n": 9,
+   "min": -29.19999999552965,
+   "p50": 815.3000000044703,
+   "max": 1120.1000000014901
+  },
+  "choiceToAudibleMs": {
+   "n": 9,
+   "min": 50.5,
+   "p50": 50.79999999701977,
+   "max": 58.399999998509884
+  }
+ },
+ "rows": [
+  {
+   "run": 1,
+   "speculative": true,
+   "transcriptMs": 347.6000000014901,
+   "firstReplyMs": -369.20000000298023,
+   "allRepliesMs": -181.89999999850988,
+   "allVoicedMs": 260.70000000298023,
+   "choiceToAudibleMs": 58.29999999701977,
+   "prespoken": true
+  },
+  {
+   "run": 1,
+   "speculative": false,
+   "transcriptMs": 205.70000000298023,
+   "firstReplyMs": 421.79999999701977,
+   "allRepliesMs": 561.2999999970198,
+   "allVoicedMs": 1120.1000000014901,
+   "choiceToAudibleMs": 58.399999998509884,
+   "prespoken": true
+  },
+  {
+   "run": 1,
+   "speculative": true,
+   "transcriptMs": 287,
+   "firstReplyMs": -490.29999999701977,
+   "allRepliesMs": -489.79999999701977,
+   "allVoicedMs": -29.19999999552965,
+   "choiceToAudibleMs": 58.29999999701977,
+   "prespoken": true
+  },
+  {
+   "run": 2,
+   "speculative": true,
+   "transcriptMs": 287.20000000298023,
+   "firstReplyMs": 147.80000000447035,
+   "allRepliesMs": 327.5,
+   "allVoicedMs": 815.3000000044703,
+   "choiceToAudibleMs": 50.899999998509884,
+   "prespoken": true
+  },
+  {
+   "run": 2,
+   "speculative": true,
+   "transcriptMs": 301,
+   "firstReplyMs": 277.70000000298023,
+   "allRepliesMs": 278.1000000014901,
+   "allVoicedMs": 897,
+   "choiceToAudibleMs": 50.5,
+   "prespoken": true
+  },
+  {
+   "run": 2,
+   "speculative": true,
+   "transcriptMs": 285.1000000014901,
+   "firstReplyMs": -657.8999999985099,
+   "allRepliesMs": -657.3999999985099,
+   "allVoicedMs": -12.599999994039536,
+   "choiceToAudibleMs": 50.70000000298023,
+   "prespoken": true
+  },
+  {
+   "run": 3,
+   "speculative": true,
+   "transcriptMs": 215.39999999850988,
+   "firstReplyMs": -60.20000000298023,
+   "allRepliesMs": 94.79999999701977,
+   "allVoicedMs": 522.1999999955297,
+   "choiceToAudibleMs": 50.5,
+   "prespoken": true
+  },
+  {
+   "run": 3,
+   "speculative": true,
+   "transcriptMs": 243.10000000149012,
+   "firstReplyMs": 288.19999999552965,
+   "allRepliesMs": 288.6000000014901,
+   "allVoicedMs": 856.8999999985099,
+   "choiceToAudibleMs": 50.79999999701977,
+   "prespoken": true
+  },
+  {
+   "run": 3,
+   "speculative": true,
+   "transcriptMs": 296.69999999552965,
+   "firstReplyMs": 15.799999997019768,
+   "allRepliesMs": 16.5,
+   "allVoicedMs": 924.6999999955297,
+   "choiceToAudibleMs": 50.5,
+   "prespoken": true
+  }
+ ]
+}

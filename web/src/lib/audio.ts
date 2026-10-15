@@ -332,16 +332,39 @@ export class AudioEngine {
   }
 
   /** Last resort so the user is never left silent: the device's own speech engine. */
-  speakWithDevice(text: string, lang: string): Promise<void> {
-    return new Promise((resolve) => {
-      if (!("speechSynthesis" in window)) return resolve();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = lang;
-      u.onend = () => resolve();
-      u.onerror = () => resolve();
-      speechSynthesis.speak(u);
-    });
+  /**
+   * Speaks with the device's own voice, but only if the device has a voice for that language.
+   * Falls back to the English meaning with an English voice. Reports honestly what was said.
+   */
+  async speakWithDevice(text: string, lang: string, englishGloss?: string): Promise<"native" | "english" | "none"> {
+    if (!("speechSynthesis" in window)) return "none";
+    const voices = await deviceVoices();
+    const base = lang.slice(0, 2).toLowerCase();
+    const native = voices.find((v) => v.lang.toLowerCase().startsWith(base));
+    const english = voices.find((v) => v.lang.toLowerCase().startsWith("en"));
+    const say = (t: string, voice: SpeechSynthesisVoice) =>
+      new Promise<boolean>((resolve) => {
+        const u = new SpeechSynthesisUtterance(t);
+        u.voice = voice;
+        u.lang = voice.lang;
+        u.onend = () => resolve(true);
+        u.onerror = () => resolve(false);
+        speechSynthesis.speak(u);
+      });
+    if (native && (await say(text, native))) return "native";
+    if (englishGloss && english && (await say(englishGloss, english))) return "english";
+    return "none";
   }
+}
+
+function deviceVoices(): Promise<SpeechSynthesisVoice[]> {
+  const now = speechSynthesis.getVoices();
+  if (now.length) return Promise.resolve(now);
+  return new Promise((resolve) => {
+    const done = () => resolve(speechSynthesis.getVoices());
+    speechSynthesis.addEventListener("voiceschanged", done, { once: true });
+    window.setTimeout(done, 800);
+  });
 }
 
 export const audio = new AudioEngine();

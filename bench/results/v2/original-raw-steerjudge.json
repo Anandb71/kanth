@@ -1,0 +1,1995 @@
+{
+ "meta": {
+  "stage": "steerjudge",
+  "started": "2026-10-15T02:49:43.239Z",
+  "startedIST": "15/10/2026, 8:19:43 am",
+  "setName": "original",
+  "set": "Scripted (hand-written, not real users); intended replies fixed before any model output",
+  "setFileSha256": "3d9a19284e437193fcb60e9d34c3d6f50252b8f9d5984d797c570a913284d02d",
+  "suggestTsSha256": "84442ce92b621425a4182f5a8427c6cdf641a917b536e4526774d4294d49314b",
+  "suggestTsGit": {
+   "commit": "ffb1b9c",
+   "dirty": false
+  },
+  "settingsTsGit": {
+   "commit": "ffb1b9c",
+   "dirty": false
+  },
+  "profileNotes": "34, software engineer in Chennai. Has ALS and can no longer speak. Follows cricket.",
+  "network": "a home connection in India",
+  "node": "v25.2.1",
+  "os": "win32 10.0.26300",
+  "cpu": "13th Gen Intel(R) Core(TM) i5-13450HX",
+  "condition": "Two other agents may have been calling the same Sarvam account concurrently during this run (shared rate limits and possibly shared backend load).",
+  "judgeModel": "sarvam-105b",
+  "temperature": 0,
+  "reasoning": "on (model default)",
+  "runs": 2,
+  "workers": 6,
+  "systemPrompt": "You evaluate reply suggestions for an AAC (speech-generating) app used by a person who cannot speak.\nThe person knows exactly what they want to say (the INTENDED reply). The app offered four drafts. If a draft is chosen, the app speaks it aloud as the person's own words.\nAnswer the question: Which draft, if any, conveys the same core meaning and intent as the intended reply, such that the user would accept it as saying what they meant?\nDifferences in wording, word order, politeness words, fillers, or address terms do not matter. A draft that changes or omits a specific fact the intended reply states (yes vs no, a time, a quantity, a side, a person, a request, a reason that carries the point) does not count. A draft that says more than the intended reply counts only if the extra content is harmless and the person would still accept it.\nIf several drafts qualify, pick the best one. If none qualifies, answer null.\nAlso check each draft's language and script against the expected language. wrong_language: drafts mainly in a language other than the expected one. wrong_script: drafts that write a language in the wrong script (for example Tamil or Hindi words in Latin letters, or Hindi in Tamil script).\nReply with JSON only, no other text: {\"match\": 1|2|3|4|null, \"wrong_language\": [draft numbers], \"wrong_script\": [draft numbers], \"reason\": \"one short sentence\"}"
+ },
+ "turns": [
+  {
+   "id": "ta01",
+   "lang": "ta-IN",
+   "intended": "இட்லி போதும் Amma, ரெண்டு மட்டும்",
+   "keywords": "Idli enough",
+   "drafts": [
+    "இட்லி போதும் Amma",
+    "Dosa வேண்டாம், இட்லி போதும்",
+    "இட்லி சரிதான் Amma",
+    "இட்லி சாப்பிடுறேன் போதும்"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 29500.4,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 5891,
+      "prompt_tokens": 449,
+      "total_tokens": 6340,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5855,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"All drafts omit the specific quantity 'only two'.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All drafts omit the specific quantity 'only two'."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 2,
+     "status": 200,
+     "ms": 19397.4,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3856,
+      "prompt_tokens": 449,
+      "total_tokens": 4305,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3815,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\":null,\"wrong_language\":[],\"wrong_script\":[2],\"reason\":\"All drafts omit the specific quantity 'ரெண்டு மட்டும்' stated in the intended reply.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [
+       2
+      ],
+      "reason": "All drafts omit the specific quantity 'ரெண்டு மட்டும்' stated in the intended reply."
+     }
+    }
+   ]
+  },
+  {
+   "id": "ta02",
+   "lang": "ta-IN",
+   "intended": "பரவாயில்ல Amma, பக்கத்துல தண்ணி வச்சுடுங்க",
+   "keywords": "Paravaayilla Amma",
+   "drafts": [
+    "பரவாயில்ல Amma, காரம் ஓகே தான்",
+    "பரவாயில்ல, எனக்கு பிடிச்ச மாதிரி தான் இருக்கு",
+    "பரவாயில்ல Amma, நீ குடுத்ததே நல்லாருக்கு",
+    "பரவாயில்ல, ஆனா கொஞ்சம் தண்ணி வேணுமாம்"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 2,
+     "status": 200,
+     "ms": 8009.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1318,
+      "prompt_tokens": 472,
+      "total_tokens": 1790,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1273,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 4, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"It acknowledges that the food is okay and requests water, matching the intended meaning and intent.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 4,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "It acknowledges that the food is okay and requests water, matching the intended meaning and intent."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 9327.2,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2034,
+      "prompt_tokens": 472,
+      "total_tokens": 2506,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1988,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 4, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 4 says it is okay and water is needed, matching the user's intent.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 4,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 4 says it is okay and water is needed, matching the user's intent."
+     }
+    }
+   ]
+  },
+  {
+   "id": "ta03",
+   "lang": "ta-IN",
+   "intended": "ஆமா Amma, ரசம் சாதம் வேணும்",
+   "keywords": "rasam rice",
+   "drafts": [
+    "ரசம் rice வேணும் Amma",
+    "இன்னைக்கு ரசம் rice சாப்பிடலாம்ல?",
+    "ரசம் rice மட்டும் போதும் Amma",
+    "ரசம் rice செஞ்சு தரியா Amma?"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 22527.2,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4131,
+      "prompt_tokens": 448,
+      "total_tokens": 4579,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4083,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 1, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 1 states the same desire for rasam rice, with the yes implied by the conversational context.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 1 states the same desire for rasam rice, with the yes implied by the conversational context."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 24174.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3883,
+      "prompt_tokens": 448,
+      "total_tokens": 4331,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3832,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 1, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 1 states the request for rasam rice, preserving the core intent to accept the offer and specify the dish.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 1 states the request for rasam rice, preserving the core intent to accept the offer and specify the dish."
+     }
+    }
+   ]
+  },
+  {
+   "id": "ta04",
+   "lang": "ta-IN",
+   "intended": "சரி, பண்ணுங்க. தொண்டை அடைக்குது",
+   "keywords": "thondai adai",
+   "drafts": [
+    "தொண்டை அடை ஆகுது sister",
+    "ஒரு நிமிஷம் wait பண்ணுங்க sister",
+    "தொண்டை அடை ஆகுது, தண்ணி குடுக்கலாமா?",
+    "தொண்டை அடை ஆகுது, கொஞ்சம் relax பண்ணலாம்"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 3,
+     "status": 200,
+     "ms": 17090.4,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3430,
+      "prompt_tokens": 456,
+      "total_tokens": 3886,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3377,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n```json\n{\n  \"match\": null,\n  \"wrong_language\": [],\n  \"wrong_script\": [],\n  \"reason\": \"none include the consent to suction while describing the throat blockage\"\n}\n```",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "none include the consent to suction while describing the throat blockage"
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 10994.1,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1959,
+      "prompt_tokens": 456,
+      "total_tokens": 2415,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1915,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Each draft either omits the agreement to do suction or replaces it with a different instruction.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Each draft either omits the agreement to do suction or replaces it with a different instruction."
+     }
+    }
+   ]
+  },
+  {
+   "id": "ta05",
+   "lang": "ta-IN",
+   "intended": "ஆமா, இடது பக்கம் திருப்புங்க",
+   "keywords": "turn left",
+   "drafts": [
+    "இடது பக்கம் turn பண்ணுங்க",
+    "இன்னும் கொஞ்சம் இடது பக்கம் மாத்துங்க",
+    "இடது side-க்கு கொஞ்சம் shift பண்ணுங்க",
+    "இடது பக்கம் திருப்பி விடுங்க"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 31759.5,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 5783,
+      "prompt_tokens": 446,
+      "total_tokens": 6229,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5741,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\":1,\"wrong_language\":[],\"wrong_script\":[],\"reason\":\"Draft 1 preserves the turn-left request with equivalent mixed-language phrasing without adding extra content.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 1 preserves the turn-left request with equivalent mixed-language phrasing without adding extra content."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 24273.1,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 5157,
+      "prompt_tokens": 446,
+      "total_tokens": 5603,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5111,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\":1,\"wrong_language\":[],\"wrong_script\":[],\"reason\":\"Draft 1 states the exact same direction and action with a natural Tamil-English mix, differing only in verb phrasing.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 1 states the exact same direction and action with a natural Tamil-English mix, differing only in verb phrasing."
+     }
+    }
+   ]
+  },
+  {
+   "id": "ta06",
+   "lang": "ta-IN",
+   "intended": "இல்ல, ஆனா கொஞ்சம் tired-ஆ இருக்கு",
+   "keywords": "tired",
+   "drafts": [
+    "நான் ரொம்ப tired-ஆ இருக்கேன்",
+    "இப்போதைக்கு tired-ஆ இருக்குங்க",
+    "எனக்கு கொஞ்சம் tired-ஆ இருக்கு Sister",
+    "ஆமா, ரொம்ப tired-ஆ இருக்கு"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 2,
+     "status": 200,
+     "ms": 27370.7,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 5340,
+      "prompt_tokens": 448,
+      "total_tokens": 5788,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5291,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft preserves the 'no' denial or the 'a little' qualifier, and draft 4 incorrectly affirms.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft preserves the 'no' denial or the 'a little' qualifier, and draft 4 incorrectly affirms."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 2,
+     "status": 200,
+     "ms": 11608.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2295,
+      "prompt_tokens": 448,
+      "total_tokens": 2743,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2258,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"All drafts omit the denial and only mention being tired.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All drafts omit the denial and only mention being tired."
+     }
+    }
+   ]
+  },
+  {
+   "id": "ta07",
+   "lang": "ta-IN",
+   "intended": "வா டா, ஏழு மணிக்கு வா",
+   "keywords": "Come by",
+   "drafts": [
+    "நீ வீட்டுக்கு வா",
+    "கொஞ்சம் late-ஆ வா",
+    "நீ வீட்டுக்கு வர முடியுமா",
+    "நீ வீட்டுக்கு வாப்பா"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 13310.5,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2616,
+      "prompt_tokens": 436,
+      "total_tokens": 3052,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2579,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"All omit the specific time of seven o'clock.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All omit the specific time of seven o'clock."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 13064.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2718,
+      "prompt_tokens": 436,
+      "total_tokens": 3154,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2674,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"All drafts omit the specific time 'seven o'clock' stated in the intended reply.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All drafts omit the specific time 'seven o'clock' stated in the intended reply."
+     }
+    }
+   ]
+  },
+  {
+   "id": "ta08",
+   "lang": "ta-IN",
+   "intended": "நீ வாங்கிக்கோ, நான் Amma ரசம் சாப்பிடறேன்",
+   "keywords": "Amma rasam",
+   "drafts": [
+    "அம்மா rasam கொண்டு வாடா",
+    "biryani வேணாம், அம்மா rasam போதும்",
+    "சரி, அம்மா rasam மட்டும் போதும்",
+    "இன்னிக்கு அம்மா rasam தான் வேணும்"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 3,
+     "status": 200,
+     "ms": 37987.6,
+     "finish": "length",
+     "usage": {
+      "completion_tokens": 6000,
+      "prompt_tokens": 448,
+      "total_tokens": 6448,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5999,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "",
+     "reasoningChars": 0,
+     "parsed": null
+    },
+    {
+     "run": 2,
+     "attempt": 3,
+     "status": 200,
+     "ms": 34906.8,
+     "finish": "length",
+     "usage": {
+      "completion_tokens": 6000,
+      "prompt_tokens": 448,
+      "total_tokens": 6448,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5999,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "",
+     "reasoningChars": 0,
+     "parsed": null
+    }
+   ]
+  },
+  {
+   "id": "ta09",
+   "lang": "ta-IN",
+   "intended": "நான் நல்லா இருக்கேன்னு சொல்லு, எல்லாரையும் miss பண்றேன்",
+   "keywords": "miss everyone",
+   "drafts": [
+    "நான் எல்லாரையும் miss பண்றேன் டா",
+    "எல்லாரையும் miss பண்றேன், ஆனா நான் வர முடியாது டா",
+    "எல்லாரையும் miss பண்றேன், நீ சொல்லு டா",
+    "எல்லாரையும் miss பண்றேன், அப்புறம் பேசலாம் டா"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 2,
+     "status": 200,
+     "ms": 22405.9,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4079,
+      "prompt_tokens": 477,
+      "total_tokens": 4556,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4029,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"All drafts omit the request to tell everyone the user is doing well, which is a key fact in the intended reply.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All drafts omit the request to tell everyone the user is doing well, which is a key fact in the intended reply."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 12292.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2698,
+      "prompt_tokens": 477,
+      "total_tokens": 3175,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2663,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\":null,\"wrong_language\":[],\"wrong_script\":[],\"reason\":\"All drafts omit the required statement that the user is doing well.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All drafts omit the required statement that the user is doing well."
+     }
+    }
+   ]
+  },
+  {
+   "id": "ta10",
+   "lang": "ta-IN",
+   "intended": "Same salt-ஆ இருந்தா குடுங்க",
+   "keywords": "same salt",
+   "drafts": [
+    "same salt இருக்கற tablet தான் வேணும்",
+    "same salt இருக்கறது தான் எனக்கு okay",
+    "அதே same salt உள்ளதா பாருங்க",
+    "same salt மாத்த வேண்டாம், அதே குடுங்க"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 20031.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4033,
+      "prompt_tokens": 446,
+      "total_tokens": 4479,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3993,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 4, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 4 explicitly asks for the tablet with the same salt.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 4,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 4 explicitly asks for the tablet with the same salt."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 3,
+     "status": 200,
+     "ms": 32459.8,
+     "finish": "length",
+     "usage": {
+      "completion_tokens": 6000,
+      "prompt_tokens": 446,
+      "total_tokens": 6446,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5999,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "",
+     "reasoningChars": 0,
+     "parsed": null
+    }
+   ]
+  },
+  {
+   "id": "ta11",
+   "lang": "ta-IN",
+   "intended": "GPay பண்றேன், QR காட்டுங்க",
+   "keywords": "GPay QR",
+   "drafts": [
+    "GPay QR தான் வேணும்",
+    "Cash-ஆ பண்ண வேண்டாம்",
+    "GPay QR-ல பண்ணுங்க",
+    "GPay QR use பண்ணிக்கிறேன்"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 3,
+     "status": 200,
+     "ms": 35624.3,
+     "finish": "length",
+     "usage": {
+      "completion_tokens": 6000,
+      "prompt_tokens": 443,
+      "total_tokens": 6443,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5999,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "",
+     "reasoningChars": 0,
+     "parsed": null
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 36614.5,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 5912,
+      "prompt_tokens": 443,
+      "total_tokens": 6355,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5860,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 1, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 1 requests the GPay QR, preserving the core meaning of paying via GPay and asking for the QR code.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 1 requests the GPay QR, preserving the core meaning of paying via GPay and asking for the QR code."
+     }
+    }
+   ]
+  },
+  {
+   "id": "ta12",
+   "lang": "ta-IN",
+   "intended": "ஆமா, delivery பண்ணுங்க, அதே address தான்",
+   "keywords": "same address",
+   "drafts": [
+    "same address-க்கு delivery பண்ணுங்க",
+    "அடுத்த வாரம் வரைக்கும் wait பண்ணலாம், same address-ல குடுங்க",
+    "same address-ல home delivery பண்ணுங்க, சரிதானே?",
+    "same address-க்கு மாத்திடுங்க, தாராளமா"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 24963.1,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4474,
+      "prompt_tokens": 465,
+      "total_tokens": 4939,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4414,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\n  \"match\": 3,\n  \"wrong_language\": [],\n  \"wrong_script\": [],\n  \"reason\": \"Draft 3 requests home delivery to the same address, matching the intended meaning, and any extra words are harmless.\"\n}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 3,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 3 requests home delivery to the same address, matching the intended meaning, and any extra words are harmless."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 30529.1,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 5038,
+      "prompt_tokens": 465,
+      "total_tokens": 5503,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4995,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 1, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 1 states the same address and delivery request, matching the core intent.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 1 states the same address and delivery request, matching the core intent."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hi01",
+   "lang": "hi-IN",
+   "intended": "निगलने में थोड़ी दिक्कत बढ़ गई है",
+   "keywords": "dysphagia",
+   "drafts": [
+    "Doctor, dysphagia थोड़ी बढ़ गई है",
+    "अभी dysphagia का exact issue समझ नहीं आ रहा",
+    "dysphagia के लिए Amma से पूछूँ?",
+    "dysphagia के बारे में और check करूँ?"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 5614.1,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 859,
+      "prompt_tokens": 460,
+      "total_tokens": 1319,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 799,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 1, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"The draft keeps the core meaning that swallowing difficulty has increased, only swapping 'swallowing' for the medical term 'dysphagia' and adding an address term.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "The draft keeps the core meaning that swallowing difficulty has increased, only swapping 'swallowing' for the medical term 'dysphagia' and adding an address term."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 31953.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 5119,
+      "prompt_tokens": 460,
+      "total_tokens": 5579,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5063,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 1, \"wrong_language\": [], \"wrong_script\": [3], \"reason\": \"Draft 1 conveys that swallowing difficulty has increased, matching the intended meaning, while draft 3 writes a Hindi word in Latin script.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [
+       3
+      ],
+      "reason": "Draft 1 conveys that swallowing difficulty has increased, matching the intended meaning, while draft 3 writes a Hindi word in Latin script."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hi02",
+   "lang": "hi-IN",
+   "intended": "हाँ, लेटने पर साँस फूलती है",
+   "keywords": "Orthopnea",
+   "drafts": [
+    "Orthopnea होता है Doctor",
+    "लेटने पर साँस फूलती है, Orthopnea है ना",
+    "Orthopnea की वजह से नींद नहीं आती",
+    "Orthopnea check करेंगे आप?"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 14960.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3001,
+      "prompt_tokens": 464,
+      "total_tokens": 3465,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2958,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 2, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Contains the exact intended symptom description and adds only harmless confirmation of the medical term.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 2,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Contains the exact intended symptom description and adds only harmless confirmation of the medical term."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 2,
+     "status": 200,
+     "ms": 12316.2,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2025,
+      "prompt_tokens": 464,
+      "total_tokens": 2489,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1979,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 2, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Preserves the core fact of breathing difficulty when lying down and adds harmless extra naming the condition.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 2,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Preserves the core fact of breathing difficulty when lying down and adds harmless extra naming the condition."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hi03",
+   "lang": "hi-IN",
+   "intended": "क्या mask पूरी रात पहनना पड़ेगा?",
+   "keywords": "mask raat",
+   "drafts": [
+    "mask रात को पहनना पड़ेगा क्या?",
+    "रात के लिए mask ठीक रहेगा ना?",
+    "mask रात में दिक्कत देगा क्या?",
+    "रात का mask कैसा रहेगा?"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 19633.4,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3930,
+      "prompt_tokens": 449,
+      "total_tokens": 4379,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3879,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 1, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"It asks whether the mask must be worn throughout the night, matching the intended question about continuous use despite minor wording shifts.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "It asks whether the mask must be worn throughout the night, matching the intended question about continuous use despite minor wording shifts."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 14063.2,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2755,
+      "prompt_tokens": 449,
+      "total_tokens": 3204,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2712,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 1, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"It asks whether the mask must be worn at night, matching the intended question.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "It asks whether the mask must be worn at night, matching the intended question."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hi05",
+   "lang": "hi-IN",
+   "intended": "हाँ देखा, last over में मज़ा आ गया",
+   "keywords": "last over",
+   "drafts": [
+    "last over में क्या scene था",
+    "last over check करूँ पहले?",
+    "last over किसने मारा yaar?",
+    "last over replay देखना है मुझे"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 18955.4,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3073,
+      "prompt_tokens": 442,
+      "total_tokens": 3515,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3026,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [3], \"reason\": \"None of the drafts confirm that the user watched the match or convey enjoyment of the last over.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [
+       3
+      ],
+      "reason": "None of the drafts confirm that the user watched the match or convey enjoyment of the last over."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 23701.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4128,
+      "prompt_tokens": 442,
+      "total_tokens": 4570,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4068,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [3], \"reason\": \"None of the drafts confirm that the user watched the match or enjoyed the last over, and draft 3 writes the Hindi word 'yaar' in Latin script.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [
+       3
+      ],
+      "reason": "None of the drafts confirm that the user watched the match or enjoyed the last over, and draft 3 writes the Hindi word 'yaar' in Latin script."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hi06",
+   "lang": "hi-IN",
+   "intended": "शाम को चलेंगे, धूप में नहीं",
+   "keywords": "shaam dhoop",
+   "drafts": [
+    "shaam dhoop में चलना है, ठीक है",
+    "kal shaam dhoop में चलेंगे ना",
+    "shaam dhoop का wait करूँगा फिर",
+    "shaam dhoop में जाना है मुझे"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 25528.2,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 5248,
+      "prompt_tokens": 457,
+      "total_tokens": 5705,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5187,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [1,2,3,4], \"reason\": \"none of the drafts preserve the core intent to go in the evening while refusing the sun, and all use Hindi words in Latin script.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "reason": "none of the drafts preserve the core intent to go in the evening while refusing the sun, and all use Hindi words in Latin script."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 2,
+     "status": 200,
+     "ms": 14480.8,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2813,
+      "prompt_tokens": 457,
+      "total_tokens": 3270,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2758,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [1, 2, 3, 4], \"reason\": \"None of the drafts avoid sunlight as intended, and all write Hindi words in Latin script.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "reason": "None of the drafts avoid sunlight as intended, and all write Hindi words in Latin script."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hi07",
+   "lang": "hi-IN",
+   "intended": "दस मिनट रुको, पहले चाय पीनी है",
+   "keywords": "wait tea",
+   "drafts": [
+    "पहले wait करो, tea पीनी है",
+    "wait करो यार, tea के बाद नहाते हैं",
+    "wait, मुझे tea चाहिए पहले",
+    "wait करो, tea के लिए जा रहा हूँ"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 2,
+     "status": 200,
+     "ms": 22467.9,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 5078,
+      "prompt_tokens": 455,
+      "total_tokens": 5533,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5038,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"All drafts omit the ten-minute wait or change the core request.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All drafts omit the ten-minute wait or change the core request."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 3,
+     "status": 200,
+     "ms": 23320.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4809,
+      "prompt_tokens": 455,
+      "total_tokens": 5264,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4766,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n```json\n{\"match\": 3, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Core request to wait and prioritize tea first is preserved.\"}\n```",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 3,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Core request to wait and prioritize tea first is preserved."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hi08",
+   "lang": "hi-IN",
+   "intended": "हाँ, बस आधा चम्मच",
+   "keywords": "aadha chammach",
+   "drafts": [
+    "आधा चम्मच sugar डाल दो please",
+    "बस आधा चम्मच ही रखना",
+    "आधा चम्मच डालना है मुझे",
+    "आधा चम्मच डाल दो, ठीक है?"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 3,
+     "status": 200,
+     "ms": 19082.7,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3954,
+      "prompt_tokens": 434,
+      "total_tokens": 4388,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3908,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 1, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Preserves the exact half-spoon quantity and affirmative intent as a directive with permissible politeness.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Preserves the exact half-spoon quantity and affirmative intent as a directive with permissible politeness."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 22733.2,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4872,
+      "prompt_tokens": 434,
+      "total_tokens": 5306,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4831,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft includes the explicit yes/no confirmation present in the intended reply.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft includes the explicit yes/no confirmation present in the intended reply."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hi10",
+   "lang": "hi-IN",
+   "intended": "बाएँ हाथ से लीजिए, वहाँ vein अच्छी है",
+   "keywords": "left vein",
+   "drafts": [
+    "left vein से लो",
+    "left vein से sample चाहिए",
+    "left vein ही use करो",
+    "left vein से कर लो"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 2,
+     "status": 200,
+     "ms": 18995.9,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4045,
+      "prompt_tokens": 438,
+      "total_tokens": 4483,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3993,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 3, \"wrong_language\": [], \"wrong_script\": [1, 2, 3, 4], \"reason\": \"Hindi words are written in Latin script instead of Devanagari.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 3,
+      "wrong_language": [],
+      "wrong_script": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "reason": "Hindi words are written in Latin script instead of Devanagari."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 2,
+     "status": 200,
+     "ms": 18993.2,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4200,
+      "prompt_tokens": 438,
+      "total_tokens": 4638,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4154,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"All drafts omit the reason that the vein is good and change the specified side from hand to vein.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All drafts omit the reason that the vein is good and change the specified side from hand to vein."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hi11",
+   "lang": "hi-IN",
+   "intended": "नहीं, रात दस बजे के बाद कुछ नहीं खाया",
+   "keywords": "intermittent fasting",
+   "drafts": [
+    "हाँ, मैंने intermittent fasting किया है",
+    "Intermittent fasting चल रहा है अभी",
+    "Intermittent fasting पर हूँ मैं, ठीक है?",
+    "हाँ, intermittent fasting कर रहा हूँ"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 2,
+     "status": 200,
+     "ms": 25247.2,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 5610,
+      "prompt_tokens": 452,
+      "total_tokens": 6062,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5564,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"All drafts omit the specific negation and the 10 PM starting time stated in the intended reply.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All drafts omit the specific negation and the 10 PM starting time stated in the intended reply."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 3,
+     "status": 200,
+     "ms": 30499,
+     "finish": "length",
+     "usage": {
+      "completion_tokens": 6000,
+      "prompt_tokens": 452,
+      "total_tokens": 6452,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5999,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "",
+     "reasoningChars": 0,
+     "parsed": null
+    }
+   ]
+  },
+  {
+   "id": "hi12",
+   "lang": "hi-IN",
+   "intended": "Doctor को भी copy भेज दीजिए please",
+   "keywords": "doctor copy",
+   "drafts": [
+    "Doctor copy चाहिए मुझे",
+    "ठीक है, कल भेज दीजिएगा",
+    "Doctor copy का क्या करना है?",
+    "बस Doctor copy भेज दीजिएगा please"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 19369.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4218,
+      "prompt_tokens": 438,
+      "total_tokens": 4656,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4173,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 4, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"It requests sending the copy to the doctor, matching the core intent of the intended reply.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 4,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "It requests sending the copy to the doctor, matching the core intent of the intended reply."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 15557.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3641,
+      "prompt_tokens": 438,
+      "total_tokens": 4079,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3593,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 4, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 4 clearly requests sending a copy to the doctor with only minor wording differences from the intended intent.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 4,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 4 clearly requests sending a copy to the doctor with only minor wording differences from the intended intent."
+     }
+    }
+   ]
+  },
+  {
+   "id": "en01",
+   "lang": "en-IN",
+   "intended": "Let's start, but go slow on the legs.",
+   "keywords": "slow legs",
+   "drafts": [
+    "My legs are slow today, let's rest",
+    "Slow legs, can we do just a little bit?",
+    "My legs feel slow, maybe later?",
+    "Slow legs, please go gentle with me"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 2,
+     "status": 200,
+     "ms": 16761.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2708,
+      "prompt_tokens": 444,
+      "total_tokens": 3152,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2662,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 4, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"It states the legs are slow and asks to go gentle, matching the intent to start slowly.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 4,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "It states the legs are slow and asks to go gentle, matching the intent to start slowly."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 18398.9,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3733,
+      "prompt_tokens": 444,
+      "total_tokens": 4177,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3692,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 4, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Requests a slower pace on the legs while implying to start the session.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 4,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Requests a slower pace on the legs while implying to start the session."
+     }
+    }
+   ]
+  },
+  {
+   "id": "en03",
+   "lang": "en-IN",
+   "intended": "Evening is fine, after six.",
+   "keywords": "evening after",
+   "drafts": [
+    "Evening after is good, thank you",
+    "Let's do it evening after",
+    "Yes, evening after works for me",
+    "Evening after is fine, Amma can come"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 14423.9,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2879,
+      "prompt_tokens": 432,
+      "total_tokens": 3311,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2838,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"All drafts omit the specific time 'after six' which carries the point.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All drafts omit the specific time 'after six' which carries the point."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 10861.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2075,
+      "prompt_tokens": 432,
+      "total_tokens": 2507,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2033,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"All drafts omit the specific time 'after six' stated in the intended reply.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All drafts omit the specific time 'after six' stated in the intended reply."
+     }
+    }
+   ]
+  },
+  {
+   "id": "en04",
+   "lang": "en-IN",
+   "intended": "Yes, I'd love that. Send me small PRs.",
+   "keywords": "small PRs",
+   "drafts": [
+    "I can just do small PRs from home",
+    "Maybe we can try small PRs later",
+    "Can we do only small PRs please?",
+    "I feel like doing small PRs today"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 16178.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3651,
+      "prompt_tokens": 441,
+      "total_tokens": 4092,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3612,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft conveys the intended agreement and request for small PRs.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft conveys the intended agreement and request for small PRs."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 2,
+     "status": 200,
+     "ms": 15090.4,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3149,
+      "prompt_tokens": 441,
+      "total_tokens": 3590,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3112,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\":null,\"wrong_language\":[],\"wrong_script\":[],\"reason\":\"None of the drafts convey the intended agreement and request for small PRs.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts convey the intended agreement and request for small PRs."
+     }
+    }
+   ]
+  },
+  {
+   "id": "en05",
+   "lang": "en-IN",
+   "intended": "Keep it short, I get tired quickly.",
+   "keywords": "Please clarify",
+   "drafts": [
+    "Just please clarify, should I keep it short?"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 9447,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1879,
+      "prompt_tokens": 401,
+      "total_tokens": 2280,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1837,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"The draft asks a question instead of stating the preference and omits the reason.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "The draft asks a question instead of stating the preference and omits the reason."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 8405.7,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1686,
+      "prompt_tokens": 401,
+      "total_tokens": 2087,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1641,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"The draft asks for clarification rather than stating that short comments are preferred because you get tired quickly.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "The draft asks for clarification rather than stating that short comments are preferred because you get tired quickly."
+     }
+    }
+   ]
+  },
+  {
+   "id": "en06",
+   "lang": "en-IN",
+   "intended": "That sounds lovely, but keep it small.",
+   "keywords": "short",
+   "drafts": [
+    "Let us keep things short, Priya",
+    "Short is good, I am fine with that",
+    "We should keep it short then",
+    "Short works perfectly for me"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 3,
+     "status": 200,
+     "ms": 26610.9,
+     "finish": "length",
+     "usage": {
+      "completion_tokens": 6000,
+      "prompt_tokens": 430,
+      "total_tokens": 6430,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5999,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "",
+     "reasoningChars": 0,
+     "parsed": null
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 28551.8,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 5572,
+      "prompt_tokens": 430,
+      "total_tokens": 6002,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5531,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 2, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"It combines acceptance of the plan with endorsement of keeping the gathering small.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 2,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "It combines acceptance of the plan with endorsement of keeping the gathering small."
+     }
+    }
+   ]
+  },
+  {
+   "id": "en10",
+   "lang": "en-IN",
+   "intended": "Chest feels tight since this morning.",
+   "keywords": "chest tightness",
+   "drafts": [
+    "It is chest tightness, Doctor",
+    "Chest tightness, I am okay",
+    "Chest tightness, is that serious?",
+    "Chest tightness, I feel anxious"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 29292.4,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4795,
+      "prompt_tokens": 421,
+      "total_tokens": 5216,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4746,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 1, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 1 conveys the chest tightness symptom directly, differing only in minor wording and adding a polite address term.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 1 conveys the chest tightness symptom directly, differing only in minor wording and adding a polite address term."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 4789.1,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 928,
+      "prompt_tokens": 421,
+      "total_tokens": 1349,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 879,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"All drafts omit the duration 'since this morning', which is a specific fact stating how long the symptom has lasted.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All drafts omit the duration 'since this morning', which is a specific fact stating how long the symptom has lasted."
+     }
+    }
+   ]
+  },
+  {
+   "id": "en11",
+   "lang": "en-IN",
+   "intended": "Only riluzole, no new medicines.",
+   "keywords": "riluzole only",
+   "drafts": [
+    "Only riluzole, Doctor",
+    "Just riluzole, nothing else",
+    "I am on riluzole only",
+    "Only riluzole, I think"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 18842.2,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4223,
+      "prompt_tokens": 423,
+      "total_tokens": 4646,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4180,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 2, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Directly paraphrases both facts: only riluzole and no other medicines.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 2,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Directly paraphrases both facts: only riluzole and no other medicines."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 7066.8,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1371,
+      "prompt_tokens": 423,
+      "total_tokens": 1794,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1321,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 2, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 2 says just riluzole and nothing else, matching both the medication and the lack of new medicines.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 2,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 2 says just riluzole and nothing else, matching both the medication and the lack of new medicines."
+     }
+    }
+   ]
+  }
+ ]
+}

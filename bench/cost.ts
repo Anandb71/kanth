@@ -29,15 +29,20 @@ const words = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
 const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
 const sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0);
 
+// v2: a miss is steered once (one more drafting call, and its 4 drafts prespoken); the reply is
+// typed only if the steered drafts also miss. v1 had no steering (see bench/results/v1/cost.v1.ts.txt).
 const perTurn = turns.map((t) => {
   const hit = t.judge.hitIdx != null;
+  const steerHit = t.outcome === "steer-hit";
+  const typed = !hit && !steerHit;
   const partnerSec = (words(t.partner) / PARTNER_WPM) * 60; // MODELED
-  const userAudioSec = hit ? t.audioSec.hitDraft ?? t.audioSec.intended : t.audioSec.intended; // MEASURED (Bulbul output duration)
-  const ttsCharsPrespeak = t.chars.prespokenTotal + (hit ? 0 : t.chars.intendedNative); // MEASURED counts
-  const ttsCharsNoPrespeak = hit ? t.chars.hitDraft : t.chars.intendedNative;
-  const translitChars = !hit && t.lang !== "en-IN" ? t.chars.intendedRoman : 0; // typed Roman -> native on a miss
-  const promptTok = t.tokens.prompt;
-  const complTok = t.tokens.completion;
+  const userAudioSec = hit ? (t.audioSec.hitDraft ?? t.audioSec.intended) : steerHit ? (t.steer.audioSecHitDraft ?? t.audioSec.intended) : t.audioSec.intended; // MEASURED (Bulbul output duration)
+  const steerPrespoken = t.steer ? t.steer.chars.prespokenTotal : 0;
+  const ttsCharsPrespeak = t.chars.prespokenTotal + steerPrespoken + (typed ? t.chars.intendedNative : 0); // MEASURED counts
+  const ttsCharsNoPrespeak = hit ? t.chars.hitDraft : steerHit ? t.steer.chars.hitDraft : t.chars.intendedNative;
+  const translitChars = typed && t.lang !== "en-IN" ? t.chars.intendedRoman : 0; // typed Roman -> native when typed
+  const promptTok = t.tokens.prompt + (t.steer?.tokens.prompt ?? 0);
+  const complTok = t.tokens.completion + (t.steer?.tokens.completion ?? 0);
   const llmINR = (promptTok * PRICES.llmInputPer1M + complTok * PRICES.llmOutputPer1M) / 1e6;
   const ttsINR = (c: number, per10k: number) => (c * per10k) / 1e4;
   const translitINR = (translitChars * PRICES.translitPer10K) / 1e4;
@@ -124,7 +129,7 @@ const L: string[] = [];
 const P = (s = "") => L.push(s);
 P("# Kanth: cost per minute of conversation (INR)");
 P();
-P(`Generated ${new Date().toISOString().slice(0, 16).replace("T", " ")} UTC by \`bench/cost.ts\` from \`bench/results/conversations.json\`. All inputs per turn are in \`bench/results/cost.json\`.`);
+P(`Generated ${new Date().toISOString().slice(0, 16).replace("T", " ")} UTC by \`bench/cost.ts\` from \`bench/results/conversations.json\` (v2: all ${turns.length} v2 turns, held-out and original, final prompt, one steering round on every miss). All inputs per turn are in \`bench/results/cost.json\`. The v1 cost report is preserved in \`bench/results/v1/cost.md\`.`);
 P();
 P("## Prices (fetched 2026-10-15)");
 P();
@@ -141,18 +146,18 @@ P("## Per-turn inputs");
 P();
 P("| Input | Value | Status |");
 P("|---|---|---|");
-P(`| Chat tokens per turn | ${tok.prompt.toFixed(0)} prompt + ${tok.completion.toFixed(0)} completion (mean of 36) | MEASURED: \`usage\` in the streamed response |`);
-P(`| Characters synthesized per turn, with prespeak | ${charsPre.toFixed(1)} (4 drafts of mean ${draftChars.toFixed(1)} characters, plus the typed reply on a miss) | MEASURED |`);
-P(`| Characters synthesized per turn, without prespeak | ${charsNo.toFixed(1)} (the chosen draft, or the typed reply on a miss) | MEASURED |`);
+P(`| Chat tokens per turn | ${tok.prompt.toFixed(0)} prompt + ${tok.completion.toFixed(0)} completion (mean of ${turns.length}, including the steering call on misses; v1: 507 + 81, no steering) | MEASURED: \`usage\` in the streamed response |`);
+P(`| Characters synthesized per turn, with prespeak | ${charsPre.toFixed(1)} (4 drafts of mean ${draftChars.toFixed(1)} characters, 4 more steered drafts on a miss, plus the typed reply when steering also misses; v1: 158.6) | MEASURED |`);
+P(`| Characters synthesized per turn, without prespeak | ${charsNo.toFixed(1)} (the chosen draft or steered draft, or the typed reply; v1: 33.7) | MEASURED |`);
 P(`| Prespeak character multiplier | ${(charsPre / charsNo).toFixed(2)}x | MEASURED ratio |`);
 P(`| Partner speech per turn (the STT seconds) | words / ${PARTNER_WPM} wpm | MODELED (Yuan et al. 2006 turn-wise rate, evidence.md A1) |`);
 P("| User speech per turn | duration of the Bulbul audio for what was said | MEASURED |");
-P("| Turn gap | condition (c) or (b), direct selection, per turn, from conversations.md | MODELED total of measured and modeled parts |");
+P("| Turn gap | condition (c) or (b), direct selection, per turn, steering included, from conversations.md | MODELED total of measured and modeled parts |");
 P();
 P("Partner audio is not synthesized, because the partner is a human. Translation is not used.");
 P();
 P("**Turn-rate assumption.** One exchange is the partner's utterance, then the turn gap, then the user's utterance. Turns per minute = 60 / mean exchange length over the turns in the scenario.");
-P("- With 'as measured', misses include typing time, so turns are slow and cost per minute is low.");
+P("- With 'as measured', misses include keyword typing and, when steering also misses, full typing time, so turns are slow and cost per minute is low.");
 P("- The 'busiest case' uses only turns the judge counted as hits. This is the fastest conversation Kanth supports and the highest cost per minute.");
 P();
 P("## Cost");
@@ -174,6 +179,11 @@ P("Sensitivity:");
 P(`- At the Bulbul v3 price (₹30 per 10K characters), prespeak TTS per turn rises from ₹${r4(mean(perTurn.map((r) => r.inr.ttsPrespeak)))} to ₹${r4(mean(perTurn.map((r) => r.inr.ttsPrespeakV3Price)))}.`);
 P("- If cached-input pricing applied to the fixed system prompt, chat cost would fall further.");
 P();
-P("**Read this as:** prespeak multiplies speech-synthesis characters by about 4, and is still a few rupees per hour at most.");
+const busyNo = scenarios[3]!;
+P("**Read this as:**");
+P(`- Bulbul characters are the cost. On a hit, prespeak synthesizes ${(busy.meanTtsCharsPerTurn / busyNo.meanTtsCharsPerTurn).toFixed(1)}x the characters actually spoken.`);
+P(`- In the busiest case (every turn a hit), that is ₹${r2(busy.perHourINR)} per hour with prespeak against ₹${r2(busyNo.perHourINR)} without. Per minute it is ₹${r2(busy.perMinINR.total)} against ₹${r2(busyNo.perMinINR.total)}.`);
+P(`- On this test set as measured, most turns are typed, so the cost is ₹${r2(scenarios[0]!.perHourINR)} per hour with prespeak against ₹${r2(scenarios[1]!.perHourINR)} without.`);
+P("- One way to cut it: prespeak only the first 1 or 2 drafts, or synthesize the rest only when the user's pointer or scan reaches them.");
 writeFileSync(`${OUT}/cost.md`, L.join("\n") + "\n");
 console.log(JSON.stringify(scenarios.map((s) => ({ n: s.name, p: s.prespeak, stt: s.sttMode, tpm: s.turnsPerMin, min: s.perMinINR.total, hr: s.perHourINR })), null, 1));

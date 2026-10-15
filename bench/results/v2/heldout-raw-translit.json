@@ -1,0 +1,156 @@
+{
+ "meta": {
+  "stage": "translit",
+  "started": "2026-10-15T02:37:12.595Z",
+  "startedIST": "15/10/2026, 8:07:12 am",
+  "setName": "heldout",
+  "set": "Held-out scripted set (hand-written, not real users; written after the prompt fix and before any model output for these turns; intended replies never edited)",
+  "setFileSha256": "fcf8b5c5254ae5945b21b7422716489ca409da7dc68d350e93c4ebdba2e29a29",
+  "suggestTsSha256": "84442ce92b621425a4182f5a8427c6cdf641a917b536e4526774d4294d49314b",
+  "suggestTsGit": {
+   "commit": "ffb1b9c",
+   "dirty": false
+  },
+  "settingsTsGit": {
+   "commit": "ffb1b9c",
+   "dirty": false
+  },
+  "profileNotes": "34, software engineer in Chennai. Has ALS and can no longer speak. Follows cricket.",
+  "network": "a home connection in India",
+  "node": "v25.2.1",
+  "os": "win32 10.0.26300",
+  "cpu": "13th Gen Intel(R) Core(TM) i5-13450HX",
+  "condition": "Two other agents may have been calling the same Sarvam account concurrently during this run (shared rate limits and possibly shared backend load).",
+  "endpoint": "POST /transliterate, source=<lang>, target=en-IN"
+ },
+ "rows": [
+  {
+   "id": "tah01",
+   "lang": "ta-IN",
+   "input": "கூட்டிட்டு வா அக்கா, ரொம்ப நாளாச்சு",
+   "status": 200,
+   "ms": 900.2,
+   "roman": "Koottitu va aka, bahuta naalachchu"
+  },
+  {
+   "id": "tah02",
+   "lang": "ta-IN",
+   "input": "காட்டு, அதை சுவர்ல ஒட்டி வை",
+   "status": 200,
+   "ms": 759.5,
+   "roman": "Kaat, aapnu swar-la otti vaai"
+  },
+  {
+   "id": "tah03",
+   "lang": "ta-IN",
+   "input": "இப்போ வேண்டாம், ராத்திரிக்கு வச்சுடு",
+   "status": 200,
+   "ms": 751.2,
+   "roman": "Ippo naavaddu, raathri-kku vachchudu"
+  },
+  {
+   "id": "tah04",
+   "lang": "ta-IN",
+   "input": "அஞ்சு நிமிஷம் மட்டும், கால் வலிக்குது",
+   "status": 200,
+   "ms": 757.9,
+   "roman": "Anju nimisham matra, kaal vaalikuthu"
+  },
+  {
+   "id": "tah05",
+   "lang": "ta-IN",
+   "input": "கொஞ்சம் loose பண்ணுங்க, மூச்சு முட்டுது",
+   "status": 200,
+   "ms": 782.7,
+   "roman": "Kanchchho loose pannunga, mukhu muttuthu"
+  },
+  {
+   "id": "tah06",
+   "lang": "ta-IN",
+   "input": "வியாழன் முடியாது, வெள்ளிக்கிழமை வாங்க",
+   "status": 200,
+   "ms": 755.3,
+   "roman": "Viyaazhan saadhya nahi, Velhikidivaasi vaanga"
+  },
+  {
+   "id": "tah07",
+   "lang": "ta-IN",
+   "input": "Confluence-ல என் page-ல எல்லாம் இருக்கு",
+   "status": 200,
+   "ms": 881.6,
+   "roman": "Confluence-la en page-la ellaam irukku"
+  },
+  {
+   "id": "tah08",
+   "lang": "ta-IN",
+   "input": "என் thanks சொல்லு, ரொம்ப support பண்ணாங்க",
+   "status": 200,
+   "ms": 668.1,
+   "roman": "En thanks maanu, thola thola paanga"
+  },
+  {
+   "id": "hih01",
+   "lang": "hi-IN",
+   "input": "दे दीजिए, पर धीरे धीरे",
+   "status": 200,
+   "ms": 722.2,
+   "roman": "De dijiye, par dhire dhire"
+  },
+  {
+   "id": "hih02",
+   "lang": "hi-IN",
+   "input": "थोड़ा भारी लग रहा है, शायद gas है",
+   "status": 200,
+   "ms": 710.7,
+   "roman": "Thoda bhari lag raha hai, shaayad gas hai"
+  },
+  {
+   "id": "hih03",
+   "lang": "hi-IN",
+   "input": "हाँ, थोड़ा और ऊपर कर दीजिए",
+   "status": 200,
+   "ms": 753.3,
+   "roman": "Haan, thoda aur upar kar dijiye"
+  },
+  {
+   "id": "hih04",
+   "lang": "hi-IN",
+   "input": "हाँ दिखाइए, पर clamp मज़बूत होना चाहिए",
+   "status": 200,
+   "ms": 705.3,
+   "roman": "Haan dikhaie, par clamp mazboot hona chahie"
+  },
+  {
+   "id": "hih05",
+   "lang": "hi-IN",
+   "input": "दो हज़ार वाला ठीक है",
+   "status": 200,
+   "ms": 640.5,
+   "roman": "Do hazaar vala theek hai"
+  },
+  {
+   "id": "hih06",
+   "lang": "hi-IN",
+   "input": "मेरे नाम से बनाइए, Arjun",
+   "status": 200,
+   "ms": 753.4,
+   "roman": "Mere naam se banaiye, Arjun"
+  },
+  {
+   "id": "hih07",
+   "lang": "hi-IN",
+   "input": "हाँ, ज़रूर पढ़ के सुना",
+   "status": 200,
+   "ms": 720.8,
+   "roman": "Haan, zaroor padh ke suna"
+  },
+  {
+   "id": "hih08",
+   "lang": "hi-IN",
+   "input": "Video पर join करूँगा, link भेज देना",
+   "status": 200,
+   "ms": 825.6,
+   "roman": "Video par join karunga, link bhej dena"
+  }
+ ]
+}

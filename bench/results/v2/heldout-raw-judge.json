@@ -1,0 +1,1669 @@
+{
+ "meta": {
+  "stage": "judge",
+  "started": "2026-10-15T02:37:34.929Z",
+  "startedIST": "15/10/2026, 8:07:34 am",
+  "setName": "heldout",
+  "set": "Held-out scripted set (hand-written, not real users; written after the prompt fix and before any model output for these turns; intended replies never edited)",
+  "setFileSha256": "fcf8b5c5254ae5945b21b7422716489ca409da7dc68d350e93c4ebdba2e29a29",
+  "suggestTsSha256": "84442ce92b621425a4182f5a8427c6cdf641a917b536e4526774d4294d49314b",
+  "suggestTsGit": {
+   "commit": "ffb1b9c",
+   "dirty": false
+  },
+  "settingsTsGit": {
+   "commit": "ffb1b9c",
+   "dirty": false
+  },
+  "profileNotes": "34, software engineer in Chennai. Has ALS and can no longer speak. Follows cricket.",
+  "network": "a home connection in India",
+  "node": "v25.2.1",
+  "os": "win32 10.0.26300",
+  "cpu": "13th Gen Intel(R) Core(TM) i5-13450HX",
+  "condition": "Two other agents may have been calling the same Sarvam account concurrently during this run (shared rate limits and possibly shared backend load).",
+  "judgeModel": "sarvam-105b",
+  "temperature": 0,
+  "reasoning": "on (model default)",
+  "runs": 2,
+  "workers": 4,
+  "systemPrompt": "You evaluate reply suggestions for an AAC (speech-generating) app used by a person who cannot speak.\nThe person knows exactly what they want to say (the INTENDED reply). The app offered four drafts. If a draft is chosen, the app speaks it aloud as the person's own words.\nAnswer the question: Which draft, if any, conveys the same core meaning and intent as the intended reply, such that the user would accept it as saying what they meant?\nDifferences in wording, word order, politeness words, fillers, or address terms do not matter. A draft that changes or omits a specific fact the intended reply states (yes vs no, a time, a quantity, a side, a person, a request, a reason that carries the point) does not count. A draft that says more than the intended reply counts only if the extra content is harmless and the person would still accept it.\nIf several drafts qualify, pick the best one. If none qualifies, answer null.\nAlso check each draft's language and script against the expected language. wrong_language: drafts mainly in a language other than the expected one. wrong_script: drafts that write a language in the wrong script (for example Tamil or Hindi words in Latin letters, or Hindi in Tamil script).\nReply with JSON only, no other text: {\"match\": 1|2|3|4|null, \"wrong_language\": [draft numbers], \"wrong_script\": [draft numbers], \"reason\": \"one short sentence\"}"
+ },
+ "turns": [
+  {
+   "id": "tah01",
+   "lang": "ta-IN",
+   "intended": "கூட்டிட்டு வா அக்கா, ரொம்ப நாளாச்சு",
+   "keywords": null,
+   "drafts": [
+    "வேண்டாம் Divya, இப்போ நான் rest பண்றேன்.",
+    "உள்ள வரட்டுமா, ஆனா கொஞ்சம் late ஆகும்.",
+    "பசங்க என்ன பண்ணனும்னு நினைக்கிறாங்க?",
+    "எனக்கு கொஞ்சம் சோர்வா இருக்கு Divya."
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 20552.8,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3288,
+      "prompt_tokens": 470,
+      "total_tokens": 3758,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3248,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft conveys the intended welcoming acceptance of the children's visit.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft conveys the intended welcoming acceptance of the children's visit."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 26403.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4089,
+      "prompt_tokens": 470,
+      "total_tokens": 4559,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4042,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None of the drafts convey the intended agreement to welcome the kids and mention it has been a long time.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts convey the intended agreement to welcome the kids and mention it has been a long time."
+     }
+    }
+   ]
+  },
+  {
+   "id": "tah02",
+   "lang": "ta-IN",
+   "intended": "காட்டு, அதை சுவர்ல ஒட்டி வை",
+   "keywords": null,
+   "drafts": [
+    "இத பாக்கலாம் ஆனா கொஞ்சம் time எடுக்கும்",
+    "அவன் drawing நல்லா வந்திருக்கான்னு கேப்போம்",
+    "எனக்கு கொஞ்சம் rest வேணும் அக்கா",
+    "அவன் கூட உக்காந்து பாக்குறேன்"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 17439.5,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2687,
+      "prompt_tokens": 451,
+      "total_tokens": 3138,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2643,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None of the drafts convey the request to show the drawing and stick it on the wall.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts convey the request to show the drawing and stick it on the wall."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 23706.7,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3675,
+      "prompt_tokens": 451,
+      "total_tokens": 4126,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3631,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"none of the drafts convey the intended command to show the drawing and stick it on the wall\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "none of the drafts convey the intended command to show the drawing and stick it on the wall"
+     }
+    }
+   ]
+  },
+  {
+   "id": "tah03",
+   "lang": "ta-IN",
+   "intended": "இப்போ வேண்டாம், ராத்திரிக்கு வச்சுடு",
+   "keywords": null,
+   "drafts": [
+    "முதல்ல அந்த drawing-அ பாக்கணும்",
+    "இப்பவே சாப்பிடலாம், கொஞ்சம் wait பண்ணு",
+    "எனக்கு ரொம்ப பசியா இருக்கு, சீக்கிரம் வை",
+    "இன்னைக்கு சாப்பிட்டுட்டு தூங்குறேன்"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 3,
+     "status": 200,
+     "ms": 11417.8,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1952,
+      "prompt_tokens": 454,
+      "total_tokens": 2406,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1910,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None convey the core intent of declining to eat now and keeping it for tonight.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None convey the core intent of declining to eat now and keeping it for tonight."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 7616.5,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1161,
+      "prompt_tokens": 454,
+      "total_tokens": 1615,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1123,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"none match the intended refusal to eat now and store for later\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "none match the intended refusal to eat now and store for later"
+     }
+    }
+   ]
+  },
+  {
+   "id": "tah04",
+   "lang": "ta-IN",
+   "intended": "அஞ்சு நிமிஷம் மட்டும், கால் வலிக்குது",
+   "keywords": null,
+   "drafts": [
+    "இப்போதைக்கு வேண்டாம் Selvi",
+    "ஒரு ரெண்டு நிமிஷம் மட்டும் நிக்கவா?",
+    "எனக்கு கொஞ்சம் rest வேணும் மா",
+    "சரி, ஆனா ரொம்ப நேரம் வேண்டாம்"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 16246.2,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3308,
+      "prompt_tokens": 450,
+      "total_tokens": 3758,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3273,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\":null,\"wrong_language\":[],\"wrong_script\":[],\"reason\":\"none preserve the specific five-minute limit and leg-pain reason\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "none preserve the specific five-minute limit and leg-pain reason"
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 2,
+     "status": 200,
+     "ms": 29298.8,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 5417,
+      "prompt_tokens": 450,
+      "total_tokens": 5867,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5375,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"All drafts omit the specific time of five minutes or the reason of leg pain.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All drafts omit the specific time of five minutes or the reason of leg pain."
+     }
+    }
+   ]
+  },
+  {
+   "id": "tah05",
+   "lang": "ta-IN",
+   "intended": "கொஞ்சம் loose பண்ணுங்க, மூச்சு முட்டுது",
+   "keywords": null,
+   "drafts": [
+    "இல்ல Selvi, அப்படியே இருக்கட்டும்",
+    "கொஞ்சம் வலிக்கிறது, tight பண்ணாதீ",
+    "இப்போதைக்கு பரவாயில்ல, அப்புறம் பாக்கலாம்",
+    "எனக்கு கொஞ்சம் rest வேணும், okay-வா?"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 19205.1,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4020,
+      "prompt_tokens": 456,
+      "total_tokens": 4476,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3980,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft preserves the request to loosen and the reason of suffocation.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft preserves the request to loosen and the reason of suffocation."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 16745.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2608,
+      "prompt_tokens": 456,
+      "total_tokens": 3064,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2559,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft requests loosening or cites suffocation, so the core request and specific reason from the intended reply are missing.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft requests loosening or cites suffocation, so the core request and specific reason from the intended reply are missing."
+     }
+    }
+   ]
+  },
+  {
+   "id": "tah06",
+   "lang": "ta-IN",
+   "intended": "வியாழன் முடியாது, வெள்ளிக்கிழமை வாங்க",
+   "keywords": null,
+   "drafts": [
+    "சரி, வியாழக்கிழமை வச்சுக்கலாம்",
+    "இப்போதைக்கு கொஞ்சம் rest எடுக்குறேன்",
+    "நீங்க சாப்பிட்டீங்களா, சாப்பிடணுமா?",
+    "நான் இப்போ தூங்கணும், போகலாம்"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 8760,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1332,
+      "prompt_tokens": 451,
+      "total_tokens": 1783,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1291,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft declines Thursday or proposes Friday, so none matches the intended meaning.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft declines Thursday or proposes Friday, so none matches the intended meaning."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 11392,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1898,
+      "prompt_tokens": 451,
+      "total_tokens": 2349,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1864,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft declines Thursday or proposes Friday.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft declines Thursday or proposes Friday."
+     }
+    }
+   ]
+  },
+  {
+   "id": "tah07",
+   "lang": "ta-IN",
+   "intended": "Confluence-ல என் page-ல எல்லாம் இருக்கு",
+   "keywords": null,
+   "drafts": [
+    "சரி Suresh, check பண்ணிட்டு சொல்றேன்",
+    "இப்போதைக்கு time இல்ல, அப்புறம் பேசலாம்",
+    "எனக்கு documentation எங்கேனு தெரியல",
+    "நீயே கொஞ்சம் தேடி குடுப்பா"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 10274.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1824,
+      "prompt_tokens": 454,
+      "total_tokens": 2278,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1786,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft identifies the Confluence page as the documentation location.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft identifies the Confluence page as the documentation location."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 12334.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2231,
+      "prompt_tokens": 454,
+      "total_tokens": 2685,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2188,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n```json\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft states the specific location mentioned in the intended reply.\"}\n```",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft states the specific location mentioned in the intended reply."
+     }
+    }
+   ]
+  },
+  {
+   "id": "tah08",
+   "lang": "ta-IN",
+   "intended": "என் thanks சொல்லு, ரொம்ப support பண்ணாங்க",
+   "keywords": null,
+   "drafts": [
+    "இல்ல, நான் சொன்னாலே போதும்",
+    "அப்புறமா பாத்துக்கலாம்",
+    "நீ என்ன சொன்னனு சொன்ன?",
+    "எனக்கு கொஞ்சம் rest வேணும்"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 2586.7,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 596,
+      "prompt_tokens": 439,
+      "total_tokens": 1035,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 560,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n```json\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"none convey the intended meaning\"}\n```",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "none convey the intended meaning"
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 23031.5,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4265,
+      "prompt_tokens": 439,
+      "total_tokens": 4704,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4224,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None of the drafts convey thanks or mention the client's extensive support.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts convey thanks or mention the client's extensive support."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hih01",
+   "lang": "hi-IN",
+   "intended": "दे दीजिए, पर धीरे धीरे",
+   "keywords": null,
+   "drafts": [
+    "अभी नहीं Anjali",
+    "थोड़ा wait करो ना",
+    "मुझे बहुत भूख लगी है",
+    "Doctor ने कब बोला था?"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 5833,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 844,
+      "prompt_tokens": 440,
+      "total_tokens": 1284,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 802,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None of the drafts convey the intended request to give the feeding tube food slowly.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts convey the intended request to give the feeding tube food slowly."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 12838.4,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2329,
+      "prompt_tokens": 440,
+      "total_tokens": 2769,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2287,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None of the drafts request the nurse to proceed with feeding now slowly as intended.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts request the nurse to proceed with feeding now slowly as intended."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hih02",
+   "lang": "hi-IN",
+   "intended": "थोड़ा भारी लग रहा है, शायद gas है",
+   "keywords": null,
+   "drafts": [
+    "नहीं, कोई दर्द नहीं है",
+    "Abhi आराम से खा लेता हूँ",
+    "ऐसा कुछ भी feel नहीं हो रहा",
+    "थोड़ा wait कर लो ना Anjali"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 7642.7,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1863,
+      "prompt_tokens": 445,
+      "total_tokens": 2308,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1819,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n```json\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [2], \"reason\": \"None of the drafts mention the heaviness or gas.\"}\n```",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [
+       2
+      ],
+      "reason": "None of the drafts mention the heaviness or gas."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 12490.4,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2452,
+      "prompt_tokens": 445,
+      "total_tokens": 2897,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2408,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [2], \"reason\": \"None of the drafts convey the intended symptom of stomach heaviness due to gas.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [
+       2
+      ],
+      "reason": "None of the drafts convey the intended symptom of stomach heaviness due to gas."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hih03",
+   "lang": "hi-IN",
+   "intended": "हाँ, थोड़ा और ऊपर कर दीजिए",
+   "keywords": null,
+   "drafts": [
+    "हाँ, थोड़ा ऊपर कर दो",
+    "Doctor को बता दो, ठीक रहेगा",
+    "अभी wait करते हैं, ठीक लग रहा है",
+    "धीरे से ऊपर कर दो please"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 28945.8,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 5255,
+      "prompt_tokens": 449,
+      "total_tokens": 5704,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 5207,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 1 omits 'aur', changing the quantity from 'a little more' to 'a little'.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 1 omits 'aur', changing the quantity from 'a little more' to 'a little'."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 23057.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4133,
+      "prompt_tokens": 449,
+      "total_tokens": 4582,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4097,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\":1,\"wrong_language\":[],\"wrong_script\":[],\"reason\":\"It agrees and requests raising the bed slightly, matching the core intent.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "It agrees and requests raising the bed slightly, matching the core intent."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hih04",
+   "lang": "hi-IN",
+   "intended": "हाँ दिखाइए, पर clamp मज़बूत होना चाहिए",
+   "keywords": null,
+   "drafts": [
+    "हाँ दिखा दो please",
+    "अभी नहीं, बाद में देखूँगा",
+    "ये कैसा है? काफी stable है?",
+    "मेरे लिए ये perfect रहेगा"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 9038.7,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1764,
+      "prompt_tokens": 449,
+      "total_tokens": 2213,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1721,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft conveys both consent to view and the requirement that the clamp must be strong.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft conveys both consent to view and the requirement that the clamp must be strong."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 14132.5,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2857,
+      "prompt_tokens": 449,
+      "total_tokens": 3306,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2819,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft includes the necessary condition about the clamp being strong.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft includes the necessary condition about the clamp being strong."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hih05",
+   "lang": "hi-IN",
+   "intended": "दो हज़ार वाला ठीक है",
+   "keywords": null,
+   "drafts": [
+    "बीच वाला सही रहेगा",
+    "अभी budget थोड़ा tight है",
+    "कौन सा ज़्यादा solid है?",
+    "ये वाला ही रख लूँ"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 21232.8,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 4179,
+      "prompt_tokens": 441,
+      "total_tokens": 4620,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 4123,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 4, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 4's demonstrative 'यह वाला' contextually selects the first (2000) item, matching the core choice.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 4,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 4's demonstrative 'यह वाला' contextually selects the first (2000) item, matching the core choice."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 2,
+     "status": 200,
+     "ms": 13467.9,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2961,
+      "prompt_tokens": 441,
+      "total_tokens": 3402,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2914,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\":4,\"wrong_language\":[],\"wrong_script\":[],\"reason\":\"यह वाला ही रख लूँ refers back to the two-thousand-rupee item, preserving the intent to accept it.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 4,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "यह वाला ही रख लूँ refers back to the two-thousand-rupee item, preserving the intent to accept it."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hih06",
+   "lang": "hi-IN",
+   "intended": "मेरे नाम से बनाइए, Arjun",
+   "keywords": null,
+   "drafts": [
+    "बिल Amma के नाम से बना दीजिए",
+    "अभी cash से pay कर रहा हूँ",
+    "क्या discount मिल सकता है इसमें?",
+    "अभी घर पर किसी से पूछ के आता हूँ"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 12929.4,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2592,
+      "prompt_tokens": 448,
+      "total_tokens": 3040,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2546,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft preserves the core instruction to make the bill in the user's own name, Arjun.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft preserves the core instruction to make the bill in the user's own name, Arjun."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 10574.8,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1963,
+      "prompt_tokens": 448,
+      "total_tokens": 2411,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1923,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"no draft asks for the bill to be prepared in Arjun's name\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "no draft asks for the bill to be prepared in Arjun's name"
+     }
+    }
+   ]
+  },
+  {
+   "id": "hih07",
+   "lang": "hi-IN",
+   "intended": "हाँ, ज़रूर पढ़ के सुना",
+   "keywords": null,
+   "drafts": [
+    "हाँ पढ़ दो ना",
+    "अभी थोड़ा rest कर रहा हूँ",
+    "किसको भेजा है card?",
+    "अरे अच्छा है यार"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 10470.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2085,
+      "prompt_tokens": 438,
+      "total_tokens": 2523,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2048,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 1, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Both affirm and ask to read the card out.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Both affirm and ask to read the card out."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 10437.9,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2433,
+      "prompt_tokens": 438,
+      "total_tokens": 2871,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2386,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 1, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 1 affirms and asks to read, matching the core intent to accept and hear the card.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 1 affirms and asks to read, matching the core intent to accept and hear the card."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hih08",
+   "lang": "hi-IN",
+   "intended": "Video पर join करूँगा, link भेज देना",
+   "keywords": null,
+   "drafts": [
+    "हाँ, मैं online join करूँगा",
+    "थोड़ा time लगेगा, ठीक से plan करूँ",
+    "तुम लोग enjoy करना",
+    "मेरी आवाज़ थोड़ी कमज़ोर है शायद"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 14103.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2812,
+      "prompt_tokens": 445,
+      "total_tokens": 3257,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2768,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 1, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 1 conveys the core intent to join online, only omitting the link request.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 1,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 1 conveys the core intent to join online, only omitting the link request."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 12307,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 2882,
+      "prompt_tokens": 445,
+      "total_tokens": 3327,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 2845,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft conveys the full intent including the link request.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft conveys the full intent including the link request."
+     }
+    }
+   ]
+  },
+  {
+   "id": "enh01",
+   "lang": "en-IN",
+   "intended": "My eyes get dry after twenty minutes.",
+   "keywords": null,
+   "drafts": [
+    "It is a bit tiring, Doctor",
+    "Can I take a small break now?",
+    "Do you think it will get easier?",
+    "I will try for just five more minutes"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 5095.2,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1268,
+      "prompt_tokens": 435,
+      "total_tokens": 1703,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1228,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None of the drafts mention dry eyes or the twenty-minute duration.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts mention dry eyes or the twenty-minute duration."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 3647.1,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 677,
+      "prompt_tokens": 435,
+      "total_tokens": 1112,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 637,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None of the drafts state that the eyes get dry after twenty minutes.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts state that the eyes get dry after twenty minutes."
+     }
+    }
+   ]
+  },
+  {
+   "id": "enh02",
+   "lang": "en-IN",
+   "intended": "Yes, bigger font and a darker background.",
+   "keywords": null,
+   "drafts": [
+    "That sounds good, Doctor",
+    "Let me try it first",
+    "What is the next step?",
+    "I hope it works out"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 7376.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1492,
+      "prompt_tokens": 421,
+      "total_tokens": 1913,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1453,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"All drafts omit the specific mention of bigger font and darker background.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "All drafts omit the specific mention of bigger font and darker background."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 17686.4,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3368,
+      "prompt_tokens": 421,
+      "total_tokens": 3789,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3329,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft mentions the darker background alongside the agreement to a bigger font\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft mentions the darker background alongside the agreement to a bigger font"
+     }
+    }
+   ]
+  },
+  {
+   "id": "enh03",
+   "lang": "en-IN",
+   "intended": "Two weeks is fine, mornings are better for me.",
+   "keywords": null,
+   "drafts": [
+    "Yes Doctor, two weeks sounds good",
+    "I will try the bigger font first",
+    "Can we also adjust the blink speed?",
+    "That works for me, thank you"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 7091.9,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1427,
+      "prompt_tokens": 432,
+      "total_tokens": 1859,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1394,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None mention the preference for mornings.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None mention the preference for mornings."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 6543,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1289,
+      "prompt_tokens": 432,
+      "total_tokens": 1721,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1246,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\":null,\"wrong_language\":[],\"wrong_script\":[],\"reason\":\"Draft 4 omits the morning preference and the others miss the key facts entirely, so none match.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 4 omits the morning preference and the others miss the key facts entirely, so none match."
+     }
+    }
+   ]
+  },
+  {
+   "id": "enh04",
+   "lang": "en-IN",
+   "intended": "Not today, I'd rather just chat with you.",
+   "keywords": null,
+   "drafts": [
+    "Yes please, I am waiting for it",
+    "Maybe after I finish my tea",
+    "Which chapter is it this time?",
+    "That sounds really nice, thank you"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 5802.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1156,
+      "prompt_tokens": 433,
+      "total_tokens": 1589,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1115,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None of the drafts declines the offer and indicates a preference to chat instead.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts declines the offer and indicates a preference to chat instead."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 6464.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1369,
+      "prompt_tokens": 433,
+      "total_tokens": 1802,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1322,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None of the drafts clearly decline the offer to read the chapter and express a preference to just chat instead.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts clearly decline the offer to read the chapter and express a preference to just chat instead."
+     }
+    }
+   ]
+  },
+  {
+   "id": "enh05",
+   "lang": "en-IN",
+   "intended": "Only two episodes, I keep falling asleep.",
+   "keywords": null,
+   "drafts": [
+    "Let me think about that for a bit",
+    "I don't remember which one you mean",
+    "I wish we could just sit and talk",
+    "Maybe tomorrow, I am a bit tired"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 7370.4,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1484,
+      "prompt_tokens": 434,
+      "total_tokens": 1918,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1429,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 4 hints at being too tired to continue but omits the specific fact of only having watched two episodes and does not mention falling asleep.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 4 hints at being too tired to continue but omits the specific fact of only having watched two episodes and does not mention falling asleep."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 7391.8,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1493,
+      "prompt_tokens": 434,
+      "total_tokens": 1927,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1457,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"No draft mentions the two episodes or falling asleep.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "No draft mentions the two episodes or falling asleep."
+     }
+    }
+   ]
+  },
+  {
+   "id": "enh06",
+   "lang": "en-IN",
+   "intended": "Congratulations! Visit me whenever you're in Chennai.",
+   "keywords": null,
+   "drafts": [
+    "That is really far away, Meera",
+    "Will I still see you on video calls?",
+    "I will miss our chats so much",
+    "Are you sure you want to go right now?"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 4625,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1111,
+      "prompt_tokens": 435,
+      "total_tokens": 1546,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1067,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None of the drafts congratulate or invite a visit, which are central to the intended reply.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts congratulate or invite a visit, which are central to the intended reply."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 4222.7,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 646,
+      "prompt_tokens": 435,
+      "total_tokens": 1081,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 607,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None of the drafts convey congratulations or the invitation to visit Chennai.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts convey congratulations or the invitation to visit Chennai."
+     }
+    }
+   ]
+  },
+  {
+   "id": "enh07",
+   "lang": "en-IN",
+   "intended": "Thumb impression please, I can't hold a pen.",
+   "keywords": null,
+   "drafts": [
+    "I will try to sign today",
+    "Maybe we can do thumb impression instead",
+    "Do I need to bring anything else?",
+    "My hand is a bit stiff, what should we do?"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 19772.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3983,
+      "prompt_tokens": 443,
+      "total_tokens": 4426,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3947,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 2, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"It requests a thumb impression instead of signing.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 2,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "It requests a thumb impression instead of signing."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 14041.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 3187,
+      "prompt_tokens": 443,
+      "total_tokens": 3630,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 3145,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": 2, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"Draft 2 directly asks for a thumb impression as an alternative to signing.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": 2,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "Draft 2 directly asks for a thumb impression as an alternative to signing."
+     }
+    }
+   ]
+  },
+  {
+   "id": "enh08",
+   "lang": "en-IN",
+   "intended": "Yes, please add my mother as nominee.",
+   "keywords": null,
+   "drafts": [
+    "I will think about it and tell you",
+    "Not right now, I will manage this later",
+    "Who do you suggest I should add?",
+    "That is a good idea, let me check with Amma"
+   ],
+   "runs": [
+    {
+     "run": 1,
+     "attempt": 1,
+     "status": 200,
+     "ms": 6390.6,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1277,
+      "prompt_tokens": 435,
+      "total_tokens": 1712,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1238,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None of the drafts directly agree to add the mother as nominee.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts directly agree to add the mother as nominee."
+     }
+    },
+    {
+     "run": 2,
+     "attempt": 1,
+     "status": 200,
+     "ms": 7505.3,
+     "finish": "stop",
+     "usage": {
+      "completion_tokens": 1499,
+      "prompt_tokens": 435,
+      "total_tokens": 1934,
+      "completion_tokens_details": {
+       "accepted_prediction_tokens": null,
+       "audio_tokens": null,
+       "reasoning_tokens": 1456,
+       "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null
+     },
+     "content": "\n{\"match\": null, \"wrong_language\": [], \"wrong_script\": [], \"reason\": \"None of the drafts affirm 'yes' or directly request adding the mother as nominee.\"}",
+     "reasoningChars": 0,
+     "parsed": {
+      "match": null,
+      "wrong_language": [],
+      "wrong_script": [],
+      "reason": "None of the drafts affirm 'yes' or directly request adding the mother as nominee."
+     }
+    }
+   ]
+  }
+ ]
+}

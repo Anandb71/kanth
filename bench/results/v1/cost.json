@@ -1,0 +1,940 @@
+{
+ "prices": {
+  "fetched": "2026-10-15 (IST)",
+  "pricingPage": "https://docs.sarvam.ai/api/getting-started/pricing.md",
+  "llmInputPer1M": 15,
+  "llmCachedInputPer1M": 5,
+  "llmOutputPer1M": 60,
+  "sttPerHour": 30,
+  "ttsV4FlashPer10K": 20,
+  "ttsV4FlashSource": "https://www.sarvam.ai/blogs/bulbul-v4-flash (\"costs ₹20 per 10,000 characters\"); the pricing page lists only Bulbul v3 (₹30 per 10K characters) and Instant Voice Cloning (₹30)",
+  "ttsV3Per10K": 30,
+  "translitPer10K": 20
+ },
+ "modeled": {
+  "partnerWpm": 164
+ },
+ "measured": {
+  "meanPromptTokens": 507.05555555555554,
+  "meanCompletionTokens": 81.13888888888889,
+  "meanTtsCharsPrespeak": 158.55555555555554,
+  "meanTtsCharsNoPrespeak": 33.69444444444444,
+  "meanDraftChars": 32.375
+ },
+ "scenarios": [
+  {
+   "name": "Test set as measured (misses typed), direct selection",
+   "prespeak": true,
+   "sttMode": "speech",
+   "turns": 36,
+   "meanExchangeSec": 100.46600173248163,
+   "turnsPerMin": 0.5972169586261281,
+   "meanTtsCharsPerTurn": 158.55555555555554,
+   "perTurnINR": {
+    "llm": 0.012474166666666666,
+    "tts": 0.31711111111111107,
+    "translit": 0.039111111111111124,
+    "stt": 0.029386856368563696,
+    "total": 0.3980832452574526
+   },
+   "perMinINR": {
+    "llm": 0.007449783878062093,
+    "tts": 0.18938413332432993,
+    "translit": 0.023357818826266353,
+    "stt": 0.017550328984016473,
+    "total": 0.23774206501267486
+   },
+   "perHourINR": 14.264523900760492
+  },
+  {
+   "name": "Test set as measured (misses typed), direct selection",
+   "prespeak": false,
+   "sttMode": "speech",
+   "turns": 36,
+   "meanExchangeSec": 100.35629458962447,
+   "turnsPerMin": 0.5978698221706087,
+   "meanTtsCharsPerTurn": 33.69444444444444,
+   "perTurnINR": {
+    "llm": 0.012474166666666666,
+    "tts": 0.0673888888888889,
+    "translit": 0.039111111111111124,
+    "stt": 0.029386856368563696,
+    "total": 0.14836102303523038
+   },
+   "perMinINR": {
+    "llm": 0.007457927806726534,
+    "tts": 0.040289783016274915,
+    "translit": 0.023383353044894927,
+    "stt": 0.017569514591226396,
+    "total": 0.08870057845912277
+   },
+   "perHourINR": 5.322034707547366
+  },
+  {
+   "name": "Busiest case: every turn a hit, direct selection",
+   "prespeak": true,
+   "sttMode": "speech",
+   "turns": 5,
+   "meanExchangeSec": 10.292001602787456,
+   "turnsPerMin": 5.829769787807822,
+   "meanTtsCharsPerTurn": 137.2,
+   "perTurnINR": {
+    "llm": 0.012851999999999999,
+    "tts": 0.27440000000000003,
+    "translit": 0,
+    "stt": 0.031097560975609756,
+    "total": 0.31834956097560974
+   },
+   "perMinINR": {
+    "llm": 0.07492420131290613,
+    "tts": 1.5996888297744667,
+    "translit": 0,
+    "stt": 0.18129162145012132,
+    "total": 1.855904652537494
+   },
+   "perHourINR": 111.35427915224965
+  },
+  {
+   "name": "Busiest case: every turn a hit, direct selection",
+   "prespeak": false,
+   "sttMode": "speech",
+   "turns": 5,
+   "meanExchangeSec": 9.502110174216027,
+   "turnsPerMin": 6.314386899323687,
+   "meanTtsCharsPerTurn": 33.4,
+   "perTurnINR": {
+    "llm": 0.012851999999999999,
+    "tts": 0.0668,
+    "translit": 0,
+    "stt": 0.031097560975609756,
+    "total": 0.11074956097560976
+   },
+   "perMinINR": {
+    "llm": 0.08115250043010802,
+    "tts": 0.4218010448748223,
+    "translit": 0,
+    "stt": 0.1963620316253098,
+    "total": 0.6993155769302402
+   },
+   "perHourINR": 41.95893461581441
+  },
+  {
+   "name": "Busiest case, mic streamed to Saaras for the whole minute",
+   "prespeak": true,
+   "sttMode": "open",
+   "turns": 5,
+   "meanExchangeSec": 10.292001602787456,
+   "turnsPerMin": 5.829769787807822,
+   "meanTtsCharsPerTurn": 137.2,
+   "perTurnINR": {
+    "llm": 0.012851999999999999,
+    "tts": 0.27440000000000003,
+    "translit": 0,
+    "stt": 0,
+    "total": 0.287252
+   },
+   "perMinINR": {
+    "llm": 0.07492420131290613,
+    "tts": 1.5996888297744667,
+    "translit": 0,
+    "stt": 0.5,
+    "total": 2.1746130310873726
+   },
+   "perHourINR": 130.47678186524234
+  }
+ ],
+ "perTurn": [
+  {
+   "id": "ta01",
+   "lang": "ta-IN",
+   "hit": false,
+   "partnerSec": 2.926829268292683,
+   "userAudioSec": 2.43,
+   "gapDirectB": 95.27281428571429,
+   "gapDirectC": 95.27281428571429,
+   "ttsCharsPrespeak": 217,
+   "ttsCharsNoPrespeak": 33,
+   "translitChars": 31,
+   "promptTok": 485,
+   "complTok": 111,
+   "inr": {
+    "llm": 0.013935,
+    "sttSpeechOnly": 0.024390243902439025,
+    "translit": 0.062,
+    "ttsPrespeak": 0.434,
+    "ttsNoPrespeak": 0.066,
+    "ttsPrespeakV3Price": 0.651
+   }
+  },
+  {
+   "id": "ta02",
+   "lang": "ta-IN",
+   "hit": false,
+   "partnerSec": 1.8292682926829267,
+   "userAudioSec": 2.963,
+   "gapDirectB": 146.54538571428571,
+   "gapDirectC": 146.54538571428571,
+   "ttsCharsPrespeak": 168,
+   "ttsCharsNoPrespeak": 42,
+   "translitChars": 49,
+   "promptTok": 522,
+   "complTok": 81,
+   "inr": {
+    "llm": 0.01269,
+    "sttSpeechOnly": 0.015243902439024388,
+    "translit": 0.098,
+    "ttsPrespeak": 0.336,
+    "ttsNoPrespeak": 0.084,
+    "ttsPrespeakV3Price": 0.504
+   }
+  },
+  {
+   "id": "ta03",
+   "lang": "ta-IN",
+   "hit": false,
+   "partnerSec": 1.8292682926829267,
+   "userAudioSec": 2.436,
+   "gapDirectB": 92.36157142857142,
+   "gapDirectC": 92.36157142857142,
+   "ttsCharsPrespeak": 179,
+   "ttsCharsNoPrespeak": 27,
+   "translitChars": 30,
+   "promptTok": 560,
+   "complTok": 104,
+   "inr": {
+    "llm": 0.01464,
+    "sttSpeechOnly": 0.015243902439024388,
+    "translit": 0.06,
+    "ttsPrespeak": 0.358,
+    "ttsNoPrespeak": 0.054,
+    "ttsPrespeakV3Price": 0.537
+   }
+  },
+  {
+   "id": "ta04",
+   "lang": "ta-IN",
+   "hit": false,
+   "partnerSec": 1.8292682926829267,
+   "userAudioSec": 2.517,
+   "gapDirectB": 100.85579999999999,
+   "gapDirectC": 100.85579999999999,
+   "ttsCharsPrespeak": 192,
+   "ttsCharsNoPrespeak": 31,
+   "translitChars": 33,
+   "promptTok": 482,
+   "complTok": 105,
+   "inr": {
+    "llm": 0.01353,
+    "sttSpeechOnly": 0.015243902439024388,
+    "translit": 0.066,
+    "ttsPrespeak": 0.384,
+    "ttsNoPrespeak": 0.062,
+    "ttsPrespeakV3Price": 0.576
+   }
+  },
+  {
+   "id": "ta05",
+   "lang": "ta-IN",
+   "hit": false,
+   "partnerSec": 2.5609756097560976,
+   "userAudioSec": 2.126,
+   "gapDirectB": 89.61652857142857,
+   "gapDirectC": 89.61652857142857,
+   "ttsCharsPrespeak": 145,
+   "ttsCharsNoPrespeak": 28,
+   "translitChars": 29,
+   "promptTok": 522,
+   "complTok": 76,
+   "inr": {
+    "llm": 0.01239,
+    "sttSpeechOnly": 0.021341463414634148,
+    "translit": 0.058,
+    "ttsPrespeak": 0.29,
+    "ttsNoPrespeak": 0.056,
+    "ttsPrespeakV3Price": 0.435
+   }
+  },
+  {
+   "id": "ta06",
+   "lang": "ta-IN",
+   "hit": false,
+   "partnerSec": 2.926829268292683,
+   "userAudioSec": 2.02,
+   "gapDirectB": 98.00945714285714,
+   "gapDirectC": 98.00945714285714,
+   "ttsCharsPrespeak": 154,
+   "ttsCharsNoPrespeak": 33,
+   "translitChars": 32,
+   "promptTok": 557,
+   "complTok": 86,
+   "inr": {
+    "llm": 0.013515,
+    "sttSpeechOnly": 0.024390243902439025,
+    "translit": 0.064,
+    "ttsPrespeak": 0.308,
+    "ttsNoPrespeak": 0.066,
+    "ttsPrespeakV3Price": 0.462
+   }
+  },
+  {
+   "id": "ta07",
+   "lang": "ta-IN",
+   "hit": false,
+   "partnerSec": 2.926829268292683,
+   "userAudioSec": 1.758,
+   "gapDirectB": 78.10955714285714,
+   "gapDirectC": 78.10955714285714,
+   "ttsCharsPrespeak": 188,
+   "ttsCharsNoPrespeak": 21,
+   "translitChars": 25,
+   "promptTok": 485,
+   "complTok": 93,
+   "inr": {
+    "llm": 0.012855,
+    "sttSpeechOnly": 0.024390243902439025,
+    "translit": 0.05,
+    "ttsPrespeak": 0.376,
+    "ttsNoPrespeak": 0.042,
+    "ttsPrespeakV3Price": 0.564
+   }
+  },
+  {
+   "id": "ta08",
+   "lang": "ta-IN",
+   "hit": true,
+   "partnerSec": 1.8292682926829267,
+   "userAudioSec": 2.19,
+   "gapDirectB": 3.7821428571428575,
+   "gapDirectC": 3.4829428571428576,
+   "ttsCharsPrespeak": 136,
+   "ttsCharsNoPrespeak": 33,
+   "translitChars": 0,
+   "promptTok": 517,
+   "complTok": 86,
+   "inr": {
+    "llm": 0.012915,
+    "sttSpeechOnly": 0.015243902439024388,
+    "translit": 0,
+    "ttsPrespeak": 0.272,
+    "ttsNoPrespeak": 0.066,
+    "ttsPrespeakV3Price": 0.408
+   }
+  },
+  {
+   "id": "ta09",
+   "lang": "ta-IN",
+   "hit": false,
+   "partnerSec": 2.5609756097560976,
+   "userAudioSec": 3.548,
+   "gapDirectB": 149.41822857142856,
+   "gapDirectC": 149.41822857142856,
+   "ttsCharsPrespeak": 192,
+   "ttsCharsNoPrespeak": 55,
+   "translitChars": 50,
+   "promptTok": 555,
+   "complTok": 81,
+   "inr": {
+    "llm": 0.013185,
+    "sttSpeechOnly": 0.021341463414634148,
+    "translit": 0.1,
+    "ttsPrespeak": 0.384,
+    "ttsNoPrespeak": 0.11,
+    "ttsPrespeakV3Price": 0.576
+   }
+  },
+  {
+   "id": "ta10",
+   "lang": "ta-IN",
+   "hit": false,
+   "partnerSec": 2.926829268292683,
+   "userAudioSec": 1.592,
+   "gapDirectB": 97.98645714285713,
+   "gapDirectC": 97.98645714285713,
+   "ttsCharsPrespeak": 160,
+   "ttsCharsNoPrespeak": 27,
+   "translitChars": 32,
+   "promptTok": 479,
+   "complTok": 77,
+   "inr": {
+    "llm": 0.011805,
+    "sttSpeechOnly": 0.024390243902439025,
+    "translit": 0.064,
+    "ttsPrespeak": 0.32,
+    "ttsNoPrespeak": 0.054,
+    "ttsPrespeakV3Price": 0.48
+   }
+  },
+  {
+   "id": "ta11",
+   "lang": "ta-IN",
+   "hit": false,
+   "partnerSec": 2.195121951219512,
+   "userAudioSec": 2.342,
+   "gapDirectB": 83.68694285714285,
+   "gapDirectC": 83.68694285714285,
+   "ttsCharsPrespeak": 140,
+   "ttsCharsNoPrespeak": 26,
+   "translitChars": 27,
+   "promptTok": 518,
+   "complTok": 82,
+   "inr": {
+    "llm": 0.01269,
+    "sttSpeechOnly": 0.018292682926829264,
+    "translit": 0.054,
+    "ttsPrespeak": 0.28,
+    "ttsNoPrespeak": 0.052,
+    "ttsPrespeakV3Price": 0.42
+   }
+  },
+  {
+   "id": "ta12",
+   "lang": "ta-IN",
+   "hit": true,
+   "partnerSec": 2.926829268292683,
+   "userAudioSec": 2.297,
+   "gapDirectB": 3.698842857142857,
+   "gapDirectC": 3.4007428571428573,
+   "ttsCharsPrespeak": 140,
+   "ttsCharsNoPrespeak": 36,
+   "translitChars": 0,
+   "promptTok": 549,
+   "complTok": 80,
+   "inr": {
+    "llm": 0.013035,
+    "sttSpeechOnly": 0.024390243902439025,
+    "translit": 0,
+    "ttsPrespeak": 0.28,
+    "ttsNoPrespeak": 0.072,
+    "ttsPrespeakV3Price": 0.42
+   }
+  },
+  {
+   "id": "hi01",
+   "lang": "hi-IN",
+   "hit": false,
+   "partnerSec": 4.390243902439024,
+   "userAudioSec": 1.529,
+   "gapDirectB": 115.14931428571428,
+   "gapDirectC": 115.14931428571428,
+   "ttsCharsPrespeak": 184,
+   "ttsCharsNoPrespeak": 33,
+   "translitChars": 38,
+   "promptTok": 479,
+   "complTok": 90,
+   "inr": {
+    "llm": 0.012585,
+    "sttSpeechOnly": 0.03658536585365853,
+    "translit": 0.076,
+    "ttsPrespeak": 0.368,
+    "ttsNoPrespeak": 0.066,
+    "ttsPrespeakV3Price": 0.552
+   }
+  },
+  {
+   "id": "hi02",
+   "lang": "hi-IN",
+   "hit": true,
+   "partnerSec": 5.121951219512195,
+   "userAudioSec": 2.11,
+   "gapDirectB": 3.7157428571428572,
+   "gapDirectC": 3.4165428571428573,
+   "ttsCharsPrespeak": 140,
+   "ttsCharsNoPrespeak": 37,
+   "translitChars": 0,
+   "promptTok": 523,
+   "complTok": 88,
+   "inr": {
+    "llm": 0.013125,
+    "sttSpeechOnly": 0.042682926829268296,
+    "translit": 0,
+    "ttsPrespeak": 0.28,
+    "ttsNoPrespeak": 0.074,
+    "ttsPrespeakV3Price": 0.42
+   }
+  },
+  {
+   "id": "hi03",
+   "lang": "hi-IN",
+   "hit": false,
+   "partnerSec": 4.024390243902439,
+   "userAudioSec": 2.133,
+   "gapDirectB": 103.70784285714285,
+   "gapDirectC": 103.70784285714285,
+   "ttsCharsPrespeak": 177,
+   "ttsCharsNoPrespeak": 32,
+   "translitChars": 34,
+   "promptTok": 557,
+   "complTok": 85,
+   "inr": {
+    "llm": 0.013455,
+    "sttSpeechOnly": 0.03353658536585366,
+    "translit": 0.068,
+    "ttsPrespeak": 0.354,
+    "ttsNoPrespeak": 0.064,
+    "ttsPrespeakV3Price": 0.531
+   }
+  },
+  {
+   "id": "hi04",
+   "lang": "hi-IN",
+   "hit": false,
+   "partnerSec": 4.024390243902439,
+   "userAudioSec": 2.606,
+   "gapDirectB": 120.90539999999999,
+   "gapDirectC": 120.90539999999999,
+   "ttsCharsPrespeak": 163,
+   "ttsCharsNoPrespeak": 36,
+   "translitChars": 40,
+   "promptTok": 468,
+   "complTok": 94,
+   "inr": {
+    "llm": 0.01266,
+    "sttSpeechOnly": 0.03353658536585366,
+    "translit": 0.08,
+    "ttsPrespeak": 0.326,
+    "ttsNoPrespeak": 0.072,
+    "ttsPrespeakV3Price": 0.489
+   }
+  },
+  {
+   "id": "hi05",
+   "lang": "hi-IN",
+   "hit": false,
+   "partnerSec": 3.292682926829268,
+   "userAudioSec": 3.366,
+   "gapDirectB": 117.96505714285715,
+   "gapDirectC": 117.96505714285715,
+   "ttsCharsPrespeak": 154,
+   "ttsCharsNoPrespeak": 34,
+   "translitChars": 39,
+   "promptTok": 500,
+   "complTok": 80,
+   "inr": {
+    "llm": 0.0123,
+    "sttSpeechOnly": 0.0274390243902439,
+    "translit": 0.078,
+    "ttsPrespeak": 0.308,
+    "ttsNoPrespeak": 0.068,
+    "ttsPrespeakV3Price": 0.462
+   }
+  },
+  {
+   "id": "hi06",
+   "lang": "hi-IN",
+   "hit": false,
+   "partnerSec": 3.6585365853658534,
+   "userAudioSec": 1.361,
+   "gapDirectB": 103.79754285714286,
+   "gapDirectC": 103.79754285714286,
+   "ttsCharsPrespeak": 124,
+   "ttsCharsNoPrespeak": 27,
+   "translitChars": 34,
+   "promptTok": 533,
+   "complTok": 77,
+   "inr": {
+    "llm": 0.012615,
+    "sttSpeechOnly": 0.030487804878048776,
+    "translit": 0.068,
+    "ttsPrespeak": 0.248,
+    "ttsNoPrespeak": 0.054,
+    "ttsPrespeakV3Price": 0.372
+   }
+  },
+  {
+   "id": "hi07",
+   "lang": "hi-IN",
+   "hit": false,
+   "partnerSec": 3.6585365853658534,
+   "userAudioSec": 2.031,
+   "gapDirectB": 106.5288857142857,
+   "gapDirectC": 106.5288857142857,
+   "ttsCharsPrespeak": 132,
+   "ttsCharsNoPrespeak": 30,
+   "translitChars": 35,
+   "promptTok": 469,
+   "complTok": 77,
+   "inr": {
+    "llm": 0.011655,
+    "sttSpeechOnly": 0.030487804878048776,
+    "translit": 0.07,
+    "ttsPrespeak": 0.264,
+    "ttsNoPrespeak": 0.06,
+    "ttsPrespeakV3Price": 0.396
+   }
+  },
+  {
+   "id": "hi08",
+   "lang": "hi-IN",
+   "hit": false,
+   "partnerSec": 2.195121951219512,
+   "userAudioSec": 1.578,
+   "gapDirectB": 72.27457142857143,
+   "gapDirectC": 72.27457142857143,
+   "ttsCharsPrespeak": 129,
+   "ttsCharsNoPrespeak": 17,
+   "translitChars": 23,
+   "promptTok": 500,
+   "complTok": 81,
+   "inr": {
+    "llm": 0.01236,
+    "sttSpeechOnly": 0.018292682926829264,
+    "translit": 0.046,
+    "ttsPrespeak": 0.258,
+    "ttsNoPrespeak": 0.034,
+    "ttsPrespeakV3Price": 0.387
+   }
+  },
+  {
+   "id": "hi09",
+   "lang": "hi-IN",
+   "hit": false,
+   "partnerSec": 2.926829268292683,
+   "userAudioSec": 1.762,
+   "gapDirectB": 129.39762857142858,
+   "gapDirectC": 129.39762857142858,
+   "ttsCharsPrespeak": 130,
+   "ttsCharsNoPrespeak": 36,
+   "translitChars": 43,
+   "promptTok": 525,
+   "complTok": 56,
+   "inr": {
+    "llm": 0.011235,
+    "sttSpeechOnly": 0.024390243902439025,
+    "translit": 0.086,
+    "ttsPrespeak": 0.26,
+    "ttsNoPrespeak": 0.072,
+    "ttsPrespeakV3Price": 0.39
+   }
+  },
+  {
+   "id": "hi10",
+   "lang": "hi-IN",
+   "hit": false,
+   "partnerSec": 3.292682926829268,
+   "userAudioSec": 2.863,
+   "gapDirectB": 129.41552857142855,
+   "gapDirectC": 129.41552857142855,
+   "ttsCharsPrespeak": 152,
+   "ttsCharsNoPrespeak": 37,
+   "translitChars": 43,
+   "promptTok": 469,
+   "complTok": 76,
+   "inr": {
+    "llm": 0.011595,
+    "sttSpeechOnly": 0.0274390243902439,
+    "translit": 0.086,
+    "ttsPrespeak": 0.304,
+    "ttsNoPrespeak": 0.074,
+    "ttsPrespeakV3Price": 0.456
+   }
+  },
+  {
+   "id": "hi11",
+   "lang": "hi-IN",
+   "hit": true,
+   "partnerSec": 3.6585365853658534,
+   "userAudioSec": 1.84,
+   "gapDirectB": 3.6803428571428576,
+   "gapDirectC": 8.832299999999998,
+   "ttsCharsPrespeak": 139,
+   "ttsCharsNoPrespeak": 29,
+   "translitChars": 0,
+   "promptTok": 506,
+   "complTok": 82,
+   "inr": {
+    "llm": 0.01251,
+    "sttSpeechOnly": 0.030487804878048776,
+    "translit": 0,
+    "ttsPrespeak": 0.278,
+    "ttsNoPrespeak": 0.058,
+    "ttsPrespeakV3Price": 0.417
+   }
+  },
+  {
+   "id": "hi12",
+   "lang": "hi-IN",
+   "hit": false,
+   "partnerSec": 3.6585365853658534,
+   "userAudioSec": 2.004,
+   "gapDirectB": 112.25937142857143,
+   "gapDirectC": 112.25937142857143,
+   "ttsCharsPrespeak": 127,
+   "ttsCharsNoPrespeak": 34,
+   "translitChars": 37,
+   "promptTok": 537,
+   "complTok": 66,
+   "inr": {
+    "llm": 0.012015,
+    "sttSpeechOnly": 0.030487804878048776,
+    "translit": 0.074,
+    "ttsPrespeak": 0.254,
+    "ttsNoPrespeak": 0.068,
+    "ttsPrespeakV3Price": 0.381
+   }
+  },
+  {
+   "id": "en01",
+   "lang": "en-IN",
+   "hit": false,
+   "partnerSec": 5.853658536585366,
+   "userAudioSec": 3.211,
+   "gapDirectB": 112.23037142857143,
+   "gapDirectC": 112.23037142857143,
+   "ttsCharsPrespeak": 178,
+   "ttsCharsNoPrespeak": 37,
+   "translitChars": 0,
+   "promptTok": 463,
+   "complTok": 78,
+   "inr": {
+    "llm": 0.011625,
+    "sttSpeechOnly": 0.04878048780487805,
+    "translit": 0,
+    "ttsPrespeak": 0.356,
+    "ttsNoPrespeak": 0.074,
+    "ttsPrespeakV3Price": 0.534
+   }
+  },
+  {
+   "id": "en02",
+   "lang": "en-IN",
+   "hit": false,
+   "partnerSec": 3.6585365853658534,
+   "userAudioSec": 3.731,
+   "gapDirectB": 117.98295714285715,
+   "gapDirectC": 117.98295714285715,
+   "ttsCharsPrespeak": 156,
+   "ttsCharsNoPrespeak": 39,
+   "translitChars": 0,
+   "promptTok": 501,
+   "complTok": 84,
+   "inr": {
+    "llm": 0.012555,
+    "sttSpeechOnly": 0.030487804878048776,
+    "translit": 0,
+    "ttsPrespeak": 0.312,
+    "ttsNoPrespeak": 0.078,
+    "ttsPrespeakV3Price": 0.468
+   }
+  },
+  {
+   "id": "en03",
+   "lang": "en-IN",
+   "hit": false,
+   "partnerSec": 5.121951219512195,
+   "userAudioSec": 2.517,
+   "gapDirectB": 83.62204285714286,
+   "gapDirectC": 83.62204285714286,
+   "ttsCharsPrespeak": 167,
+   "ttsCharsNoPrespeak": 27,
+   "translitChars": 0,
+   "promptTok": 539,
+   "complTok": 72,
+   "inr": {
+    "llm": 0.012405,
+    "sttSpeechOnly": 0.042682926829268296,
+    "translit": 0,
+    "ttsPrespeak": 0.334,
+    "ttsNoPrespeak": 0.054,
+    "ttsPrespeakV3Price": 0.501
+   }
+  },
+  {
+   "id": "en04",
+   "lang": "en-IN",
+   "hit": false,
+   "partnerSec": 5.48780487804878,
+   "userAudioSec": 3.623,
+   "gapDirectB": 115.06891428571429,
+   "gapDirectC": 115.06891428571429,
+   "ttsCharsPrespeak": 177,
+   "ttsCharsNoPrespeak": 38,
+   "translitChars": 0,
+   "promptTok": 458,
+   "complTok": 84,
+   "inr": {
+    "llm": 0.01191,
+    "sttSpeechOnly": 0.04573170731707316,
+    "translit": 0,
+    "ttsPrespeak": 0.354,
+    "ttsNoPrespeak": 0.076,
+    "ttsPrespeakV3Price": 0.531
+   }
+  },
+  {
+   "id": "en05",
+   "lang": "en-IN",
+   "hit": false,
+   "partnerSec": 4.7560975609756095,
+   "userAudioSec": 2.974,
+   "gapDirectB": 106.49558571428571,
+   "gapDirectC": 106.49558571428571,
+   "ttsCharsPrespeak": 183,
+   "ttsCharsNoPrespeak": 35,
+   "translitChars": 0,
+   "promptTok": 501,
+   "complTok": 70,
+   "inr": {
+    "llm": 0.011715,
+    "sttSpeechOnly": 0.039634146341463415,
+    "translit": 0,
+    "ttsPrespeak": 0.366,
+    "ttsNoPrespeak": 0.07,
+    "ttsPrespeakV3Price": 0.549
+   }
+  },
+  {
+   "id": "en06",
+   "lang": "en-IN",
+   "hit": false,
+   "partnerSec": 5.48780487804878,
+   "userAudioSec": 2.889,
+   "gapDirectB": 115.07431428571428,
+   "gapDirectC": 115.07431428571428,
+   "ttsCharsPrespeak": 167,
+   "ttsCharsNoPrespeak": 38,
+   "translitChars": 0,
+   "promptTok": 537,
+   "complTok": 76,
+   "inr": {
+    "llm": 0.012615,
+    "sttSpeechOnly": 0.04573170731707316,
+    "translit": 0,
+    "ttsPrespeak": 0.334,
+    "ttsNoPrespeak": 0.076,
+    "ttsPrespeakV3Price": 0.501
+   }
+  },
+  {
+   "id": "en07",
+   "lang": "en-IN",
+   "hit": false,
+   "partnerSec": 3.6585365853658534,
+   "userAudioSec": 3.378,
+   "gapDirectB": 123.63714285714285,
+   "gapDirectC": 123.63714285714285,
+   "ttsCharsPrespeak": 171,
+   "ttsCharsNoPrespeak": 41,
+   "translitChars": 0,
+   "promptTok": 462,
+   "complTok": 78,
+   "inr": {
+    "llm": 0.01161,
+    "sttSpeechOnly": 0.030487804878048776,
+    "translit": 0,
+    "ttsPrespeak": 0.342,
+    "ttsNoPrespeak": 0.082,
+    "ttsPrespeakV3Price": 0.513
+   }
+  },
+  {
+   "id": "en08",
+   "lang": "en-IN",
+   "hit": false,
+   "partnerSec": 3.292682926829268,
+   "userAudioSec": 3.157,
+   "gapDirectB": 137.91485714285713,
+   "gapDirectC": 137.91485714285713,
+   "ttsCharsPrespeak": 157,
+   "ttsCharsNoPrespeak": 46,
+   "translitChars": 0,
+   "promptTok": 497,
+   "complTok": 70,
+   "inr": {
+    "llm": 0.011655,
+    "sttSpeechOnly": 0.0274390243902439,
+    "translit": 0,
+    "ttsPrespeak": 0.314,
+    "ttsNoPrespeak": 0.092,
+    "ttsPrespeakV3Price": 0.471
+   }
+  },
+  {
+   "id": "en09",
+   "lang": "en-IN",
+   "hit": true,
+   "partnerSec": 5.121951219512195,
+   "userAudioSec": 1.914,
+   "gapDirectB": 3.6239428571428576,
+   "gapDirectC": 3.3179428571428575,
+   "ttsCharsPrespeak": 131,
+   "ttsCharsNoPrespeak": 32,
+   "translitChars": 0,
+   "promptTok": 533,
+   "complTok": 78,
+   "inr": {
+    "llm": 0.012675,
+    "sttSpeechOnly": 0.042682926829268296,
+    "translit": 0,
+    "ttsPrespeak": 0.262,
+    "ttsNoPrespeak": 0.064,
+    "ttsPrespeakV3Price": 0.393
+   }
+  },
+  {
+   "id": "en10",
+   "lang": "en-IN",
+   "hit": false,
+   "partnerSec": 4.024390243902439,
+   "userAudioSec": 3.152,
+   "gapDirectB": 112.18887142857143,
+   "gapDirectC": 112.18887142857143,
+   "ttsCharsPrespeak": 161,
+   "ttsCharsNoPrespeak": 37,
+   "translitChars": 0,
+   "promptTok": 457,
+   "complTok": 72,
+   "inr": {
+    "llm": 0.011175,
+    "sttSpeechOnly": 0.03353658536585366,
+    "translit": 0,
+    "ttsPrespeak": 0.322,
+    "ttsNoPrespeak": 0.074,
+    "ttsPrespeakV3Price": 0.483
+   }
+  },
+  {
+   "id": "en11",
+   "lang": "en-IN",
+   "hit": false,
+   "partnerSec": 3.6585365853658534,
+   "userAudioSec": 3.213,
+   "gapDirectB": 97.91405714285716,
+   "gapDirectC": 97.91405714285716,
+   "ttsCharsPrespeak": 155,
+   "ttsCharsNoPrespeak": 32,
+   "translitChars": 0,
+   "promptTok": 489,
+   "complTok": 73,
+   "inr": {
+    "llm": 0.011715,
+    "sttSpeechOnly": 0.030487804878048776,
+    "translit": 0,
+    "ttsPrespeak": 0.31,
+    "ttsNoPrespeak": 0.064,
+    "ttsPrespeakV3Price": 0.465
+   }
+  },
+  {
+   "id": "en12",
+   "lang": "en-IN",
+   "hit": false,
+   "partnerSec": 3.6585365853658534,
+   "userAudioSec": 2.625,
+   "gapDirectB": 112.19537142857142,
+   "gapDirectC": 112.19537142857142,
+   "ttsCharsPrespeak": 143,
+   "ttsCharsNoPrespeak": 37,
+   "translitChars": 0,
+   "promptTok": 520,
+   "complTok": 72,
+   "inr": {
+    "llm": 0.01212,
+    "sttSpeechOnly": 0.030487804878048776,
+    "translit": 0,
+    "ttsPrespeak": 0.286,
+    "ttsNoPrespeak": 0.074,
+    "ttsPrespeakV3Price": 0.429
+   }
+  }
+ ]
+}

@@ -6,7 +6,7 @@ import { demo, SCENES, type DemoState } from "./lib/demo.ts";
 import { film } from "./lib/film.ts";
 import { Scanner } from "./lib/access.ts";
 import { phrasesFor, preparePhrases } from "./lib/phrases.ts";
-import { Composer, History, Meter, Notices, PartnerDisplay, Phrases, Replies, ToneDial, VoicePanel } from "./components/Talk.tsx";
+import { Composer, History, Meter, Notices, PartnerDisplay, Phrases, Replies, SteerRow, ToneDial, VoicePanel } from "./components/Talk.tsx";
 import { SettingsDrawer } from "./components/Settings.tsx";
 import { Hero } from "./components/Hero.tsx";
 import { FilmLayer } from "./components/FilmLayer.tsx";
@@ -19,6 +19,7 @@ export function App() {
   const s = useKanth();
   const [view, setView] = useState<"home" | "talk">(params.has("demo") || FILM || location.hash === "#talk" ? "talk" : "home");
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const settingsBtn = useRef<HTMLButtonElement>(null);
   const [d, setD] = useState<DemoState>(demo.state);
   const [cached, setCached] = useState<Set<string>>(new Set());
   const mic = useMic();
@@ -39,28 +40,33 @@ export function App() {
 
   // Switch scanning (one switch, two switches, or blink as the switch).
   const scanner = useRef<Scanner | null>(null);
+  const [scanPaused, setScanPaused] = useState(false);
   useEffect(() => {
     const a = s.settings.access;
-    if (view !== "talk" || (a !== "scan-auto" && a !== "scan-step" && a !== "blink")) return;
+    // Scanning is paused while Settings is open, so a switch press can never act on the page behind it.
+    if (view !== "talk" || settingsOpen || (a !== "scan-auto" && a !== "scan-step" && a !== "blink")) return;
     const sc = new Scanner(a === "scan-step" ? "step" : "auto", s.settings.scanIntervalMs);
+    sc.onState((st) => setScanPaused(st.paused));
     scanner.current = sc;
     sc.start();
+    // While Kanth is speaking, a switch press stops the speech instead of selecting.
+    const switchPress = () => (kanth.state.speakingText ? kanth.stopSpeaking() : sc.press());
     const onKey = (e: KeyboardEvent) => {
       const t = e.target as HTMLElement;
       if (t.tagName === "TEXTAREA" || t.tagName === "INPUT") return;
       if (e.key === " " || e.key === "Enter") {
         e.preventDefault();
-        sc.press();
+        if (!e.repeat) switchPress(); // a held switch must never repeat
       } else if (a === "scan-step" && (e.key === "Tab" || e.key === "ArrowRight")) {
         e.preventDefault();
-        sc.next();
+        if (!e.repeat) sc.next();
       }
     };
     window.addEventListener("keydown", onKey);
     let stopBlink: (() => void) | undefined;
     if (a === "blink") {
       void import("./lib/blink.ts").then((m) =>
-        m.startBlinkSwitch(s.settings.blinkHoldMs, () => sc.press(), (msg) => kanth.notify("server", msg, "Use Space or Enter as the switch instead.")).then((stop) => (stopBlink = stop)),
+        m.startBlinkSwitch(s.settings.blinkHoldMs, switchPress, (msg) => kanth.notify("server", msg, "Use Space or Enter as the switch instead.")).then((stop) => (stopBlink = stop)),
       );
     }
     return () => {
@@ -68,12 +74,26 @@ export function App() {
       sc.stop();
       stopBlink?.();
       scanner.current = null;
+      setScanPaused(false);
     };
-  }, [s.settings.access, s.settings.scanIntervalMs, s.settings.blinkHoldMs, view]);
+  }, [s.settings.access, s.settings.scanIntervalMs, s.settings.blinkHoldMs, view, settingsOpen]);
 
+  // New or changed replies: block presses briefly, then scan from the first reply.
   useEffect(() => {
-    if (!s.drafting && s.cards.length) scanner.current?.focusReplies();
-  }, [s.drafting, s.cards.length]);
+    if (s.cards.length) scanner.current?.holdOff();
+  }, [s.cardsChangedAt, s.cards.length]);
+
+  // While Settings is open, the page behind it cannot be focused or clicked.
+  useEffect(() => {
+    for (const el of document.querySelectorAll("main, header.topbar")) el.toggleAttribute("inert", settingsOpen);
+  }, [settingsOpen, view]);
+
+  // Escape always stops speech, for every access method.
+  useEffect(() => {
+    const onEsc = (e: KeyboardEvent) => e.key === "Escape" && kanth.state.speakingText && kanth.stopSpeaking();
+    window.addEventListener("keydown", onEsc);
+    return () => window.removeEventListener("keydown", onEsc);
+  }, []);
 
   // Film mode runs the scripted take on its own once the server link is up.
   useEffect(() => {
@@ -106,9 +126,14 @@ export function App() {
           <StatusChip label="Saaras" state={s.services.stt?.state ?? (s.link === "open" ? "ready" : "down")} detail={s.services.stt?.detail} />
           <StatusChip label={s.link === "open" ? "Online" : s.link === "connecting" ? "Connecting" : "Offline"} state={s.link === "open" ? "ready" : s.link === "connecting" ? "connecting" : "down"} />
         </div>
-        <button className="btn btn-soft btn-small" onClick={() => setSettingsOpen(true)} aria-haspopup="dialog">Settings</button>
+        <button ref={settingsBtn} className="btn btn-soft btn-small" onClick={() => setSettingsOpen(true)} aria-haspopup="dialog">Settings</button>
       </header>
 
+      {s.keyPresent !== false && s.services.tts?.detail === "Sarvam rejected the key" ? (
+        <div className="banner" role="alert">
+          Sarvam rejected the API key on the server, so Kanth cannot speak yet. Check <code>SARVAM_API_KEY</code> and restart the server.
+        </div>
+      ) : null}
       {s.keyPresent === false ? (
         <div className="banner" role="alert">
           The server has no Sarvam key, so Kanth cannot speak yet. Stop the server and run <code>SARVAM_API_KEY=sk_... npm start</code>, or put the key in a <code>.env</code> file. The key stays on the server.
@@ -145,6 +170,7 @@ export function App() {
             ) : null}
             <PartnerDisplay s={s} onListen={() => (mic.listening ? mic.stop() : void mic.start())} listening={mic.listening} />
             <Replies s={s} />
+            <SteerRow s={s} />
             <ToneDial s={s} />
             <Composer canSteer={!!s.partner?.final} />
             <Phrases phrases={phrases} cached={cached} s={s} />
@@ -157,9 +183,30 @@ export function App() {
         </main>
       )}
 
+      {scanPaused ? (
+        <div className="scan-paused" role="status">Scanning paused. Press your switch to start again from the replies.</div>
+      ) : null}
+      {s.unspoken ? (
+        <div className="unspoken" role="alert">
+          <div className="unspoken-card">
+            <div className="eyebrow">Not spoken aloud. Please show this screen.</div>
+            <div className="unspoken-text" lang={s.unspoken.lang.slice(0, 2)}>{s.unspoken.text}</div>
+            {s.unspoken.gloss ? <div className="hint" lang="en">{s.unspoken.gloss}</div> : null}
+            <button className="btn btn-soft" onClick={() => kanth.dismissUnspoken()}>Done</button>
+          </div>
+        </div>
+      ) : null}
       {FILM ? <FilmLayer /> : null}
       <Notices s={s} />
-      {settingsOpen ? <SettingsDrawer s={s} onClose={() => setSettingsOpen(false)} /> : null}
+      {settingsOpen ? (
+        <SettingsDrawer
+          s={s}
+          onClose={() => {
+            setSettingsOpen(false);
+            window.setTimeout(() => settingsBtn.current?.focus(), 0);
+          }}
+        />
+      ) : null}
     </div>
   );
 }

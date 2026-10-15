@@ -1,15 +1,23 @@
-// Conversation benchmark: runs the 36 scripted partner turns through Kanth's real drafting and
-// prespeak code, then judges the drafts against the user's intended replies.
+// Conversation benchmark: runs scripted partner turns through Kanth's real drafting and prespeak
+// code, then judges the drafts against the user's intended replies. v2 adds a held-out set and a
+// keyword-steering round for every miss.
 //
-// Run from kanth/:
-//   npx tsx bench/conversations.ts draft      # drafting + prespeak (pool of 4) + single-synth TTFA
-//   npx tsx bench/conversations.ts judge      # LLM judge, two independent runs per turn
-//   npx tsx bench/conversations.ts translit   # native -> Roman for keystroke counting
-//   npx tsx bench/conversations_analyze.ts    # tables, conversations.json, conversations.md
+// Run from kanth/ (SET is "original" = the 36 turns in conversations.data.ts, or "heldout" = the 24
+// turns in conversations.heldout.ts):
+//   npx tsx bench/conversations.ts draft SET        # drafting + prespeak (pool of 4) + single-synth TTFA
+//   npx tsx bench/conversations.ts judge SET        # LLM judge, two independent runs per turn
+//   npx tsx bench/conversations.ts translit SET     # native -> Roman for keystroke counting
+//   npx tsx bench/conversations.ts keywords SET     # steering words for every miss (sees ONLY the intended reply)
+//   npx tsx bench/conversations.ts steer SET        # redraft every miss with keywords=<those words>, + prespeak
+//   npx tsx bench/conversations.ts steerjudge SET   # same judge protocol on the steered drafts
+//   npx tsx bench/conversations_analyze.ts          # tables, conversations.json, conversations.md
 //
-// Raw data: bench/results/conversations-raw-*.json (every call kept, failures included).
+// Raw data (v2): bench/results/v2/<SET>-raw-<stage>.json (every call kept, failures included).
+// v1 raw data: bench/results/v1/ (and the untouched bench/results/conversations-raw-*.json).
 // The API key is read by server/env.ts and is never printed or written.
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { execSync } from "node:child_process";
 import { cpus, platform, release } from "node:os";
 import { config } from "../server/env.ts";
 import { streamSuggestions, buildMessages, hasForeignScript, type Draft } from "../server/suggest.ts";
@@ -19,13 +27,24 @@ import type { Profile, Turn } from "../shared/protocol.ts";
 import { clampProsody, toneById } from "../shared/tones.ts";
 import { hasLatinWords, resolveSpeaker, type LangCode } from "../shared/voices.ts";
 import { PCM_SAMPLE_RATE } from "../shared/protocol.ts";
-import { TURNS, SET_LABEL, type ScriptedTurn } from "./conversations.data.ts";
+import * as ORIGINAL from "./conversations.data.ts";
+import * as HELDOUT from "./conversations.heldout.ts";
+import type { ScriptedTurn } from "./conversations.data.ts";
 
-const OUT = "bench/results";
+const SETS = { original: ORIGINAL, heldout: HELDOUT } as const;
+type SetName = keyof typeof SETS;
+const SET_NAME = (process.argv[3] ?? "original") as SetName;
+if (!(SET_NAME in SETS)) throw new Error(`unknown set ${SET_NAME} (original|heldout)`);
+const TURNS: ScriptedTurn[] = SETS[SET_NAME].TURNS;
+const SET_LABEL: string = SETS[SET_NAME].SET_LABEL;
+
+const OUT = "bench/results/v2";
 mkdirSync(OUT, { recursive: true });
+const rawPath = (stage: string) => `${OUT}/${SET_NAME}-raw-${stage}.json`;
 if (!config.sarvamKey) throw new Error("SARVAM_API_KEY missing (run from kanth/)");
 
-/** Copied from web/src/lib/settings.ts DEMO_PROFILE (copied, not imported, to keep DOM types out). */
+/** Copied from web/src/lib/settings.ts DEMO_PROFILE at commit ffb1b9c (copied, not imported, to keep DOM types out).
+ *  v1 used the earlier notes "... Loves cricket and his mother's rasam."; v2 uses the trimmed notes. */
 export const DEMO_PROFILE: Profile = {
   name: "Arjun",
   languages: ["ta-IN", "en-IN", "hi-IN"],
@@ -35,7 +54,7 @@ export const DEMO_PROFILE: Profile = {
     { name: "Dr. Mehra", relation: "neurologist", addressAs: "Doctor" },
     { name: "Rohit", relation: "college friend", addressAs: "Rohit" },
   ],
-  notes: "34, software engineer in Chennai. Has ALS and can no longer speak. Loves cricket and his mother's rasam.",
+  notes: "34, software engineer in Chennai. Has ALS and can no longer speak. Follows cricket.",
 };
 const TONE = "warm" as const;
 const VOICE = "shubh"; // DEFAULT_SETTINGS.voice in web/src/lib/settings.ts
@@ -93,12 +112,33 @@ globalThis.fetch = (async (input: any, init?: any) => {
   return new Response(stream, { status: res.status, statusText: res.statusText, headers: res.headers });
 }) as typeof fetch;
 
+/** Last commit touching a file, and whether the working copy differs from it. */
+function gitVersion(path: string) {
+  try {
+    const hash = execSync(`git log -1 --format=%h -- ${path}`, { encoding: "utf8" }).trim();
+    const dirty = execSync(`git status --porcelain -- ${path}`, { encoding: "utf8" }).trim() !== "";
+    return { commit: hash, dirty };
+  } catch {
+    return { commit: null, dirty: null };
+  }
+}
+// v2 rule: every v2 run must use one prompt version, so refuse to run on an uncommitted prompt.
+for (const f of ["server/suggest.ts", "web/src/lib/settings.ts"]) {
+  if (gitVersion(f).dirty) throw new Error(`${f} has uncommitted changes; v2 runs must use a committed prompt version`);
+}
+
 function meta(stage: string) {
   return {
     stage,
     started: new Date().toISOString(),
     startedIST: nowIST(),
+    setName: SET_NAME,
     set: SET_LABEL,
+    setFileSha256: createHash("sha256").update(readFileSync(SET_NAME === "heldout" ? "bench/conversations.heldout.ts" : "bench/conversations.data.ts")).digest("hex"),
+    suggestTsSha256: createHash("sha256").update(readFileSync("server/suggest.ts")).digest("hex"),
+    suggestTsGit: gitVersion("server/suggest.ts"),
+    settingsTsGit: gitVersion("web/src/lib/settings.ts"),
+    profileNotes: DEMO_PROFILE.notes,
     network: "a home connection in India",
     node: process.version,
     os: `${platform()} ${release()}`,
@@ -164,8 +204,10 @@ async function synthOne(engine: TtsEngine, text: string, lang: LangCode, t0: num
   return row;
 }
 
-async function stageDraft() {
-  const RAW = `${OUT}/conversations-raw-draft.json`;
+/** keywords: id -> steering words; when given, only those turns are drafted (the steering round). */
+async function stageDraft(keywords?: Record<string, string>) {
+  const RAW = rawPath(keywords ? "steer" : "draft");
+  const todo = keywords ? TURNS.filter((t) => keywords[t.id] != null) : TURNS;
   const engine = new TtsEngine();
   const states: string[] = [];
   engine.onState((s, d) => states.push(`${new Date().toISOString()} ${s} ${d ?? ""}`));
@@ -175,9 +217,10 @@ async function stageDraft() {
   await Promise.all([0, 1, 2, 3].map((i) => synthOne(engine, ["வணக்கம்", "नमस्ते", "Hello there", "சரி"][i]!, (["ta-IN", "hi-IN", "en-IN", "ta-IN"] as LangCode[])[i]!, t0w)));
   const out = { meta: { ...meta("draft"), profile: DEMO_PROFILE, tone: TONE, voice: VOICE, chatModel: config.chatModel, ttsPoolSize: config.ttsPoolSize, ttsStates: states }, turns: [] as any[] };
 
-  for (const t of TURNS) {
+  for (const t of todo) {
     const history = historyFor(t);
-    const opts = { profile: DEMO_PROFILE, history, partner: { text: t.partner, lang: t.lang, who: t.who }, tone: TONE } as const;
+    const kw = keywords?.[t.id];
+    const opts = { profile: DEMO_PROFILE, history, partner: { text: t.partner, lang: t.lang, who: t.who }, tone: TONE, ...(kw ? { keywords: kw } : {}) } as const;
     const messages = buildMessages(opts);
     let attempt = 0;
     let rec: any = null;
@@ -208,6 +251,7 @@ async function stageDraft() {
           who: t.who,
           partner: t.partner,
           intended: t.intended,
+          keywords: kw ?? null,
           historyTurns: history.length,
           promptChars: messages.reduce((a, m) => a + [...m.content].length, 0),
           attempt,
@@ -250,7 +294,8 @@ async function stageDraft() {
     console.log(`stream carried no usage for ${missing.length} turns; replaying non-streamed for usage`);
     for (const r of missing) {
       const t = TURNS.find((x) => x.id === r.id)!;
-      const messages = buildMessages({ profile: DEMO_PROFILE, history: historyFor(t), partner: { text: t.partner, lang: t.lang, who: t.who }, tone: TONE });
+      const kw = keywords?.[t.id];
+      const messages = buildMessages({ profile: DEMO_PROFILE, history: historyFor(t), partner: { text: t.partner, lang: t.lang, who: t.who }, tone: TONE, ...(kw ? { keywords: kw } : {}) });
       try {
         const res = await realFetch(`${config.apiBase}/v1/chat/completions`, {
           method: "POST",
@@ -266,7 +311,7 @@ async function stageDraft() {
     }
     writeFileSync(RAW, JSON.stringify(out, null, 1));
   }
-  console.log("draft stage done");
+  console.log(`${keywords ? "steer" : "draft"} stage done`);
   process.exit(0);
 }
 
@@ -354,12 +399,12 @@ async function judgeOnce(r: any, run: number) {
   }
 }
 
-async function stageJudge() {
-  const draft = JSON.parse(readFileSync(`${OUT}/conversations-raw-draft.json`, "utf8"));
-  const RAW = `${OUT}/conversations-raw-judge.json`;
+async function stageJudge(steered = false) {
+  const draft = JSON.parse(readFileSync(rawPath(steered ? "steer" : "draft"), "utf8"));
+  const RAW = rawPath(steered ? "steerjudge" : "judge");
   const turns = draft.turns.filter((r: any) => !r.error && r.drafts?.length);
   const out = {
-    meta: { ...meta("judge"), judgeModel: "sarvam-105b", temperature: 0, reasoning: "on (model default)", runs: 2, systemPrompt: judgeMessages(turns[0])[0]!.content },
+    meta: { ...meta(steered ? "steerjudge" : "judge"), judgeModel: "sarvam-105b", temperature: 0, reasoning: "on (model default)", runs: 2, workers: steered ? 6 : 4, systemPrompt: judgeMessages(turns[0])[0]!.content },
     turns: [] as any[],
   };
   const queue = turns.flatMap((r: any) => [1, 2].map((run) => ({ r, run })));
@@ -371,13 +416,14 @@ async function stageJudge() {
       const row = await judgeOnce(r, run);
       if (!results.has(r.id)) results.set(r.id, []);
       results.get(r.id)!.push(row);
-      console.log(`${r.id} run${run} -> ${row?.parsed ? row.parsed.match : "parse-fail"} (${row?.ms} ms, ${row?.finish})`);
+      const info = row as { ms?: number; finish?: string | null } | undefined;
+      console.log(`${r.id} run${run} -> ${row?.parsed ? row.parsed.match : "parse-fail"} (${info?.ms} ms, ${info?.finish})`);
     }
   };
-  await Promise.all([worker(), worker(), worker()]);
+  await Promise.all(Array.from({ length: steered ? 6 : 4 }, () => worker()));
   for (const r of turns) {
     const runs = (results.get(r.id) ?? []).sort((a, b) => a.run - b.run);
-    out.turns.push({ id: r.id, lang: r.lang, intended: r.intended, drafts: r.drafts.map((d: any) => d.text), runs });
+    out.turns.push({ id: r.id, lang: r.lang, intended: r.intended, keywords: r.keywords ?? null, drafts: r.drafts.map((d: any) => d.text), runs });
   }
   writeFileSync(RAW, JSON.stringify(out, null, 1));
   console.log("judge stage done");
@@ -387,7 +433,7 @@ async function stageJudge() {
 // Stage 3: native -> Roman transliteration of intended replies (for keystroke counts)
 // =====================================================================================
 async function stageTranslit() {
-  const RAW = `${OUT}/conversations-raw-translit.json`;
+  const RAW = rawPath("translit");
   const out = { meta: { ...meta("translit"), endpoint: "POST /transliterate, source=<lang>, target=en-IN" }, rows: [] as any[] };
   for (const t of TURNS) {
     if (t.lang === "en-IN") continue;
@@ -409,8 +455,83 @@ async function stageTranslit() {
   writeFileSync(RAW, JSON.stringify(out, null, 1));
 }
 
+// =====================================================================================
+// Stage 4 (v2): steering words for every miss. PRE-DECLARED RULE, fixed before any steering run:
+// sarvam-105b, temperature 0, sees ONLY the intended reply (no partner turn, no drafts, no language
+// label). Post-processing: first non-empty line, quotes/asterisks/backticks and a leading "Words:"
+// style label removed, commas to spaces, at most the first two whitespace-separated tokens kept,
+// trailing punctuation removed. Nothing else is changed (no case folding, no manual edits).
+// =====================================================================================
+export const KEYWORD_INSTRUCTION =
+  "Give the one or two words this person would type to steer a reply-suggestion tool toward this meaning, as they would type them on a Roman keyboard.";
+
+/** A turn is a hit only if both judge runs parsed and named the same draft (the v1 rule). */
+export function judgedHit(runs: any[]): number | null {
+  const m1 = runs[0]?.parsed ? runs[0].parsed.match : undefined;
+  const m2 = runs[1]?.parsed ? runs[1].parsed.match : undefined;
+  return m1 !== undefined && m2 !== undefined && m1 === m2 && m1 != null ? m1 - 1 : null;
+}
+
+export function cleanKeywords(content: string): string {
+  const line = content.split("\n").map((l) => l.trim()).find((l) => l) ?? "";
+  const s = line
+    .replace(/[`*"“”‘’]/g, "")
+    .replace(/^'+|'+$/g, "")
+    .replace(/^[A-Za-z ]{1,20}:\s*/, "")
+    .replace(/,/g, " ")
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .join(" ");
+  return s.replace(/[.!?;:]+$/g, "").trim();
+}
+
+async function stageKeywords() {
+  const judge = JSON.parse(readFileSync(rawPath("judge"), "utf8"));
+  const misses = judge.turns.filter((r: any) => judgedHit(r.runs) == null);
+  const RAW = rawPath("keywords");
+  const out = { meta: { ...meta("keywords"), model: "sarvam-105b", temperature: 0, instruction: KEYWORD_INSTRUCTION, misses: misses.length }, rows: [] as any[] };
+  let next = 0;
+  const worker = async () => {
+    while (next < misses.length) await one(misses[next++]);
+  };
+  const one = async (r: any) => {
+    const t = TURNS.find((x) => x.id === r.id)!;
+    const messages = [{ role: "user", content: `${KEYWORD_INSTRUCTION}\nReply with only those words.\n\n${t.intended}` }];
+    let row: any = null;
+    for (let attempt = 1; attempt <= 3 && !row?.keywords; attempt++) {
+      const t0 = performance.now();
+      try {
+        const res = await realFetch(`${config.apiBase}/v1/chat/completions`, {
+          method: "POST",
+          headers: { "api-subscription-key": config.sarvamKey, "content-type": "application/json" },
+          body: JSON.stringify({ model: "sarvam-105b", messages, temperature: 0, max_tokens: 4000 }),
+          signal: AbortSignal.timeout(180000),
+        });
+        const j: any = await res.json();
+        const content = String(j.choices?.[0]?.message?.content ?? "");
+        row = { id: t.id, lang: t.lang, intended: t.intended, attempt, status: res.status, ms: r1(performance.now() - t0), usage: j.usage ?? null, finish: j.choices?.[0]?.finish_reason ?? null, content: content.slice(0, 400), keywords: cleanKeywords(content), error: res.ok ? undefined : JSON.stringify(j).slice(0, 300) };
+      } catch (e) {
+        row = { id: t.id, attempt, error: (e as Error).message.slice(0, 200), keywords: "" };
+      }
+      if (!row.keywords) await sleep(1500 * attempt);
+    }
+    out.rows.push(row);
+    console.log(`${t.id} -> "${row.keywords}" (${row.ms} ms)  [${t.intended}]`);
+  };
+  await Promise.all([worker(), worker(), worker(), worker()]);
+  out.rows.sort((a, b) => (a.id < b.id ? -1 : 1));
+  writeFileSync(RAW, JSON.stringify(out, null, 1));
+  console.log("keywords stage done");
+}
+
 const stage = process.argv[2];
 if (stage === "draft") await stageDraft();
 else if (stage === "judge") await stageJudge();
 else if (stage === "translit") await stageTranslit();
-else console.log("usage: npx tsx bench/conversations.ts draft|judge|translit");
+else if (stage === "keywords") await stageKeywords();
+else if (stage === "steer") {
+  const kw = JSON.parse(readFileSync(rawPath("keywords"), "utf8"));
+  await stageDraft(Object.fromEntries(kw.rows.filter((r: any) => r.keywords).map((r: any) => [r.id, r.keywords])));
+} else if (stage === "steerjudge") await stageJudge(true);
+else console.log("usage: npx tsx bench/conversations.ts draft|judge|translit|keywords|steer|steerjudge original|heldout");

@@ -43,7 +43,7 @@ export function PartnerDisplay({ s, onListen, listening }: { s: KanthState; onLi
         <div className="row" style={{ justifyContent: "space-between", gap: 20 }}>
           <div className="empty">When someone talks to you, their words appear here and Kanth drafts your replies while they speak.</div>
           {onListen ? (
-            <button className="btn btn-soft" onClick={onListen} data-scan-top aria-pressed={listening}>
+            <button className="btn btn-soft" onClick={onListen} data-scan-top data-scan-order="6" aria-pressed={listening}>
               <span className={`led ${listening ? "busy" : ""}`} aria-hidden="true" />
               {listening ? "Stop listening" : "Listen with microphone"}
             </button>
@@ -102,7 +102,7 @@ export function Replies({ s }: { s: KanthState }) {
   return (
     <section aria-labelledby="sugg-h">
       <h2 id="sugg-h" className="sr-only">Replies you can say</h2>
-      <div className="tiles" data-scan-group="cards" data-scan-top>
+      <div className="tiles" data-scan-group="cards" data-scan-top data-scan-order="1">
         {[0, 1, 2, 3].map((i) => {
           const c = s.cards.find((x) => x.idx === i);
           if (c) return <Tile key={`${s.turnId}-${i}`} c={c} s={s} index={i} />;
@@ -127,7 +127,7 @@ export function ToneDial({ s }: { s: KanthState }) {
   return (
     <div className="dial-wrap">
       <span className="eyebrow">Tone</span>
-      <div className="dial" role="group" aria-label="Tone of voice" data-scan-group="tones" data-scan-top style={{ "--n": TONES.length, "--i": i } as CSSProperties}>
+      <div className="dial" role="group" aria-label="Tone of voice" data-scan-group="tones" data-scan-top data-scan-order="4" style={{ "--n": TONES.length, "--i": i } as CSSProperties}>
         <span className="dial-knob" aria-hidden="true" />
         {TONES.map((x) => (
           <button key={x.id} aria-pressed={s.tone === x.id} onClick={() => kanth.setTone(x.id)} data-scan-item="tones" data-tone={x.id}>
@@ -139,6 +139,12 @@ export function ToneDial({ s }: { s: KanthState }) {
         pace {t.prosody.pace.toFixed(2)} · pitch {t.prosody.pitch >= 0 ? "+" : ""}{t.prosody.pitch.toFixed(2)}
         <br />
         loudness {t.prosody.loudness.toFixed(2)}
+        {s.settings.voice.kind === "clone" ? (
+          <>
+            <br />
+            A banked voice follows pace only.
+          </>
+        ) : null}
       </div>
     </div>
   );
@@ -170,9 +176,9 @@ export function Composer({ canSteer = false }: { canSteer?: boolean }) {
   };
 
   return (
-    <div className="panel" data-scan-group="compose" data-scan-top>
+    <section className="panel" data-scan-group="compose" data-scan-top data-scan-order="5" aria-labelledby="compose-h">
       <div className="row">
-        <span className="eyebrow">Say anything</span>
+        <h2 className="eyebrow" id="compose-h" style={{ margin: 0 }}>Say anything</h2>
         <div className="seg" role="group" aria-label="Typing language">
           {TYPE_LANGS.map((l) => (
             <button key={l.code} aria-pressed={lang === l.code} onClick={() => setLang(l.code)} data-scan-item="compose">
@@ -216,7 +222,47 @@ export function Composer({ canSteer = false }: { canSteer?: boolean }) {
       </div>
       {canSteer && !roman ? <div className="hint">None of the replies right? Type a word or two, like “tablet” or “4 pm”, and Kanth redrafts all four around it.</div> : null}
       {roman ? <div className="hint">Kanth converts this to {languageByCode(lang)?.native} script first, because Bulbul pronounces native script far better than Roman.</div> : null}
-    </div>
+    </section>
+  );
+}
+
+const SCALE_HINT = /\d|[०-९௦-௯]|scale|one to ten|out of ten|दस|பத்து/i;
+
+/**
+ * Steering without typing, for one switch and blink users: a short row of words that redraft the
+ * four replies. When the partner asks for a number, a 0 to 10 row appears so the user gives the
+ * number and the drafts never have to guess it.
+ */
+export function SteerRow({ s }: { s: KanthState }) {
+  if (!s.partner?.final) return null;
+  const numbers = SCALE_HINT.test(s.partner.text);
+  const words: { label: string; steer: string }[] = [
+    { label: "Yes", steer: "yes" },
+    { label: "No", steer: "no" },
+    { label: "Not now", steer: "not now, later" },
+    { label: "Ask them back", steer: "ask them a question back" },
+  ];
+  return (
+    <section className="panel" aria-labelledby="steer-h">
+      <div className="row">
+        <h2 className="eyebrow" id="steer-h" style={{ margin: 0 }}>Not quite? Steer the replies</h2>
+        <span className="hint">Each word redrafts all four around it.</span>
+      </div>
+      <div className="phrases" data-scan-group="steer" data-scan-top data-scan-order="3">
+        {numbers
+          ? Array.from({ length: 11 }, (_, n) => (
+              <button key={n} className="phrase num" data-scan-item="steer" onClick={() => void kanth.steer(String(n))} aria-label={`Redraft with the number ${n}`}>
+                {n}
+              </button>
+            ))
+          : null}
+        {words.map((w) => (
+          <button key={w.label} className="phrase" data-scan-item="steer" onClick={() => void kanth.steer(w.steer)}>
+            {w.label}
+          </button>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -231,12 +277,12 @@ export interface Phrase {
 export function Phrases({ phrases, cached, s }: { phrases: Phrase[]; cached: Set<string>; s: KanthState }) {
   const allCached = phrases.every((p) => cached.has(p.id));
   return (
-    <div className="panel">
+    <section className="panel" aria-labelledby="phrases-h">
       <div className="row">
-        <span className="eyebrow">Always ready</span>
+        <h2 className="eyebrow" id="phrases-h" style={{ margin: 0 }}>Always ready</h2>
         <span className="hint">{allCached ? "Stored on this device. Works with no network." : "Saving to this device for offline use…"}</span>
       </div>
-      <div className="phrases" data-scan-group="phrases" data-scan-top>
+      <div className="phrases" data-scan-group="phrases" data-scan-top data-scan-order="2">
         {phrases.map((p) => (
           <button
             key={p.id}
@@ -257,7 +303,7 @@ export function Phrases({ phrases, cached, s }: { phrases: Phrase[]; cached: Set
           </button>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -274,6 +320,11 @@ export function VoicePanel({ s }: { s: KanthState }) {
           {" · "}prespeak {s.settings.prespeak ? "on" : "off"}
         </div>
       </div>
+      {speaking ? (
+        <button className="btn btn-soft btn-small" onClick={() => kanth.stopSpeaking()} aria-label="Stop speaking (Escape)">
+          Stop speaking
+        </button>
+      ) : null}
     </section>
   );
 }
@@ -307,7 +358,8 @@ function Gauge({ value, target, label, sub }: { value: number | undefined; targe
 
 export function Meter({ s }: { s: KanthState }) {
   const done = [...s.metrics].reverse().find((m) => m.audibleAt && m.partnerEndAt);
-  const live = s.metrics[s.metrics.length - 1];
+  // "They stop" figures come from the first draft of the latest turn; redrafts include the user's own press.
+  const live = [...s.metrics].reverse().find((m) => !m.redraft) ?? s.metrics[s.metrics.length - 1];
   const since = (t?: number) => (live?.partnerEndAt && t ? t - live.partnerEndAt : undefined);
   const heard = since(live?.transcriptAt);
   const first = since(live?.firstCardAt);

@@ -164,7 +164,7 @@ export class Session {
 function friendly(message: string): string {
   // Matched on the status codes Sarvam returns in its error text.
   if (/\b(401|403)\b|invalid api key|unauthor/i.test(message)) return "Sarvam rejected the API key. Check SARVAM_API_KEY on the server.";
-  if (/\b429\b|rate limit/i.test(message)) return "Sarvam is rate limiting this key. Retrying shortly.";
+  if (/\b429\b|rate limit/i.test(message)) return "Sarvam is rate limiting this key. Try again in a moment.";
   if (/ENOTFOUND|ECONNREFUSED|ETIMEDOUT|fetch failed/i.test(message)) return "The server cannot reach Sarvam. Check the internet connection.";
   return message;
 }
