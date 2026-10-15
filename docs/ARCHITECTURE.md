@@ -37,16 +37,18 @@ flowchart LR
 5. **Choose.** Touch, a switch, dwell or a blink selects a tile. The audio engine starts the already decoded buffer on the next audio frame.
 6. **Never silent.** If a reply was not prespoken, it is synthesized on choice and played as it streams. If Bulbul cannot be reached, the device voice speaks it and a notice says so.
 
-## Measured latency path (from the live demo)
+## Measured latency path (live app, 9 partner turns)
 
-| Step | Measured |
-|---|---|
-| Partner stops to Saaras final transcript (manual endpointing) | 100 to 125 ms |
-| Partner stops to first draft shown | as early as 0.4 s before they stop (drafting while they talk); otherwise 240 to 370 ms |
-| Partner stops to all four drafts shown | 0.2 s before they stop to 0.55 s after |
-| Partner stops to all four voiced | 0.25 to 1.3 s |
-| Choice to the voice being heard (prespoken) | 50 to 59 ms |
-| Typed text to the voice being heard (not prespoken) | about 400 ms |
+From [bench/results/live-app.json](../bench/results/live-app.json), recorded by `film/live-app.ts`. Negative means before the partner finished.
+
+| Step | Median | Range |
+|---|---|---|
+| Partner stops to Saaras final transcript (manual endpointing) | 287 ms | 206 to 348 ms |
+| Partner stops to first draft shown | 16 ms | -658 to 422 ms |
+| Partner stops to all four drafts shown | 95 ms | -657 to 561 ms |
+| Partner stops to all four voiced | 815 ms | -29 to 1,120 ms |
+| Choice to the voice being heard (prespoken) | 51 ms | 50 to 58 ms |
+| Typed text to the voice being heard (not prespoken) | about 400 ms | |
 
 Full benchmarks with raw data are in [bench/results](../bench/results).
 
@@ -59,7 +61,10 @@ Defined in [shared/protocol.ts](../shared/protocol.ts). The browser sends `synth
 | Failure | What Kanth does |
 |---|---|
 | A Bulbul socket drops or stalls (no audio in 5 s) | Reconnect with exponential backoff and jitter; meanwhile synthesize over HTTP streaming, then REST |
-| Bulbul unreachable at choice time | Speak with the device voice, show a notice |
+| Bulbul unreachable at choice time | Speak with the device voice if it has the language; else speak the English meaning; else show the reply full screen for the partner to read. Always say which |
+| A held or repeated switch press | Ignored: key repeat is dropped and every selection starts a short lockout |
+| Replies change while the user is choosing | Redrafts swap in all at once, scanning restarts on the first reply, and choices within 500 ms of a change are refused |
+| A request from another website | Refused: WebSocket and API calls must come from Kanth's own page |
 | Bulbul returns runaway audio | Cut at 3 s plus 0.3 s per character |
 | Drafting fails | Notice; the phrase board and free typing remain |
 | Saaras gives no final transcript in time (demo) | Use the scripted line and say so |
