@@ -48,7 +48,11 @@ const summary = Object.fromEntries(
 );
 const out = {
   measured: new Date().toISOString(),
-  note: "Live app, interactive demo with simulated choices, headless Chromium on the same machine as the server. Times are ms from the moment the partner's audio ended. Negative means before the partner finished (drafting while they talk). choiceToAudibleMs includes the browser's reported output latency.",
+  note: `${
+    /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(:|\/|$)/.test(base)
+      ? "Local server (npm start, warm WebSockets), headless Chromium on the same machine as the server."
+      : `Live hosted site (${new URL(base).host}, Vercel functions in bom1), headless Chromium on a home connection in India.`
+  } Interactive demo with a simulated user who chooses after a pause. Times are ms from the moment the partner's audio ended. Negative means before the partner finished (drafting while they talk). choiceToAudibleMs is time from the choice to audio output, including the browser's reported output latency; it was not measured acoustically.`,
   runs,
   summary,
   rows,

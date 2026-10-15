@@ -15,7 +15,8 @@ export function FilmLayer() {
   }, []);
   return (
     <>
-      <div className={`film-black ${f.black ? "" : "off"}`} />
+      {/* A hard cut, not a fade: the film opens on the first card, never on a dark frame. */}
+      <div className={`film-black ${f.black ? "" : "off"}`} style={{ transition: "none" }} />
       {f.caption ? (
         <div className="film-caption" key={`${f.caption.who}-${f.caption.line}`}>
           <span className="who">
@@ -26,7 +27,7 @@ export function FilmLayer() {
         </div>
       ) : null}
       {f.story ? (
-        <div className="film-story" key={f.story.title}>
+        <div className="film-story" key={f.story.title} style={f.story.instant ? { animation: "none" } : undefined}>
           <b>{f.story.title}</b>
           {f.story.body ? <p>{f.story.body}</p> : null}
         </div>

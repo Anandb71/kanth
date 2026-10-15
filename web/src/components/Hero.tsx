@@ -4,23 +4,24 @@ export function Hero({ onDemo, onTalk, onFilm }: { onDemo: () => void; onTalk: (
   return (
     <main className="hero">
       <div className="hero-copy">
+        <p className="hero-eyebrow">A voice for people who cannot speak</p>
         <h1>
           A reply that arrives a minute late is <em>not a conversation.</em>
         </h1>
         <p className="lede">
-          Kanth listens to the person in front of you, drafts four replies in your language, and has every one of them
-          already voiced by Bulbul V4 Flash before you choose. You pick one, and you are heard about 50 ms later. Tamil,
+          Kanth listens to the person in front of you, drafts four replies in your language, and Bulbul V4 Flash voices
+          all four before you choose. You pick one, and it plays at once (about 50 ms to sound on our test browser). Tamil,
           Hindi, English, and the way you mix them.
         </p>
         <div className="hero-actions">
-          <button className="btn btn-primary" onClick={onDemo}>
+          <button className="btn btn-primary" onClick={onDemo} data-scan-top data-scan-order="1">
             Hear a conversation
           </button>
-          <button className="btn btn-soft" onClick={onTalk}>
+          <button className="btn btn-soft" onClick={onTalk} data-scan-top data-scan-order="2">
             Talk with your microphone
           </button>
-          <button className="btn btn-soft" onClick={onFilm}>
-            Watch the 70 s film
+          <button className="btn btn-soft" onClick={onFilm} data-scan-top data-scan-order="3">
+            Watch the 80 s film
           </button>
         </div>
         <p className="hint" style={{ margin: 0 }}>
@@ -35,7 +36,7 @@ export function Hero({ onDemo, onTalk, onFilm }: { onDemo: () => void; onTalk: (
       <div className="facts">
         <div className="fact">
           <b>160 to 200</b>
-          <span>words per minute in everyday conversation</span>
+          <span>words per minute in everyday English conversation</span>
           <cite>Yuan, Liberman and Cieri, 2006</cite>
         </div>
         <div className="fact">

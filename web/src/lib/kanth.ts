@@ -34,6 +34,8 @@ export interface HistoryItem extends Turn {
   at: number;
   gloss?: string;
   via?: "suggestion" | "typed" | "phrase";
+  /** The user stopped it before most of it was heard. It does not count as said. */
+  stopped?: boolean;
 }
 
 export interface TurnMetric {
@@ -95,6 +97,8 @@ export interface KanthState {
   notices: Notice[];
   /** A reply that could not be spoken aloud: shown full screen so the partner can read it. */
   unspoken: { text: string; lang: LangCode; gloss?: string } | null;
+  /** The last utterance was stopped by the user. Cleared when the next one starts. */
+  lastStopped: boolean;
 }
 
 type Listener = () => void;
@@ -134,6 +138,7 @@ export class Kanth {
       metrics: [],
       notices: [],
       unspoken: null,
+      lastStopped: false,
     };
     this.socket = HOSTED ? new HttpTransport() : new KanthSocket();
     this.attach();
@@ -143,7 +148,16 @@ export class Kanth {
 
   private attach(): void {
     for (const off of this.detach) off();
-    this.detach = [this.socket.onState((link) => this.set({ link })), this.socket.on((m) => this.onMessage(m))];
+    this.detach = [this.socket.onState((link) => this.onLink(link)), this.socket.on((m) => this.onMessage(m))];
+  }
+
+  private onLink(link: LinkState): void {
+    const was = this.state.link;
+    this.set({ link });
+    // Back online with a line still unanswered and no replies: draft again rather than leave the user with nothing.
+    if (link === "open" && was !== "open" && this.state.partner?.final && !this.state.cards.length && !this.state.drafting) {
+      void this.requestSuggestions({}, this.lastKeywords);
+    }
   }
 
   get replaying(): boolean {
@@ -201,7 +215,15 @@ export class Kanth {
   notify(scope: string, message: string, fallback?: string): void {
     const n: Notice = { id: ++this.noticeSeq, scope, message, fallback, at: Date.now() };
     this.set({ notices: [...this.state.notices.slice(-4), n] });
-    window.setTimeout(() => this.set({ notices: this.state.notices.filter((x) => x.id !== n.id) }), 9000);
+    const dismiss = () => {
+      // While offline, drafting and listening errors stay up: they explain why there are no replies.
+      if ((scope === "llm" || scope === "stt") && this.state.link !== "open") {
+        window.setTimeout(dismiss, 3000);
+        return;
+      }
+      this.set({ notices: this.state.notices.filter((x) => x.id !== n.id) });
+    };
+    window.setTimeout(dismiss, 9000);
   }
 
   updateSettings(patch: Partial<Settings>): void {
@@ -405,7 +427,8 @@ export class Kanth {
       suggestRequestedAt: performance.now(),
     });
     // Only this partner's thread: replies to Amma should not leak into a talk with the doctor.
-    const prior = partnerInHistory ? this.state.history.slice(0, -1) : this.state.history;
+    // A reply the user stopped was not said, so it is not context for the next drafts.
+    const prior = (partnerInHistory ? this.state.history.slice(0, -1) : this.state.history).filter((h) => !h.stopped);
     const thread: HistoryItem[] = [];
     for (let i = 0; i < prior.length; i++) {
       const h = prior[i]!;
@@ -489,10 +512,19 @@ export class Kanth {
     return true;
   }
 
+  /** Bumped by every new utterance and by stopSpeaking, so a stopped reply is never spoken late. */
+  private sayToken = 0;
+  /** The utterance now playing (or waiting for its voice), so a stop can tell how much was heard. */
+  private current: { token: number; id: string; audibleAt?: number; durationMs?: number; cancel?: () => void } | null = null;
+
   private async say(id: string, text: string, lang: LangCode, chosenAt: number, turnId: string | null, gloss: string | undefined, via: HistoryItem["via"]): Promise<void> {
     audio.unlock();
+    const token = ++this.sayToken;
+    this.current?.cancel?.();
+    this.current = { token, id };
     this.set({
       speakingText: text,
+      lastStopped: false,
       history: [...this.state.history, { who: "me", text, lang, at: Date.now(), gloss, via }],
     });
     const st = audio.status(id);
@@ -502,14 +534,24 @@ export class Kanth {
     }
     const result = audio.play(id, "me", chosenAt, text);
     let audibleMs = result.toAudibleMs;
-    if (!result.prespoken) {
+    if (result.prespoken) {
+      this.current = { token, id, audibleAt: chosenAt + audibleMs, durationMs: result.durationMs };
+    } else {
+      // Resolves with the time to sound, -1 if Bulbul failed, or -2 if the user stopped it first.
       audibleMs = await new Promise<number>((resolve) => {
         const off = audio.onPlay((e) => {
           if (e.id === id) {
             off();
+            if (this.current?.token === token) this.current.audibleAt = performance.now();
             resolve(e.toAudibleMs);
           }
         });
+        if (this.current?.token === token) {
+          this.current.cancel = () => {
+            off();
+            resolve(-2);
+          };
+        }
         void audio.whenDone(id).then((ok) => {
           if (!ok) {
             off();
@@ -517,20 +559,26 @@ export class Kanth {
           }
         });
       });
+      if (token !== this.sayToken) return; // stopped, or replaced by a newer choice: say nothing more
       if (audibleMs < 0) {
-        const how = await audio.speakWithDevice(text, lang, gloss);
+        if (this.current?.token === token) this.current = { token, id, audibleAt: performance.now(), durationMs: wordCount(text) * 450 };
+        const how = await audio.speakWithDevice(text, lang, gloss, () => token !== this.sayToken);
+        if (token !== this.sayToken) return;
         if (how === "native") this.notify("tts", "Bulbul could not be reached.", "Spoke with the device voice instead.");
-        else if (how === "english") this.notify("tts", "Bulbul could not be reached, and this device has no voice for this language.", "Spoke the English meaning with the device voice.");
+        else if (how === "english") this.notify("tts", "Bulbul could not be reached, and this device has no voice for this language.", "Spoke the English meaning with the device voice, not your exact words.");
         else {
-          this.notify("tts", "Bulbul could not be reached, and this device cannot speak this language.", "Showing the reply full screen so they can read it.");
+          this.notify("tts", "Bulbul could not be reached, and this device has no voice for this language.", "Showing your reply full screen.");
           this.set({ unspoken: { text, lang, gloss } });
         }
         this.set({ speakingText: null });
+        if (this.current?.token === token) this.current = null;
         return;
       }
     }
     if (turnId) this.metric(turnId, { audibleAt: chosenAt + audibleMs, toAudibleMs: audibleMs, prespoken: result.prespoken });
     await result.ended;
+    if (token !== this.sayToken) return;
+    if (this.current?.token === token) this.current = null;
     if (this.state.speakingText === text) this.set({ speakingText: null });
   }
 
@@ -572,9 +620,25 @@ export class Kanth {
     this.set({ unspoken: null });
   }
 
+  /**
+   * The user stopped their voice. Stops Bulbul audio and the device voice, and makes sure a reply still
+   * waiting for its voice is never spoken. If less than 70% of it was heard, it does not count as said.
+   */
   stopSpeaking(): void {
+    this.sayToken++;
+    const cur = this.current;
+    this.current = null;
+    cur?.cancel?.();
     audio.stop("me");
-    this.set({ speakingText: null });
+    if ("speechSynthesis" in window) speechSynthesis.cancel();
+    let history = this.state.history;
+    const last = history[history.length - 1];
+    if (cur && last?.who === "me" && !last.stopped) {
+      const heardMs = cur.audibleAt === undefined ? 0 : performance.now() - cur.audibleAt;
+      const total = cur.durationMs || audio.durationMs(cur.id);
+      if (!total || heardMs < total * 0.7) history = [...history.slice(0, -1), { ...last, stopped: true }];
+    }
+    this.set({ speakingText: null, lastStopped: true, history });
   }
 
   resetConversation(): void {

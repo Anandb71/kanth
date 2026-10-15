@@ -331,14 +331,16 @@ export class AudioEngine {
     });
   }
 
-  /** Last resort so the user is never left silent: the device's own speech engine. */
   /**
-   * Speaks with the device's own voice, but only if the device has a voice for that language.
-   * Falls back to the English meaning with an English voice. Reports honestly what was said.
+   * Last resort so the user is never left silent: the device's own speech engine, but only if the device
+   * has a voice for that language. Otherwise it speaks the English meaning with an English voice, and the
+   * caller says so. Reports honestly what was said. `cancelled` is checked before each attempt, so a reply
+   * the user stopped is never spoken, and stopping the device voice does not start the English one.
    */
-  async speakWithDevice(text: string, lang: string, englishGloss?: string): Promise<"native" | "english" | "none"> {
-    if (!("speechSynthesis" in window)) return "none";
+  async speakWithDevice(text: string, lang: string, englishGloss?: string, cancelled: () => boolean = () => false): Promise<"native" | "english" | "none"> {
+    if (!("speechSynthesis" in window) || cancelled()) return "none";
     const voices = await deviceVoices();
+    if (cancelled()) return "none";
     const base = lang.slice(0, 2).toLowerCase();
     const native = voices.find((v) => v.lang.toLowerCase().startsWith(base));
     const english = voices.find((v) => v.lang.toLowerCase().startsWith("en"));
@@ -352,6 +354,7 @@ export class AudioEngine {
         speechSynthesis.speak(u);
       });
     if (native && (await say(text, native))) return "native";
+    if (cancelled()) return "none";
     if (englishGloss && english && (await say(englishGloss, english))) return "english";
     return "none";
   }

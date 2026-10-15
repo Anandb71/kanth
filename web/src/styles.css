@@ -496,3 +496,28 @@ input[type="range"] { width: 100%; accent-color: var(--accent); height: 28px; }
 }
 
 .replay-note { flex-basis: 100%; padding: 10px 14px; border-radius: var(--r-sm); box-shadow: var(--inset-sm); color: var(--ink); font-weight: 600; }
+
+/* ---------- Who it is for, microphone state, compact layouts ---------- */
+.hero-eyebrow { margin: 0 0 -12px; font-size: 15px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.chip.mic-on { color: var(--ink); font-weight: 700; }
+.display-head { flex-wrap: wrap; }
+.display-head .mic-stop { flex: none; }
+.tiles-summary { display: none; margin: 10px 2px 0; font-size: 14px; font-weight: 650; color: var(--ink-2); }
+@media (min-width: 900px) {
+  /* Keeps the steer row closer to the fold, so a redraft is seen without scrolling. */
+  .display { padding: 20px 26px 22px; }
+  .display-head { margin-bottom: 10px; }
+  .heard { font-size: calc(31px * var(--scale)); }
+}
+@media (max-width: 600px) {
+  .strip .scene + span { display: none; }
+  .replay-note { font-size: 13.5px; }
+  .display { padding: 14px; }
+  .display-head { gap: 10px; margin-bottom: 10px; }
+  .heard { font-size: calc(22px * var(--scale)); }
+  .tile { padding: 14px 16px 12px; min-height: 0; gap: 6px; }
+  .tile-text { font-size: calc(19px * var(--scale)); }
+  .tile-foot { display: none; }
+  .tiles-summary { display: block; }
+  .hero-eyebrow { font-size: 13.5px; margin-bottom: -8px; }
+}

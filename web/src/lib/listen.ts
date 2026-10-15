@@ -63,10 +63,17 @@ export function useMic(): { listening: boolean; start: () => Promise<void>; stop
     off.current?.();
     off.current = null;
     if (session.current) kanth.socket.send({ t: "stt_stop", sessionId: session.current });
+    session.current = "";
     setListening(false);
   };
 
   const start = async () => {
+    if (session.current) stop(); // never two captures at once
+    // The recorded run has no live Saaras behind it, so it cannot hear a real microphone.
+    if (kanth.replaying) {
+      kanth.notify("stt", "Sarvam was not answering, so this page is showing a recorded run.", "Reload the page to try the microphone again, or type what was said.");
+      return;
+    }
     const sessionId = `mic${++micSeq}`;
     session.current = sessionId;
     kanth.socket.send({ t: "stt_start", sessionId, lang: "unknown" });
@@ -90,13 +97,22 @@ export function useMic(): { listening: boolean; start: () => Promise<void>; stop
     try {
       // Never listen to ourselves: drop microphone audio while Kanth is speaking, and briefly after.
       let busyUntil = 0;
-      cap.current = await capture((pcm) => {
+      const c = await capture((pcm) => {
+        if (session.current !== sessionId) return;
         if (kanth.state.speakingText) busyUntil = performance.now() + 400;
         if (performance.now() < busyUntil) return;
         kanth.socket.send({ t: "stt_audio", sessionId, pcm: b64(pcm) });
       });
+      // Stopped (or left the page) while the browser was still asking for the microphone: close it at once.
+      if (session.current !== sessionId) {
+        c.stop();
+        return;
+      }
+      cap.current = c;
       setListening(true);
     } catch {
+      // A newer start, or a stop, has already replaced this session: leave that one alone.
+      if (session.current !== sessionId) return;
       kanth.notify("stt", "The microphone is not available.", "Try the demo, or type what was said.");
       stop();
     }

@@ -1,27 +1,27 @@
 1
-00:00:00,905 --> 00:00:05,090
+00:00:01,452 --> 00:00:05,292
 Amma: Have you eaten, dear? The rasam is hot.
 
 2
-00:00:12,642 --> 00:00:15,316
-Arjun: The rasam is hot, I'll eat slowly
+00:00:12,476 --> 00:00:14,479
+Arjun: I will eat now, Amma
 
 3
-00:00:22,030 --> 00:00:26,097
+00:00:21,188 --> 00:00:25,249
 Dr. Mehra: Arjun, how is the pain today? Tell me on a scale of one to ten.
 
 4
-00:00:43,670 --> 00:00:45,675
-Arjun: It is 6
+00:00:33,322 --> 00:00:35,330
+Arjun: The pain is 6
 
 5
-00:00:47,177 --> 00:00:51,920
+00:00:36,833 --> 00:00:41,414
 Rohit: Brother, India is playing on Sunday. Should I book the van?
 
 6
-00:01:02,974 --> 00:01:04,984
-Arjun: Want to watch the Sunday match? Go ahead and book
+00:01:00,100 --> 00:01:02,107
+Arjun: you book it yourself bro
 
 7
-00:01:09,503 --> 00:01:11,503
+00:01:06,598 --> 00:01:08,599
 Arjun: I need suction.

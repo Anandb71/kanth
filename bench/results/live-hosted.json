@@ -1,6 +1,6 @@
 {
  "measured": "2026-10-15T08:52:15.507Z",
- "note": "Live app, interactive demo with simulated choices, headless Chromium on the same machine as the server. Times are ms from the moment the partner's audio ended. Negative means before the partner finished (drafting while they talk). choiceToAudibleMs includes the browser's reported output latency.",
+ "note": "Live hosted site (kanth-nu.vercel.app, Vercel functions in bom1), headless Chromium on a home connection in India. Interactive demo with a simulated user who chooses after a pause. Times are ms from the moment the partner's audio ended. Negative means before the partner finished (drafting while they talk). choiceToAudibleMs is time from the choice to audio output, including the browser's reported output latency; it was not measured acoustically. Measured before drafts were checked in code for unrequested numbers and names.",
  "runs": 2,
  "summary": {
   "transcriptMs": {

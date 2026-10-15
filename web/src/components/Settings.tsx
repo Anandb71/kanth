@@ -7,9 +7,17 @@ import { recordWav } from "../lib/listen.ts";
 
 const ACCESS: { id: AccessMethod; label: string; help: string }[] = [
   { id: "touch", label: "Touch or click", help: "Tap a reply, or press 1 to 4." },
-  { id: "scan-auto", label: "One switch", help: "Kanth highlights each choice in turn. Press Space, Enter, or your switch to pick." },
-  { id: "scan-step", label: "Two switches", help: "Tab or Right arrow moves. Space or Enter picks." },
-  { id: "dwell", label: "Dwell", help: "Rest the pointer on a reply to pick it. Works with head pointers and eye trackers." },
+  {
+    id: "scan-auto",
+    label: "One switch",
+    help: "Kanth highlights each choice in turn. Press and release Space, Enter, or your switch to pick. Hold it down for about 1.5 seconds to jump straight to the emergency phrases: It hurts, Suction and Call the nurse.",
+  },
+  {
+    id: "scan-step",
+    label: "Two switches",
+    help: "Tab or Right arrow moves. Press and release Space or Enter to pick. Hold Space or Enter for about 1.5 seconds to jump straight to the emergency phrases.",
+  },
+  { id: "dwell", label: "Dwell", help: "Rest the pointer on any choice to pick it: replies, phrases, steering words and tones. Works with head pointers and eye trackers." },
   { id: "blink", label: "Blink", help: "One switch scanning, where a deliberate blink is the switch. Uses the camera on this device only." },
 ];
 

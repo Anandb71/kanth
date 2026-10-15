@@ -1,8 +1,8 @@
 // Hosted mode transport: the same messages as the /ws socket, carried over short streaming HTTP requests,
 // for serverless hosting that cannot keep a WebSocket open. Prespeak runs here: as each draft arrives,
-// the browser asks for its audio in parallel. Speech recognition is batch: the partner's whole line is
-// sent once it ends, so there are no partial transcripts and no drafting while they talk. For the live
-// microphone, the browser detects where each turn ends (vad.ts) and sends each finished turn.
+// the browser asks for its audio in parallel. Speech recognition re-sends the audio so far about every
+// 0.7 s for rolling partial transcripts, so drafting can start while they talk, then sends the whole line
+// once it ends. For the live microphone, the browser detects where each turn ends (vad.ts).
 import type { ClientMessage, ServerMessage, SuggestRequest, SynthRequest } from "../../../shared/protocol.ts";
 import type { LinkState } from "./socket.ts";
 import { TurnDetector } from "./vad.ts";
@@ -96,7 +96,7 @@ export class HttpTransport {
       this.setState("open");
       this.emit({ t: "hello", keyPresent: true, roster: BUNDLED_ROSTER, version: "hosted" });
       this.emit({ t: "status", service: "tts", state: "connecting", detail: "waking the hosted service" });
-      this.emit({ t: "status", service: "stt", state: "ready", detail: "hosted, batch" });
+      this.emit({ t: "status", service: "stt", state: "ready", detail: "hosted, rolling partials" });
     } else this.setState("connecting");
     try {
       const t0 = performance.now();
@@ -106,7 +106,7 @@ export class HttpTransport {
       this.setState("open");
       this.emit({ t: "hello", keyPresent: j.keyPresent, roster: j.roster, version: j.version });
       this.emit({ t: "status", service: "tts", state: j.keyPresent ? "ready" : "no-key", detail: "hosted, HTTP streaming" });
-      this.emit({ t: "status", service: "stt", state: "ready", detail: "hosted, batch" });
+      this.emit({ t: "status", service: "stt", state: "ready", detail: "hosted, rolling partials" });
     } catch {
       this.setState("closed");
       if (navigator.onLine) window.setTimeout(() => void this.connect(attempt + 1), Math.min(8000, 400 * 2 ** attempt));

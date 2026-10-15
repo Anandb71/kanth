@@ -4,6 +4,9 @@
 //   live site     KANTH_URL=https://kanth-nu.vercel.app
 // Run from kanth/film: npx tsx e2e.ts [mic-clip.wav]. Exits non-zero if any check fails.
 // Uses real Sarvam calls (about 3 demo runs' worth) except the fallback check, which blocks them.
+import { mkdirSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { chromium, type Browser, type BrowserContext, type Page } from "playwright";
 
 const base = process.env.KANTH_URL ?? "http://localhost:5190";
@@ -67,7 +70,7 @@ await check("home: loads clean, links, no red alarm while loading", async () => 
   await page.waitForTimeout(2000);
   const gh = await page.locator('a[href*="github.com/Anandb71/kanth"]').count();
   const credit = (await page.locator(".site-footer").innerText()).includes("Sarvam");
-  await page.getByRole("button", { name: /Watch the 70 s film/ }).first().click();
+  await page.getByRole("button", { name: /Watch the (80 s )?film/ }).first().click();
   const video = await page.locator(".film-modal video").getAttribute("src");
   const head = await page.request.get(`${base}${video}`, { headers: { range: "bytes=0-1023" } });
   await ctx.close();
@@ -106,7 +109,7 @@ await check("steer and tone: a number redrafts, a tone redrafts", async () => {
   await step("wait 2", () => page.waitForFunction(() => { const w = window as any; return w.kanthDemo.state.scene === 1 && w.kanthDemo.state.phase === "waiting" && w.kanth.state.cards.length >= 4 && !w.kanth.state.drafting; }, null, { timeout: 60000 }));
   const before = await page.evaluate(() => (window as any).kanth.state.cards.map((c: any) => c.text).join("|"));
   await page.waitForTimeout(700);
-  await page.locator('[data-scan-group="steer"] button', { hasText: /^6$/ }).click();
+  await page.locator('[data-scan-group="numbers"] button', { hasText: /^6$/ }).click();
   await step("wait 3", () => page.waitForFunction((b) => { const k = (window as any).kanth; return !k.state.drafting && k.state.cards.length >= 3 && k.state.cards.map((c: any) => c.text).join("|") !== b; }, before, { timeout: 30000 }));
   const steered = await page.evaluate(() => (window as any).kanth.state.cards.map((c: any) => c.text));
   const hasSix = steered.some((t: string) => /6|छह|छः|six/i.test(t));
@@ -121,6 +124,7 @@ await check("steer and tone: a number redrafts, a tone redrafts", async () => {
   return `steered: ${steered[0]}; urgent pace 1.22`;
 });
 
+// A key switch selects on release; holding it never repeats (and a long hold jumps to the emergency phrases instead).
 await check("scanning: a held switch says exactly one reply", async () => {
   const { ctx, page } = await open(browser, { settings: { access: "scan-auto", scanIntervalMs: 700 } });
   await page.goto(`${base}/?demo`);
@@ -131,6 +135,7 @@ await check("scanning: a held switch says exactly one reply", async () => {
   await page.evaluate(() => {
     window.dispatchEvent(new KeyboardEvent("keydown", { key: " ", bubbles: true }));
     for (let i = 0; i < 8; i++) window.dispatchEvent(new KeyboardEvent("keydown", { key: " ", repeat: true, bubbles: true }));
+    window.dispatchEvent(new KeyboardEvent("keyup", { key: " ", bubbles: true }));
   });
   await page.waitForTimeout(2500);
   const spoken = await page.evaluate(() => (window as any).kanth.state.history.filter((h: any) => h.who === "me").length);
@@ -138,6 +143,49 @@ await check("scanning: a held switch says exactly one reply", async () => {
   await ctx.close();
   assert(spoken === 1, `${spoken} replies spoken`);
   return "1 reply";
+});
+
+// No Sarvam needed: the replies are injected. A press on Suction must never be swallowed because new replies landed.
+await check("scanning: highlight on Suction, replies change, press, Suction is spoken", async () => {
+  const { ctx, page, errors } = await open(browser, { settings: { access: "scan-step", scanIntervalMs: 1200 } });
+  await page.goto(`${base}/#talk`);
+  await page.waitForSelector('[data-scan-item="urgent"]', { timeout: 15000 });
+  await page.waitForTimeout(800);
+  const key = (type: "keydown" | "keyup", k: string) => page.evaluate(([t, kk]) => window.dispatchEvent(new KeyboardEvent(t!, { key: kk!, bubbles: true })), [type, k]);
+  // Hold the switch for 1.7 s: straight to the emergency phrases, nothing selected.
+  await key("keydown", " ");
+  await page.waitForTimeout(1700);
+  await key("keyup", " ");
+  const idx = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>('[data-scan-item="urgent"]')].findIndex((el) => /suction/i.test(el.dataset.phrase ?? "")));
+  assert(idx >= 0, "no Suction phrase on the emergency board");
+  for (let i = 0; i < idx; i++) await key("keydown", "ArrowRight");
+  await page.waitForTimeout(600); // past the bounce lock from the hold, as a person would be
+  const parked = await page.evaluate(() => document.querySelector<HTMLElement>(".scan-focus")?.dataset.phrase ?? null);
+  assert(parked && /suction/i.test(parked), `highlight on ${parked}, not Suction`);
+  const saidBefore = await page.evaluate(() => (window as any).kanth.state.history.filter((h: any) => h.who === "me").length);
+  // New replies land, then the user presses at once.
+  await page.evaluate(() => {
+    const k = (window as any).kanth;
+    k.partnerStarted("Amma", "ta-IN");
+    k.set({ turnId: "te2e" });
+    for (let i = 0; i < 4; i++) k.onMessage({ t: "suggestion", turnId: "te2e", idx: i, text: `test reply ${i + 1}`, gloss: `test reply ${i + 1}`, lang: "ta-IN", atMs: 0 });
+  });
+  await page.waitForTimeout(100);
+  const stillParked = await page.evaluate(() => document.querySelector<HTMLElement>(".scan-focus")?.dataset.phrase ?? null);
+  await key("keydown", " ");
+  await page.waitForTimeout(120);
+  await key("keyup", " ");
+  await page.waitForTimeout(800);
+  const said = await page.evaluate(() => (window as any).kanth.state.history.filter((h: any) => h.who === "me").map((h: any) => h.text));
+  await page.evaluate(() => (window as any).kanth.stopSpeaking());
+  await ctx.close();
+  assert(stillParked && /suction/i.test(stillParked), `new replies moved the highlight to ${stillParked}`);
+  assert(said.length === saidBefore + 1, `${said.length - saidBefore} things said, expected 1`);
+  assert(/suction/i.test(said[said.length - 1] ?? ""), `said "${said[said.length - 1]}", not Suction`);
+  // This check needs no server, so a missing socket is not a failure here.
+  const pageErrors = errors.filter((e) => !/WebSocket/.test(e));
+  assert(pageErrors.length === 0, `console errors: ${pageErrors.join(" | ").slice(0, 200)}`);
+  return `said "${said[said.length - 1]}"`;
 });
 
 await check("offline: the emergency board speaks with no network", async () => {
@@ -213,4 +261,14 @@ if (micClip) {
 await browser.close();
 const failed = results.filter((r) => !r.ok);
 console.log(`\n${results.length - failed.length}/${results.length} passed against ${base}`);
+
+// Runs against a deployed copy are kept as evidence; local runs are not.
+const host = new URL(base).hostname;
+if (!["localhost", "127.0.0.1", "[::1]", "::1"].includes(host)) {
+  const time = new Date().toISOString();
+  const out = join(dirname(fileURLToPath(import.meta.url)), "..", "bench", "results", "e2e-live.json");
+  mkdirSync(dirname(out), { recursive: true });
+  writeFileSync(out, `${JSON.stringify(results.map((r) => ({ name: r.name, ok: r.ok, detail: r.detail, base, time })), null, 2)}\n`);
+  console.log(`wrote ${out}`);
+}
 process.exit(failed.length ? 1 : 0);

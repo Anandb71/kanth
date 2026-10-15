@@ -21,7 +21,12 @@ export interface DemoState {
   error?: string;
   /** The live service did not answer, so the demo is replaying a recorded real run. */
   replay?: boolean;
+  /** The user stopped their last reply, so the demo is waiting for them to choose again. */
+  replyStopped?: boolean;
 }
+
+/** Replies that count as said: a reply the user stopped part way does not. */
+const said = () => kanth.state.history.filter((h) => h.who === "me" && !h.stopped).length;
 
 type Listener = (s: DemoState) => void;
 
@@ -75,10 +80,10 @@ export class DemoDirector {
 
     for (let i = 0; i < this.scenes.length && !this.stopped; i++) {
       const sc = this.scenes[i]!;
-      this.set({ scene: i, phase: "partner", caption: film ? { line: sc.setting } : undefined });
+      this.set({ scene: i, phase: "partner", caption: film ? { line: sc.setting } : undefined, replyStopped: false });
       kanth.partnerStarted(sc.who, sc.lang, sc.gloss);
       // Replies can be ready, and chosen, while the partner is still talking: count from here.
-      const repliedBefore = kanth.state.history.filter((h) => h.who === "me").length;
+      let repliedBefore = said();
       const heard = await speakPartner(ids[i]!, sc);
       if (this.stopped) return;
       this.set({ phase: "waiting" });
@@ -91,11 +96,18 @@ export class DemoDirector {
         return this.run(opts);
       }
 
-      if (film && kanth.state.history.filter((h) => h.who === "me").length === repliedBefore) await this.simulatedChoice(sc);
-      await this.waitForReply(repliedBefore);
-      if (this.stopped) return;
-      this.set({ phase: "speaking" });
-      await this.waitUntilQuiet();
+      if (film && said() === repliedBefore) await this.simulatedChoice(sc);
+      for (;;) {
+        await this.waitForReply(repliedBefore);
+        if (this.stopped) return;
+        this.set({ phase: "speaking", replyStopped: false });
+        await this.waitUntilQuiet();
+        if (this.stopped) return;
+        // Stopped part way: it was not said, so this is still the user's turn.
+        if (said() > repliedBefore) break;
+        repliedBefore = said();
+        this.set({ phase: "waiting", replyStopped: true });
+      }
       await sleep(film ? 1100 : 900);
     }
     if (!this.stopped) this.set({ phase: "done", caption: undefined });
@@ -122,7 +134,7 @@ export class DemoDirector {
   private waitForReply(repliedBefore: number): Promise<void> {
     return new Promise((resolve) => {
       const check = () => {
-        if (this.stopped || kanth.state.history.filter((h) => h.who === "me").length > repliedBefore) {
+        if (this.stopped || said() > repliedBefore) {
           off();
           resolve();
         }

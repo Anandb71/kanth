@@ -2,20 +2,20 @@
 
 **A voice for people who cannot speak, in the languages they think in.** Built on Sarvam Bulbul V4 Flash.
 
-In every other project Bulbul speaks *to* people. In Kanth, Bulbul speaks *as* someone.
+In most Bulbul projects, Bulbul speaks *to* people. In Kanth, Bulbul speaks *as* someone.
 
-![Kanth demo: Amma asks in Tamil, four replies appear while she is still talking, Arjun chooses one and is heard instantly](docs/media/kanth-demo.gif)
+[![Kanth demo: Amma asks in Tamil, four replies are drafted and voiced about a second after she stops, Arjun chooses one and is heard about 50 ms later](docs/media/kanth-demo.gif)](https://kanth-nu.vercel.app/media/kanth-demo.mp4)
 
-**[Try it in your browser: kanth-nu.vercel.app](https://kanth-nu.vercel.app)** · [Watch the full demo with sound (MP4)](docs/media/kanth-demo.mp4) · [Architecture](docs/ARCHITECTURE.md) · [Why this idea](IDEAS.md) · [Decisions](DECISIONS.md)
+**[Try it in your browser: kanth-nu.vercel.app](https://kanth-nu.vercel.app)** · [Watch the demo with sound](https://kanth-nu.vercel.app/media/kanth-demo.mp4) · [Architecture](docs/ARCHITECTURE.md) · [Why this idea](IDEAS.md) · [Decisions](DECISIONS.md)
 
 ## The problem, in numbers
 
 When you cannot speak, every answer arrives late.
 
-- Everyday conversation runs at **160 to 200 words per minute** (Switchboard corpus: 164 turn by turn, 196 overall). [1]
+- Everyday English conversation runs at **160 to 200 words per minute** (Switchboard corpus: 164 turn by turn, 196 overall). [1]
 - People who talk through AAC (augmentative and alternative communication) devices typically manage **under 10 words per minute**. On-screen keyboards driven by eye gaze or a head pointer average **4.2**, and switch scanning averages **1.7**. [2][3]
 - Across languages, the usual gap before a reply is **0 to 200 ms**, and gaps of **700 ms or more are heard as reluctance**. [4][5]
-- So a ten word reply takes over two minutes by eye gaze and six minutes by switch. The conversation has moved on.
+- So a ten word reply takes over two minutes by eye gaze and nearly six minutes by switch. The conversation has moved on.
 - India's Census 2011 counted **19,98,692 people with a speech disability**. Not all of them need AAC, but the tools they get today are mostly English, recorded phrase banks, or robotic voices. [6][7]
 
 ## What Kanth does
@@ -23,13 +23,13 @@ When you cannot speak, every answer arrives late.
 1. **Listens.** The person in front of you speaks Tamil, Hindi, English, or a mix. Saaras transcribes them live.
 2. **Drafts while they talk.** Four short replies, in your language and the way you mix it ("ரசம் smell நல்லா வருது Amma"), drafted by Sarvam-105B from the words heard so far.
 3. **Prespeaks.** Bulbul V4 Flash voices all four on warm connections before you choose. Nothing plays.
-4. **You choose. It speaks.** Touch, one switch, two switches, dwell, or a deliberate blink. The chosen reply is heard about 50 ms after you choose it.
+4. **You choose. It speaks.** Touch, one switch, two switches, dwell, or a deliberate blink. The chosen reply starts at once: about 50 ms to sound on our test browser, almost all of it the browser's own reported audio output latency.
 
 And around that loop:
 
 - **Tone dial.** Warm, Firm, Urgent, Joking, Quiet. Each tone changes the words drafted and Bulbul's pace, pitch and loudness.
 - **None of the four right?** One press on Yes, No, Not now, or a number from 0 to 10 redrafts all four around it, so a switch user can steer without typing. Or type a word or two, or anything at all in Roman letters; Kanth converts it to Tamil or Hindi script so Bulbul pronounces it properly.
-- **Always ready, even offline.** "It hurts", "I need suction", "Call the nurse" are stored on the device in your voice and play with no network.
+- **Always ready, even offline.** "It hurts", "I need suction", "Call the nurse" are stored on the device in your voice and play with no network. They sit at the top of the side panel, and a switch or dwell user can reach them at any time.
 - **Your own voice, optional.** Bank 10 to 15 seconds of speech with Sarvam voice cloning, after an explicit consent step.
 
 ## Run it in about a minute
@@ -50,15 +50,15 @@ The key is read only by the server. It never reaches the browser or the reposito
 
 **https://kanth-nu.vercel.app**: press **Hear a conversation**, then choose Arjun's replies. No install, key or microphone needed. Or press **Talk with your microphone**, then **Listen with microphone**, and speak to it in Tamil, Hindi, English or a mix.
 
-The hosted version runs on Vercel functions, which cannot hold the long-lived WebSocket the local server uses, so it carries the same messages over short streaming HTTP requests ([web/src/lib/http-transport.ts](web/src/lib/http-transport.ts), [server/hosted.ts](server/hosted.ts)):
+The hosted version runs on Vercel functions, which cannot hold the long-lived WebSocket the local server uses, so it carries the same messages over streaming HTTP requests to one combined function ([web/src/lib/http-transport.ts](web/src/lib/http-transport.ts), [server/hosted.ts](server/hosted.ts)):
 
-- **Drafting while they talk works here too.** While someone speaks, the browser sends the audio so far to Saaras about every 0.7 s, so partial transcripts arrive and the four replies are drafted and voiced before the line ends. For the microphone, the browser detects where each turn ends (an adaptive energy detector, [web/src/lib/vad.ts](web/src/lib/vad.ts), 1 s of quiet), and it ignores the microphone while Kanth is speaking, so it never transcribes its own voice.
-- **Measured on the live site** (6 partner turns, [bench/results/live-hosted.json](bench/results/live-hosted.json)): Saaras transcript a median 336 ms after the line ended, first reply on screen at 710 ms (202 ms *before* the line ended at best), all four voiced at 1.6 s, 2 of 6 turns drafted while the partner was still speaking, and **the chosen reply heard 50 ms after the choice**, the same as locally. Reproduce: `cd film && KANTH_URL=https://kanth-nu.vercel.app OUT=live-hosted.json npx tsx live-app.ts 2`.
-- **Instant start.** The partner's three lines and the default emergency phrases ship as audio pre-generated with Bulbul ([scripts/make-static-audio.ts](scripts/make-static-audio.ts)), so the demo starts at once and the phrase board works offline on a first visit. Everything Arjun says is still drafted and voiced live.
+- **Drafting while they talk works here too.** While someone speaks, the browser re-sends the audio so far to Saaras about every 0.7 s, so partial transcripts arrive and drafting can start before the line ends (2 of 6 measured turns; in one, the first reply was on screen 0.2 s early). For the microphone, the browser detects where each turn ends (an adaptive energy detector, [web/src/lib/vad.ts](web/src/lib/vad.ts), 1 s of quiet), and it ignores the microphone while Kanth is speaking, so it never transcribes its own voice.
+- **Measured on the live site** (6 partner turns, [bench/results/live-hosted.json](bench/results/live-hosted.json)): Saaras transcript a median 336 ms after the line ended, first reply on screen at 710 ms (202 ms *before* the line ended at best), all four voiced a median 1.6 s after the line ended (0.8 to 4.1 s), 2 of 6 turns drafted while the partner was still speaking, and **the chosen reply playing 50 ms after the choice**, the same as locally. Reproduce: `cd film && KANTH_URL=https://kanth-nu.vercel.app OUT=live-hosted.json npx tsx live-app.ts 2`.
+- **Instant start.** The partner's three lines and the default emergency phrases ship as audio pre-generated with Bulbul ([scripts/make-static-audio.ts](scripts/make-static-audio.ts)), so the demo starts at once and the phrase board works offline on a first visit. Every reply Arjun chooses is still drafted and voiced live; only the partner's lines and the emergency phrases are pre-generated.
 - **It does not die if Sarvam does.** If the live service cannot be reached, the demo replays a recorded real run of the same conversation and says so on screen ([web/src/lib/replay-transport.ts](web/src/lib/replay-transport.ts), recorded with [film/record-replay.ts](film/record-replay.ts)).
-- **Guarded.** The public demo uses a shared key: requests must come from Kanth's own page, each visitor is rate limited, and text and audio sizes are capped. Voice banking runs only in the local version.
+- **Guarded.** The public demo uses a shared key: requests must come from Kanth's own page, each visitor is rate limited within each running function instance (the counts are held in memory, so they reset on a cold start and are not shared between instances), and text and audio sizes are capped. Voice banking runs only in the local version.
 
-**Tested end to end** with [film/e2e.ts](film/e2e.ts) in a real browser: page load and links, the full demo, steering and tone, single-switch scanning, the offline board, the recorded-run fallback with every API call blocked, phone layout, and the microphone (fed a Bulbul-generated clip). 8 of 8 checks pass on the live site. Run it yourself: `cd film && KANTH_URL=https://kanth-nu.vercel.app npx tsx e2e.ts`.
+**Tested end to end** with [film/e2e.ts](film/e2e.ts) in a real browser: page load and links, the full demo, steering and tone, single-switch scanning, the offline board, the recorded-run fallback with every API call blocked, phone layout, and the microphone (fed a Bulbul-generated clip). A run against a deployed site writes its results to `bench/results/e2e-live.json`. Run it yourself: `cd film && KANTH_URL=https://kanth-nu.vercel.app npx tsx e2e.ts`.
 
 Deploy your own: `node scripts/build-vercel.mjs && vercel deploy --prebuilt --prod`, with `SARVAM_API_KEY` set as a Vercel environment variable.
 
@@ -78,20 +78,20 @@ The server holds the Sarvam key and the warm connections; the browser holds the 
 
 ## Why Bulbul V4 Flash is the hero
 
-Every word the user says is Bulbul. The language model only proposes; the user only chooses; Bulbul is the voice.
+Every word the user says is Bulbul, unless Bulbul cannot be reached and the device voice steps in. The language model only proposes; the user only chooses; Bulbul is the voice.
 
 - **Tone you can hear.** Pace, pitch and loudness are V4 Flash controls (v3 offers pace only). Urgent is 4.8 dB louder than Warm; Quiet is 7.9 dB softer and 18% slower. Measured below.
-- **Speed inside the turn.** Four replies voiced in parallel on four warm sockets, often ready the moment the other person stops. Queued on one socket, the same four take 1.7 s. [8]
+- **Speed at the end of the turn.** Four replies voiced in parallel on four warm sockets finish in about half a second; queued on one socket, the same four take 1.7 s. [8] Run locally, all four were ready a median 0.8 s after the other person stopped, and before they finished in 2 of 9 turns.
 - **Code-mixed Indian speech.** Native script for Indian words, Latin for English words, as Sarvam recommends, with Saaras `codemix` transcripts feeding the drafts and `enhi` personas for Hinglish.
 - **No dead air at the moment of choice.** Prespeak turns time to first audio into time to first frame.
 
 ## Measured
 
-Every number here comes from a script in [bench](bench) or [film](film), with raw data in [bench/results](bench/results). Measured on a home connection in India on 2026-10-15.
+Every number here comes from a script in [bench](bench) or [film](film), with raw data in [bench/results](bench/results), except the typed-text time below, which was read by hand. Measured on a home connection in India on 2026-10-15. The app runs and the conversation benchmark below were made before drafts were checked in code for numbers and names (see [Whose words are these?](#hard-questions)).
 
-### In the live app
+### In the app, run locally
 
-Nine partner turns across three runs of the demo, with Saaras, drafting and Bulbul all live ([bench/results/live-app.json](bench/results/live-app.json)). Reproduce: `cd film && npx tsx live-app.ts 3`.
+Nine partner turns across three runs of the demo on the local server (`npm start`, warm WebSockets), with Saaras, drafting and Bulbul all live ([bench/results/live-app.json](bench/results/live-app.json)). Reproduce: `cd film && npx tsx live-app.ts 3`.
 
 | From the moment the partner stops | Median | Range |
 |---|---|---|
@@ -99,9 +99,9 @@ Nine partner turns across three runs of the demo, with Saaras, drafting and Bulb
 | First reply on screen | 16 ms | 658 ms *before* they stop to 422 ms after |
 | All four replies on screen | 95 ms | 657 ms before to 561 ms after |
 | All four voiced and ready | 815 ms | 29 ms before to 1.12 s after |
-| **The user chooses, and is heard** | **51 ms** | 50 to 58 ms (prespoken, including the browser's output latency) |
+| **The user chooses, and is heard** | **51 ms** | 50 to 58 ms (prespoken; nearly all of it the browser's reported output latency, not measured acoustically) |
 
-Negative times come from drafting while they talk. Typed text that was not prespoken is heard about 400 ms after pressing Speak.
+Negative times come from drafting while they talk. On the live site the same steps are slower before the choice; see [Try it online](#try-it-online). Typed text that was not prespoken is heard about 400 ms after pressing Speak (3 turns, read by hand in the app; see [bench/results/conversations.md](bench/results/conversations.md), section 2).
 
 ### Time to first audio, Bulbul
 
@@ -116,7 +116,7 @@ Negative times come from drafting while they talk. Typed text that was not presp
 | v3, HTTP stream | 273 ms | 316 ms |
 | Cloned voice, HTTP stream (n = 12) | 1,643 ms | 1,753 ms |
 
-From our connection, V4 Flash did not reach Sarvam's "under 250 ms" figure, and v3 was 30 to 60 ms faster. We report it as measured. Kanth hides this cost with prespeak, and chose V4 Flash for its pitch and loudness controls, persona styles and lower price ([DECISIONS.md](DECISIONS.md), item 16). Details: [bench/results/ttfa.md](bench/results/ttfa.md). Reproduce: `npm run bench:ttfa` (about 230 calls, a few rupees).
+From our connection, measured client-side including the round trip from India, V4 Flash did not reach the "under 250 ms" first-audio figure in Sarvam's launch post (https://www.sarvam.ai/blogs/bulbul-v4-flash), and v3 was 30 to 60 ms faster. We report it as measured. Kanth hides this cost with prespeak, and chose V4 Flash for its pitch and loudness controls, persona styles and lower price ([DECISIONS.md](DECISIONS.md), item 16). Details: [bench/results/ttfa.md](bench/results/ttfa.md). Reproduce: `npm run bench:ttfa` (about 230 calls, a few rupees).
 
 ### Tone proof
 
@@ -147,11 +147,11 @@ What this means, plainly:
 
 - **Most turns still need typing.** The intended replies are specific ("Not Thursday, come Friday", "Only riluzole, no new medicines"), and no model can guess that. Steering with one or two words doubles how often the user is heard without typing.
 - **Motor actions barely fall overall:** 1 to 2% fewer on the held-out set and 7 to 8% fewer on the original set, because a miss costs the steering attempt plus the typing. Tamil did worst (no direct hits on either set after the fix).
-- **When a draft fits, the turn is transformed.** Modeled from measured system times and cited human rates, a hit takes about 3.4 s from the partner stopping to the user being heard, against about 109 s to type the same reply by eye gaze and 4.5 minutes with one switch.
+- **When a draft fits, the turn is transformed.** Modeled from measured system times and cited human rates, a hit takes about 3.4 s from the partner stopping to the user being heard, against about 115 s to type the same replies by eye gaze and 4.7 minutes with one switch (medians over the 5 hit turns, [bench/results/conversations.json](bench/results/conversations.json)).
 
 ![Turn gap: plain typing, suggestions, suggestions with prespeak](docs/img/turn-gap.png)
 
-The first prompt had two bugs this benchmark caught: format examples that addressed "Amma" taught the model to call everyone Amma, and profile notes leaked into unrelated replies. Both are fixed, with tests. Details: [bench/results/conversations-v2.md](bench/results/conversations-v2.md) (v2 summary) and [bench/results/conversations.md](bench/results/conversations.md) (v1 method, turn gap model and every draft). Reproduce: `npm run bench:conversations`, then `python bench/conversations_v2_summary.py`.
+The first prompt had two bugs this benchmark caught: format examples that addressed "Amma" taught the model to call everyone Amma, and profile notes leaked into unrelated replies. The prompt was fixed, with tests, but that did not end it: in live runs, drafts still called an unknown speaker "Amma" and named people from earlier scenes. So drafts are now also checked in code: one that names someone from the profile other than the person speaking, or calls an unknown speaker by a name or title, is dropped. The benchmark above was run before that check, and before the number check described under [Hard questions](#hard-questions). Details: [bench/results/conversations-v2.md](bench/results/conversations-v2.md) (v2 summary) and [bench/results/conversations.md](bench/results/conversations.md) (v1 method, turn gap model and every draft). Reproduce: `npm run bench:conversations`, then `python bench/conversations_v2_summary.py`.
 
 ### Cost
 
@@ -163,18 +163,20 @@ Prices from Sarvam's pricing page and the V4 Flash launch post, read on 2026-10-
 | Busiest case, without prespeak | 0.70 | 42 |
 | Our test set as measured (most turns typed), with prespeak | 0.24 | 14 |
 
-Prespeak synthesizes about four times the characters actually spoken. Drafting while they talk can add up to three more drafts per turn and is not included above; switch it off in Settings to stay within these figures. Details and every input: [bench/results/cost.md](bench/results/cost.md). Reproduce: `npm run bench:analyze`.
+Prespeak synthesizes about four times the characters actually spoken. Drafting while they talk can add up to three more drafts per turn and is not included above; switch it off in Settings to stay within these figures. The hosted site's rolling transcription, which re-sends the audio so far about every 0.7 s (roughly 3 to 4 times the Saaras seconds of the local stream), is not included either. Details and every input: [bench/results/cost.md](bench/results/cost.md). Reproduce: `npm run bench:analyze`.
 
 ## Accessible to the people it is for
 
 - Huge targets, every one reachable by keyboard, with screen reader labels and live announcements.
+- The emergency phrases sit at the top of the side panel, on the first screen of a desktop. A one switch user reaches them at any time by holding the switch, and a dwell user by dwelling on them.
 - One switch scanning that jumps straight into the replies when they arrive, and pauses after three silent loops to avoid fatigue. Two switch scanning. Dwell with a visible fill bar, for head pointers and eye trackers. Blink as a switch, using MediaPipe on the device; the video never leaves it.
 - Adjustable scan speed, dwell time, blink length and text size. Light, dark and a flat high contrast theme.
 - Every failure is shown in plain words with what Kanth did about it. If Bulbul cannot be reached, the device voice speaks rather than leaving the user silent.
 
 ## Ethics
 
-- **Nothing is ever spoken that the user did not choose.** Drafts are proposals. Prespoken audio is stored, never played, until the user picks it.
+- **Nothing is ever spoken that the user did not choose.** Drafts are proposals. Prespoken audio is stored, never played, until the user picks it. A reply the user cancels is never spoken later, by Bulbul or by the device voice, and a reply stopped part way is not counted as said.
+- **The microphone is always yours to stop.** Listening can be stopped at any time, and it stops when you leave the conversation.
 - **Simulated, and labelled.** Arjun is a fictional user. Every voice in the demo and film is generated by Bulbul. The conversations in the benchmark are scripted test data written by us, not real users, and the intended replies were written before any model output was seen.
 - **Consent before cloning.** Banking a voice requires the speaker's name and two explicit confirmations, and the recording script doubles as a spoken consent statement. The demo voice is cloned from a clip Bulbul itself generated, so no real person's voice is involved.
 - **What leaves the device.** Speech, drafts and text go to Sarvam's APIs to be processed. Kanth stores nothing on its server. Settings, profile and offline phrases stay in the browser.
@@ -184,17 +186,17 @@ Prespeak synthesizes about four times the characters actually spoken. Drafting w
 
 **Isn't the language model the hero, not Bulbul?** The model proposes words; nobody hears them until Bulbul says them. What the person on the other side experiences is the voice: its language, its code-mixing, its tone and its timing. Every one of those is Bulbul.
 
-**You prespeak, so why does Flash matter?** Because the four replies have to be voiced inside the other person's turn. Kanth starts drafting and voicing from the partial transcript, and Flash on four warm sockets finishes all four in about half a second. That is what makes the reply instant at the moment of choice.
+**You prespeak, so why does Flash matter?** Because all four replies have to be voiced by the time the user has read them, every turn, at four times the characters actually spoken. Kanth starts drafting and voicing from the partial transcript. On the local server's four warm sockets, Flash voices four replies in about half a second (484 ms, [research/sarvam-api.md](research/sarvam-api.md)), and all four were ready a median 0.8 s after the partner stopped, before they finished in 2 of 9 turns ([bench/results/live-app.json](bench/results/live-app.json)). On the live site, over HTTP streaming, the median is 1.6 s ([bench/results/live-hosted.json](bench/results/live-hosted.json)). Flash's lower price per character is what makes voicing four replies for every one spoken affordable, and its pitch and loudness are what the tone dial plays. At the moment of choice nothing is left to synthesize.
 
 **v3 was faster to first audio in your own test. Why V4 Flash?** The tone dial needs pitch and loudness, which v3 does not offer; persona styles give each tone a different delivery; V4 Flash costs less per character; and with prespeak the user never waits for first audio anyway.
 
 **What if none of the four replies is right?** Often none is: see the conversation benchmark above. Typing one or two words redrafts all four around them, and free typing is always there. Kanth only ever adds a faster path; it never takes one away.
 
-**Whose words are these?** The user's, because nothing is said until they choose it, and they can steer or type instead. The drafts are told never to invent facts, appointments or symptoms.
+**Whose words are these?** The user's, because nothing is said until they choose it, and they can steer or type instead. The drafts are told never to invent facts, appointments or symptoms. They sometimes still did: in a live run on 2026-10-15 one offered a pain score of 4 that nobody had given. So drafts are now also checked in code. When someone asks for a number and the user has not steered with one, any draft that states a number is dropped, so a number such as a pain score comes only from the user's own press on the 0 to 10 row or their own typing. A draft that names someone from the profile other than the person speaking, when the partner did not mention them, is dropped too, and so is one that calls an unknown speaker by a name or a title such as Amma.
 
 ## Prior art and credits
 
-Listening to the partner and suggesting replies is not new. Converser (Wisenburn and Higginbotham, 2008) predicted replies from the partner's speech; Lingraphica Conversations, Voixa and Google's SpeakFaster use language models for AAC today. [9][10] Scanning AAC devices already speak options quietly to the user as they scan (auditory preview). What we found no prior art for is synthesizing every option in the user's outward voice before the choice, so the chosen one plays instantly, in natural code-mixed Indian speech, operable with one switch. Our full search is in [research/evidence.md](research/evidence.md).
+Listening to the partner and suggesting replies is not new. Converser (Wisenburn and Higginbotham, 2008) predicted replies from the partner's speech; Lingraphica Conversations, Voixa and Google's SpeakFaster use language models for AAC today. [9][10] Scanning AAC devices already speak options quietly to the user as they scan (auditory preview). Synthesizing a reply before the speaker finishes is a known latency technique in voice assistants (Apple patent US11380310B2; PredGen, arXiv 2506.15556). What we found no prior art for is synthesizing every option in the user's outward voice before the choice, so the chosen one plays instantly, in natural code-mixed Indian speech, operable with one switch. Our full search is in [research/evidence.md](research/evidence.md).
 
 Built with Sarvam Bulbul V4 Flash, Saaras, Sarvam-105B, transliteration and voice cloning. Fonts: Noto Sans for every script, Fraunces, JetBrains Mono.
 

@@ -21,7 +21,7 @@ A person who cannot speak needs **one voice that is theirs in every language the
 | v3, HTTP stream | 273 ms | 316 ms |
 | Cloned voice, HTTP stream (n = 12) | 1,643 ms | 1,753 ms |
 
-- From India, V4 Flash did not reach the published "under 250 ms" (fastest of 90 calls: 292 ms), and v3 was faster on every streaming transport.
+- From India, measured client-side including the network round trip, V4 Flash did not reach the "under 250 ms" in the launch post (https://www.sarvam.ai/blogs/bulbul-v4-flash) (fastest of 90 calls: 292 ms), and v3 was faster on every streaming transport.
 - One warm V4 Flash WebSocket call took 3,002 ms to first audio.
 - A first WebSocket connection once took 7.2 s to open. Later cold connections took about 120 ms.
 - Four utterances on four warm sockets finish in about 484 ms; on one socket they queue to about 1,667 ms. A way to run several utterances in parallel on one socket would help anyone who prespeaks.

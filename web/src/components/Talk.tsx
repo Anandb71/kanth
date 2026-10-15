@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { TONES } from "../../../shared/tones.ts";
 import { languageByCode, type LangCode } from "../../../shared/voices.ts";
-import { kanth, type Card, type KanthState } from "../lib/kanth.ts";
+import { HOSTED, kanth, type Card, type KanthState } from "../lib/kanth.ts";
 import { fmtMs } from "../lib/useKanth.ts";
-import { useDwell } from "../lib/access.ts";
 import { Orb } from "./Orb.tsx";
 
 // Cited text entry rates (Koester and Arthanat 2018): cursor-based on-screen keyboards
@@ -14,6 +13,17 @@ const SCAN_WPM = 1.7;
 export function PartnerDisplay({ s, onListen, listening, scripted }: { s: KanthState; onListen?: () => void; listening?: boolean; scripted?: boolean }) {
   const p = s.partner;
   const lang = p?.lang ? languageByCode(p.lang) : undefined;
+  const replaying = kanth.replaying;
+  // Saaras did not answer in time and the demo fell back to the scripted text: say so, do not claim a transcript.
+  const turn = s.metrics.find((m) => m.turnId === s.turnId);
+  const scriptOnly = !!scripted && !!p?.final && !replaying && !!turn?.partnerEndAt && !turn.transcriptAt;
+  // The microphone button stays on screen for as long as it is listening, so it can always be stopped.
+  const micButton = onListen && !scripted ? (
+    <button className={`btn btn-soft ${p ? "btn-small mic-stop" : ""}`} onClick={onListen} data-scan-top data-scan-order="6" aria-pressed={listening}>
+      <span className={`led ${listening ? "busy" : ""}`} aria-hidden="true" />
+      {listening ? "Stop listening" : "Listen with microphone"}
+    </button>
+  ) : null;
   return (
     <section className="display" aria-labelledby="partner-h">
       <h2 id="partner-h" className="sr-only">What they said</h2>
@@ -27,13 +37,18 @@ export function PartnerDisplay({ s, onListen, listening, scripted }: { s: KanthS
             </div>
             {p.speaking ? (
               <span className="speaking">
-                <span className="bars" aria-hidden="true"><i /><i /><i /><i /></span> {scripted ? "Scripted line, voiced by Bulbul · Saaras transcribing live" : "Speaking · Saaras is transcribing"}
+                <span className="bars" aria-hidden="true"><i /><i /><i /><i /></span>{" "}
+                {replaying ? "Recorded run · transcript from Saaras when it was recorded" : scripted ? "Scripted line, voiced by Bulbul · Saaras transcribing live" : "Speaking · Saaras is transcribing"}
               </span>
             ) : (
-              <span className="speaking"><span className="led ready" aria-hidden="true" /> {scripted ? "Scripted line · transcribed live by Saaras" : "Heard live by Saaras"}</span>
+              <span className="speaking">
+                <span className="led ready" aria-hidden="true" />{" "}
+                {replaying ? "Recorded run · transcript from Saaras when it was recorded" : scriptOnly ? "Scripted line · Saaras did not answer, showing the script" : scripted ? "Scripted line · transcribed live by Saaras" : "Heard live by Saaras"}
+              </span>
             )}
+            {micButton}
           </div>
-          <div className={`heard ${p.final ? "" : "partial"}`} lang={p.lang?.slice(0, 2)} aria-live="polite">
+          <div className={`heard ${p.final ? "" : "partial"}`} lang={p.lang?.slice(0, 2)} aria-live={p.final ? "polite" : "off"}>
             {p.text || <span className="empty">Listening…</span>}
             {!p.final && p.text ? <span className="caret" aria-hidden="true" /> : null}
           </div>
@@ -42,13 +57,10 @@ export function PartnerDisplay({ s, onListen, listening, scripted }: { s: KanthS
       ) : (
         <div className="row" style={{ justifyContent: "space-between", gap: 20 }}>
           <div className="empty">When someone talks to you, their words appear here and Kanth drafts your replies while they speak.</div>
-          {onListen ? (
+          {micButton ? (
             <div style={{ display: "grid", gap: 8, justifyItems: "start" }}>
-              <button className="btn btn-soft" onClick={onListen} data-scan-top data-scan-order="6" aria-pressed={listening}>
-                <span className={`led ${listening ? "busy" : ""}`} aria-hidden="true" />
-                {listening ? "Stop listening" : "Listen with microphone"}
-              </button>
-              <span className="hint">{listening ? "Listening. Speak to Arjun; Kanth drafts replies when each sentence ends." : "Works right here in your browser, in Tamil, Hindi, English or a mix."}</span>
+              {micButton}
+              <span className="hint">{listening ? "Listening. Speak to Arjun; Kanth drafts replies while you speak." : "Works right here in your browser, in Tamil, Hindi, English or a mix."}</span>
             </div>
           ) : null}
         </div>
@@ -58,29 +70,30 @@ export function PartnerDisplay({ s, onListen, listening, scripted }: { s: KanthS
 }
 
 function Tile({ c, s, index }: { c: Card; s: KanthState; index: number }) {
-  const ref = useRef<HTMLButtonElement>(null);
   const choose = () => void kanth.choose(c.idx);
-  useDwell(ref, s.settings.access === "dwell" ? s.settings.dwellMs : 0, choose);
   const last = s.history[s.history.length - 1];
   const chosen = last?.who === "me" && last.text === c.text;
   const lang = languageByCode(c.lang);
   const state = c.failed ? "Voice made when chosen" : c.ready ? "Voiced and ready" : s.settings.prespeak ? "Voicing…" : "Speaks when chosen";
+  // The name is the reply itself, in its own language, so a screen reader reads it with the right voice.
+  // The meaning and the voice state are descriptions, read in English.
+  const gid = `g-${index}`;
+  const sid = `st-${index}`;
   return (
     <button
-      ref={ref}
       className={`tile ${chosen ? "chosen" : ""}`}
       onClick={choose}
       data-scan-item="cards"
-      aria-label={`Say: ${c.text}${c.gloss ? `. Meaning: ${c.gloss}` : ""}`}
+      aria-describedby={c.gloss ? `${gid} ${sid}` : sid}
     >
-      <span className="tile-top" lang="en">
+      <span className="tile-top" lang="en" aria-hidden="true">
         <span className={`led ${c.ready ? "ready" : c.failed ? "" : "busy"}`} aria-hidden="true" />
-        {state}
+        <span id={sid}>{state}</span>
         <span className="tile-num" aria-hidden="true">{index + 1}</span>
       </span>
       <span className="tile-text" lang={c.lang.slice(0, 2)}>{c.text}</span>
-      {s.settings.showGloss && c.gloss ? <span className="tile-gloss" lang="en">{c.gloss}</span> : null}
-      <span className="tile-foot" lang="en">{lang?.native} · {lang?.name}</span>
+      {c.gloss ? <span id={gid} className={s.settings.showGloss ? "tile-gloss" : "sr-only"} lang="en" aria-hidden="true">{c.gloss}</span> : null}
+      <span className="tile-foot" lang="en" aria-hidden="true">{lang?.native} · {lang?.name}</span>
       <span className="dwell" aria-hidden="true" />
     </button>
   );
@@ -101,6 +114,16 @@ export function Replies({ s }: { s: KanthState }) {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  // Keyboard users: when new replies arrive and focus has fallen to the page, put it on the first reply.
+  // Switch and dwell users have their own highlight, so focus is left alone for them.
+  const access = s.settings.access;
+  useEffect(() => {
+    if (!s.cards.length || access !== "touch") return;
+    const a = document.activeElement;
+    if (a && a !== document.body) return;
+    document.querySelector<HTMLElement>('[data-scan-item="cards"]')?.focus({ preventScroll: true });
+  }, [s.cardsChangedAt, s.cards.length, access]);
+
   if (!s.cards.length && !s.drafting) return null;
   return (
     <section aria-labelledby="sugg-h">
@@ -108,7 +131,7 @@ export function Replies({ s }: { s: KanthState }) {
       <div className="tiles" data-scan-group="cards" data-scan-top data-scan-order="1">
         {[0, 1, 2, 3].map((i) => {
           const c = s.cards.find((x) => x.idx === i);
-          if (c) return <Tile key={`${s.turnId}-${i}`} c={c} s={s} index={i} />;
+          if (c) return <Tile key={i} c={c} s={s} index={i} />;
           return s.drafting ? (
             <div key={`sk-${i}`} className="tile skeleton" aria-hidden="true">
               <div className="shimmer" />
@@ -117,11 +140,33 @@ export function Replies({ s }: { s: KanthState }) {
           ) : null;
         })}
       </div>
+      <PhoneSummary s={s} />
       <div className="sr-only" aria-live="polite">
         {!s.drafting && s.cards.length ? `${s.cards.length} replies ready. ${s.cards.map((c, i) => `${i + 1}: ${c.text}`).join(". ")}` : ""}
       </div>
     </section>
   );
+}
+
+/** Narrow screens only: the one line that the meter, four screens down on a phone, would otherwise prove. */
+function PhoneSummary({ s }: { s: KanthState }) {
+  const mine = s.cards.filter((c) => c.turnId === s.turnId);
+  const allVoiced = mine.length >= 4 && mine.every((c) => c.ready);
+  if (!allVoiced) return null;
+  const done = s.metrics.find((m) => m.turnId === s.turnId && m.audibleAt && m.toAudibleMs !== undefined);
+  const voiced = kanth.replaying ? "Voiced by Bulbul when this run was recorded" : `All 4 voiced by ${bulbulName(s)} before you choose`;
+  return (
+    <p className="tiles-summary" aria-hidden="true">
+      {voiced}
+      {done?.toAudibleMs !== undefined ? ` · heard ${fmtMs(done.toAudibleMs)} after you chose` : ""}
+    </p>
+  );
+}
+
+/** Banked (cloned) voices and Malayalam or Odia do not run on V4 Flash, so only name Flash when it is the model in use. */
+function bulbulName(s: KanthState): string {
+  const v3 = s.cards.some((c) => c.turnId === s.turnId && languageByCode(c.lang)?.v3Only);
+  return s.settings.voice.kind === "clone" || v3 ? "Bulbul" : "Bulbul V4 Flash";
 }
 
 export function ToneDial({ s }: { s: KanthState }) {
@@ -252,19 +297,21 @@ export function SteerRow({ s }: { s: KanthState }) {
         <span className="hint">Each word redrafts all four around it.</span>
       </div>
       <div className="phrases" data-scan-group="steer" data-scan-top data-scan-order="3">
-        {numbers
-          ? Array.from({ length: 11 }, (_, n) => (
-              <button key={n} className="phrase num" data-scan-item="steer" onClick={() => void kanth.steer(String(n))} aria-label={`Redraft with the number ${n}`}>
-                {n}
-              </button>
-            ))
-          : null}
         {words.map((w) => (
           <button key={w.label} className="phrase" data-scan-item="steer" onClick={() => void kanth.steer(w.steer)}>
             {w.label}
           </button>
         ))}
       </div>
+      {numbers ? (
+        <div className="phrases" role="group" aria-label="Give a number" data-scan-group="numbers" data-scan-top data-scan-order="3.5">
+          {Array.from({ length: 11 }, (_, n) => (
+            <button key={n} className="phrase num" data-scan-item="numbers" onClick={() => void kanth.steer(String(n))} aria-label={`Redraft with the number ${n}`}>
+              {n}
+            </button>
+          ))}
+        </div>
+      ) : null}
     </section>
   );
 }
@@ -277,32 +324,38 @@ export interface Phrase {
   urgent?: boolean;
 }
 
-export function Phrases({ phrases, cached, s }: { phrases: Phrase[]; cached: Set<string>; s: KanthState }) {
+/**
+ * A board of stored phrases. The Emergency board (urgent phrases) sits at the top of the side column so it
+ * is on the first screen, and a long hold of the switch jumps straight to it (scan group "urgent").
+ */
+export function Phrases({ phrases, cached, s, urgent = false }: { phrases: Phrase[]; cached: Set<string>; s: KanthState; urgent?: boolean }) {
+  if (!phrases.length) return null;
   const allCached = phrases.every((p) => cached.has(p.id));
+  const group = urgent ? "urgent" : "phrases";
+  const hid = urgent ? "urgent-h" : "phrases-h";
   return (
-    <section className="panel" aria-labelledby="phrases-h">
+    <section className="panel" aria-labelledby={hid}>
       <div className="row">
-        <h2 className="eyebrow" id="phrases-h" style={{ margin: 0 }}>Always ready</h2>
+        <h2 className="eyebrow" id={hid} style={{ margin: 0 }}>{urgent ? "Emergency" : "Always ready"}</h2>
         <span className="hint">{allCached ? "Stored on this device. Works with no network." : "Saving to this device for offline use…"}</span>
       </div>
-      <div className="phrases" data-scan-group="phrases" data-scan-top data-scan-order="2">
+      <div className="phrases" data-scan-group={group} data-scan-top data-scan-order={urgent ? "2" : "5.5"}>
         {phrases.map((p) => (
           <button
             key={p.id}
             className={`phrase ${p.urgent ? "urgent" : ""}`}
-            data-scan-item="phrases"
+            data-scan-item={group}
             data-phrase={p.text}
             data-ready={cached.has(p.id) ? "1" : "0"}
-            lang={p.lang.slice(0, 2)}
-            aria-label={`Say: ${p.text}. ${p.gloss}`}
+            aria-describedby={p.gloss !== p.text ? `pg-${p.id}` : undefined}
             onClick={async () => {
               const ok = await kanth.sayCached(p.id, p.text, p.lang, p.gloss);
               if (!ok) await kanth.speakText(p.text, "phrase", p.lang, p.gloss);
             }}
           >
             <span className={`led ${cached.has(p.id) ? (p.urgent ? "down" : "ready") : ""}`} aria-hidden="true" />
-            {p.text}
-            {s.settings.showGloss && p.gloss !== p.text ? <span className="hint" lang="en">{p.gloss}</span> : null}
+            <span lang={p.lang.slice(0, 2)}>{p.text}</span>
+            {p.gloss !== p.text ? <span id={`pg-${p.id}`} className={s.settings.showGloss ? "hint" : "sr-only"} lang="en" aria-hidden="true">{p.gloss}</span> : null}
           </button>
         ))}
       </div>
@@ -324,12 +377,28 @@ export function VoicePanel({ s }: { s: KanthState }) {
         </div>
       </div>
       {speaking ? (
-        <button className="btn btn-soft btn-small" onClick={() => kanth.stopSpeaking()} aria-label="Stop speaking (Escape)">
+        <button className="btn btn-soft btn-small" onClick={() => kanth.stopSpeaking()} aria-label="Stop speaking (Escape)" data-dwell>
           Stop speaking
         </button>
       ) : null}
+      <div className="sr-only" aria-live="assertive">
+        {speaking ? (
+          <>
+            Saying: <span lang={sayingLang(s)}>{s.speakingText}</span>
+          </>
+        ) : s.lastStopped ? (
+          "Stopped."
+        ) : (
+          ""
+        )}
+      </div>
     </section>
   );
+}
+
+function sayingLang(s: KanthState): string | undefined {
+  const last = [...s.history].reverse().find((h) => h.who === "me" && h.text === s.speakingText);
+  return last?.lang?.slice(0, 2);
 }
 
 function Gauge({ value, target, label, sub }: { value: number | undefined; target: number; label: string; sub: string }) {
@@ -375,15 +444,30 @@ export function Meter({ s }: { s: KanthState }) {
   // Negative means the replies were ready before the partner finished speaking.
   const rel = (v: number | undefined) => (v !== undefined && v < 0 ? `${fmtMs(-v)} early` : fmtMs(v));
 
+  // A recorded run replays stored timings, so its pipeline times are not shown as if measured now.
+  // Only the last step, from the choice to sound, really happens in this browser.
+  const replaying = kanth.replaying;
+  const show = (text: string) => (replaying ? "–" : text);
+  const tag = (v: number | undefined, target: number) => (replaying ? "" : cls(v, target));
+  // Hosted, the audio is uploaded over HTTP before Saaras sees it, so its transcript cannot come as fast as on a local socket.
+  const heardTarget = HOSTED ? 1200 : 400;
+  const sub = done
+    ? replaying
+      ? "It was voiced by Bulbul when this run was recorded."
+      : done.prespoken
+        ? `${bulbulName(s)} had voiced it before you chose.`
+        : "Voiced after you chose."
+    : "Choose a reply to measure.";
+
   return (
     <section className="meter" aria-labelledby="meter-h">
-      <div className="eyebrow" id="meter-h">Measured live, this conversation</div>
-      <Gauge value={done?.toAudibleMs} target={150} label="You choose → you are heard" sub={done ? (done.prespoken ? "It was already voiced when you chose." : "Voiced after you chose.") : "Choose a reply to measure."} />
+      <div className="eyebrow" id="meter-h">{replaying ? "Recorded run: only the time from your choice to sound is measured now" : "Measured live, this conversation"}</div>
+      <Gauge value={done?.toAudibleMs} target={150} label="You choose → you are heard" sub={sub} />
       <div className="stats">
-        <div className="stat"><b className={cls(heard, 400)}>{fmtMs(heard)}</b><span>They stop → Saaras transcript</span></div>
-        <div className="stat"><b className={cls(first, 1500)}>{rel(first)}</b><span>They stop → first reply</span></div>
-        <div className="stat"><b className={cls(all, 1500)}>{rel(all)}</b><span>They stop → all 4 replies</span></div>
-        <div className="stat"><b className={cls(voiced, 1500)}>{rel(voiced)}</b><span>They stop → all 4 voiced</span></div>
+        <div className="stat"><b className={tag(heard, heardTarget)}>{show(fmtMs(heard))}</b><span>They stop → Saaras transcript</span></div>
+        <div className="stat"><b className={tag(first, 1500)}>{show(rel(first))}</b><span>They stop → first reply</span></div>
+        <div className="stat"><b className={tag(all, 1500)}>{show(rel(all))}</b><span>They stop → all 4 replies</span></div>
+        <div className="stat"><b className={tag(voiced, 1500)}>{show(rel(voiced))}</b><span>They stop → {bulbulName(s)} voiced all 4</span></div>
       </div>
       {done ? (
         <div className="compare">
@@ -413,6 +497,7 @@ export function History({ s }: { s: KanthState }) {
           {h.who === "partner" ? <div className="bubble-who" lang="en">{h.speaker}</div> : null}
           {h.text}
           {s.settings.showGloss && h.gloss && h.gloss !== h.text ? <small lang="en">{h.gloss}</small> : null}
+          {h.stopped ? <small lang="en">Stopped before the end</small> : null}
         </div>
       ))}
     </section>

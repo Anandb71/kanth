@@ -30,7 +30,8 @@ export const SCENES: Scene[] = [
     text: "अर्जुन, आज pain कैसा है? One to ten में बताओ।",
     gloss: "Arjun, how is the pain today? Tell me on a scale of one to ten.",
     setting: "Clinic visit. His neurologist, in Hinglish.",
-    pickHint: ["four", "4", "three", "3", "better", "little"],
+    // Never a number: the score is Arjun's to give, on the number row.
+    pickHint: ["better", "little", "same", "worse", "show"],
   },
   {
     who: "Rohit",

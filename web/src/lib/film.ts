@@ -11,7 +11,8 @@ export interface FilmState {
   running: boolean;
   scene: number;
   caption?: { who: string; line: string; where?: string };
-  story?: { title: string; body?: string };
+  /** instant: shown at once with no entry animation (the opening card, on screen from the first frame). */
+  story?: { title: string; body?: string; instant?: boolean };
   end?: { lines: string[]; note?: string };
   black: boolean;
   offline: boolean;
@@ -94,13 +95,19 @@ export class FilmDirector {
     await this.waitForPhrase("Suction");
     (window as unknown as { __filmReadyAt?: number }).__filmReadyAt = performance.timeOrigin + performance.now();
     (window as unknown as { __filmReady?: boolean }).__filmReady = true;
+    // The opening card goes up behind the black, then the black is cut (no fade), so the film's first frame
+    // already says who this is for. It stays up through his mother's first line.
+    this.set({
+      story: { title: "Arjun cannot speak.", body: "Kanth listens, drafts replies, and Bulbul V4 Flash says the one he chooses.", instant: true },
+    });
     await sleep(600);
     this.set({ black: false });
-    await sleep(500);
+    await sleep(1500);
 
     for (let i = 0; i < BEATS.length; i++) {
       const b = BEATS[i]!;
-      this.set({ scene: i, story: undefined });
+      if (i === 0) this.set({ scene: i });
+      else this.set({ scene: i, story: undefined });
       kanth.setTone("warm");
       kanth.partnerStarted(b.who, b.lang, b.gloss);
       this.set({ caption: { who: b.who, line: b.gloss, where: b.setting } });
@@ -113,7 +120,7 @@ export class FilmDirector {
         const m = kanth.state.metrics.find((x) => x.turnId === kanth.state.turnId);
         const drafted = since(m, m?.allCardsAt);
         const first = drafted !== undefined && drafted < 0 ? "Before his mother finished speaking, Kanth had drafted four replies." : "Kanth heard his mother and drafted four replies.";
-        this.set({ story: { title: "Arjun cannot speak.", body: `${first} Bulbul V4 Flash voiced every one ${when(since(m, m?.allReadyAt), "her last word")}. He only has to choose.` } });
+        this.set({ story: { title: "He only has to choose.", body: `${first} Bulbul V4 Flash voiced every one ${when(since(m, m?.allReadyAt), "her last word")}.` } });
         await sleep(5000);
       }
       if (b.steerBeforeChoice) {
@@ -202,7 +209,7 @@ export class FilmDirector {
   }
 
   private async pressSteer(word: string): Promise<void> {
-    const btn = [...document.querySelectorAll<HTMLButtonElement>('[data-scan-group="steer"] button')].find((b) => b.textContent?.trim() === word);
+    const btn = [...document.querySelectorAll<HTMLButtonElement>('[data-scan-group="steer"] button, [data-scan-group="numbers"] button')].find((b) => b.textContent?.trim() === word);
     btn?.scrollIntoView({ block: "center", behavior: "smooth" });
     btn?.classList.add("scan-focus");
     await sleep(700);

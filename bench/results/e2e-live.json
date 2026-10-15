@@ -1,0 +1,65 @@
+[
+  {
+    "name": "home: loads clean, links, no red alarm while loading",
+    "ok": true,
+    "detail": "GitHub link, credit, film 206 (3.9 s)",
+    "base": "https://kanth-nu.vercel.app",
+    "time": "2026-10-15T12:42:34.401Z"
+  },
+  {
+    "name": "demo: three scenes, four voiced replies each, instant voice",
+    "ok": true,
+    "detail": "replies: ரசம் சூடா தான் Amma / थोड़ा सा ache है Doctor / हाँ, book कर दो; voiced before choice 501, 1282, 1174 ms after the line; 1 of 3 drafted while the partner spoke (30.8 s)",
+    "base": "https://kanth-nu.vercel.app",
+    "time": "2026-10-15T12:42:34.401Z"
+  },
+  {
+    "name": "steer and tone: a number redrafts, a tone redrafts",
+    "ok": true,
+    "detail": "steered: दर्द 6 है Doctor; urgent pace 1.22 (16.6 s)",
+    "base": "https://kanth-nu.vercel.app",
+    "time": "2026-10-15T12:42:34.401Z"
+  },
+  {
+    "name": "scanning: a held switch says exactly one reply",
+    "ok": true,
+    "detail": "1 reply (14.6 s)",
+    "base": "https://kanth-nu.vercel.app",
+    "time": "2026-10-15T12:42:34.401Z"
+  },
+  {
+    "name": "scanning: highlight on Suction, replies change, press, Suction is spoken",
+    "ok": true,
+    "detail": "said \"Suction வேணும்\" (4.7 s)",
+    "base": "https://kanth-nu.vercel.app",
+    "time": "2026-10-15T12:42:34.401Z"
+  },
+  {
+    "name": "offline: the emergency board speaks with no network",
+    "ok": true,
+    "detail": "played offline, link closed (3.7 s)",
+    "base": "https://kanth-nu.vercel.app",
+    "time": "2026-10-15T12:42:34.401Z"
+  },
+  {
+    "name": "fallback: with Sarvam unreachable, the demo replays a recorded run",
+    "ok": true,
+    "detail": "replayed: எனக்கு கொஞ்சம் wait பண்ண முடியுமா / थोड़ा tight है Doctor / हाँ Rohit, book कर दो (31.0 s)",
+    "base": "https://kanth-nu.vercel.app",
+    "time": "2026-10-15T12:42:34.401Z"
+  },
+  {
+    "name": "phone: no sideways scroll, headline and buttons on the first screen",
+    "ok": true,
+    "detail": "width 390, headline at 180 px, button ends 666 px (1.9 s)",
+    "base": "https://kanth-nu.vercel.app",
+    "time": "2026-10-15T12:42:34.401Z"
+  },
+  {
+    "name": "microphone: speech becomes a turn and four replies",
+    "ok": true,
+    "detail": "heard \"भाई मैं रोहित बोल रहा हूं कल शाम को तुमसे मिलने आ सकता हूं क्या?\"; first reply \"मैं कल free नहीं था\" (14.2 s)",
+    "base": "https://kanth-nu.vercel.app",
+    "time": "2026-10-15T12:42:34.401Z"
+  }
+]

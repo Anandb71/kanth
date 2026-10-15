@@ -1,5 +1,5 @@
 {
- "recorded": "2026-10-15T08:20:22.580Z",
+ "recorded": "2026-10-15T12:34:30.801Z",
  "source": "http://localhost:5190",
  "finals": [
   "கண்ணா சாப்பிட்டியா? ரசம் சூடா இருக்கு.",
@@ -8,73 +8,79 @@
  ],
  "suggest": {
   "கண்ணா சாப்பிட்டியா? ரசம் சூடா இருக்கு.|warm|": [
-   "{\"t\":\"suggestion\",\"turnId\":\"tmv99q2k80\",\"idx\":0,\"text\":\"ரசம் சூடா இருக்குமா? கொஞ்சம் wait பண்ணுங்க\",\"lang\":\"ta-IN\",\"gloss\":\"Is the rasam really hot? Wait a bit\",\"atMs\":268.2563000000082}",
-   "{\"t\":\"suggestion\",\"turnId\":\"tmv99q2k80\",\"idx\":1,\"text\":\"சாப்பிடுறேன் Amma, ரொம்ப பசிக்குது\",\"lang\":\"ta-IN\",\"gloss\":\"I will eat, Amma, really hungry\",\"atMs\":333.252999999997}",
-   "{\"t\":\"suggestion\",\"turnId\":\"tmv99q2k80\",\"idx\":2,\"text\":\"சூடா இருந்தா கை எரியுமே, கவனமா இருங்க\",\"lang\":\"ta-IN\",\"gloss\":\"If it's hot, my hand will burn, be careful\",\"atMs\":505.72930000000633}",
-   "{\"t\":\"suggestion\",\"turnId\":\"tmv99q2k80\",\"idx\":3,\"text\":\"இப்போ எனக்கு time இல்ல Amma, அப்புறமா சாப்பிடுறேன்\",\"lang\":\"ta-IN\",\"gloss\":\"I don't have time now Amma, will eat later\",\"atMs\":506.91410000000906}",
-   "{\"t\":\"suggestions_done\",\"turnId\":\"tmv99q2k80\",\"count\":4,\"firstTokenMs\":160.56320000000414,\"totalMs\":671.7829000000056,\"model\":\"sarvam-105b-conversations\"}"
+   "{\"t\":\"suggestion\",\"turnId\":\"tmv9iszh50\",\"idx\":0,\"text\":\"ரசம் சூடா இருக்கு Amma\",\"lang\":\"ta-IN\",\"gloss\":\"The rasam is hot, Amma\",\"atMs\":153.15029999997932}",
+   "{\"t\":\"suggestion\",\"turnId\":\"tmv9iszh50\",\"idx\":1,\"text\":\"நான் இப்போவே சாப்பிடுறேன்\",\"lang\":\"ta-IN\",\"gloss\":\"I will eat right now\",\"atMs\":188.32480000000214}",
+   "{\"t\":\"suggestion\",\"turnId\":\"tmv9iszh50\",\"idx\":2,\"text\":\"எனக்கு கொஞ்சம் wait பண்ண முடியுமா\",\"lang\":\"ta-IN\",\"gloss\":\"Can I wait a little\",\"atMs\":222.54469999996945}",
+   "{\"t\":\"suggestion\",\"turnId\":\"tmv9iszh50\",\"idx\":3,\"text\":\"இன்னைக்கு ரொம்ப பசிக்குது Amma\",\"lang\":\"ta-IN\",\"gloss\":\"I am very hungry today\",\"atMs\":315.3618000000133}",
+   "{\"t\":\"suggestions_done\",\"turnId\":\"tmv9iszh50\",\"count\":4,\"firstTokenMs\":111.9543999999878,\"totalMs\":470.30810000002384,\"model\":\"sarvam-105b-conversations\"}"
   ],
   "अर्जुन आज pain कैसा है? one to ten में बताओ।|warm|": [
-   "{\"t\":\"suggestion\",\"turnId\":\"tmv99qb8w1\",\"idx\":0,\"text\":\"4 है Doctor\",\"lang\":\"hi-IN\",\"gloss\":\"It is 4\",\"atMs\":177.03620000000228}",
-   "{\"t\":\"suggestion\",\"turnId\":\"tmv99qb8w1\",\"idx\":1,\"text\":\"थोड़ा कम है\",\"lang\":\"hi-IN\",\"gloss\":\"It is a little less\",\"atMs\":233.10949999999139}",
-   "{\"t\":\"suggestion\",\"turnId\":\"tmv99qb8w1\",\"idx\":2,\"text\":\"अभी wait करते हैं\",\"lang\":\"hi-IN\",\"gloss\":\"We wait for now\",\"atMs\":256.4395999999979}",
-   "{\"t\":\"suggestion\",\"turnId\":\"tmv99qb8w1\",\"idx\":3,\"text\":\"ये तो पता नहीं\",\"lang\":\"hi-IN\",\"gloss\":\"I don't know this\",\"atMs\":296.0954999999958}",
-   "{\"t\":\"suggestions_done\",\"turnId\":\"tmv99qb8w1\",\"count\":4,\"firstTokenMs\":163.91479999999865,\"totalMs\":327.93670000000566,\"model\":\"sarvam-105b-conversations\"}"
+   "{\"t\":\"suggestion\",\"turnId\":\"tmv9it6xy1\",\"idx\":0,\"text\":\"थोड़ा tight है Doctor\",\"lang\":\"hi-IN\",\"gloss\":\"It is a little tight\",\"atMs\":1071.966000000015}",
+   "{\"t\":\"suggestion\",\"turnId\":\"tmv9it6xy1\",\"idx\":1,\"text\":\"मुझे number buttons से दिखाऊं\",\"lang\":\"hi-IN\",\"gloss\":\"Let me show you with the number buttons\",\"atMs\":1098.007099999988}",
+   "{\"t\":\"suggestion\",\"turnId\":\"tmv9it6xy1\",\"idx\":2,\"text\":\"पहले से थोड़ा कम है\",\"lang\":\"hi-IN\",\"gloss\":\"It is a bit less than before\",\"atMs\":1098.9508999999962}",
+   "{\"t\":\"suggestion\",\"turnId\":\"tmv9it6xy1\",\"idx\":3,\"text\":\"अभी ठीक है, check कर लीजिए\",\"lang\":\"hi-IN\",\"gloss\":\"It is fine right now, please check\",\"atMs\":1102.062900000019}",
+   "{\"t\":\"suggestions_done\",\"turnId\":\"tmv9it6xy1\",\"count\":4,\"firstTokenMs\":1069.0930999999982,\"totalMs\":1102.5488999999943,\"model\":\"sarvam-105b-conversations\"}"
   ],
   "भाई Sunday को India का match है मैं van book कर दूँ?|warm|": [
-   "{\"t\":\"suggestion\",\"turnId\":\"tmv99qinl2\",\"idx\":0,\"text\":\"हाँ Rohit, book कर दो\",\"lang\":\"hi-IN\",\"gloss\":\"Yes Rohit, please book it\",\"atMs\":591.5170000000071}",
-   "{\"t\":\"suggestion\",\"turnId\":\"tmv99qinl2\",\"idx\":1,\"text\":\"थोड़ा देर से decide करूँगा\",\"lang\":\"hi-IN\",\"gloss\":\"I will decide a bit later\",\"atMs\":705.4885000000068}",
-   "{\"t\":\"suggestion\",\"turnId\":\"tmv99qinl2\",\"idx\":2,\"text\":\"तुम्हारे साथ match देखना अच्छा लगेगा\",\"lang\":\"hi-IN\",\"gloss\":\"It will be nice to watch the match with you\",\"atMs\":786.0476000000053}",
-   "{\"t\":\"suggestion\",\"turnId\":\"tmv99qinl2\",\"idx\":3,\"text\":\"Sunday को देख लेंगे ना?\",\"lang\":\"hi-IN\",\"gloss\":\"We will watch on Sunday, right?\",\"atMs\":1948.479999999996}",
-   "{\"t\":\"suggestions_done\",\"turnId\":\"tmv99qinl2\",\"count\":4,\"firstTokenMs\":523.3699999999953,\"totalMs\":1952.6841999999888,\"model\":\"sarvam-105b-conversations\"}"
+   "{\"t\":\"suggestion\",\"turnId\":\"tmv9itesy2\",\"idx\":0,\"text\":\"हाँ Rohit, book कर दो\",\"lang\":\"hi-IN\",\"gloss\":\"Yes Rohit, go ahead and book it\",\"atMs\":171.35389999998733}",
+   "{\"t\":\"suggestion\",\"turnId\":\"tmv9itesy2\",\"idx\":1,\"text\":\"अभी देख के बताता हूँ\",\"lang\":\"hi-IN\",\"gloss\":\"I'll check and tell you\",\"atMs\":207.2317000000039}",
+   "{\"t\":\"suggestion\",\"turnId\":\"tmv9itesy2\",\"idx\":2,\"text\":\"मेरे को screen पे देखना है\",\"lang\":\"hi-IN\",\"gloss\":\"I need to look at the screen first\",\"atMs\":271.19130000000587}",
+   "{\"t\":\"suggestion\",\"turnId\":\"tmv9itesy2\",\"idx\":3,\"text\":\"Sunday को match देखना अच्छा लगेगा\",\"lang\":\"hi-IN\",\"gloss\":\"It will feel good to watch the match on Sunday\",\"atMs\":334.7673000000068}",
+   "{\"t\":\"suggestions_done\",\"turnId\":\"tmv9itesy2\",\"count\":4,\"firstTokenMs\":98.87380000000121,\"totalMs\":479.67599999997765,\"model\":\"sarvam-105b-conversations\"}"
   ]
  },
  "synth": {
-  "சாப்பிடுறேன் Amma, ரொம்ப பசிக்குது|ta-IN|warm|shubh": {
-   "file": "bd671ce0756013da.pcm",
+  "ரசம் சூடா இருக்கு Amma|ta-IN|warm|shubh": {
+   "file": "a64edf307748ce15.pcm",
    "speaker": "vijay_ta_narration",
    "model": "bulbul:v4-flash",
    "substituted": true
   },
-  "ரசம் சூடா இருக்குமா? கொஞ்சம் wait பண்ணுங்க|ta-IN|warm|shubh": {
-   "file": "4e30585415efad60.pcm",
+  "எனக்கு கொஞ்சம் wait பண்ண முடியுமா|ta-IN|warm|shubh": {
+   "file": "cc44f1a21956ed0f.pcm",
    "speaker": "vijay_ta_narration",
    "model": "bulbul:v4-flash",
    "substituted": true
   },
-  "சூடா இருந்தா கை எரியுமே, கவனமா இருங்க|ta-IN|warm|shubh": {
-   "file": "b1685be944e601e0.pcm",
+  "இன்னைக்கு ரொம்ப பசிக்குது Amma|ta-IN|warm|shubh": {
+   "file": "8368fae925dad6b4.pcm",
    "speaker": "vijay_ta_narration",
    "model": "bulbul:v4-flash",
    "substituted": true
   },
-  "இப்போ எனக்கு time இல்ல Amma, அப்புறமா சாப்பிடுறேன்|ta-IN|warm|shubh": {
-   "file": "bd95433612deedc1.pcm",
+  "நான் இப்போவே சாப்பிடுறேன்|ta-IN|warm|shubh": {
+   "file": "c480e58e13853dad.pcm",
    "speaker": "vijay_ta_narration",
    "model": "bulbul:v4-flash",
    "substituted": true
   },
-  "4 है Doctor|hi-IN|warm|shubh": {
-   "file": "b708ede85fd9284f.pcm",
+  "अभी ठीक है, check कर लीजिए|hi-IN|warm|shubh": {
+   "file": "f81d10877f1aaae2.pcm",
    "speaker": "shubh_enhi_companion",
    "model": "bulbul:v4-flash",
    "substituted": false
   },
-  "थोड़ा कम है|hi-IN|warm|shubh": {
-   "file": "2749491f2ff93b2c.pcm",
-   "speaker": "shubh_hi_customer",
-   "model": "bulbul:v4-flash",
-   "substituted": false
-  },
-  "ये तो पता नहीं|hi-IN|warm|shubh": {
-   "file": "6b0e859e85980a28.pcm",
-   "speaker": "shubh_hi_customer",
-   "model": "bulbul:v4-flash",
-   "substituted": false
-  },
-  "अभी wait करते हैं|hi-IN|warm|shubh": {
-   "file": "e021d4c8d13ad232.pcm",
+  "थोड़ा tight है Doctor|hi-IN|warm|shubh": {
+   "file": "6d64f25c8290ec34.pcm",
    "speaker": "shubh_enhi_companion",
+   "model": "bulbul:v4-flash",
+   "substituted": false
+  },
+  "पहले से थोड़ा कम है|hi-IN|warm|shubh": {
+   "file": "21e287eff2c2ac64.pcm",
+   "speaker": "shubh_hi_customer",
+   "model": "bulbul:v4-flash",
+   "substituted": false
+  },
+  "मुझे number buttons से दिखाऊं|hi-IN|warm|shubh": {
+   "file": "ef08a88b97d43d62.pcm",
+   "speaker": "shubh_enhi_companion",
+   "model": "bulbul:v4-flash",
+   "substituted": false
+  },
+  "अभी देख के बताता हूँ|hi-IN|warm|shubh": {
+   "file": "839a1560fe51a0f6.pcm",
+   "speaker": "shubh_hi_customer",
    "model": "bulbul:v4-flash",
    "substituted": false
   },
@@ -84,20 +90,14 @@
    "model": "bulbul:v4-flash",
    "substituted": false
   },
-  "तुम्हारे साथ match देखना अच्छा लगेगा|hi-IN|warm|shubh": {
-   "file": "84de7b2c254e38d2.pcm",
+  "Sunday को match देखना अच्छा लगेगा|hi-IN|warm|shubh": {
+   "file": "ea45948eb2145006.pcm",
    "speaker": "shubh_enhi_companion",
    "model": "bulbul:v4-flash",
    "substituted": false
   },
-  "Sunday को देख लेंगे ना?|hi-IN|warm|shubh": {
-   "file": "6079235da5ac1bae.pcm",
-   "speaker": "shubh_enhi_companion",
-   "model": "bulbul:v4-flash",
-   "substituted": false
-  },
-  "थोड़ा देर से decide करूँगा|hi-IN|warm|shubh": {
-   "file": "63e19395e5c4496f.pcm",
+  "मेरे को screen पे देखना है|hi-IN|warm|shubh": {
+   "file": "86b86c96e70d6cef.pcm",
    "speaker": "shubh_enhi_companion",
    "model": "bulbul:v4-flash",
    "substituted": false

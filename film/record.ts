@@ -34,8 +34,8 @@ const BASE = process.env.KANTH_URL ?? "http://localhost:5173";
 const FFMPEG = ffmpegStatic as unknown as string;
 const W = 1920;
 const H = 1080;
-/** The video opens this long before the black overlay starts to fade: the human moment, not the loading. */
-const LEAD_MS = 400;
+/** If the opening cut cannot be found in the frames, the video opens this long after it was logged. */
+const OPEN_FALLBACK_MS = 100;
 const FPS = 30;
 const SR = 24000;
 
@@ -206,9 +206,23 @@ function build(): void {
   mkdirSync(MEDIA, { recursive: true });
   const take = JSON.parse(readFileSync(TAKE, "utf8")) as Take;
   const frames = [...take.frames].sort((a, b) => a.ts - b.ts);
-  const fadeAt = take.marks.find((m) => m.key === "black" && m.value === false)?.epochMs ?? (take.readyAt ?? frames[0]!.ts) + 600;
+  const cutAt = take.marks.find((m) => m.key === "black" && m.value === false)?.epochMs ?? (take.readyAt ?? frames[0]!.ts) + 600;
   const doneAt = take.marks.find((m) => m.key === "done" && m.value === true)?.epochMs ?? take.doneAt ?? frames.at(-1)!.ts;
-  const t0 = fadeAt - LEAD_MS;
+
+  // Display latency: the page logs a state change before the screencast shows it. Measure it on the opening cut
+  // (the black overlay is removed at the logged moment, with no transition) and delay the sound by the same
+  // amount, so picture and sound keep the relation they had live. The cut happened between the last black frame
+  // and the first changed one.
+  const early = frames.filter((f) => f.ts > cutAt - 1000 && f.ts < cutAt + 1200);
+  const lum = luma(early);
+  const base = lum[0] ?? 0;
+  const onsetIdx = lum.findIndex((l) => l > base + 1.5);
+  const onsetMs = onsetIdx >= 0 ? early[onsetIdx]!.ts - cutAt : NaN;
+  const prevMs = onsetIdx > 0 ? early[onsetIdx - 1]!.ts - cutAt : NaN;
+  const audioDelayMs = Number.isFinite(prevMs) ? Math.min(100, Math.max(0, prevMs - 8)) : 50;
+
+  // The video opens on the first frame after the cut, so frame one already shows the opening card.
+  const t0 = onsetIdx >= 0 ? early[onsetIdx]!.ts : cutAt + OPEN_FALLBACK_MS;
 
   // Video: each screencast frame is held until the next one arrives (the screencast only emits on change).
   let first = frames.findIndex((f) => f.ts > t0) - 1;
@@ -224,18 +238,6 @@ function build(): void {
   writeFileSync(join(FRAMES, "frames.txt"), lines.join("\n") + "\n");
   const durMs = used.at(-1)!.ts + 1000 - t0;
   const durS = durMs / 1000;
-
-  // Display latency: the page logs a state change before the screencast shows it. Measure it on the fade-in
-  // (the black overlay starts its 900 ms ease transition at the logged moment) and delay the sound by the same
-  // amount, so picture and sound keep the relation they had live. The ease curve keeps the first frame of the
-  // transition under the threshold, so the transition began about half a frame before the last unchanged frame.
-  const early = used.filter((f) => f.ts < fadeAt + 1200);
-  const lum = luma(early);
-  const base = lum[0] ?? 0;
-  const onsetIdx = lum.findIndex((l) => l > base + 1.5);
-  const onsetMs = onsetIdx >= 0 ? early[onsetIdx]!.ts - fadeAt : NaN;
-  const prevMs = onsetIdx > 0 ? early[onsetIdx - 1]!.ts - fadeAt : NaN;
-  const audioDelayMs = Number.isFinite(prevMs) ? Math.min(100, Math.max(0, prevMs - 8)) : 50;
 
   // Sound: every utterance at its logged start plus that display latency.
   // A new utterance on a channel cuts off the previous one, as in the app.
@@ -281,11 +283,11 @@ function build(): void {
   }
   writeFileSync(join(MEDIA, "kanth-demo.srt"), srt.join("\r\n"));
 
-  // README GIF: Amma speaking through Arjun's first reply. It has no sound, so it starts once the fade-in is done
-  // (the overlay's transition is 900 ms) with her caption already up.
+  // README GIF: Amma speaking through Arjun's first reply. It has no sound, so it starts just before she speaks,
+  // with her caption already up.
   const amma = placed.find((p) => p.channel === "partner");
   const reply = placed.find((p) => p.channel === "me");
-  const gifFrom = Math.max(LEAD_MS + 900, (amma?.startMs ?? 1000) - 300) / 1000;
+  const gifFrom = Math.max(0, (amma?.startMs ?? 1000) - 300) / 1000;
   const gifTo = Math.min(durS, ((reply?.endMs ?? 14000) + 500) / 1000);
   const gif = join(MEDIA, "kanth-demo.gif");
   ffmpeg([
@@ -301,7 +303,7 @@ function build(): void {
   const pf = frames.filter((f) => f.ts <= posterAt).at(-1)!;
   ffmpeg(["-y", "-i", name(pf.n), "-frames:v", "1", join(MEDIA, "poster.png")], FRAMES);
 
-  // The second caption: the first one appears while the black overlay is still fading, which skews the luma.
+  // Measured on the second caption, well clear of the opening cut.
   const ammaCap = caps.filter((m) => m.value)[1];
   let capOnset = NaN;
   if (ammaCap) {
@@ -328,10 +330,9 @@ function build(): void {
     sync: {
       pageClockMinusPerfClockMs: +take.clockSkewMs.toFixed(2),
       screencastReceiptMinusTimestampMs: { median: lat[lat.length >> 1], max: lat.at(-1) },
-      fadeStartS: LEAD_MS / 1000,
       audioDelayMs: +audioDelayMs.toFixed(1),
       audioContextReportedLatencyMs: take.outputLatencyMs,
-      fadeVisibleOnsetAfterLogMs: { firstChangedFrame: +onsetMs.toFixed(1), frameBefore: +prevMs.toFixed(1) },
+      cutVisibleAfterLogMs: { firstChangedFrame: +onsetMs.toFixed(1), frameBefore: +prevMs.toFixed(1) },
       firstCaptionVisibleAfterLogMs: +capOnset.toFixed(1),
       readyPolledMinusReadyLoggedMs: take.readyPolledAt && take.readyAt ? Math.round(take.readyPolledAt - take.readyAt) : undefined,
       peakBeforeLimiter: +peak.toFixed(3),

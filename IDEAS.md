@@ -69,7 +69,7 @@ We searched GitHub (repos and code created since the announcement), the web, and
 
 - About 21 entries and candidates found. The strongest on craft are Tarang FM, Samjhao and Bawaal Bureau.
 - **No entry serves people who cannot speak.** The only disability-focused V4 Flash project found (Saathi, for blind users) was built for a different hackathon.
-- **In every entry found, Bulbul speaks to the user. Kanth is the only one where Bulbul speaks as the user.**
+- **In every entry we found, Bulbul speaks to the user; we found none where it speaks as the user** (the field is undercounted, see above).
 - At least four entries already show a time-to-first-audio counter, so a latency counter alone is table stakes. What no one else can show is choice-to-voice time near zero.
 - Sarvam's own accessibility page covers blind, low-literacy and elderly users, and never mentions people who cannot speak.
 
@@ -98,14 +98,14 @@ Full research with sources in [research/evidence.md](research/evidence.md), sect
 
 The challenger research did not beat Kanth by a clear margin, so we kept the idea. It did expose four weaknesses, and we fixed each one:
 
-1. **"You pre-render, so why does Flash matter?"** We now draft and voice replies from Saaras partial transcripts while the partner is still talking. Measured in the live demo: four replies on screen 0.4 s before the partner finished. Flash is now what puts four voiced replies inside the partner's turn, not after it.
+1. **"You pre-render, so why does Flash matter?"** We now draft and voice replies from Saaras partial transcripts while the partner is still talking. Measured in the app run locally (9 turns, [bench/results/live-app.json](bench/results/live-app.json)): all four replies on screen a median 95 ms after the partner finished, and before they finished in 3 of 9 turns (up to 0.66 s early). Flash is what gets four voiced replies ready within about a second of the partner stopping, sometimes before.
 2. **Wrong numbers in the original pitch.** "AAC users average 15 wpm" is the speech recognition figure from Koester and Arthanat 2018; the right statement is "typically under 10 wpm, and 1.7 wpm with switch scanning". "57% fewer motor actions" for SpeakFaster was a simulation result. "Voice banking needs 3,200 sentences" is out of date. All public copy was corrected.
 3. **Overclaimed novelty.** Listening to the partner and suggesting replies is not new: Converser (2008), Lingraphica Conversations (2026), Voixa (which lists Hindi), SpeakFaster. We credit them. What we found no prior art for in AAC is prespeaking every option before the choice, in natural code-mixed Indian speech, operable with one switch. Even that we state as "no prior art found", not "first".
 4. **Own voice is not the headline.** Sarvam voice cloning is a separate beta API that ignores the model parameter, takes about 1.6 s to first audio, and in our tests honours only pace, not pitch or loudness. The default voice is a Bulbul V4 Flash persona. Banking your own voice is an optional, consent-gated extra.
 
 ## Verdict
 
-Kanth stays. No challenger beat it by a clear margin with evidence, and the only one that edged it on paper was the least likely to survive a judge's first question. After the changes above, our own adversarial re-score is: Bulbul hero 20 (every word the user says is Bulbul, with the tone dial on pace, pitch and loudness), Flash essential 12 (drafting and voicing inside the partner's turn), demo in five seconds 17, real stakes 18, novelty 6, toughest question 8. That is 81, against 73 for the best challenger. This re-score is ours and is not independent.
+Kanth stays. No challenger beat it by a clear margin with evidence, and the only one that edged it on paper was the least likely to survive a judge's first question. After the changes above, our own adversarial re-score is: Bulbul hero 20 (every word the user says is Bulbul, with the tone dial on pace, pitch and loudness), Flash essential 12 (drafting and voicing from the partial transcript, so four voiced replies are ready about a second after the partner stops), demo in five seconds 17, real stakes 18, novelty 6, toughest question 8. That is 81, against 73 for the best challenger. This re-score is ours and is not independent.
 
 The toughest question we expect, and our answer:
 
