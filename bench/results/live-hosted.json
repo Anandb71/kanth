@@ -1,0 +1,99 @@
+{
+ "measured": "2026-10-15T08:52:15.507Z",
+ "note": "Live app, interactive demo with simulated choices, headless Chromium on the same machine as the server. Times are ms from the moment the partner's audio ended. Negative means before the partner finished (drafting while they talk). choiceToAudibleMs includes the browser's reported output latency.",
+ "runs": 2,
+ "summary": {
+  "transcriptMs": {
+   "n": 6,
+   "min": 287.8999999985099,
+   "p50": 336,
+   "max": 427.3999999985099
+  },
+  "firstReplyMs": {
+   "n": 6,
+   "min": -202,
+   "p50": 710.5,
+   "max": 796.8999999985099
+  },
+  "allRepliesMs": {
+   "n": 6,
+   "min": 91.70000000298023,
+   "p50": 710.7999999970198,
+   "max": 838.8999999985099
+  },
+  "allVoicedMs": {
+   "n": 6,
+   "min": 815.8999999985099,
+   "p50": 1611.3000000044703,
+   "max": 4077.6999999955297
+  },
+  "choiceToAudibleMs": {
+   "n": 6,
+   "min": 50.20000000298023,
+   "p50": 50.399999998509884,
+   "max": 50.5
+  }
+ },
+ "rows": [
+  {
+   "run": 1,
+   "speculative": true,
+   "transcriptMs": 383,
+   "firstReplyMs": -202,
+   "allRepliesMs": 91.70000000298023,
+   "allVoicedMs": 815.8999999985099,
+   "choiceToAudibleMs": 50.5,
+   "prespoken": true
+  },
+  {
+   "run": 1,
+   "speculative": false,
+   "transcriptMs": 287.8999999985099,
+   "firstReplyMs": 606.5,
+   "allRepliesMs": 653.8999999985099,
+   "allVoicedMs": 1759,
+   "choiceToAudibleMs": 50.20000000298023,
+   "prespoken": true
+  },
+  {
+   "run": 1,
+   "speculative": false,
+   "transcriptMs": 324.1000000014901,
+   "firstReplyMs": 710.5,
+   "allRepliesMs": 710.7999999970198,
+   "allVoicedMs": 4077.6999999955297,
+   "choiceToAudibleMs": 50.29999999701977,
+   "prespoken": true
+  },
+  {
+   "run": 2,
+   "speculative": true,
+   "transcriptMs": 296.19999999552965,
+   "firstReplyMs": 19.69999999552965,
+   "allRepliesMs": 320.69999999552965,
+   "allVoicedMs": 911.7999999970198,
+   "choiceToAudibleMs": 50.29999999701977,
+   "prespoken": true
+  },
+  {
+   "run": 2,
+   "speculative": false,
+   "transcriptMs": 336,
+   "firstReplyMs": 726.8999999985099,
+   "allRepliesMs": 783.7999999970198,
+   "allVoicedMs": 1282.3999999985099,
+   "choiceToAudibleMs": 50.5,
+   "prespoken": true
+  },
+  {
+   "run": 2,
+   "speculative": false,
+   "transcriptMs": 427.3999999985099,
+   "firstReplyMs": 796.8999999985099,
+   "allRepliesMs": 838.8999999985099,
+   "allVoicedMs": 1611.3000000044703,
+   "choiceToAudibleMs": 50.399999998509884,
+   "prespoken": true
+  }
+ ]
+}

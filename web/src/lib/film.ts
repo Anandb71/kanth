@@ -44,7 +44,7 @@ interface Beat extends Scene {
 }
 
 const BEATS: Beat[] = [
-  { ...SCENES[0]!, pickHint: ["not yet", "minute", "later", "after", "soon", "wait", "eat", "ate", "hungry"] },
+  { ...SCENES[0]!, pickHint: ["eat", "eating", "ate", "not yet", "minute", "later", "soon", "rasam", "hungry", "now"] },
   { ...SCENES[1]!, steerBeforeChoice: "6", pickHint: ["6", "six", "छह", "छः"] },
   { ...SCENES[2]!, toneBeforeChoice: "joking", pickHint: ["van", "book", "yes", "sure", "ready", "come"] },
 ];

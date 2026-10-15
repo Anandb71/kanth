@@ -2,6 +2,7 @@
 // Runs the interactive demo three times in a headless browser (Saaras, drafting, Bulbul prespeak all live),
 // with a simulated user choosing after a pause. Needs the server on :5173 (or KANTH_URL).
 // Run from kanth/film: npx tsx live-app.ts [runs]
+// For the hosted site: KANTH_URL=https://kanth-nu.vercel.app OUT=live-hosted.json npx tsx live-app.ts 2
 import { chromium } from "playwright";
 import { writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -52,6 +53,6 @@ const out = {
   summary,
   rows,
 };
-const file = join(dirname(fileURLToPath(import.meta.url)), "..", "bench", "results", "live-app.json");
+const file = join(dirname(fileURLToPath(import.meta.url)), "..", "bench", "results", process.env.OUT ?? "live-app.json");
 writeFileSync(file, JSON.stringify(out, null, 1));
 console.log(JSON.stringify(summary, null, 1));
