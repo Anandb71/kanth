@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { KanthState } from "../lib/kanth.ts";
-import { kanth } from "../lib/kanth.ts";
+import { HOSTED, kanth } from "../lib/kanth.ts";
 import type { AccessMethod, Theme } from "../lib/settings.ts";
 import { DEMO_PROFILE } from "../lib/settings.ts";
 import { recordWav } from "../lib/listen.ts";
@@ -152,7 +152,14 @@ export function SettingsDrawer({ s, onClose }: { s: KanthState; onClose: () => v
           <span className="hint">Bulbul personas cover some languages each. Where a voice has no persona for a language, Kanth uses the closest available one and says so. A banked voice speaks every language.</span>
         </div>
 
-        <VoiceBank s={s} />
+        {HOSTED ? (
+          <div className="field card-soft">
+            <span className="label">Bank your own voice</span>
+            <span className="hint">Voice banking runs only in the local version, so recordings of real voices never pass through a public demo. Run Kanth locally with your own Sarvam key to use it.</span>
+          </div>
+        ) : (
+          <VoiceBank s={s} />
+        )}
 
         <div className="field">
           <span className="label">Profile</span>

@@ -11,9 +11,9 @@ Quote this post: https://x.com/SarvamAI/status/2109980905318326594
 ```
 Bulbul usually speaks to people. In Kanth, it speaks as someone.
 
-For people who cannot speak: four replies in Tamil, Hindi or Hinglish, voiced by Bulbul V4 Flash while the other person is still talking. Choose one, and you are heard 50 ms later.
+For people who cannot speak: four replies in Tamil, Hindi or Hinglish, voiced by Bulbul V4 Flash before you choose. Choose one, and you are heard 50 ms later.
 
-github.com/Anandb71/kanth
+Try it: kanth-nu.vercel.app
 ```
 
 ### LinkedIn
@@ -36,6 +36,7 @@ We measured everything and published what did not go our way too: from India, V4
 
 The demo is a simulated conversation with a fictional user, and every voice in it is Bulbul. Kanth has not been tested with AAC users yet. That is the next step, and we would love to hear from speech therapists and AAC users.
 
+Try it: https://kanth-nu.vercel.app
 Code: https://github.com/Anandb71/kanth
 
 #SarvamBulbulBuildChallenge @Sarvam AI
@@ -47,7 +48,7 @@ Channel: the projects channel. Tag: `Sarvam Bulbul Build Challenge`.
 
 ```
 Name: Anand
-Project: Kanth, a voice for people who cannot speak. Saaras listens to the person in front of you, Sarvam-105B drafts four replies in Tamil, Hindi, English or a mix while they are still talking, and Bulbul V4 Flash voices all four before you choose, so your reply is heard about 50 ms after you pick it. Switch scanning, dwell and blink access, a tone dial on pace, pitch and loudness, an offline emergency board, and optional voice banking with consent. Every number in the README is measured, with the scripts to reproduce it.
+Project: Kanth, a voice for people who cannot speak. Saaras listens to the person in front of you, Sarvam-105B drafts four replies in Tamil, Hindi, English or a mix while they are still talking, and Bulbul V4 Flash voices all four before you choose, so your reply is heard about 50 ms after you pick it. Switch scanning, dwell and blink access, a tone dial on pace, pitch and loudness, an offline emergency board, and optional voice banking with consent. Every number in the README is measured, with the scripts to reproduce it. Try it in the browser: https://kanth-nu.vercel.app
 Social Post: <paste the link to your X or LinkedIn post>
 GitHub: https://github.com/Anandb71/kanth
 ```

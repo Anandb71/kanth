@@ -6,7 +6,7 @@ In every other project Bulbul speaks *to* people. In Kanth, Bulbul speaks *as* s
 
 ![Kanth demo: Amma asks in Tamil, four replies appear while she is still talking, Arjun chooses one and is heard instantly](docs/media/kanth-demo.gif)
 
-[Watch the full demo with sound (MP4)](docs/media/kanth-demo.mp4) · [Architecture](docs/ARCHITECTURE.md) · [Why this idea](IDEAS.md) · [Decisions](DECISIONS.md)
+**[Try it in your browser: kanth-nu.vercel.app](https://kanth-nu.vercel.app)** · [Watch the full demo with sound (MP4)](docs/media/kanth-demo.mp4) · [Architecture](docs/ARCHITECTURE.md) · [Why this idea](IDEAS.md) · [Decisions](DECISIONS.md)
 
 ## The problem, in numbers
 
@@ -45,6 +45,14 @@ On Windows PowerShell, put the key in a file instead: copy `.env.example` to `.e
 Open http://localhost:5173 and press **Hear a conversation**. No microphone or login is needed. On our machine a fresh clone, install, build and start took 34 seconds with a warm npm cache ([bench/results/setup-time.md](bench/results/setup-time.md)); a cold cache downloads about 70 packages.
 
 The key is read only by the server. It never reaches the browser or the repository.
+
+## Try it online
+
+**https://kanth-nu.vercel.app**: press **Hear a conversation**, then choose Arjun's replies. No install, key or microphone needed.
+
+The hosted version runs on Vercel functions, which cannot hold the long-lived WebSocket the local server uses, so it trades some speed for zero setup. It transcribes each line once it ends instead of while it is spoken, voices replies over HTTP streaming instead of warm sockets, and does not draft while the other person is still talking. Measured on the live site (3 turns, `film/live-app.ts` pointed at the URL): transcript 1.6 s after the line ends, all four replies voiced at 2.7 s, and **the chosen reply heard 50 ms after the choice**, the same as locally. Live microphone listening and voice banking run only in the local version. The public demo uses a shared key with per-visitor rate limits, text caps and a same-site check.
+
+Deploy your own: `node scripts/build-vercel.mjs && vercel deploy --prebuilt --prod`, with `SARVAM_API_KEY` set as a Vercel environment variable.
 
 ## How it works
 

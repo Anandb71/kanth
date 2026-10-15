@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useKanth } from "./lib/useKanth.ts";
-import { kanth } from "./lib/kanth.ts";
+import { HOSTED, kanth } from "./lib/kanth.ts";
 import { audio } from "./lib/audio.ts";
 import { demo, SCENES, type DemoState } from "./lib/demo.ts";
 import { film } from "./lib/film.ts";
@@ -120,6 +120,7 @@ export function App() {
           <span className="brand-native" lang="hi">कंठ</span>
         </a>
         {sim ? <span className="chip sim">Simulated conversation · every voice is Bulbul</span> : null}
+        {HOSTED ? <span className="chip" title="Live microphone listening and voice banking run in the local version. See the README.">Hosted demo</span> : null}
         <div className="topbar-spacer" />
         <div className="pills" aria-label="Service status">
           <StatusChip label="Bulbul V4 Flash" state={ttsState} detail={s.services.tts?.detail} />
@@ -168,7 +169,7 @@ export function App() {
                 )}
               </div>
             ) : null}
-            <PartnerDisplay s={s} onListen={() => (mic.listening ? mic.stop() : void mic.start())} listening={mic.listening} />
+            <PartnerDisplay s={s} onListen={HOSTED ? undefined : () => (mic.listening ? mic.stop() : void mic.start())} listening={mic.listening} />
             <Replies s={s} />
             <SteerRow s={s} />
             <ToneDial s={s} />

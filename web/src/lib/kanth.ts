@@ -8,6 +8,10 @@ import type { ToneId } from "../../../shared/tones.ts";
 import type { LangCode, VoiceRef } from "../../../shared/voices.ts";
 import { detectScriptLanguage } from "../../../shared/voices.ts";
 import { KanthSocket, type LinkState } from "./socket.ts";
+import { HttpTransport } from "./http-transport.ts";
+
+/** Hosted builds (Vercel) talk to short HTTP functions instead of the local WebSocket server. */
+export const HOSTED = import.meta.env.VITE_TRANSPORT === "http";
 import { audio } from "./audio.ts";
 import { loadProfile, loadSettings, saveProfile, saveSettings, type Settings } from "./settings.ts";
 
@@ -97,7 +101,7 @@ const wordCount = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
 const uid = (p: string) => `${p}${Date.now().toString(36)}${(seq++).toString(36)}`;
 
 export class Kanth {
-  readonly socket: KanthSocket;
+  readonly socket: KanthSocket | HttpTransport;
   private listeners = new Set<Listener>();
   private suggestionWaiters = new Map<string, () => void>();
   private translitWaiters = new Map<string, (t: string) => void>();
@@ -129,7 +133,7 @@ export class Kanth {
       notices: [],
       unspoken: null,
     };
-    this.socket = new KanthSocket();
+    this.socket = HOSTED ? new HttpTransport() : new KanthSocket();
     this.socket.onState((link) => this.set({ link }));
     this.socket.on((m) => this.onMessage(m));
   }

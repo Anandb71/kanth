@@ -16,3 +16,8 @@ film/.frames/
 film/out/
 .shots/
 research/docs/
+
+# Vercel build output and project link
+.vercel/
+
+.vercel
